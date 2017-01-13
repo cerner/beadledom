@@ -1,0 +1,111 @@
+@namespace("com.cerner.beadledom.avro")
+protocol TestProtocol {
+    /**
+     * A model to test nested records.
+     */
+    record NestedHappyModel {
+        string content;
+    }
+
+    /**
+     * Words to help express your feelings.
+     * Notice that this comment will appear nowhere in the Swagger docs; may want to fix that in the future.
+     */
+    enum HappyEnum {
+        EBULLIENT, BUOYANT, PEPPY, FULL_OF_BEANS
+    }
+
+    /**
+     * A buffer to write your joy to.
+     */
+    fixed Happiness(9001);
+
+    /**
+     * This model can be used to test most test cases.
+     * This comment can be used to test multiline descriptions
+     * because it's a multiline comment.
+     */
+    record HappyModel {
+        /**
+         * Make sure the field comment, not the record comment, is used for the field.
+         * And make sure multiline field comments work right, too.
+         */
+        NestedHappyModel directlyNestedModel;
+
+        /**
+         * Comments work on optional fields.
+         */
+        union {null, NestedHappyModel} optionalNestedModel;
+
+        /**
+         * Comments work on enum fields.
+         */
+        HappyEnum enumField;
+
+        union {null, HappyEnum} optionalEnumField;
+
+        array<NestedHappyModel> modelArrayField;
+
+        union {null, array<NestedHappyModel>} optionalModelArrayField;
+
+        array<string> primitiveArrayField;
+
+        union {null, array<string>} optionalPrimitiveArrayField;
+
+        /**
+         * This field will be ignored because nested collections are unsupported.
+         */
+        array<array<string>> nestedArrayField;
+
+        /**
+         * This field will be ignored because maps are unsupported.
+         */
+        map<NestedHappyModel> mapField;
+
+        /**
+         * This field will be ignored because unions involving multiple non-null types are unsupported.
+         */
+        union {string, int} unionField;
+
+        /**
+         * This field will be ignored because fixed fields are unsupported.
+         */
+        Happiness fixedField;
+
+        /**
+         * Comments work on primitive fields.
+         */
+        string stringField;
+
+        union {null, string} optionalStringField;
+
+        bytes bytesField;
+
+        union {null, bytes} optionalBytesField;
+
+        int intField;
+
+        union {null, int} optionalIntField;
+
+        long longField;
+
+        union {null, long} optionalLongField;
+
+        float floatField;
+
+        union {null, float} optionalFloatField;
+
+        double doubleField;
+
+        union {null, double} optionalDoubleField;
+
+        boolean booleanField;
+
+        union {null, boolean} optionalBooleanField;
+
+        /**
+         * This will be ignored because, well, what else would you do with it?
+         */
+        null nullField;
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "apiVersion": "0.0.1-alpha",
+  "swaggerVersion": "1.2",
+  "apis": [
+    {
+      "path": "/hello",
+      "description": "A test resource."
+    },
+    {
+      "path": "/health",
+      "description": "Health and dependency checks"
+    }
+  ]
+}

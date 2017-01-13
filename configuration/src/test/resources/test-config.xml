@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <name>Lays</name>
+    <type>Potato Chips</type>
+    <flavors>
+        <flavor>Barbecue</flavor>
+        <flavor>Onion Cream</flavor>
+    </flavors>
+    <common>
+        <key>value from xml file</key>
+    </common>
+</config>
