@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Beadledom &mdash; Beadledom 2.3-SNAPSHOT documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Beadledom 2.3-SNAPSHOT documentation" href="../index.html"/>
+        <link rel="next" title="Getting Started" href="../guides/getting_started.html"/>
+        <link rel="prev" title="Beadledom" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.3-SNAPSHOT
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Beadledom</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#major-components-libraries">Major Components / Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-reading">Additional Reading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java-requirements">Java Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/2.3-SNAPSHOT/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Beadledom</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Beadledom</li>
+    <li class="wy-breadcrumbs-aside">
+      
+          
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="introduction">
+</div>
+<div class="section" id="beadledom">
+<h1>Beadledom<a class="headerlink" href="#beadledom" title="Permalink to this headline">¶</a></h1>
+<p>A simple, composable framework for building <a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">RESTful</a> services.</p>
+<p>Beadledom takes many best in class components from the Java ecosystem and composes them together
+in a lightweight and modular way to enable consumers to quickly and easily build robust ReSTful services.</p>
+<p>Providing a single entry point into a service as well as a consistent way of bootstrapping components to make
+it is easy for consumers to configure existing and/or install additional functionality. Beadledom&#8217;s bootstrapping
+and configuration relies heavily on <a class="reference external" href="https://github.com/google/guice/wiki/Motivation">Google Guice</a> so if
+you aren&#8217;t familiar with Guice it is highly recommended you spend a few minutes and read over their introductory
+documentation.</p>
+<div class="section" id="major-components-libraries">
+<h2>Major Components / Libraries<a class="headerlink" href="#major-components-libraries" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Google Guice:</dt>
+<dd>Used as the glue and bootstrapping components</dd>
+<dt>Jackson:</dt>
+<dd>JSON serialization/deserialization</dd>
+<dt>JAX-RS:</dt>
+<dd>The Java standard used for implementing RESTFul services</dd>
+<dt>RESTEasy:</dt>
+<dd>JAX-RS implementation used</dd>
+<dt>Stagemonitor:</dt>
+<dd>Monitoring and metrics</dd>
+<dt>Swagger:</dt>
+<dd>API Documentation</dd>
+</dl>
+</div>
+<div class="section" id="additional-reading">
+<h2>Additional Reading<a class="headerlink" href="#additional-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/google/guice/wiki/Motivation">Google Guice</a></li>
+<li><a class="reference external" href="http://wiki.fasterxml.com/JacksonHome">FasterXML Jaxkson</a></li>
+<li><a class="reference external" href="https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html">JAX-RS 2.0 JavaDoc</a></li>
+<li><a class="reference external" href="https://java.net/projects/jax-rs-spec/pages/Jaxrs20">JAX-RS 2.0 Spec</a></li>
+<li><a class="reference external" href="http://resteasy.jboss.org/">JBoss RESTEasy</a></li>
+<li><a class="reference external" href="https://github.com/Netflix/governator/wiki">Netflix Governator</a></li>
+<li><a class="reference external" href="http://www.stagemonitor.org/">Stagemonitor</a></li>
+<li><a class="reference external" href="https://github.com/swagger-api/swagger-core/wiki/Annotations">Swagger</a></li>
+</ul>
+</div>
+<div class="section" id="java-requirements">
+<h2>Java Requirements<a class="headerlink" href="#java-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>All the Server ONLY components require <strong>Java 8+</strong>.</li>
+<li>The components that are usable by clients requires <strong>Java 6+</strong>.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../guides/getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Beadledom" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.3-SNAPSHOT',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
