@@ -1,0 +1,9 @@
+@namespace("com.cerner.beadledom.resteasy.fauxservice.fauxmodels")
+protocol FauxServiceProtocol {
+    record PointlessThing {
+        /**
+         When you gaze long into an abyss, the abyss also gazes into you.
+         */
+        string text;
+    }
+}

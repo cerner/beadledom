@@ -1,0 +1,26 @@
+package com.cerner.beadledom.client.example;
+
+import com.cerner.beadledom.client.example.model.JsonTwo;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+/**
+ * Example rest resource two for beadledom-client.
+ *
+ * @author John Leacox
+ */
+@Path("/two")
+public interface ResourceTwo {
+  @GET
+  @Produces("application/json")
+  JsonTwo get();
+
+  @POST
+  @Produces("application/json")
+  @Consumes("application/json")
+  JsonTwo echo(JsonTwo json);
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>beadledom-client-parent</artifactId>
+        <groupId>com.cerner.beadledom</groupId>
+        <version>2.3-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>beadledom-client-guice</artifactId>
+    <name>Beadledom Client - Guice</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.cerner.beadledom</groupId>
+            <artifactId>beadledom-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cerner.beadledom</groupId>
+            <artifactId>beadledom-guice</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cerner.beadledom</groupId>
+            <artifactId>beadledom-guice-dynamicbindings</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cerner.beadledom</groupId>
+            <artifactId>resteasy-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!--Test Dependencies-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+    </dependencies>
+</project>

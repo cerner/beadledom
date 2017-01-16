@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<super-heroes>
+    <batman>Bruce Wayne</batman>
+    <superman>Clark Kent</superman>
+    <flash>Barry Allen</flash>
+    <sidekicks>
+        <one>1</one>
+        <one>2</one>
+    </sidekicks>
+</super-heroes>

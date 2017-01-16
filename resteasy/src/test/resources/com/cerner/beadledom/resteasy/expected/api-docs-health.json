@@ -1,0 +1,274 @@
+{
+  "apiVersion": "0.0.1-alpha",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:TOMCAT_PORT/faux-service",
+  "resourcePath": "/health",
+  "apis": [{
+    "path": "/meta/availability",
+    "operations": [{
+      "method": "GET",
+      "summary": "Basic Availability Check",
+      "notes": "Always returns 200. The JSON will only include the message field.",
+      "type": "HealthDto",
+      "nickname": "getBasicAvailabilityCheck",
+      "produces": ["application/json"],
+      "parameters": [],
+      "responseMessages": [{
+        "code": 503,
+        "message": "unhealthy"
+      }, {
+        "code": 200,
+        "message": "healthy"
+      }]
+    }]
+  }, {
+    "path": "/meta/health",
+    "operations": [{
+      "method": "GET",
+      "summary": "Primary Health Check",
+      "notes": "The response JSON will contain a message and the results of checking the health of primary dependencies, although stack traces will be excluded.",
+      "type": "HealthDto",
+      "nickname": "getPrimaryHealthCheck",
+      "produces": ["application/json"],
+      "parameters": [],
+      "responseMessages": [{
+        "code": 503,
+        "message": "unhealthy",
+        "responseModel": "HealthDto"
+      }, {
+        "code": 200,
+        "message": "healthy",
+        "responseModel": "HealthDto"
+      }]
+    }]
+  }, {
+    "path": "/meta/health/diagnostic/dependencies",
+    "operations": [{
+      "method": "GET",
+      "summary": "Dependency Listing",
+      "notes": "Returns the name, internal URL and external URL (if applicable) of all dependencies.",
+      "type": "array",
+      "items": {
+        "$ref": "HealthDependencyDto"
+      },
+      "nickname": "getDependencyListing",
+      "produces": ["application/json"],
+      "parameters": [],
+      "responseMessages": [{
+        "code": 503,
+        "message": "unhealthy",
+        "responseModel": "HealthDependencyDto"
+      }, {
+        "code": 200,
+        "message": "healthy",
+        "responseModel": "HealthDependencyDto"
+      }]
+    }]
+  }, {
+    "path": "/meta/health/diagnostic/dependencies/{name}",
+    "operations": [{
+      "method": "GET",
+      "summary": "Availability Check for Dependency",
+      "notes": "Invokes the basic availability check on the given dependency. The response code will match the code returned by the dependency, and will be omitted from the JSON.",
+      "type": "HealthDependencyDto",
+      "nickname": "getDependencyAvailabilityCheck",
+      "produces": ["application/json"],
+      "parameters": [{
+        "name": "name",
+        "required": true,
+        "type": "string",
+        "paramType": "path",
+        "allowMultiple": false
+      }],
+      "responseMessages": [{
+        "code": 503,
+        "message": "unhealthy",
+        "responseModel": "HealthDependencyDto"
+      }, {
+        "code": 200,
+        "message": "healthy",
+        "responseModel": "HealthDependencyDto"
+      }]
+    }]
+  }, {
+    "path": "/meta/health/diagnostic",
+    "operations": [{
+      "method": "GET",
+      "summary": "Diagnostic Health Check",
+      "notes": "The response JSON will contain all available diagnostic details and the results of checking the health of all dependencies.",
+      "type": "HealthDto",
+      "nickname": "getDiagnosticHealthCheck",
+      "produces": ["application/json"],
+      "parameters": [],
+      "responseMessages": [{
+        "code": 503,
+        "message": "unhealthy",
+        "responseModel": "HealthDto"
+      }, {
+        "code": 200,
+        "message": "healthy",
+        "responseModel": "HealthDto"
+      }]
+    }]
+  }, {
+    "path": "/meta/version",
+    "operations": [{
+      "method": "GET",
+      "summary": "Application Version Information",
+      "notes": "Always returns 200. The version information of the Application.",
+      "type": "BuildDto",
+      "nickname": "getVersionInfo",
+      "produces": ["application/json"],
+      "parameters": [],
+      "responseMessages": [{
+        "code": 503,
+        "message": "unhealthy"
+      }, {
+        "code": 200,
+        "message": "healthy"
+      }]
+    }]
+  }],
+  "models": {
+    "Instant": {
+      "id": "Instant",
+      "properties": {
+        "nano": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "epochSecond": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "TypeDto": {
+      "id": "TypeDto",
+      "description": "Indicates the type of dependency, which may have additional properties",
+      "properties": {
+        "httpService": {
+          "$ref": "HttpServiceDto",
+          "description": "Properties of the HTTP service dependency"
+        }
+      }
+    },
+    "LinksDto": {
+      "id": "LinksDto",
+      "description": "Contains hyperlinks to other resources related to a dependency",
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "The health endpoint within a service that can be queried for the health of this dependency"
+        }
+      }
+    },
+    "HealthDto": {
+      "id": "HealthDto",
+      "description": "Indicates the health of this service.",
+      "required": ["message"],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "a human-readable status description"
+        },
+        "dependencies": {
+          "type": "array",
+          "description": "the results of any dependency health checks invoked as part of this health check",
+          "items": {
+            "$ref": "HealthDependencyDto"
+          }
+        },
+        "server": {
+          "$ref": "ServerDto",
+          "description": "Runtime and environment information of the server"
+        },
+        "build": {
+          "$ref": "BuildDto",
+          "description": "Build and version information of the service serving the health check response"
+        }
+      }
+    },
+    "HttpServiceDto": {
+      "id": "HttpServiceDto",
+      "description": "Properties of the HTTP service dependency",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Availability check URL of the remote dependency"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "HTTP status code returned by the service"
+        }
+      }
+    },
+    "HealthDependencyDto": {
+      "id": "HealthDependencyDto",
+      "description": "Provides information about a dependency of this service, such as an external service that it relies on.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The display name of the dependency"
+        },
+        "message": {
+          "type": "string",
+          "description": "A human readable explanation of the health check status"
+        },
+        "id": {
+          "type": "string",
+          "description": "The id of the dependency"
+        },
+        "type": {
+          "$ref": "TypeDto",
+          "description": "Indicates the type of dependency, which may have additional properties of that type"
+        },
+        "links": {
+          "$ref": "LinksDto",
+          "description": "Contains hyperlinks to other resources for health check"
+        },
+        "primary": {
+          "type": "boolean",
+          "description": "Indicates if this is a primary dependency of the service"
+        },
+        "healthy": {
+          "type": "boolean",
+          "description": "Indicates the health of the dependency"
+        }
+      }
+    },
+    "ServerDto": {
+      "id": "ServerDto",
+      "description": "Runtime and environment information of the server.",
+      "properties": {
+        "hostName": {
+          "type": "string",
+          "description": "The name of the host which served this health check response"
+        },
+        "startupDateTime": {
+          "$ref": "Instant",
+          "description": "The startup date/time of the service process that served the health check response in ISO-8601 format"
+        }
+      }
+    },
+    "BuildDto": {
+      "id": "BuildDto",
+      "description": "Indicates the list of dependencies of this service.",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "The version of the service which served this health check response"
+        },
+        "artifactName": {
+          "type": "string",
+          "description": "The name of the artifact"
+        },
+        "buildDateTime": {
+          "type": "string",
+          "description": "The build date/time of the service or application in ISO-8601 format"
+        }
+      }
+    }
+  }
+}
