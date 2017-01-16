@@ -1,8 +1,8 @@
 language: java
 jdk: openjdk8
 branches: 
-only:
-- master
+  only:
+    - master
 cache:
   directories:
   - "$HOME/.m2"
@@ -13,3 +13,34 @@ after_success:
 env:
   global:
   - GPG_DIR="`pwd`/deploy"
+
+
+
+
+language: java
+jdk:
+  - oraclejdk8
+  - oraclejdk7
+  - openjdk7
+install:
+  - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip -B -V
+before_install:
+  - if [ ! -z "$GPG_SECRET_KEYS" ]; then echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import; fi
+  - if [ ! -z "$GPG_OWNERTRUST" ]; then echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust; fi
+deploy:
+  -
+    provider: script
+    script: .travis/deploy.sh
+    skip_cleanup: true
+    on:
+      repo: DracoBlue/http-response-headers
+      branch: master
+      jdk: oraclejdk8
+  -
+    provider: script
+    script: .travis/deploy.sh
+    skip_cleanup: true
+    on:
+      repo: DracoBlue/http-response-headers
+      tags: true
+      jdk: oraclejdk8
