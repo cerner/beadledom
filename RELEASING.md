@@ -11,7 +11,7 @@
     ```
     $ cd /path/to/beadledom
     $ gem install travis
-    $ travis login
+    $ travis login // Prompts you to enter github username, password and two-factor authentication if enabled.
     $ travis enable -r <username>/<repository>
     <username>/<repository>: enabled :)
     
@@ -53,6 +53,6 @@ After pushing the tags, travis should automatically start building the tags and 
 
 If at anytime the released need to be stopped. Cancel the maven commands and run the below command
 
-    ```
-    mvn release:rollback
-    ```
+```
+mvn release:rollback
+```
