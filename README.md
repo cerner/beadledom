@@ -3,7 +3,7 @@
 Beadledom is a bundle of common components required for building JAX-RS web services. It is the starting point
 for new services, and the core of Beadledom provides health checks, monitoring via Stagemonitor,
 API docs via Swagger, JSON serialization via Jackson, and integration of these components with
-Guice. For more information on creating a service check out our [getting started guide](http://cerner.github.io/beadledom/manual/getting_started.html).
+Guice. For more information on creating a service check out our [documentation site](http://cerner.github.io/beadledom/).
 
 Beadledom is made up of the following components:
 
