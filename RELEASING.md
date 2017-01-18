@@ -2,22 +2,24 @@
 
 ## Preparing for the Release
 
-* A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa).
+* A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa). Sonatype requires a valid email Id with the domain `cerner.com` to confirm that we are deploying the artifacts to the right namespace.
+	* **Note**: Make sure to use the cerner email to signup.
 * Install `gpg2` - we will be using this tool to automatically sign off our artifacts
-	* install it via brew - `brew install gpg2`. There are other ways to install this tool but doing it via brew can help us all be in sync easily with the version of the tool we are using.
+	* install it via brew - `brew install gpg2`. There are other ways to install this tool but doing it via brew can help us all to be in sync with the version of the tool we are using.
 * Follow this [guide](http://central.sonatype.org/pages/working-with-pgp-signatures.html#generating-a-key-pair) to generate your own gpg key and secret.
-* Execute the following commands in your terminal to prepare your travis account to deploy to maven central
+* Execute the following commands in your terminal to prepare travis-ci account to deploy to maven central
     
     ```
     $ cd /path/to/beadledom
     $ gem install travis
-    $ travis login // Prompts you to enter github username, password and two-factor authentication if enabled.
+    $ travis login
+    #  Prompts you to enter github username, password and two-factor authentication if enabled.
     $ travis enable -r <username>/<repository>
     <username>/<repository>: enabled :)
     
     $ export ENCRYPTION_PASSWORD=<password to encrypt>
-    $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/secring.gpg -out deploy/secring.gpg.enc
-    $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/pubring.gpg -out deploy/pubring.gpg.enc
+    $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/secring.gpg -out .travis/secring.gpg.enc
+    $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/pubring.gpg -out .travis/pubring.gpg.enc
     
     $ travis encrypt --add -r <username>/<repository> SONATYPE_USERNAME=<sonatype username>
     $ travis encrypt --add -r <username>/<repository> SONATYPE_PASSWORD=<sonatype password>
@@ -49,11 +51,10 @@ After preparing the machine follow the below steps
     git push origin --tags
     ```
 
-After pushing the tags, travis should automatically start building the tags and push the artifact to the maven central. To monitor the build process go to [travis-ci](https://travis-ci.org/) and navigate to beadledom project.
+After pushing the tags, travis should automatically start building the tags and push the artifact to the maven central. To monitor the build go to [beadledom travis-ci build](https://travis-ci.org/cerner/beadledom/).
 
-If at anytime the released need to be stopped. Cancel the maven commands and run the below command
+If at anytime the release need to be stopped. Cancel the maven commands and run the below command
 
 ```
 mvn release:rollback
 ```
-
