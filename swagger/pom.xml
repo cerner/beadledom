@@ -72,10 +72,5 @@
             <artifactId>scala-library</artifactId>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 </project>
