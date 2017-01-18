@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 if [ -z "$SONATYPE_USERNAME" ]
 then
