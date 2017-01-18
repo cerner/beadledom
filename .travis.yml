@@ -15,15 +15,13 @@ deploy:
     skip_cleanup: true
     on:
       repo: cerner/beadledom
-      branch: master
-      jdk: oraclejdk8
+      branch: update-release-doc
   - provider: script
     script: .travis/publish.sh
     skip_cleanup: true
     on:
       repo: cerner/beadledom
       tags: true
-      jdk: oraclejdk8
 env:
   global:
   - GPG_DIR="`pwd`/.travis"
