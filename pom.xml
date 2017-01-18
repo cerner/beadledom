@@ -932,6 +932,7 @@
                     <name>performRelease</name>
                     <value>true</value>
                 </property>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <build>
                 <plugins>
