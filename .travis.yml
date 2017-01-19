@@ -6,7 +6,7 @@ cache:
   - "$HOME/.m2"
 install:
 #- sudo apt-get install -y gnupg2
-- mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true  -Dgpg.skip=true -B -V -e
+- mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -DskipITs=true -Dgpg.skip=true -B -V -e
 before_install:
 - openssl aes-256-cbc -K $encrypted_4d3aca009c62_key -iv $encrypted_4d3aca009c62_iv -in .travis/deploy_site.enc -out .travis/deploy_site -d
 - export PATH=$PATH:${TRAVIS_BUILD_DIR}/target
