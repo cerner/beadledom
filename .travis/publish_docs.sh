@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Colors
 RESET='\e[0m'           # Reset
 RED='\e[0;31m'          # Red
@@ -19,9 +21,20 @@ BWHITE='\e[1;37m'       # Bold White
 
 function display_usage() {
   printf "${GREEN}Usage:\n"
-  printf "${YELLOW}      ./prepare_site.sh [version|dev]\n\n"
-  printf "${GREEN}   Example: ${YELLOW}./prepare_site.sh 2.2 ${GREEN}- Prepare docs for 2.2 release.\n"
-  printf "${GREEN}   Example: ${YELLOW}./prepare_site.sh dev ${GREEN}- Prepare docs for current SNAPSHOT.\n$RESET"
+  printf "${YELLOW}      ./publish_docs.sh [version|dev]\n\n"
+  printf "${GREEN}   Example: ${YELLOW}./publish_docs.sh 2.2 ${GREEN}- Prepare docs for 2.2 release.\n"
+  printf "${GREEN}   Example: ${YELLOW}./publish_docs.sh dev ${GREEN}- Prepare docs for current SNAPSHOT.\n$RESET"
+}
+
+function add-ssh-keys() {
+  chmod 600 .travis/deploy_site
+  eval `ssh-agent -s`
+  ssh-add .travis/deploy_site
+}
+
+function configure-git() {
+  git config user.name "travis-ci"
+  git config user.email "travis@travis-ci.org"
 }
 
 if [[ "$#" -eq 0 ]]; then
@@ -73,7 +86,7 @@ printf "${CYAN}Staging site.$RESET \n"
 mvn site:stage
 
 printf "${CYAN}Checking out gh-pages branch.$RESET \n"
-git checkout gh-pages
+git checkout gh-pages || git checkout --orphan gh-pages
 
 if [ ! -d "$release_tag" ]; then
   printf "${CYAN}Creating site directory ${WHITE}${release_tag}.$RESET \n"
@@ -95,6 +108,14 @@ git add .
 git commit -m "Rebuilt docs for Beadledom ${release_tag}"
 
 printf "${CYAN}\nAll Done!$RESET"
-printf "${CYAN}\nReview and then push to gh-pages branch\n$RESET"
+printf "${CYAN}\nAutomatically pushing docs site for ${release_tag}.\n$RESET"
+
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+
+add-ssh-keys
+configure-git
+
+git push $SSH_REPO gh-pages
 
 exit $?
