@@ -12,6 +12,7 @@ before_install:
 script:
 - echo $GPG_DIR
 - ls -ll $GPG_DIR
+- pwd
 deploy:
 - provider: script
   script: ".travis/publish.sh"

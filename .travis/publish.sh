@@ -7,10 +7,11 @@ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/secring.gpg.enc
 
 if [ ! -z "$TRAVIS_TAG" ]
 then
-    echo "on a tag -> set pom.xml <version> to $TRAVIS_TAG"
-    mvn --settings $GPG_DIR/settings.xml org.codehaus.mojo:versions-maven-plugin:2.1:set -DnewVersion=$TRAVIS_TAG 1>/dev/null 2>/dev/null
+    echo "Checking out a tag $TRAVIS_TAG"
+    git checkout tags/$TRAVIS_TAG -b tag_$TRAVIS_TAG
+    mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -B -U
 else
     echo "not on a tag -> keep snapshot version in pom.xml"
+    mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
 fi
 
-mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -B -U -X
