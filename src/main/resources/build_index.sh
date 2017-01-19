@@ -3,9 +3,9 @@
 url=${beadledom.url}
 url_base=${url%\/*}
 
-dirs=()
+directories=()
 
-dirs+=('<ul>')
+directories+=('<ul>')
 
 echo "Building index.html links for past versions..."
 
@@ -14,11 +14,11 @@ do
   if [[ $d =~ ^([0-9]+\.[0-9]+\/)|^([0-9]+\.[0-9]+\.[0-9]+\/) ]]; then
     version="${d%?}"
     url="$url_base/$version/docs"
-    dirs+=("<li><a href=\"$url\">Beadledom Docs Version $version</a></li>")
+    directories+=("<li><a href=\"$url\">Beadledom Docs Version $version</a></li>")
   fi
 done
 
-dirs+=('</ul>')
+directories+=('</ul>')
 
 echo "Moving index.html to index.html.bak"
 
@@ -38,7 +38,7 @@ cat <<EOF > index.html
     </script>
   </head>
   <body>
-    $(printf "%s\n" "${dirs[@]}")
+    $(printf "%s\n" "${directories[@]}")
   </body>
   </html>
 EOF
