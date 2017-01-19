@@ -87,7 +87,8 @@ mvn site:stage
 
 printf "${CYAN}Checking out gh-pages branch.$RESET \n"
 git fetch origin
-git checkout -b gh-pages origin/gh-pages
+git branch gh-pages origin/gh-pages
+git checkout gh-pages
 
 if [ ! -d "$release_tag" ]; then
   printf "${CYAN}Creating site directory ${WHITE}${release_tag}.$RESET \n"
