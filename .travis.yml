@@ -9,6 +9,9 @@ install:
 - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip -B -V
 before_install:
 - export PATH=$PATH:${TRAVIS_BUILD_DIR}/target
+script:
+- echo $GPG_DIR
+- ls -ll $GPG_DIR
 deploy:
 - provider: script
   script: ".travis/publish.sh"
@@ -18,8 +21,6 @@ deploy:
     branch: update-release-doc
 - provider: script
   script:
-  - echo $GPG_DIR
-  - ls -ll $GPG_DIR
   - ".travis/publish.sh"
   skip_cleanup: true
   on:
