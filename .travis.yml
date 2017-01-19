@@ -18,7 +18,10 @@ deploy:
     repo: cerner/beadledom
     branch: update-release-doc
 - provider: script
-  script: ".travis/publish.sh"
+  script:
+  - echo $GPG_PWD
+  - ls -ll $GPG_PWD
+  - ".travis/publish.sh"
   skip_cleanup: true
   on:
     repo: cerner/beadledom

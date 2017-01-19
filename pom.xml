@@ -928,10 +928,6 @@
         <profile>
             <id>ossrh</id>
             <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <build>
