@@ -86,6 +86,7 @@ printf "${CYAN}Staging site.$RESET \n"
 mvn site:stage
 
 printf "${CYAN}Checking out gh-pages branch.$RESET \n"
+git fetch
 git checkout gh-pages || git checkout --orphan gh-pages
 
 if [ ! -d "$release_tag" ]; then
