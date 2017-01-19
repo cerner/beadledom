@@ -19,6 +19,8 @@ BPURPLE='\e[1;35m'      # Bold Magenta
 BCYAN='\e[1;36m'        # Bold Cyan
 BWHITE='\e[1;37m'       # Bold White
 
+git remote set-url --push origin `git config remote.origin.url | sed -e 's/^git:/https:/'`
+
 function display_usage() {
   printf "${GREEN}Usage:\n"
   printf "${YELLOW}      ./publish_docs.sh [version|dev]\n\n"
