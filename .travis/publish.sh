@@ -13,7 +13,7 @@ then
     ${GPG_DIR}/publish_docs.sh $TRAVIS_TAG
 else
     echo "not on a tag -> keep snapshot version in pom.xml"
-    #mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
+    mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
     ${GPG_DIR}/publish_docs.sh dev
 fi
 

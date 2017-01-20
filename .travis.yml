@@ -16,7 +16,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: cerner/beadledom
-    branch: update-release-doc
+    branch: master
 - provider: script
   script:
   - ".travis/publish.sh"
