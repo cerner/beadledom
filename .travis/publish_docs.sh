@@ -102,7 +102,7 @@ cp -r target/staging/* "$release_tag"/
 
 printf "${CYAN}Creating redirecting index.html.$RESET \n"
 mv target/build_index.sh "."
-sh ./build_index.sh "$release_tag"
+./build_index.sh "$release_tag"
 
 printf "${CYAN}Generating git commit.$RESET \n"
 git add .
