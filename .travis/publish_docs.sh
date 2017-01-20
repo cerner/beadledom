@@ -19,8 +19,6 @@ BPURPLE='\e[1;35m'      # Bold Magenta
 BCYAN='\e[1;36m'        # Bold Cyan
 BWHITE='\e[1;37m'       # Bold White
 
-git remote set-url --push origin `git config remote.origin.url | sed -e 's/^git:/https:/'`
-
 function display_usage() {
   printf "${GREEN}Usage:\n"
   printf "${YELLOW}      ./publish_docs.sh [version|dev]\n\n"
@@ -82,15 +80,14 @@ else
 fi
 
 printf "${CYAN}Generating site.$RESET \n"
-mvn clean site
+mvn clean site > /dev/null
 
 printf "${CYAN}Staging site.$RESET \n"
-mvn site:stage
+mvn site:stage > /dev/null
 
 printf "${CYAN}Checking out gh-pages branch.$RESET \n"
-git fetch origin
-git branch gh-pages origin/gh-pages
-git checkout gh-pages
+git remote set-branches --add origin gh-pages && git fetch -q
+git checkout -b gh-pages origin/gh-pages
 
 if [ ! -d "$release_tag" ]; then
   printf "${CYAN}Creating site directory ${WHITE}${release_tag}.$RESET \n"
