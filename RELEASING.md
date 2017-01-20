@@ -2,8 +2,8 @@
 
 ## Preparing for the Release
 
-* A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa). Sonatype requires a valid email Id with the domain `cerner.com` to confirm that we are deploying the artifacts to the right namespace.
-	* **Note**: Make sure to use the cerner email to signup.
+* A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa). Sonatype requires a valid email ID with the domain `cerner.com` to confirm that we are deploying the artifacts to the right namespace.
+	* **Note**: Make sure to use the Cerner email to signup.
 * Execute the following commands in your terminal to prepare travis-ci
     
     ```
@@ -78,8 +78,8 @@ mvn release:rollback
 
 Once the master branch and tags are pushed the following happens.
 
-* Travis kicks off a new build for released tag pushes the artifact to Maven central. It roughly takes about 2 hours for the artifacts to sync with the maven central.
+* Travis starts a new build for released tag pushes the artifact to Maven central. It roughly takes about 2 hours for the artifacts to sync with the maven central.
 * Builds the documentation site for the released tag and publishes it to `gh-pages`.
-* Kicks off a build for the current snapshot and pushes the artifacts to [sonatype snapshots repo](https://oss.sonatype.org/content/repositories/snapshots/com/cerner/beadledom/).
+* Travis starts another build for the current snapshot and pushes the artifacts to [sonatype snapshots repo](https://oss.sonatype.org/content/repositories/snapshots/com/cerner/beadledom/).
 
 To monitor the build go to [beadledom travis-ci builds](https://travis-ci.org/cerner/beadledom/builds).
