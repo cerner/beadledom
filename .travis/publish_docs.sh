@@ -33,8 +33,8 @@ function add-ssh-keys() {
 }
 
 function configure-git() {
-  git config user.name "travis-ci"
-  git config user.email "travis@travis-ci.org"
+  git config --global user.name "travis-ci"
+  git config --global user.email "travis@travis-ci.org"
 }
 
 if [[ "$#" -eq 0 ]]; then
