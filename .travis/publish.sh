@@ -15,4 +15,3 @@ else
     echo "not on a tag -> keep snapshot version in pom.xml"
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
 fi
-
