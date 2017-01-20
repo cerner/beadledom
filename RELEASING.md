@@ -2,8 +2,7 @@
 
 ## Preparing for the Release
 
-* A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa). Sonatype requires a valid email ID with the domain `cerner.com` to confirm that we are deploying the artifacts to the right namespace.
-	* **Note**: Make sure to use the Cerner email to signup.
+* A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa).
 * Execute the following commands in your terminal to prepare travis-ci
     
     ```
