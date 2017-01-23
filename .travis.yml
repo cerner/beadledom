@@ -23,6 +23,9 @@ deploy:
   on:
     repo: cerner/beadledom
     tags: true
+branches:
+  only:
+    - master
 env:
   global:
   - GPG_DIR=${TRAVIS_BUILD_DIR}/.travis/
