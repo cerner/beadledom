@@ -14,3 +14,5 @@ classes
 obj
 .DS_Store
 pom.xml.releaseBackup
+pom.xml.bck
+*.test
