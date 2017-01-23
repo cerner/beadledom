@@ -80,10 +80,10 @@ else
 fi
 
 printf "${CYAN}Generating site.$RESET \n"
-mvn clean site > /dev/null
+mvn clean site
 
 printf "${CYAN}Staging site.$RESET \n"
-mvn site:stage > /dev/null
+mvn site:stage
 
 printf "${CYAN}Checking out gh-pages branch.$RESET \n"
 git remote set-branches --add origin gh-pages && git fetch -q
