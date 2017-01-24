@@ -1,5 +1,7 @@
 # Releasing Beadledom
 
+The [Preparing for the Release](preparing-for-the-release) section is needed only for the initial setup. If the setup is already made once, skip to [Release process](release-process)
+
 ## Preparing for the Release
 
 * A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa).
@@ -47,19 +49,16 @@
  
 ## Release process
 
-After preparing the machine follow the below steps
+After preparing the project for the release follow the below steps
 
-* Prepare the project for releasing
+* Update the changelog with the release data for the releasing version.
+* Commit the change.
+* Prepare the project for releasing.
 
     ```
     mvn clean release:prepare
     ```
-
-* Release the project
-
-    ```
-    mvn clean release:perform
-    ```
+    The below command will prompt for the release version. Give the same version as in the changelog. After that it also prompts for the next development version. Give the appropriate version number for the next release.
 
 * Push the local commits and tags
 
