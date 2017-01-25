@@ -27,9 +27,9 @@ function display_usage() {
 }
 
 function add-ssh-keys() {
-  chmod 600 .travis/deploy_site
+  chmod 600 $SECRETS_DIR/deploy_site
   eval `ssh-agent -s`
-  ssh-add .travis/deploy_site
+  ssh-add $SECRETS_DIR/deploy_site
 }
 
 function configure-git() {
