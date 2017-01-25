@@ -876,7 +876,7 @@
                 <version>${maven-project-info-reports-plugin-version}</version>
                 <reportSets>
                     <reportSet>
-                        <reports />
+                        <reports/>
                     </reportSet>
                 </reportSets>
                 <configuration>
@@ -969,12 +969,14 @@
                         <groupId>net.alchim31.maven</groupId>
                         <artifactId>scala-maven-plugin</artifactId>
                         <version>${scala-maven-plugin.version}</version>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>doc-jar</goal>
-                            </goals>
-                        </execution>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>doc-jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
