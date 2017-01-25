@@ -9,7 +9,7 @@ before_install:
 install:
 - sudo apt-get install -y gnupg2
 - mkdir -p $SECRETS_DIR
-- mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V -e
+- mvn --settings install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -e
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_4d3aca009c62_key -iv $encrypted_4d3aca009c62_iv -in $GPG_DIR/deploy_site.enc -out $SECRETS_DIR/deploy_site -d
 - openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/pubring.gpg.enc -out $SECRETS_DIR/pubring.gpg -d
