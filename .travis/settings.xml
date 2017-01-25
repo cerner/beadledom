@@ -24,8 +24,8 @@
                 <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
                 <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
                 <gpg.defaultKeyring>false</gpg.defaultKeyring>
-                <gpg.publicKeyring>${env.GPG_DIR}/pubring.gpg</gpg.publicKeyring>
-                <gpg.secretKeyring>${env.GPG_DIR}/secring.gpg</gpg.secretKeyring>
+                <gpg.publicKeyring>${env.SECRETS_DIR}/pubring.gpg</gpg.publicKeyring>
+                <gpg.secretKeyring>${env.SECRETS_DIR}/secring.gpg</gpg.secretKeyring>
             </properties>
         </profile>
     </profiles>
