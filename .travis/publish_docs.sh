@@ -48,7 +48,7 @@ fi
 
 release_tag="$1"
 
-if [[ "$release_tag" == "dev" || "$release_tag"  == "master" || "$release_tag"  == "2.3-Beta"]]; then
+if [[ "$release_tag" == "dev" || "$release_tag"  == "master" || "$release_tag"  == "2.3-Beta" ]]; then
   release_tag=$(xmllint --xpath "//*[local-name()='project']/*[local-name()='version']/text()" pom.xml)
 
   printf "${CYAN}Checking out master to build SNAPSHOT version ${WHITE}"${release_tag}" ${CYAN}of docs.$RESET \n"
