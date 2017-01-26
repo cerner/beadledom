@@ -1,0 +1,1 @@
+This file is required to trigger the scala-doc plugin.
