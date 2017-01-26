@@ -971,7 +971,7 @@
                         <version>${scala-maven-plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>attach-javadocs</id>
+                                <id>attach-scaladocs</id>
                                 <goals>
                                     <goal>doc-jar</goal>
                                 </goals>
