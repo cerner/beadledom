@@ -45,7 +45,7 @@ public class AvroJacksonModule extends Module {
   }
 
   @Override
-  public void setupModule(SetupContext context) {
+  public void setupModule(Module.SetupContext context) {
     // Serialization is easy - this mixin disables serialization of the Schema field,
     // and everything else Just Works.
     context.setMixInAnnotations(SpecificRecordBase.class, AvroMappingMixin.class);
