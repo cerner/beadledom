@@ -22,14 +22,14 @@ deploy:
   on:
     repo: cerner/beadledom
     branch: master
-    condition: $IS_SNAPSHOT = true
+    condition: ${IS_SNAPSHOT} = true
 - provider: script
   script: ".travis/publish.sh"
   skip_cleanup: true
   on:
     repo: cerner/beadledom
     branch: beta
-    condition: $IS_SNAPSHOT = true
+    condition: ${IS_SNAPSHOT} = true
 - provider: script
   script: ".travis/publish.sh"
   skip_cleanup: true
