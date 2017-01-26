@@ -4,7 +4,7 @@
 
     <groupId>com.cerner.beadledom</groupId>
     <artifactId>beadledom-parent</artifactId>
-    <version>2.3-Beta</version>
+    <version>2.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Beadledom (Parent)</name>
     <description>A simple, composable framework for building RESTFul services</description>
