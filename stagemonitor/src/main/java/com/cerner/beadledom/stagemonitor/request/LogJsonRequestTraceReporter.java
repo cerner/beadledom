@@ -51,7 +51,7 @@ public class LogJsonRequestTraceReporter extends RequestTraceReporter {
   }
 
   @Override
-  public void reportRequestTrace(RequestTraceReporter.ReportArguments reportArguments) throws Exception {
+  public void reportRequestTrace(ReportArguments reportArguments) throws Exception {
     RequestTrace requestTrace = reportArguments.getRequestTrace();
 
     if (logger.isInfoEnabled() && requestTrace.getExecutionTime() >= jsonRequestTraceLoggerPlugin
@@ -78,7 +78,7 @@ public class LogJsonRequestTraceReporter extends RequestTraceReporter {
   }
 
   @Override
-  public boolean isActive(RequestTraceReporter.IsActiveArguments isActiveArguments) {
+  public boolean isActive(IsActiveArguments isActiveArguments) {
     return requestMonitorPlugin.isLogCallStacks();
   }
 }
