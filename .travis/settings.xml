@@ -12,7 +12,6 @@
     </servers>
     <activeProfiles>
         <activeProfile>ossrh</activeProfile>
-        <activeProfile>build-scala-doc</activeProfile>
     </activeProfiles>
     <profiles>
         <profile>
