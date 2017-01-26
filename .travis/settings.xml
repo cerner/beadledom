@@ -12,6 +12,7 @@
     </servers>
     <activeProfiles>
         <activeProfile>ossrh</activeProfile>
+        <activeProfile>build-scala-doc</activeProfile>
     </activeProfiles>
     <profiles>
         <profile>
@@ -27,6 +28,14 @@
                 <gpg.publicKeyring>${env.SECRETS_DIR}/pubring.gpg</gpg.publicKeyring>
                 <gpg.secretKeyring>${env.SECRETS_DIR}/secring.gpg</gpg.secretKeyring>
             </properties>
+        </profile>
+        <profile>
+            <id>build-scala-doc</id>
+            <activation>
+                <file>
+                    <exists>build-scala-doc.txt</exists>
+                </file>
+            </activation>
         </profile>
     </profiles>
 </settings>
