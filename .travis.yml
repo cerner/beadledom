@@ -30,7 +30,7 @@ deploy:
   on:
     repo: cerner/beadledom
     branch: beta
-    condition: "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-Beta
+    condition: "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT
 - provider: script
   script: ".travis/publish.sh"
   skip_cleanup: true
