@@ -28,13 +28,5 @@
                 <gpg.secretKeyring>${env.SECRETS_DIR}/secring.gpg</gpg.secretKeyring>
             </properties>
         </profile>
-        <profile>
-            <id>build-scala-doc</id>
-            <activation>
-                <file>
-                    <exists>${project.basedir}/build-scala-doc.txt</exists>
-                </file>
-            </activation>
-        </profile>
     </profiles>
 </settings>

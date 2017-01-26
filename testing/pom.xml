@@ -43,6 +43,12 @@
     <profiles>
         <profile>
             <id>build-scala-doc</id>
+            <activation>
+                <property>
+                    <name>attachScaladocs</name>
+                    <value>true</value>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
