@@ -32,7 +32,7 @@
             <id>build-scala-doc</id>
             <activation>
                 <file>
-                    <exists>${project.basedir}/pom.xml</exists>
+                    <exists>${project.basedir}/build-scala-doc.txt</exists>
                 </file>
             </activation>
         </profile>
