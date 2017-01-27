@@ -9,4 +9,5 @@ then
 else
     echo "deploying SNAPSHOT from master"
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
+    ${GPG_DIR}/publish_docs.sh 2.3-Beta
 fi

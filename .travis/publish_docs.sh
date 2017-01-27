@@ -37,8 +37,6 @@ function configure-git() {
   git config --global user.email "travis@travis-ci.org"
 }
 
-cd ${TRAVIS_BUILD_DIR}/cerner/beadledom
-
 if [[ "$#" -eq 0 ]]; then
   printf "${RED}No release tag specified\n\n"
   display_usage
