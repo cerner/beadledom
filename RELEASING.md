@@ -82,6 +82,3 @@ After preparing the project for the release follow the below steps
 * Travis starts another build for the current snapshot and pushes the artifacts to [sonatype snapshots repo](https://oss.sonatype.org/content/repositories/snapshots/com/cerner/beadledom/).
 
 To monitor the build go to [beadledom travis-ci builds](https://travis-ci.org/cerner/beadledom/builds).
-
-
-

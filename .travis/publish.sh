@@ -7,6 +7,6 @@ then
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -DattachScaladocs=true -B -U
     ${GPG_DIR}/publish_site.sh $TRAVIS_TAG
 else
-    echo "deploying SNAPSHOT version from master"
+    echo "deploying SNAPSHOT from master"
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
 fi
