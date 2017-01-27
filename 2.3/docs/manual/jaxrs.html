@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>beadledom-jaxrs &mdash; Beadledom 2.3 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Beadledom 2.3 documentation" href="../index.html"/>
+        <link rel="up" title="User Manual" href="index.html"/>
+        <link rel="next" title="beadledom-jaxrs-genericresponse" href="jaxrs_generic_response.html"/>
+        <link rel="prev" title="beadledom-jackson" href="jackson.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="avro.html">Beadledom Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Beadledom Bootstrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beadledom_client.html">Beadledom Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">Beadledom Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Beadledom Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Beadledom Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice.html">Beadledom Guice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice_dynamic_bindings.html">Beadledom Guice Dynamic Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="health.html">Beadledom Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jackson.html">Beadledom Jackson</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Beadledom JAX-RS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-id">Correlation Id</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download">Download</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#download-using-maven">Download using Maven</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jaxrs_generic_response.html">Beadledom JAX-RS - Generic Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resteasy.html">Beadledom Resteasy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resteasy_generic_response.html">Beadledom Resteasy - Generic Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stagemonitor.html">Beadledom Stagemonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swagger.html">Beadledom Swagger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle.html">Beadledom Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle_governator.html">Beadledom Lifecycle - Governator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Beadledom Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/2.3/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Beadledom</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">User Manual</a> &raquo;</li>
+      
+    <li>beadledom-jaxrs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+          
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="beadledom-jaxrs">
+<span id="id1"></span><h1>beadledom-jaxrs<a class="headerlink" href="#beadledom-jaxrs" title="Permalink to this headline">¶</a></h1>
+<p>This module provides a guice module for providing JAX-RS specific bindings.</p>
+<div class="section" id="correlation-id">
+<h2>Correlation Id<a class="headerlink" href="#correlation-id" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of the correlation id is to associate request/response interactions. This allows tracing
+of an originating request throughout a system. This is helpful for debugging and logging purposes.</p>
+<p>The CorrelationIdFilter reads the correlation id header from the request, adds it to the
+response headers, and adds it to the slf4j Mapped Diagnostic Context (MDC).</p>
+<p>The correlation id will be taken from the correlation id request header if present, or
+generated if absent. The id will also be added to the response and to the MDC for logging.</p>
+<p>The default header and mdc key name is <code class="docutils literal"><span class="pre">Correlation-Id</span></code>. However, both names are
+configurable through guice bindings. <a class="reference internal" href="#usage">More on this later</a>.</p>
+<p>To include the correlation id in the catalina.out file using log4j, update the log format to include
+<code class="docutils literal"><span class="pre">%X{Correlation-Id}</span></code> replacing the name with your configured name.</p>
+</div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="download-using-maven">
+<h3>Download using Maven<a class="headerlink" href="#download-using-maven" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.cerner.beadledom<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>beadledom-jaxrs<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>[insert latest version]<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The correlation id header and/or MDC name can overridden by adding a binding for your custom name
+and annotating it with <code class="docutils literal"><span class="pre">&#64;CorrelationIdHeader</span></code> or <code class="docutils literal"><span class="pre">&#64;CorrelationIdMdc</span></code> respectively.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">install</span><span class="o">(</span><span class="k">new</span> <span class="n">JaxRsModule</span><span class="o">());</span>
+
+    <span class="n">String</span> <span class="n">customCorrelationIdName</span> <span class="o">=</span> <span class="s">&quot;Not-Default&quot;</span><span class="o">;</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">annotatedWith</span><span class="o">(</span><span class="n">CorrelationIdHeader</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">customCorrelationIdName</span><span class="o">);</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">annotatedWith</span><span class="o">(</span><span class="n">CorrelationIdMdc</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">customCorrelationIdName</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">customCorrelationIdName</span> <span class="o">=</span> <span class="s">&quot;Not-Default&quot;</span><span class="o">;</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">install</span><span class="o">(</span><span class="k">new</span> <span class="n">JaxRsModule</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Provides</span>
+  <span class="nd">@CorrelationIdHeader</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">provideCorrelationIdHeader</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">customCorrelationIdName</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Provides</span>
+  <span class="nd">@CorrelationIdMdc</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">provideCorrelationIdMdc</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">customCorrelationIdName</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="jaxrs_generic_response.html" class="btn btn-neutral float-right" title="beadledom-jaxrs-genericresponse" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="jackson.html" class="btn btn-neutral" title="beadledom-jackson" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
