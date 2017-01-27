@@ -27,6 +27,7 @@ function display_usage() {
 }
 
 function add-ssh-keys() {
+  openssl aes-256-cbc -K $encrypted_4d3aca009c62_key -iv $encrypted_4d3aca009c62_iv -in $GPG_DIR/deploy_site_key.enc -out $GPG_DIR/deploy_site_key -d
   chmod 600 $GPG_DIR/deploy_site
   eval `ssh-agent -s`
   ssh-add $GPG_DIR/deploy_site
@@ -118,5 +119,6 @@ add-ssh-keys
 configure-git
 
 git push $SSH_REPO gh-pages
+
 
 exit $?
