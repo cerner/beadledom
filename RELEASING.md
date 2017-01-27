@@ -28,18 +28,18 @@ The [Preparing for the Release](preparing-for-the-release) section is needed onl
 * All the secrets and passwords must be encrypted and passed on to travis as [secured environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-encrypted-variables-in-.travis.yml).
  
 	```  
-    $ travis encrypt --add -r <username>/<repository> SONATYPE_USERNAME=<sonatype username>
-    $ travis encrypt --add -r <username>/<repository> SONATYPE_PASSWORD=<sonatype password>
-    $ travis encrypt --add -r <username>/<repository> ENCRYPTION_PASSWORD=<password to encrypt>
-    $ travis encrypt --add -r <username>/<repository> GPG_KEYNAME=<gpg keyname (ex. 1C06698F)>
-    $ travis encrypt --add -r <username>/<repository> GPG_PASSPHRASE=<gpg passphrase>
+    $ travis encrypt --add -r cerner/beadledom SONATYPE_USERNAME=<sonatype username>
+    $ travis encrypt --add -r cerner/beadledom SONATYPE_PASSWORD=<sonatype password>
+    $ travis encrypt --add -r cerner/beadledom ENCRYPTION_PASSWORD=<password to encrypt>
+    $ travis encrypt --add -r cerner/beadledom GPG_KEYNAME=<gpg keyname (ex. 1C06698F)>
+    $ travis encrypt --add -r cerner/beadledom GPG_PASSPHRASE=<gpg passphrase>
     ```   
 * Create a new set of ssh keys to push the documentation site to `gh-pages` branch. Follow this github [documentation](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key) to create the ssh keys.
-	* **Note**: The ssh keys file names has to be `deploy_site`.
+	* **Note**: The ssh keys file names has to be `deploy_site_key`.
 	* Before generating the keys make sure the current directory is the directory where all your ssh keys are stored. By default this would be `~/.ssh`
-* Add the contents of `deploy_site.pub` to the [beadledom deploy keys](https://github.com/cerner/beadledom/settings/keys).
-	* *pro tip*: You can copy the contents using `pbcopy < path/to/deploy_site.pub`
-* Encrypt the `deploy_site` key and add it to .travis.yml file by executing the below commands.
+* Add the contents of `deploy_site_key.pub` to the [beadledom deploy keys](https://github.com/cerner/beadledom/settings/keys).
+	* *pro tip*: You can copy the contents using `pbcopy < path/to/deploy_site_key.pub`
+* Encrypt the `deploy_site_key` key and add it to .travis.yml file by executing the below commands.
 
 	```
 	$ cd path/to/beadledom
@@ -53,30 +53,31 @@ After preparing the project for the release follow the below steps
 
 * Update the changelog with the release data for the releasing version.
 * Commit the change.
+* Clean up the previous release backup/release property files.
+
+    ```
+    mvn clean release:prepare
+    ```
 * Prepare the project for releasing.
 
     ```
     mvn clean release:prepare
     ```
-    The below command will prompt for the release version. Give the same version as in the changelog. After that it also prompts for the next development version. Give the appropriate version number for the next release.
+    * The above command will prompt for the following
+        * current release version (should be same as in changelog)
+        * next development cycle version. After that it also prompts for the next development version
+    * Maven builds the project to make sure everything is good. If the build succeeds then it updates the versions of the project and pushes the following to beadledom git repo
+        * a commit for the release
+        * a commit for the next development cycle
+        * the tag that was cut for the release
+    * **Note**: If at anytime the release need to be stopped. Cancel the maven commands using (ctrl + z) and run the below command
 
-* Push the local commits and tags
-
-    ```
-    git push origin master
-    git push origin --tags
-
-    ```
-
-If at anytime the release need to be stopped. Cancel the maven commands and run the below command
-
-```
-mvn release:rollback
-```
-
-Once the master branch and tags are pushed the following happens.
-
-* Travis starts a new build for released tag pushes the artifact to Maven central. It roughly takes about 2 hours for the artifacts to sync with the maven central.
+          mvn release:rollback
+* Travis starts a new build for released tag and pushes the artifact to [sonatype staging repo](https://oss.sonatype.org/#stagingpositories).
+* Once the artifacts are pushed to the Sonatype staging repo
+    * Scroll down to the latest beadledom repo from the list. 
+    * click on the release button to push the artifact to maven central.
+    * **Note**: It roughly takes about 2 hours for the artifacts to sync with the maven central.
 * Builds the documentation site for the released tag and publishes it to `gh-pages`.
 * Travis starts another build for the current snapshot and pushes the artifacts to [sonatype snapshots repo](https://oss.sonatype.org/content/repositories/snapshots/com/cerner/beadledom/).
 

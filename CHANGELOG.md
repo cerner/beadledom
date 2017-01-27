@@ -1,6 +1,9 @@
 # Beadledom Changelog
 
-## 2.3 - In Progress
+## 2.3 - 24 01 2017
+
+### Enhancements
+* Open sourced
 * Add JavaDoc to doc site
 * Add user manual to doc site
 

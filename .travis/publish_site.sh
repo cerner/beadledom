@@ -21,18 +21,20 @@ BWHITE='\e[1;37m'       # Bold White
 
 function display_usage() {
   printf "${GREEN}Usage:\n"
-  printf "${YELLOW}      ./publish_docs.sh [version|dev]\n\n"
-  printf "${GREEN}   Example: ${YELLOW}./publish_docs.sh 2.2 ${GREEN}- Prepare docs for 2.2 release.\n"
-  printf "${GREEN}   Example: ${YELLOW}./publish_docs.sh dev ${GREEN}- Prepare docs for current SNAPSHOT.\n$RESET"
+  printf "${YELLOW}      ./publish_site.sh [version|dev]\n\n"
+  printf "${GREEN}   Example: ${YELLOW}./publish_site.sh 2.2 ${GREEN}- Prepare docs for 2.2 release.\n"
+  printf "${GREEN}   Example: ${YELLOW}./publish_site.sh dev ${GREEN}- Prepare docs for current SNAPSHOT.\n$RESET"
 }
 
 function add-ssh-keys() {
-  chmod 600 .travis/deploy_site
+  chmod 600 $GPG_DIR/deploy_site_key
   eval `ssh-agent -s`
-  ssh-add .travis/deploy_site
+  ssh-add $GPG_DIR/deploy_site_key
 }
 
 function configure-git() {
+  add-ssh-keys
+
   git config --global user.name "travis-ci"
   git config --global user.email "travis@travis-ci.org"
 }
@@ -45,6 +47,8 @@ elif [[ "$1" == "--help" ]]; then
   display_usage
   exit 0
 fi
+
+configure-git
 
 release_tag="$1"
 
@@ -113,9 +117,6 @@ printf "${CYAN}\nAutomatically pushing docs site for ${release_tag}.\n$RESET"
 
 REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
-
-add-ssh-keys
-configure-git
 
 git push $SSH_REPO gh-pages
 

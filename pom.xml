@@ -102,6 +102,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
         <maven-project-info-reports-plugin-version>2.9</maven-project-info-reports-plugin-version>
+        <scala-maven-plugin.version>3.2.1</scala-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -512,7 +513,7 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>${scala-maven-plugin.version}</version>
                 <configuration>
                     <jvmArgs>
                         <jvmArg>-Xms64m</jvmArg>
@@ -875,7 +876,7 @@
                 <version>${maven-project-info-reports-plugin-version}</version>
                 <reportSets>
                     <reportSet>
-                        <reports/>
+                        <reports />
                     </reportSet>
                 </reportSets>
                 <configuration>
