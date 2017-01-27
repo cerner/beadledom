@@ -11,14 +11,7 @@ install:
 script:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V -e
 after_success:
-- if [[ "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]];
-  then
-    export IS_SNAPSHOT=true;
-  else
-    openssl aes-256-cbc -K $encrypted_4d3aca009c62_key -iv $encrypted_4d3aca009c62_iv -in $GPG_DIR/deploy_site_key.enc -out $GPG_DIR/deploy_site_key -d
-    openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/pubring.gpg.enc -out $GPG_DIR/pubring.gpg -d
-    openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/secring.gpg.enc -out $GPG_DIR/secring.gpg -d;
-  fi
+- if [[ "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]]; then export IS_SNAPSHOT=true; fi
 deploy:
 - provider: script
   script: ".travis/publish.sh"

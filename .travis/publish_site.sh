@@ -27,9 +27,9 @@ function display_usage() {
 }
 
 function add-ssh-keys() {
-  chmod 600 $GPG_DIR/deploy_site
+  chmod 600 $GPG_DIR/deploy_site_key
   eval `ssh-agent -s`
-  ssh-add $GPG_DIR/deploy_site
+  ssh-add $GPG_DIR/deploy_site_key
 }
 
 function configure-git() {
