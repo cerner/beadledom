@@ -33,6 +33,8 @@ function add-ssh-keys() {
 }
 
 function configure-git() {
+  add-ssh-keys
+
   git config --global user.name "travis-ci"
   git config --global user.email "travis@travis-ci.org"
 }
@@ -45,6 +47,8 @@ elif [[ "$1" == "--help" ]]; then
   display_usage
   exit 0
 fi
+
+configure-git
 
 release_tag="$1"
 
@@ -113,9 +117,6 @@ printf "${CYAN}\nAutomatically pushing docs site for ${release_tag}.\n$RESET"
 
 REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
-
-add-ssh-keys
-configure-git
 
 git push $SSH_REPO gh-pages
 
