@@ -10,7 +10,7 @@ install:
 - sudo apt-get install -y gnupg2
 script:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V -e
-after_script:
+after_success:
 - mkdir -p $SECRETS_DIR
 - if [[ "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]]; then IS_SNAPSHOT=true; fi
 before_deploy:
@@ -43,6 +43,8 @@ branches:
     - master
     - beta
     - /([0-9]*\.[0-9]*\.*[0-9]*-*)\w+$/
+after_script:
+- rm -rf $SECRETS_DIR
 env:
   global:
   - SECRETS_DIR=${TRAVIS_BUILD_DIR}/cerner/secrets
