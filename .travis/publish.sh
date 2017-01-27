@@ -9,9 +9,6 @@ then
     openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/pubring.gpg.enc -out $GPG_DIR/pubring.gpg -d
     openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/secring.gpg.enc -out $GPG_DIR/secring.gpg -d;
 
-    echo "git checking out $TRAVIS_TAG"
-    git checkout tags/$TRAVIS_TAG -b tag_$TRAVIS_TAG
-
     echo "deploying $TRAVIS_TAG to maven central"
     mvn deploy --settings $GPG_DIR/settings.xml -DattachScaladocs=true -B -U
 
