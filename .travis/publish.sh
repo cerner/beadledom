@@ -2,12 +2,11 @@
 
 if [ ! -z "$TRAVIS_TAG" ]
 then
-    echo "deploying beadledom $TRAVIS_TAG to maven central"
+    echo "deploying $TRAVIS_TAG to maven central"
     git checkout tags/$TRAVIS_TAG -b tag_$TRAVIS_TAG
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -DattachScaladocs=true -B -U
     ${GPG_DIR}/publish_docs.sh $TRAVIS_TAG
 else
-    echo "deploying SNAPSHOT from master"
+    echo "deploying SNAPSHOT version from master"
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
-    ${GPG_DIR}/publish_docs.sh 2.3-Beta
 fi
