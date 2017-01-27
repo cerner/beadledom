@@ -3,9 +3,10 @@
 ## 2.3 - 24 01 2017
 
 ### Enhancements
-* Open sourced
-* Add JavaDoc to doc site
-* Add user manual to doc site
+* Fixed resteasy [compatibility issues](https://github.com/cerner/beadledom/issues/9).
+* Open sourced.
+* Add JavaDoc to doc site.
+* Add user manual to doc site.
 
 -------
 **Note**: The below versions were released internally and not available via Maven Central. These entries are kept to track down the history of beadledom.
