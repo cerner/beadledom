@@ -46,8 +46,6 @@ branches:
     - master
     - beta
     - /([0-9]*\.[0-9]*\.*[0-9]*-*)\w+$/
-after_script:
-- if [ ! ${IS_SNAPSHOT} ]; then rm -rf $SECRETS_DIR; fi
 env:
   global:
   - SECRETS_DIR=${TRAVIS_BUILD_DIR}/secrets
