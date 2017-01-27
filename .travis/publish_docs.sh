@@ -89,6 +89,8 @@ mvn site:stage
 printf "${CYAN}Checking out gh-pages branch.$RESET \n"
 git remote set-branches --add origin gh-pages && git fetch -q
 git checkout -b gh-pages origin/gh-pages
+git reset --hard
+git clean -f -d
 
 if [ ! -d "$release_tag" ]; then
   printf "${CYAN}Creating site directory ${WHITE}${release_tag}.$RESET \n"
@@ -119,6 +121,5 @@ add-ssh-keys
 configure-git
 
 git push $SSH_REPO gh-pages
-
 
 exit $?
