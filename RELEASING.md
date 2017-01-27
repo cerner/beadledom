@@ -53,6 +53,11 @@ After preparing the project for the release follow the below steps
 
 * Update the changelog with the release data for the releasing version.
 * Commit the change.
+* Clean up the previous release backup/release property files.
+
+    ```
+    mvn clean release:prepare
+    ```
 * Prepare the project for releasing.
 
     ```
