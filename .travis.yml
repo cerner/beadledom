@@ -8,15 +8,11 @@ before_install:
 - export PATH=$PATH:${TRAVIS_BUILD_DIR}/target
 install:
 - sudo apt-get install -y gnupg2
-- mkdir -p $SECRETS_DIR
+script:
 - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V -e
-- if [[ "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]];
-  then
-    echo "extracted the snapshot version";
-    IS_SNAPSHOT=true;
-  else
-    echo "failed to extracted the snapshot version";
-  fi
+after_script:
+- mkdir -p $SECRETS_DIR
+- if [[ "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]]; then IS_SNAPSHOT=true; fi
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_4d3aca009c62_key -iv $encrypted_4d3aca009c62_iv -in $GPG_DIR/deploy_site.enc -out $SECRETS_DIR/deploy_site -d
 - openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in $GPG_DIR/pubring.gpg.enc -out $SECRETS_DIR/pubring.gpg -d
