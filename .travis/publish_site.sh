@@ -21,9 +21,9 @@ BWHITE='\e[1;37m'       # Bold White
 
 function display_usage() {
   printf "${GREEN}Usage:\n"
-  printf "${YELLOW}      ./publish_docs.sh [version|dev]\n\n"
-  printf "${GREEN}   Example: ${YELLOW}./publish_docs.sh 2.2 ${GREEN}- Prepare docs for 2.2 release.\n"
-  printf "${GREEN}   Example: ${YELLOW}./publish_docs.sh dev ${GREEN}- Prepare docs for current SNAPSHOT.\n$RESET"
+  printf "${YELLOW}      ./publish_site.sh [version|dev]\n\n"
+  printf "${GREEN}   Example: ${YELLOW}./publish_site.sh 2.2 ${GREEN}- Prepare docs for 2.2 release.\n"
+  printf "${GREEN}   Example: ${YELLOW}./publish_site.sh dev ${GREEN}- Prepare docs for current SNAPSHOT.\n$RESET"
 }
 
 function add-ssh-keys() {
