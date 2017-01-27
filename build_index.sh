@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-url=http://cerner.github.io/beadledom/2.3-SNAPSHOT
+url=http://cerner.github.io/beadledom/2.3-beta
 url_base=${url%\/*}
 
-dirs=()
+directories=()
 
-dirs+=('<ul>')
+directories+=('<ul>')
 
 echo "Building index.html links for past versions..."
 
@@ -14,11 +14,11 @@ do
   if [[ $d =~ ^([0-9]+\.[0-9]+\/)|^([0-9]+\.[0-9]+\.[0-9]+\/) ]]; then
     version="${d%?}"
     url="$url_base/$version/docs"
-    dirs+=("<li><a href=\"$url\">Beadledom Docs Version $version</a></li>")
+    directories+=("<li><a href=\"$url\">Beadledom Docs Version $version</a></li>")
   fi
 done
 
-dirs+=('</ul>')
+directories+=('</ul>')
 
 echo "Moving index.html to index.html.bak"
 
@@ -32,13 +32,13 @@ cat <<EOF > index.html
   <head>
     <meta charset="utf-8">
     <title>Beadledom Site Redirect</title>
-    <meta http-equiv="refresh" content="5; url="http://cerner.github.io/beadledom/2.3-SNAPSHOT/docs"">
+    <meta http-equiv="refresh" content="5; url="http://cerner.github.io/beadledom/2.3-beta/docs"">
     <script type="text/javascript">
-        window.location.replace("http://cerner.github.io/beadledom/2.3-SNAPSHOT/docs");
+        window.location.replace("http://cerner.github.io/beadledom/2.3-beta/docs");
     </script>
   </head>
   <body>
-    $(printf "%s\n" "${dirs[@]}")
+    $(printf "%s\n" "${directories[@]}")
   </body>
   </html>
 EOF

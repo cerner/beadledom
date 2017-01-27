@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Troubleshooting &mdash; Beadledom 2.3-beta documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Beadledom 2.3-beta documentation" href="../index.html"/>
+        <link rel="prev" title="beadledom-testing" href="../manual/testing.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.3-beta
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#healthchecks">Healthchecks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i-am-seeing-optional-xxx-inside-of-my-healthchecks">I am seeing <code class="docutils literal"><span class="pre">Optional[xxx]</span></code> inside of my healthchecks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mustache-dependency-resolution-issue">Mustache dependency resolution issue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#build-exceptions">Build Exceptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i-am-seeing-scala-collection-immutable-colon-colon-hd-1-ljava-lang-object-a-part-of-my-exceptions">I am seeing <code class="docutils literal"><span class="pre">scala.collection.immutable.$colon$colon.hd$1()Ljava/lang/Object;</span></code> a part of my exceptions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scala-version-collision-issue">Scala version collision issue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/2.3-beta/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Beadledom</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Troubleshooting</li>
+    <li class="wy-breadcrumbs-aside">
+      
+          
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound" id="troubleshooting">
+</div>
+<div class="section" id="id1">
+<h1>Troubleshooting<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="healthchecks">
+<h2>Healthchecks<a class="headerlink" href="#healthchecks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="i-am-seeing-optional-xxx-inside-of-my-healthchecks">
+<h3>I am seeing <code class="docutils literal"><span class="pre">Optional[xxx]</span></code> inside of my healthchecks<a class="headerlink" href="#i-am-seeing-optional-xxx-inside-of-my-healthchecks" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="mustache-dependency-resolution-issue">
+<h4>Mustache dependency resolution issue<a class="headerlink" href="#mustache-dependency-resolution-issue" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Problem</dt>
+<dd>The <code class="docutils literal"><span class="pre">beadledom-health</span></code> module has a dependency on <code class="docutils literal"><span class="pre">com.github.spullara.mustache.java:compiler:0.9.0</span></code>. Some
+older versions of <code class="docutils literal"><span class="pre">com.github.spullara.mustache.java:compiler</span></code> do not have support for Java 8 which beadledom
+health needs. Not having Java 8 support would result in <code class="docutils literal"><span class="pre">Optional</span></code> fields not being unwrapped properly.</dd>
+<dt>Suggested solution</dt>
+<dd>Add an explicit dependency on version <code class="docutils literal"><span class="pre">0.9.0</span></code> of the <code class="docutils literal"><span class="pre">com.github.spullara.mustache.java:compiler</span></code> dependency</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="build-exceptions">
+<h2>Build Exceptions<a class="headerlink" href="#build-exceptions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="i-am-seeing-scala-collection-immutable-colon-colon-hd-1-ljava-lang-object-a-part-of-my-exceptions">
+<h3>I am seeing <code class="docutils literal"><span class="pre">scala.collection.immutable.$colon$colon.hd$1()Ljava/lang/Object;</span></code> a part of my exceptions<a class="headerlink" href="#i-am-seeing-scala-collection-immutable-colon-colon-hd-1-ljava-lang-object-a-part-of-my-exceptions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="scala-version-collision-issue">
+<h4>Scala version collision issue<a class="headerlink" href="#scala-version-collision-issue" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt>Problem</dt>
+<dd>What this usually telling you is that you have a scala version mismatch (Scala classes from 2.10 and 2.11 or 2.11 and 2.12 etc.).
+The best way we have found to resolve these inconsistencies is to do <cite>mvn dependency:tree -Dincludes:scala-library::</cite> and search
+the output for anything containing the unwanted version of Scala. For instance <cite>scalatest_2.10</cite> if you were using <code class="docutils literal"><span class="pre">Scala</span> <span class="pre">2.11</span></code>.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../manual/testing.html" class="btn btn-neutral" title="beadledom-testing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.3-beta',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
