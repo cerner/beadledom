@@ -58,26 +58,25 @@ After preparing the project for the release follow the below steps
     ```
     mvn clean release:prepare
     ```
-    The below command will prompt for the release version. Give the same version as in the changelog. After that it also prompts for the next development version. Give the appropriate version number for the next release.
+    * The above command will prompt for the following
+        * current release version (should be same as in changelog)
+        * next development cycle version. After that it also prompts for the next development version
+    * Maven builds the project to make sure everything is good. If the build succeeds then it updates the versions of the project and pushes the following to beadledom git repo
+        * a commit for the release
+        * a commit for the next development cycle
+        * the tag that was cut for the release
+    * **Note**: If at anytime the release need to be stopped. Cancel the maven commands using (ctrl + z) and run the below command
 
-* Push the local commits and tags
-
-    ```
-    git push origin master
-    git push origin --tags
-
-    ```
-
-If at anytime the release need to be stopped. Cancel the maven commands and run the below command
-
-```
-mvn release:rollback
-```
-
-Once the master branch and tags are pushed the following happens.
-
-* Travis starts a new build for released tag pushes the artifact to Maven central. It roughly takes about 2 hours for the artifacts to sync with the maven central.
+          mvn release:rollback
+* Travis starts a new build for released tag and pushes the artifact to [sonatype staging repo](https://oss.sonatype.org/#stagingpositories).
+* Once the artifacts are pushed to the Sonatype staging repo
+    * Scroll down to the latest beadledom repo from the list. 
+    * click on the release button to push the artifact to maven central.
+    * **Note**: It roughly takes about 2 hours for the artifacts to sync with the maven central.
 * Builds the documentation site for the released tag and publishes it to `gh-pages`.
 * Travis starts another build for the current snapshot and pushes the artifacts to [sonatype snapshots repo](https://oss.sonatype.org/content/repositories/snapshots/com/cerner/beadledom/).
 
 To monitor the build go to [beadledom travis-ci builds](https://travis-ci.org/cerner/beadledom/builds).
+
+
+
