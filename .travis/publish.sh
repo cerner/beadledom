@@ -13,11 +13,11 @@ then
     git checkout tags/$TRAVIS_TAG -b tag_$TRAVIS_TAG
 
     echo "deploying $TRAVIS_TAG to maven central"
-    mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -DattachScaladocs=true -B -U
+    mvn deploy --settings $GPG_DIR/settings.xml -DattachScaladocs=true -B -U
 
     echo "building site"
     ${GPG_DIR}/publish_site.sh $TRAVIS_TAG
 else
     echo "deploying SNAPSHOT from master"
-    mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
+    mvn deploy --settings $GPG_DIR/settings.xml -Dgpg.skip -B -U
 fi

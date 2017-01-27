@@ -9,7 +9,7 @@ before_install:
 install:
 - sudo apt-get install -y gnupg2
 script:
-- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V -e
+- mvn install -Dmaven.javadoc.skip=true -B -V -e
 after_success:
 - if [[ "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]]; then export IS_SNAPSHOT=true; fi
 deploy:
