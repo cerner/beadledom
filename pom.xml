@@ -876,7 +876,7 @@
                 <version>${maven-project-info-reports-plugin-version}</version>
                 <reportSets>
                     <reportSet>
-                        <reports />
+                        <reports/>
                     </reportSet>
                 </reportSets>
                 <configuration>
