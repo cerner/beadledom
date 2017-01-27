@@ -6,7 +6,7 @@ then
     git checkout tags/$TRAVIS_TAG -b tag_$TRAVIS_TAG
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -DattachScaladocs=true -B -U
     ${GPG_DIR}/publish_docs.sh $TRAVIS_TAG
-    rm -rf $SECRETS_DIR
+    rm -rf $GPG_DIR
 else
     echo "deploying SNAPSHOT version from master"
     mvn deploy --settings $GPG_DIR/settings.xml -DskipTests=true -Dgpg.skip -B -U
