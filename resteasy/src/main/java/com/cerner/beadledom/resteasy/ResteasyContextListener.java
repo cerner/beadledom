@@ -5,6 +5,8 @@ import com.cerner.beadledom.configuration.ConfigurationSource;
 import com.cerner.beadledom.lifecycle.GuiceLifecycleContainers;
 import com.cerner.beadledom.lifecycle.LifecycleContainer;
 import com.cerner.beadledom.lifecycle.LifecycleInjector;
+
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -34,10 +36,6 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
     super.contextInitialized(event);
 
     final ServletContext context = event.getServletContext();
-    final Registry registry = (Registry) context.getAttribute(Registry.class.getName());
-    final ResteasyProviderFactory providerFactory =
-        (ResteasyProviderFactory) context.getAttribute(ResteasyProviderFactory.class.getName());
-    final ModuleProcessor processor = new ModuleProcessor(registry, providerFactory);
 
     final List<? extends Module> appModules = getModules(context);
 
@@ -48,11 +46,7 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
 
     withInjector(injector);
 
-    processor.processInjector(injector);
-    while (injector.getParent() != null) {
-      Injector parent = injector.getParent();
-      processor.processInjector(parent);
-    }
+    processInjector(context, injector);
   }
 
   @Override
@@ -76,4 +70,21 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
    * Returns the list of Guice modules to be used with Resteasy.
    */
   protected abstract List<? extends Module> getModules(ServletContext context);
+
+  /**
+   * Processes module bindings in the Guice injector.
+   */
+  @VisibleForTesting
+  public void processInjector(ServletContext context, Injector injector) {
+    final Registry registry = (Registry) context.getAttribute(Registry.class.getName());
+    final ResteasyProviderFactory providerFactory =
+        (ResteasyProviderFactory) context.getAttribute(ResteasyProviderFactory.class.getName());
+    final ModuleProcessor processor = new ModuleProcessor(registry, providerFactory);
+
+    processor.processInjector(injector);
+    while (injector.getParent() != null) {
+      injector = injector.getParent();
+      processor.processInjector(injector);
+    }
+  }
 }

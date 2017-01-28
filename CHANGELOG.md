@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 2.4 - Unreleased
+
+### Defects Corrected
+* Fixed infinite loop in `ResteasyContextListener` when injector has a parent.
+
 ## 2.3 - 24 01 2017
 
 ### Enhancements
