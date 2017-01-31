@@ -17,7 +17,6 @@ class JaxRsParamConditionsSpec extends FunSpec with ShouldMatchers {
           JaxRsParamConditions.checkParam(false, "some message")
         }
         exception.getResponse.getStatus should be(400)
-        exception.getResponse.getEntity should be("some message")
         exception.getResponse.getMediaType should be(MediaType.TEXT_PLAIN_TYPE)
       }
 
