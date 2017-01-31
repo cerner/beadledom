@@ -18,6 +18,7 @@ class JaxRsParamConditionsSpec extends FunSpec with ShouldMatchers {
         }
         exception.getResponse.getStatus should be(400)
         exception.getResponse.getMediaType should be(MediaType.TEXT_PLAIN_TYPE)
+        exception.getMessage should be("some message")
       }
 
       it("should not throw an exception when expression is true") {
