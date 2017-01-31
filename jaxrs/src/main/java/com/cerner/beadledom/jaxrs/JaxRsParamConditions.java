@@ -43,10 +43,9 @@ public class JaxRsParamConditions {
   public static void checkParam(boolean expression, Object errorMessage) {
     if (!expression) {
       Response response = Response.status(Response.Status.BAD_REQUEST)
-          .entity(String.valueOf(errorMessage))
           .type(MediaType.TEXT_PLAIN)
           .build();
-      throw new WebApplicationException(response);
+      throw new WebApplicationException(String.valueOf(errorMessage), response);
     }
   }
 }
