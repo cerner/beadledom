@@ -4,6 +4,7 @@
 
 ### Defects Corrected
 * Removed unnecessary loop in `ResteasyContextListener` which would cause infinite loop if run.
+* Fixed issue with redirects in the bootstrap script.([issue-15](https://github.com/cerner/beadledom/issues/15))
 
 ## 2.3 - 24 01 2017
 
