@@ -1,5 +1,8 @@
 # Beadledom Changelog
 
+## 2.4 - In Development
+* Fixed issue with redirects in the bootstrap script.([issue-15](https://github.com/cerner/beadledom/issues/15))
+
 ## 2.3 - 24 01 2017
 
 ### Enhancements

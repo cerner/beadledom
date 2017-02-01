@@ -54,7 +54,7 @@ then
     exec 3>&1
     GET=`which curl`
     printf "$CYAN Found $GREEN curl $CYAN will use $GET for download.$RESET\n\n"
-    HTTP_STATUS=$($GET "-w" "%{http_code}" "-o" "$DEFAULT_INSTALL_DIR/beadledom" "$DEFAULT_REPO/beadledom")
+    HTTP_STATUS=$($GET "-L" "-w" "%{http_code}" "-o" "$DEFAULT_INSTALL_DIR/beadledom" "$DEFAULT_REPO/beadledom")
     exec 1>&3 3>&-
 else
     printf "$RED Cannot find curl which is required for installation. Aborting install.$RESET\n"
