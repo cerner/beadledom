@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 2.4
+## 2.4 - In Development
 
 ### Defects Corrected
 * WebApplicationException mapper is called when exceptions are thrown by the checkParam method in JaxRsParamConditions class.
