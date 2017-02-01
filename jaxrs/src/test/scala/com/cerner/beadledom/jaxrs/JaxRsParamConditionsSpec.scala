@@ -13,7 +13,7 @@ import org.scalatest.{FunSpec, MustMatchers}
 class JaxRsParamConditionsSpec extends FunSpec with MustMatchers {
   describe("JaxRsParamConditions") {
     describe("checkParam") {
-      it("should throw WebApplicationException with 400 status when expression is false") {
+      it("must throw WebApplicationException with 400 status when expression is false") {
         val exception = intercept[WebApplicationException] {
           JaxRsParamConditions.checkParam(false, "some message")
         }
@@ -23,7 +23,7 @@ class JaxRsParamConditionsSpec extends FunSpec with MustMatchers {
         exception.getMessage must be("some message")
       }
 
-      it("should not throw an exception when expression is true") {
+      it("must not throw an exception when expression is true") {
         JaxRsParamConditions.checkParam(true, "some message")
       }
     }
