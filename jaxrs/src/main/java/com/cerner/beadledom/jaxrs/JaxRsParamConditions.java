@@ -27,6 +27,7 @@ import javax.ws.rs.core.Response;
  * </pre>
  *
  * @author John Leacox
+ * @author Nimesh Subramanian
  */
 public class JaxRsParamConditions {
   private JaxRsParamConditions() {
