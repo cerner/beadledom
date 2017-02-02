@@ -2,7 +2,7 @@ package com.cerner.beadledom.resteasy
 
 import com.cerner.beadledom.configuration._
 import com.cerner.beadledom.resteasy.fauxservice.FauxContextListener
-import com.google.inject.{AbstractModule, Binding, Injector, Key, Module, Singleton}
+import com.google.inject.{AbstractModule, Injector, Module, Singleton}
 import java.io.FileReader
 import java.util
 import javax.annotation.{PostConstruct, PreDestroy}
@@ -138,28 +138,6 @@ class BaseContextListenerSpec
 
         lifecycleHolder.hasExecutedStartup must be(true)
         lifecycleHolder.hasExecutedShutdown must be(true)
-      }
-
-      it("processes parent injectors") {
-        val contextListenerUtil = new ContextListeners(List())
-
-        val contextListener = contextListenerUtil.getContextListener
-
-        val injectors = List.fill(3)(mock[Injector])
-        when(injectors(0).getParent).thenReturn(injectors(1))
-        when(injectors(1).getParent).thenReturn(injectors(2))
-        when(injectors(2).getParent).thenReturn(null)
-        injectors.foreach(x => when(x.getBindings).thenReturn(Map[Key[_],Binding[_]]().asJava))
-
-        contextListener.processInjector(context, injectors(0))
-
-        verify(injectors(0), times(2)).getParent
-        verify(injectors(1), times(2)).getParent
-        verify(injectors(2), times(1)).getParent
-
-        // Verify bindings were processed for all injectors
-        injectors.foreach(x => verify(x, times(1)).getBindings)
-
       }
     }
 
