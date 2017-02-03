@@ -49,10 +49,6 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
     withInjector(injector);
 
     processor.processInjector(injector);
-    while (injector.getParent() != null) {
-      Injector parent = injector.getParent();
-      processor.processInjector(parent);
-    }
   }
 
   @Override

@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 2.4 - In Development
+
+### Defects Corrected
+* Removed unnecessary loop in `ResteasyContextListener` which would cause infinite loop if run.
+
 ## 2.3 - 24 01 2017
 
 ### Enhancements
