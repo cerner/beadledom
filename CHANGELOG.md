@@ -4,7 +4,8 @@
 
 ### Defects Corrected
 * Removed unnecessary loop in `ResteasyContextListener` which would cause infinite loop if run.
-* Fixed issue with redirects in the bootstrap script.([issue-15](https://github.com/cerner/beadledom/issues/15))
+* Fixed issue with redirects in the bootstrap script ([issue-15](https://github.com/cerner/beadledom/issues/15)).
+* WebApplicationException mapper is called when exceptions are thrown by the checkParam method in JaxRsParamConditions class ([#16](https://github.com/cerner/beadledom/pull/16)).
 
 ## 2.3 - 24 01 2017
 
