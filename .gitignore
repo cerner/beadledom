@@ -17,3 +17,4 @@ pom.xml.releaseBackup
 deploy_site_key
 pubring.gpg
 secring.gpg
+.tags
