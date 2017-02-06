@@ -36,3 +36,19 @@ Problem
   What this usually telling you is that you have a scala version mismatch (Scala classes from 2.10 and 2.11 or 2.11 and 2.12 etc.).
   The best way we have found to resolve these inconsistencies is to do `mvn dependency:tree -Dincludes:scala-library::` and search
   the output for anything containing the unwanted version of Scala. For instance `scalatest_2.10` if you were using ``Scala 2.11``.
+
+
+Swagger
+----------------
+
+I am seeing resources from clients being treated as service resource by swagger
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Problem
+  Beadledom clients are automatically generated from API resources annotated with JAX-RS and Swagger annotations.
+  API definitions from clients used in a service is getting merged with the service definition.
+
+Suggested solution
+  Make your service module a private module, and expose only your server resources. In another module install ``ResteasyModule`` and bootstrap all the configurations needed for resteasy.
+  In your ``ResteasyContextListener`` class install your service module and ``ResteasyBootstrapModule``.
+

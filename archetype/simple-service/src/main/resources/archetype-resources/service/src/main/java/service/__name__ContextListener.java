@@ -13,6 +13,6 @@ import javax.servlet.ServletContext;
 public class ${name}ContextListener extends ResteasyContextListener {
   @Override
   protected List<? extends Module> getModules(ServletContext context) {
-    return Lists.newArrayList(new ${name}Module());
+    return Lists.newArrayList(new ${name}Module(), new ResteasyBootstrapModule());
   }
 }

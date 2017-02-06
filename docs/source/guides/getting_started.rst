@@ -271,7 +271,7 @@ AwesomeThingContextListener
   public class AwesomeThingContextListener extends ResteasyContextListener {
     @Override
     protected List<? extends Module> getModules(ServletContext context) {
-      return Lists.newArrayList(new AwesomeThingModule());
+      return Lists.newArrayList(new AwesomeThingModule(), new ResteasyBootstrapModule());
     }
   }
 
@@ -280,22 +280,24 @@ our service and where we define our base Guice modules and configuration. We won
 into the configuration component if you want to learn more about it (and we recommend you do)
 you can find more documentation `here <https://github.com/cerner/beadledom/tree/master/configuration>`_.
 
-The other method we are overriding here is providing our ``AwesomeThingModule`` so why don't we
-take a look at that next.
+The method we are overriding here is providing our ``AwesomeThingModule``, which is our service module and ``ResteasyBootstrapModule``, which bootstraps ``ResteasyModule`` for our service.
 
-AwesomeThingModule
+
+so Let's take a look at the ``ResteasyBootstrapModule`` next.
+
+ResteasyBootstrapModule
 ++++++++++++++++++
 
 .. code-block:: java
 
-  public class AwesomeThingModule extends AbstractModule {
+  public class ResteasyBootstrapModule extends AbstractModule {
+
     protected void configure() {
       install(new ResteasyModule());
 
       BuildInfo buildInfo = BuildInfo.load(getClass().getResourceAsStream("build-info.properties"));
       bind(BuildInfo.class).toInstance(buildInfo);
       bind(ServiceMetadata.class).toInstance(ServiceMetadata.create(buildInfo));
-      bind(HelloWorldResource.class).to(HelloWorldResourceImpl.class);
     }
 
     @Provides
@@ -309,7 +311,7 @@ AwesomeThingModule
 
 This is where we install the main Beadledom module :java:`install(new ResteasyModule());`. Inside
 this module is where Beadledom is going to install and bootstrap the various features it needs
-in order to make our service tick. Below are some of the many awesome features that we get just in installing `ResteasyModule` without any extra efforts
+in order to make our service tick. Below are some of the many awesome features that we get just by installing `ResteasyModule` without any extra efforts
 
 - `Configuration <https://github.com/cerner/beadledom/tree/master/configuration#beadledom-configuration>`_ - lets us access all the configuration through a consistent API.
 - `Health <https://github.com/cerner/beadledom/tree/master/health#beadledom-health>`_ - Health checks for the services
@@ -327,9 +329,25 @@ The next chunk of code
 We pull in the properties from the ``build-info.properties`` and make them available to the service
 and more importantly the healthcheck.
 
-In the next binding :java:`bind(HelloWorldResource.class).to(HelloWorldResourceImpl.class);` we are
+AwesomeThingModule
+++++++++++++++++++
+
+.. code-block:: java
+
+  public class AwesomeThingModule extends PrivateModule {
+    protected void configure() {
+      bind(HelloWorldResource.class).to(HelloWorldResourceImpl.class);
+
+      expose(HelloWorldResource.class);
+    }
+  }
+
+``AwesomeThingModule`` is a private module, which contains configuration information for our service. PrivateModule encapsulates the service's environment and only exposes objects needed for JAX-RS/Resteasy(ex: resource classes, providers and features). It also prevents dependency issues with a configuration bound to Guice gobally.
+
+With this binding :java:`bind(HelloWorldResource.class).to(HelloWorldResourceImpl.class);` we are
 telling Guice that whenever we ask for an instance of `HelloWorldResource`_ we want it to inject
-the implementation `HelloWorldResourceImpl`_.
+the implementation `HelloWorldResourceImpl`_. And the next line :java:`expose(HelloWorldResource.class);`, exposes `HelloWorldResource`_ to modules that install `AwesomeThingModule`_.
+
 
 That's it! There are additional Beadledom modules that we can install for other functionality, and
 we could even create our own modules or bindings to provide additional classes our service will need
