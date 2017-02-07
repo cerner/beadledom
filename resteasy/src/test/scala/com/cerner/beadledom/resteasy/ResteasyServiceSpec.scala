@@ -170,6 +170,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
           "build" -> Json.obj(
             "artifactName" -> "faux-service",
             "version" -> "0.0.1-alpha",
+            "scmRevision" -> "abcde",
             "buildDateTime" -> "2016-07-29T06:12:33-05:00"
           )
         )

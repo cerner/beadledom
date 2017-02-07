@@ -267,6 +267,10 @@
         "buildDateTime": {
           "type": "string",
           "description": "The build date/time of the service or application in ISO-8601 format"
+        },
+        "scmRevision": {
+          "type": "string",
+          "description": "The SCM version of the service which served this health check response"
         }
       }
     }

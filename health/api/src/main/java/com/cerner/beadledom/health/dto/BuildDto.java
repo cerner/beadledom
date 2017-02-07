@@ -1,7 +1,6 @@
 package com.cerner.beadledom.health.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
@@ -25,7 +24,8 @@ public abstract class BuildDto {
     return new AutoValue_BuildDto.Builder()
         .setArtifactName(Optional.empty())
         .setBuildDateTime(Optional.empty())
-        .setVersion(Optional.empty());
+        .setVersion(Optional.empty())
+        .setScmRevision(Optional.empty());
   }
 
   @ApiModelProperty("The name of the artifact")
@@ -39,6 +39,10 @@ public abstract class BuildDto {
   @ApiModelProperty("The build date/time of the service or application in ISO-8601 format")
   @JsonProperty("buildDateTime")
   public abstract Optional<String> getBuildDateTime();
+
+  @ApiModelProperty("The SCM version of the service which served this health check response")
+  @JsonProperty("scmRevision")
+  public abstract Optional<String> getScmRevision();
 
   @AutoValue.Builder
   public abstract static class Builder {
@@ -59,6 +63,12 @@ public abstract class BuildDto {
 
     public Builder setBuildDateTime(String buildDateTime) {
       return setBuildDateTime(Optional.ofNullable(buildDateTime));
+    }
+
+    abstract Builder setScmRevision(Optional<String> scmRevision);
+
+    public Builder setScmRevision(String scmRevision) {
+      return setScmRevision(Optional.ofNullable(scmRevision));
     }
 
     public abstract BuildDto build();

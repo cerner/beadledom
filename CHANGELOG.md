@@ -1,6 +1,7 @@
 # Beadledom Changelog
 
 ## 2.4 - In Development
+* Added SCM Revision to health check.
 
 ### Defects Corrected
 * Removed unnecessary loop in `ResteasyContextListener` which would cause infinite loop if run.
