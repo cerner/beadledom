@@ -43,4 +43,11 @@ public class BuildPresenter {
   public String getBuildDateTime() {
     return buildInfo.getBuildDateTime().map(buildDateTime -> buildDateTime).orElse("Not Available");
   }
+
+  /**
+   * Returns the scm version from the DTO.
+   */
+  public Optional<String> getScmRevision() {
+    return buildInfo.getScmRevision();
+  }
 }

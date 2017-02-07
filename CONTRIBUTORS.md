@@ -10,6 +10,7 @@
 * Brian van de Boogaard [@b-boogaard][brian-boogaard]
 * Supriya Lal [@lal-s][supriya-lal]
 * Jason Gassel [@jpeg][jason-gassel]
+* Rajkumar TS [@rajkumarts][rajkumar-ts]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -21,3 +22,4 @@
 [brian-boogaard]: https://github.com/b-boogaard
 [supriya-lal]: https://github.com/lal-s
 [jason-gassel]: https://github.com/jpeg
+[rajkumar-ts]: https://github.com/rajkumarts
