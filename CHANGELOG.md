@@ -6,9 +6,9 @@
 * Removed unnecessary loop in `ResteasyContextListener` which would cause infinite loop if run.
 * Fixed issue with redirects in the bootstrap script ([issue-15](https://github.com/cerner/beadledom/issues/15)).
 * WebApplicationException mapper is called when exceptions are thrown by the checkParam method in JaxRsParamConditions class ([#16](https://github.com/cerner/beadledom/pull/16)).
-* Fixed BeadledomClientBuilderProvider using root Guice injector instead of nearest child injector.
+* Fixed `BeadledomClientBuilderProvider` using root Guice injector instead of nearest child injector.
 
-## 2.3 - 24 01 2017
+## 2.3 - 24 Jan 2017
 
 ### Enhancements
 * Fixed resteasy [compatibility issues](https://github.com/cerner/beadledom/issues/9).
