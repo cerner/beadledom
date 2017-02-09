@@ -36,7 +36,7 @@ class BeadledomClientBuilderProvider implements Provider<BeadledomClientBuilder>
       BeadledomClientBuilder.class,
       BeadledomClientLifecycleHook.class);
 
-  private Provider<Injector> injectorProvider;
+  private Injector injector;
   private String correlationIdHeader;
 
   BeadledomClientBuilderProvider(Class<? extends Annotation> clientBindingAnnotation) {
@@ -45,11 +45,11 @@ class BeadledomClientBuilderProvider implements Provider<BeadledomClientBuilder>
 
   @Inject
   void init(
-      Provider<Injector> injectorProvider,
+      Injector injector,
       @CorrelationIdClientHeader String correlationIdHeaderOpt,
       DynamicBindingProvider<Optional<BeadledomClientConfiguration>> beadledomConfigProvider,
       DynamicBindingProvider<BeadledomClientBuilderFactory> clientBuilderFactoryProvider) {
-    this.injectorProvider = injectorProvider;
+    this.injector = injector;
     this.correlationIdHeader = correlationIdHeaderOpt;
     this.beadledomConfigProvider = beadledomConfigProvider;
     this.clientBuilderFactoryProvider = clientBuilderFactoryProvider;
@@ -84,13 +84,17 @@ class BeadledomClientBuilderProvider implements Provider<BeadledomClientBuilder>
       }
     }
 
-    Injector injector = injectorProvider.get();
-    processInjector(injector, clientBuilder);
-    while (injector.getParent() != null) {
-      injector = injector.getParent();
-      processInjector(injector, clientBuilder);
+    Injector tempInjector = getInjector();
+    processInjector(tempInjector, clientBuilder);
+    while (tempInjector.getParent() != null) {
+      tempInjector = tempInjector.getParent();
+      processInjector(tempInjector, clientBuilder);
     }
     return clientBuilder;
+  }
+
+  private Injector getInjector() {
+    return injector;
   }
 
   private void processInjector(Injector injector, BeadledomClientBuilder builder) {
