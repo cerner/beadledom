@@ -1,17 +1,17 @@
-# beadledom
+# Beadledom
 
 Beadledom is a bundle of common components required for building JAX-RS web services. It is the starting point
-for new services, and the core of Beadledom provides health checks, monitoring via Stagemonitor,
+for new services. The core of Beadledom provides health checks, monitoring via Stagemonitor,
 API docs via Swagger, JSON serialization via Jackson, and integration of these components with
-Guice. For more information on creating a service check out our [documentation site](http://cerner.github.io/beadledom/).
+Guice. For more information on creating a service check out our [documentation](http://cerner.github.io/beadledom/).
 
 Beadledom is made up of the following components:
 
 * [avro](avro#beadledom-avro) - Additional Avro functionality required for services.
-* [client](client#beadledom-client) - Http client for communicating with the Jax-RS web services.
+* [client](client#beadledom-client) - HTTP client for communicating with the JAX-RS web services.
 * [common](common#beadledom-common) - Common utilities.
 * [Configuration](configuration#beadledom-configuration) - Centralized API to access the aggregated configurations from different sources.
-* [core](core#beadledom-core) - Core Guice Module that pulls in all the other recommended beadledom modules.
+* [core](core#beadledom-core) - Core Guice module that pulls in all the other recommended Beadledom modules.
 * [guice](guice#beadledom-guice) - Additional Guice extensions.
 * [guice-dynamicbindings](guice-dynamicbindings#beadledom-guice-dynamicbindings) - To retrieve annotated bindings at runtime.
 * [health](health#beadledom-health) - Health checks for services.
@@ -19,7 +19,7 @@ Beadledom is made up of the following components:
 * [jaxrs](jaxrs#beadledom-jaxrs) - Restful API additions (filters and providers)
 * [lifecycle](lifecycle#beadledom-lifecycle) - Defines and manages the lifecyle hooks for an application or a container.
 * [lifecycle-governator](lifecycle-governator#beadledom-lifecycle-governator) - An implementation of the [beadledom-lifecycle](lifecycle#beadledom-lifecycle) using [Governator](https://github.com/Netflix/governator).
-* [resteasy](resteasy#beadledom-resteasy) - Resteasy implementation and integration of Beadledom components.
+* [resteasy](resteasy#beadledom-resteasy) - RESTEasy implementation and integration of Beadledom components.
 * [stagemonitor](stagemonitor#beadledom-stagemonitor) - Performance monitoring and troubleshooting.
 * [swagger](swagger#beadledom-swagger) - API documentation.
 * [testing](testing#beadledom-testing) - Testing utilities for the services.
@@ -34,7 +34,7 @@ Below is the list of documentations that are helpful to get started but outside 
 * [StageMonitor](https://github.com/stagemonitor/stagemonitor/wiki/Installation) for metering the API.
 * [Jackson](http://wiki.fasterxml.com/JacksonDocumentation) for JSON serialization.
 * [Avro](http://avro.apache.org/docs/1.7.7/) for avro serialization.
-* [Configuration](https://commons.apache.org/proper/commons-configuration/userguide/quick_start.html) for Apache Commons Configuration2. 
+* [Configuration](https://commons.apache.org/proper/commons-configuration/userguide/quick_start.html) for Apache Commons Configuration2.
 
 ## Contribute
 
@@ -46,7 +46,7 @@ Read our [Contribution guidelines][contibuting_guidelines].
 
 Depending on the need for the release, every month or earlier the beadledom committer team reviews contributions in master that have not been released. The committer team then takes a quick vote on if a release of master should be made. If 2/3 of the committers agree on the release a release is cut.
 
-To release Beadledom please follow our [releasing documentation][releasing_guidelines]. 
+To release Beadledom please follow our [releasing documentation][releasing_guidelines].
 
 [contibuting_guidelines]: CONTRIBUTING.md#contributing
 [releasing_guidelines]: RELEASING.md#releasing-beadledom
