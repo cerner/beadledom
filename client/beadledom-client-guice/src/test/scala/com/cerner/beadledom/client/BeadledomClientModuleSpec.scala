@@ -1,6 +1,7 @@
 package com.cerner.beadledom.client
 
 import com.google.inject._
+import javax.ws.rs.ext
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
 
 /**
@@ -113,6 +114,29 @@ class BeadledomClientModuleSpec extends FunSpec with MustMatchers with BeforeAnd
       val config = clientBuilder.getBeadledomClientConfiguration
 
       config.correlationIdName mustBe CorrelationIdContext.DEFAULT_HEADER_NAME
+    }
+
+    it("binds BeadledomClientBuilderProvider and injects the child Injector") {
+      @ext.Provider
+      class TestProvider {}
+
+      val testModule = new PrivateModule {
+        override def configure(): Unit = {
+          install(BeadledomClientModule.`with`(classOf[TestBindingAnnotation]))
+          bind(classOf[TestProvider])
+              .annotatedWith(classOf[TestBindingAnnotation])
+              .toInstance(new TestProvider)
+
+          expose(classOf[BeadledomClientBuilder]).annotatedWith(classOf[TestBindingAnnotation])
+        }
+      }
+
+      val injector = Guice.createInjector(testModule)
+      val clientBuilder = injector
+          .getInstance(Key.get(classOf[BeadledomClientBuilder], classOf[TestBindingAnnotation]))
+
+
+      clientBuilder.getConfiguration.isRegistered(classOf[TestProvider]) mustBe true
     }
   }
 }

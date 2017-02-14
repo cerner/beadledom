@@ -78,7 +78,8 @@ class BeadledomClientPrivateModule extends AnnotatedModule {
         new BeadledomClientBuilderProvider(getBindingAnnotation());
 
     bind(BeadledomClientBuilder.class).annotatedWith(getBindingAnnotation())
-        .toProvider(beadledomClientBuilderProvider);
+        .toProvider(beadledomClientBuilderProvider)
+        .asEagerSingleton();
 
     bindDynamicProvider(BeadledomClientBuilder.class);
 
