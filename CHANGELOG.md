@@ -3,7 +3,7 @@
 ## 2.4 - In Development
 
 ### Additions
-* Documentation and archetype changes for best practices around service modules.
+* Documentation and archetype changes for best practices for structuring service guice modules.
 
 ### Defects Corrected
 * Removed unnecessary loop in `ResteasyContextListener` which would cause infinite loop if run.
