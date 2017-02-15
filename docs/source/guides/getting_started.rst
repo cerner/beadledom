@@ -342,7 +342,7 @@ AwesomeThingModule
     }
   }
 
-``AwesomeThingModule`` is a private module, which contains configuration information for our service. PrivateModule encapsulates the service's environment and only exposes objects needed by for JAX-RS/Resteasy(ex: resource classes, providers and features). It also prevents dependency issues with with a configuration bound to Guice gobally.
+``AwesomeThingModule`` is a private module, which contains configuration information for our service. PrivateModule encapsulates the service's environment and only exposes objects needed for JAX-RS/Resteasy(ex: resource classes, providers and features). It also prevents dependency issues with a configuration bound to Guice gobally.
 
 With this binding :java:`bind(HelloWorldResource.class).to(HelloWorldResourceImpl.class);` we are
 telling Guice that whenever we ask for an instance of `HelloWorldResource`_ we want it to inject
