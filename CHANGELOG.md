@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 2.4 - In Development
+## 2.4 - 16 Feb 2017
 
 ### Additions
 * Documentation and archetype changes for best practices for structuring service guice modules.
