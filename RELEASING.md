@@ -56,7 +56,7 @@ After preparing the project for the release follow the below steps
 * Clean up the previous release backup/release property files.
 
     ```
-    mvn clean release:prepare
+    mvn release:clean
     ```
 * Prepare the project for releasing.
 
