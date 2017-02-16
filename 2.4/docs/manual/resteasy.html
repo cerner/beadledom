@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>beadledom-resteasy &mdash; Beadledom 2.4 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Beadledom 2.4 documentation" href="../index.html"/>
+        <link rel="up" title="User Manual" href="index.html"/>
+        <link rel="next" title="beadledom-resteasy-genericresponse" href="resteasy_generic_response.html"/>
+        <link rel="prev" title="beadledom-jaxrs-genericresponse" href="jaxrs_generic_response.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="avro.html">Beadledom Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Beadledom Bootstrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beadledom_client.html">Beadledom Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">Beadledom Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Beadledom Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Beadledom Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice.html">Beadledom Guice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice_dynamic_bindings.html">Beadledom Guice Dynamic Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="health.html">Beadledom Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jackson.html">Beadledom Jackson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jaxrs.html">Beadledom JAX-RS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jaxrs_generic_response.html">Beadledom JAX-RS - Generic Response</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Beadledom Resteasy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#beadledom-component-integration">Beadledom component integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getting-started">Getting started</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="resteasy_generic_response.html">Beadledom Resteasy - Generic Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stagemonitor.html">Beadledom Stagemonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swagger.html">Beadledom Swagger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle.html">Beadledom Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle_governator.html">Beadledom Lifecycle - Governator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Beadledom Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/2.4/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Beadledom</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">User Manual</a> &raquo;</li>
+      
+    <li>beadledom-resteasy</li>
+    <li class="wy-breadcrumbs-aside">
+      
+          
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="beadledom-resteasy">
+<h1>beadledom-resteasy<a class="headerlink" href="#beadledom-resteasy" title="Permalink to this headline">¶</a></h1>
+<p>This project provides the core integration of the Beadledom components with the Resteasy JAX-RS
+implementation.</p>
+<p>The following components are included:</p>
+<dl class="docutils">
+<dt><a class="reference external" href="https://github.com/cerner/beadledom/blob/master/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyContextListener.java">ResteasyContextListener</a></dt>
+<dd>a base servlet context listener that integrates with Resteasy and Governator for lifecycle management</dd>
+<dt><a class="reference external" href="https://github.com/cerner/beadledom/blob/master/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyModule.java">ResteasyModule</a></dt>
+<dd>a Guice module that provides the core bindings.</dd>
+</dl>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>Download using Maven:</div></blockquote>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependencies&gt;</span>
+    ...
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>com.cerner.beadledom<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>beadledom-resteasy<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>[Insert latest version]<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    ...
+<span class="nt">&lt;/dependencies&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="beadledom-component-integration">
+<h3>Beadledom component integration<a class="headerlink" href="#beadledom-component-integration" title="Permalink to this headline">¶</a></h3>
+<p>The Beadledom components are integrated into this project via <a class="reference external" href="core">beadledom-core</a>.</p>
+</div>
+<div class="section" id="getting-started">
+<h3>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<p>To use Beadledom in your Resteasy/Jax-rs application all that is needed is to extend the
+<code class="docutils literal"><span class="pre">ResteasyContextListener</span></code> and include the <code class="docutils literal"><span class="pre">ResteasyModule</span></code> in your own Guice module. Then include
+the context listener in the web.xml.</p>
+<p>Guice Module:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">install</span><span class="o">(</span><span class="k">new</span> <span class="n">ResteasyModule</span><span class="o">());</span>
+
+    <span class="n">bind</span><span class="o">(</span><span class="n">ExampleResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">BuildInfo</span> <span class="n">buildInfo</span> <span class="o">=</span> <span class="n">BuildInfo</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;build-info.properties&quot;</span><span class="o">));</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">BuildInfo</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">buildInfo</span><span class="o">);</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">ServiceMetadata</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">ServiceMetadata</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">buildInfo</span><span class="o">));</span>
+
+    <span class="n">Multibinder</span><span class="o">&lt;</span><span class="n">HealthDependency</span><span class="o">&gt;</span> <span class="n">healthDependencyBinder</span> <span class="o">=</span>
+        <span class="n">Multibinder</span><span class="o">.</span><span class="na">newSetBinder</span><span class="o">(</span><span class="n">binder</span><span class="o">(),</span> <span class="n">HealthDependency</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">healthDependencyBinder</span><span class="o">.</span><span class="na">addBinding</span><span class="o">().</span><span class="na">to</span><span class="o">(</span><span class="n">ExampleHealthDependency</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">bind</span><span class="o">(</span><span class="n">ExampleLifecycleHook</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">asEagerSingleton</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Provides</span>
+  <span class="n">SwaggerConfig</span> <span class="nf">provideSwaggerConfig</span><span class="o">(</span><span class="n">ServiceMetadata</span> <span class="n">serviceMetadata</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">SwaggerConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SwaggerConfig</span><span class="o">();</span>
+    <span class="n">config</span><span class="o">.</span><span class="na">setApiVersion</span><span class="o">(</span><span class="n">serviceMetadata</span><span class="o">.</span><span class="na">getBuildInfo</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+    <span class="n">config</span><span class="o">.</span><span class="na">setSwaggerVersion</span><span class="o">(</span><span class="n">SwaggerSpec</span><span class="o">.</span><span class="na">version</span><span class="o">());</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ExampleLifecycleHook</span> <span class="o">{</span>
+    <span class="nd">@PostConstruct</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">postConstruct</span><span class="o">()</span> <span class="o">{</span>
+      <span class="c1">// Do stuff at startup</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PreDestroy</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">preDestroy</span><span class="o">()</span> <span class="o">{</span>
+      <span class="c1">// Do stuff at shutdown</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Context Listener:</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleContextListener</span> <span class="kd">extends</span> <span class="n">ResteasyContextListener</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Module</span><span class="o">&gt;</span> <span class="nf">getModules</span><span class="o">(</span><span class="n">ServletContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span><span class="k">new</span> <span class="n">ExampleModule</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">ConfigurationSource</span><span class="o">&gt;</span> <span class="nf">getConfigSources</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span><span class="n">PropertiesConfigurationSource</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&quot;my/properties/file/path&quot;</span><span class="o">),</span>
+        <span class="n">JndiConfigurationSource</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">myInitialContext</span><span class="o">),</span>
+        <span class="n">XmlConfigurationSource</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&quot;my/properties/file/path&quot;</span><span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Web.xml:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;web-app</span> <span class="na">metadata-complete=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;display-name&gt;</span>Example Service<span class="nt">&lt;/display-name&gt;</span>
+
+    <span class="nt">&lt;listener&gt;</span>
+        <span class="nt">&lt;listener-class&gt;</span>
+            com.example.ExampleContextListener
+        <span class="nt">&lt;/listener-class&gt;</span>
+    <span class="nt">&lt;/listener&gt;</span>
+
+    <span class="nt">&lt;servlet&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>Resteasy<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;servlet-class&gt;</span>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        <span class="nt">&lt;/servlet-class&gt;</span>
+    <span class="nt">&lt;/servlet&gt;</span>
+
+    <span class="nt">&lt;servlet-mapping&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>Resteasy<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/servlet-mapping&gt;</span>
+<span class="nt">&lt;/web-app&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="resteasy_generic_response.html" class="btn btn-neutral float-right" title="beadledom-resteasy-genericresponse" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="jaxrs_generic_response.html" class="btn btn-neutral" title="beadledom-jaxrs-genericresponse" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
