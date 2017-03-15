@@ -28,7 +28,7 @@ From the server side a ``GenericResponse`` can be created through the ``GenericR
 
 .. code-block:: java
 
-  return GenericResponses.ok(entityBody);
+  return GenericResponses.ok(entityBody).build();
 
 From the client side the entity body can be retrieve from a ``GenericResponse`` through the ``body`` method.
 
