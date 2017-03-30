@@ -34,6 +34,7 @@ import org.jboss.resteasy.specimpl.BuiltResponse;
 public class BuiltGenericResponse<T> extends BuiltResponse implements GenericResponse<T> {
   private final T body;
   private final Class<?> bodyClass;
+
   private final ErrorBody errorBody;
   private final Response rawResponse;
 
@@ -254,5 +255,16 @@ public class BuiltGenericResponse<T> extends BuiltResponse implements GenericRes
   @Override
   public String getHeaderString(String name) {
     return rawResponse.getHeaderString(name);
+  }
+
+  @Override
+  public String toString() {
+    return "BuiltGenericResponse{body=" + body + ", bodyClass=" + bodyClass + ", errorBody=" + errorBody
+            + ", rawResponse=Response{status=" + rawResponse.getStatus() + ", mediaType="
+            + rawResponse.getMediaType() + ", date=" + rawResponse.getDate() + ", length=" + rawResponse.getLength()
+            + ", lastModified=" + rawResponse.getLastModified() + ", entityTag=" + rawResponse.getEntityTag()
+            + ", language=" + rawResponse.getLanguage() + ", location=" + rawResponse.getLocation()
+            + ", headers=" + rawResponse.getHeaders() + ", cookies=" + rawResponse.getCookies() + ", links="
+            + rawResponse.getLinks() + " } }";
   }
 }

@@ -6,7 +6,7 @@
  * Cleaned up dependencies and fixed few minor issues with generated code in archetype 
 
 ### Enhancements
- * Added toString implementation to DelegatingGenericResponse
+ * Added toString implementation to DelegatingGenericResponse and BuiltGenericResponse
 
 ## 2.4 - 16 Feb 2017
 
