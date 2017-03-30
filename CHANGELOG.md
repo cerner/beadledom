@@ -5,6 +5,9 @@
 ### Additions
 * Documentation and archetype changes for best practices for structuring service guice modules.
 
+### Additions
+* Documentation and archetype changes for best practices for structuring service guice modules.
+
 ### Defects Corrected
 * Removed unnecessary loop in `ResteasyContextListener` which would cause infinite loop if run.
 * Fixed issue with redirects in the bootstrap script ([issue-15](https://github.com/cerner/beadledom/issues/15)).
