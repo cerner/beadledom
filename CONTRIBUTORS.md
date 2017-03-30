@@ -11,6 +11,7 @@
 * Supriya Lal [@lal-s][supriya-lal]
 * Jason Gassel [@jpeg][jason-gassel]
 * Andy Nelson [@anelson425][andy-nelson]
+* Bryan Baugher [@bbaugher][bryan-baugher]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -23,3 +24,4 @@
 [supriya-lal]: https://github.com/lal-s
 [jason-gassel]: https://github.com/jpeg
 [andy-nelson]: https://githum.com/anelson425
+[bryan-baugher]: https://githum.com/bbaugher
