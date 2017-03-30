@@ -25,7 +25,6 @@ public class DelegatingGenericResponse<T> extends Response implements GenericRes
   private final T body;
   private final Class<?> bodyClass;
   private final ErrorBody errorBody;
-
   private final Response rawResponse;
 
   /**
