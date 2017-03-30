@@ -23,5 +23,5 @@
 [brian-boogaard]: https://github.com/b-boogaard
 [supriya-lal]: https://github.com/lal-s
 [jason-gassel]: https://github.com/jpeg
-[andy-nelson]: https://githum.com/anelson425
-[bryan-baugher]: https://githum.com/bbaugher
+[andy-nelson]: https://github.com/anelson425
+[bryan-baugher]: https://github.com/bbaugher
