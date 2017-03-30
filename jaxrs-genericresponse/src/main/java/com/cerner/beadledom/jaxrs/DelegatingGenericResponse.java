@@ -25,6 +25,7 @@ public class DelegatingGenericResponse<T> extends Response implements GenericRes
   private final T body;
   private final Class<?> bodyClass;
   private final ErrorBody errorBody;
+
   private final Response rawResponse;
 
   /**
@@ -249,5 +250,16 @@ public class DelegatingGenericResponse<T> extends Response implements GenericRes
   @Override
   public String getHeaderString(String name) {
     return rawResponse.getHeaderString(name);
+  }
+
+  @Override
+  public String toString() {
+    return "DelegatingGenericResponse{body=" + body + ", bodyClass=" + bodyClass + ", errorBody=" + errorBody
+            + ", rawResponse=Response{status=" + rawResponse.getStatus() + ", mediaType="
+            + rawResponse.getMediaType() + ", date=" + rawResponse.getDate() + ", length=" + rawResponse.getLength()
+            + ", lastModified=" + rawResponse.getLastModified() + ", entityTag=" + rawResponse.getEntityTag()
+            + ", language=" + rawResponse.getLanguage() + ", location=" + rawResponse.getLocation()
+            + ", headers=" + rawResponse.getHeaders() + ", cookies=" + rawResponse.getCookies() + ", links="
+            + rawResponse.getLinks() + " } }";
   }
 }
