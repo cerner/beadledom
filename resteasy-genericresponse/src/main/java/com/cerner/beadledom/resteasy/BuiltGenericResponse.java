@@ -2,6 +2,7 @@ package com.cerner.beadledom.resteasy;
 
 import com.cerner.beadledom.jaxrs.ErrorBody;
 import com.cerner.beadledom.jaxrs.GenericResponse;
+import com.cerner.beadledom.jaxrs.ResponseToStringWrapper;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -17,7 +18,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 
-import com.cerner.beadledom.jaxrs.ResponseToStringWrapper;
 import org.jboss.resteasy.specimpl.BuiltResponse;
 
 /**
