@@ -16,7 +16,7 @@ public class ResteasyBootstrapModule extends AbstractModule {
   protected void configure() {
     install(new ResteasyModule());
 
-    BuildInfo buildInfo = BuildInfo.load(getClass().getResourceAsStream("build-info.properties"));
+    BuildInfo buildInfo = BuildInfo.load(ResteasyBootstrapModule.class.getResourceAsStream("build-info.properties"));
     bind(BuildInfo.class).toInstance(buildInfo);
     bind(ServiceMetadata.class).toInstance(ServiceMetadata.create(buildInfo));
   }

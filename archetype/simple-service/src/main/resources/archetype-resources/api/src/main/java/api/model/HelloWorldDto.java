@@ -3,6 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Preconditions;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
@@ -27,7 +29,8 @@ public class HelloWorldDto {
    * @param message the message to be returned
    * @return {@link HelloWorldDto} encapsulating a name and message
    */
-  public static HelloWorldDto create(String name, String message) {
+  @JsonCreator
+  public static HelloWorldDto create(@JsonProperty("name") String name, @JsonProperty("hello_world_message") String message) {
     return new HelloWorldDto(name, message);
   }
 
