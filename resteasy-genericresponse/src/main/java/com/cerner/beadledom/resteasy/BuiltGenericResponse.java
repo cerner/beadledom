@@ -16,6 +16,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
+
+import com.cerner.beadledom.jaxrs.ResponseToStringWrapper;
 import org.jboss.resteasy.specimpl.BuiltResponse;
 
 /**
@@ -260,11 +262,6 @@ public class BuiltGenericResponse<T> extends BuiltResponse implements GenericRes
   @Override
   public String toString() {
     return "BuiltGenericResponse{body=" + body + ", bodyClass=" + bodyClass + ", errorBody=" + errorBody
-            + ", rawResponse=Response{status=" + rawResponse.getStatus() + ", mediaType="
-            + rawResponse.getMediaType() + ", date=" + rawResponse.getDate() + ", length=" + rawResponse.getLength()
-            + ", lastModified=" + rawResponse.getLastModified() + ", entityTag=" + rawResponse.getEntityTag()
-            + ", language=" + rawResponse.getLanguage() + ", location=" + rawResponse.getLocation()
-            + ", headers=" + rawResponse.getHeaders() + ", cookies=" + rawResponse.getCookies() + ", links="
-            + rawResponse.getLinks() + " } }";
+            + ", rawResponse=" + ResponseToStringWrapper.toString(rawResponse) + " }";
   }
 }
