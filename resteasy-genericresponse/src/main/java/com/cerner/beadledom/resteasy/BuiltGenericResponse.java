@@ -262,6 +262,6 @@ public class BuiltGenericResponse<T> extends BuiltResponse implements GenericRes
   @Override
   public String toString() {
     return "BuiltGenericResponse{body=" + body + ", bodyClass=" + bodyClass + ", errorBody=" + errorBody
-            + ", rawResponse=" + ResponseToStringWrapper.toString(rawResponse) + " }";
+            + ", rawResponse=" + new ResponseToStringWrapper(rawResponse) + " }";
   }
 }

@@ -3,18 +3,27 @@ package com.cerner.beadledom.jaxrs;
 import javax.ws.rs.core.Response;
 
 /**
- * Simple class to implement {@link Response} to String.
+ * Simple class that wraps {@link Response} and implements {@link #toString()} for {@link Response}.
  */
 public class ResponseToStringWrapper {
 
+  private final Response response;
+
   /**
-   * Converts {@link Response} to String.
+   * Constructs the wrapper.
    *
    * @param response
-   *      the {@link Response} to convert
-   * @return {@link Response} as a String
+   *    the response to wrap
    */
-  public static String toString(Response response) {
+  public ResponseToStringWrapper(Response response) {
+    if (response == null) {
+      throw new NullPointerException("response:null");
+    }
+    this.response = response;
+  }
+
+  @Override
+  public String toString() {
     return "Response{status=" + response.getStatus() + ", mediaType="
       + response.getMediaType() + ", date=" + response.getDate() + ", length=" + response.getLength()
       + ", lastModified=" + response.getLastModified() + ", entityTag=" + response.getEntityTag()
