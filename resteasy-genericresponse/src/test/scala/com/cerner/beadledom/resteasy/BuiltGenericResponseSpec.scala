@@ -3,7 +3,11 @@ package com.cerner.beadledom.resteasy
 import com.cerner.beadledom.jaxrs.{DelegatingGenericResponse, GenericResponse}
 import com.cerner.beadledom.testing.UnitSpec
 import java.lang.annotation.Annotation
-import javax.ws.rs.core.{GenericType, Response}
+import java.net.URI
+import java.util
+import java.util.{Collections, Date, Locale}
+import javax.ws.rs.core._
+
 import org.mockito.Mockito._
 import org.scalacheck.Gen
 import org.scalatest.mock.MockitoSugar
@@ -434,6 +438,31 @@ class BuiltGenericResponseSpec
 
         response.getHeaderString("header")
         verify(rawResponse).getHeaderString("header")
+      }
+    }
+
+    describe("#toString") {
+      it("returns String with all fields included") {
+        val rawResponse = mock[Response]
+        when(rawResponse.getStatus).thenReturn(200)
+        when(rawResponse.getMediaType).thenReturn(MediaType.APPLICATION_JSON_TYPE)
+        when(rawResponse.getDate).thenReturn(new Date(0L))
+        when(rawResponse.getLength).thenReturn(123)
+        when(rawResponse.getLastModified).thenReturn(new Date(0L))
+        when(rawResponse.getEntityTag).thenReturn(new EntityTag("tag-value"))
+        when(rawResponse.getLanguage).thenReturn(Locale.ENGLISH)
+        when(rawResponse.getLocation).thenReturn(new URI("http://localhost"))
+        val headers  = new MultivaluedHashMap[String, Object]()
+        headers.put("header-key", util.Arrays.asList("header-value"))
+        when(rawResponse.getHeaders).thenReturn(headers)
+        when(rawResponse.getCookies).thenReturn(Collections.singletonMap("my-cookie", new NewCookie("key", "value")))
+        when(rawResponse.getLinks).thenReturn(new util.HashSet[Link]())
+
+        BuiltGenericResponse.create("Hello World", rawResponse).toString mustBe
+          """BuiltGenericResponse{body=Hello World, bodyClass=class java.lang.String, errorBody=null,
+            |rawResponse=Response{status=200, mediaType=application/json, date=Wed Dec 31 18:00:00 CST 1969, length=123,
+            |lastModified=Wed Dec 31 18:00:00 CST 1969, entityTag="tag-value", language=en, location=http://localhost,
+            |headers={header-key=[header-value]}, cookies={my-cookie=key=value;Version=1}, links=[] } }""".stripMargin.replaceAll("\n", " ")
       }
     }
   }
