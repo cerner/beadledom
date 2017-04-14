@@ -443,11 +443,13 @@ class DelegatingGenericResponseSpec
     describe("#toString") {
       it("returns String with all fields included") {
         val rawResponse = mock[Response]
+        val date = new Date(0L)
+
         when(rawResponse.getStatus).thenReturn(200)
         when(rawResponse.getMediaType).thenReturn(MediaType.APPLICATION_JSON_TYPE)
-        when(rawResponse.getDate).thenReturn(new Date(0L))
+        when(rawResponse.getDate).thenReturn(date)
         when(rawResponse.getLength).thenReturn(123)
-        when(rawResponse.getLastModified).thenReturn(new Date(0L))
+        when(rawResponse.getLastModified).thenReturn(date)
         when(rawResponse.getEntityTag).thenReturn(new EntityTag("tag-value"))
         when(rawResponse.getLanguage).thenReturn(Locale.ENGLISH)
         when(rawResponse.getLocation).thenReturn(new URI("http://localhost"))
@@ -458,9 +460,9 @@ class DelegatingGenericResponseSpec
         when(rawResponse.getLinks).thenReturn(new util.HashSet[Link]())
 
         DelegatingGenericResponse.create("Hello World", rawResponse).toString mustBe
-          """DelegatingGenericResponse{body=Hello World, bodyClass=class java.lang.String, errorBody=null,
-             |rawResponse=Response{status=200, mediaType=application/json, date=Wed Dec 31 18:00:00 CST 1969, length=123,
-             |lastModified=Wed Dec 31 18:00:00 CST 1969, entityTag="tag-value", language=en, location=http://localhost,
+          s"""DelegatingGenericResponse{body=Hello World, bodyClass=class java.lang.String, errorBody=null,
+             |rawResponse=Response{status=200, mediaType=application/json, date=$date, length=123,
+             |lastModified=$date, entityTag="tag-value", language=en, location=http://localhost,
              |headers={header-key=[header-value]}, cookies={my-cookie=key=value;Version=1}, links=[] } }""".stripMargin.replaceAll("\n", " ")
       }
     }
