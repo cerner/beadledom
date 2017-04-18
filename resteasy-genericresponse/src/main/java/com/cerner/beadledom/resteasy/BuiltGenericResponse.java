@@ -2,6 +2,7 @@ package com.cerner.beadledom.resteasy;
 
 import com.cerner.beadledom.jaxrs.ErrorBody;
 import com.cerner.beadledom.jaxrs.GenericResponse;
+import com.cerner.beadledom.jaxrs.ResponseToStringWrapper;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -16,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
+
 import org.jboss.resteasy.specimpl.BuiltResponse;
 
 /**
@@ -34,6 +36,7 @@ import org.jboss.resteasy.specimpl.BuiltResponse;
 public class BuiltGenericResponse<T> extends BuiltResponse implements GenericResponse<T> {
   private final T body;
   private final Class<?> bodyClass;
+
   private final ErrorBody errorBody;
   private final Response rawResponse;
 
@@ -254,5 +257,11 @@ public class BuiltGenericResponse<T> extends BuiltResponse implements GenericRes
   @Override
   public String getHeaderString(String name) {
     return rawResponse.getHeaderString(name);
+  }
+
+  @Override
+  public String toString() {
+    return "BuiltGenericResponse{body=" + body + ", bodyClass=" + bodyClass + ", errorBody=" + errorBody
+            + ", rawResponse=" + new ResponseToStringWrapper(rawResponse) + " }";
   }
 }
