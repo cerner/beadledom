@@ -33,36 +33,33 @@
             <url>https://github.com/b-boogaard</url>
         </developer>
         <developer>
-            <name>Supryia Lal</name>
+            <name>Supriya Lal</name>
             <url>https://github.com/lal-s</url>
         </developer>
     </developers>
 
     <modules>
+        <module>archetype</module>
+        <module>avro</module>
+        <module>bom</module>
+        <module>client</module>
+        <module>common</module>
+        <module>configuration</module>
+        <module>core</module>
         <module>docs</module>
         <module>guice</module>
         <module>guice-dynamicbindings</module>
-
-        <module>lifecycle</module>
-        <module>lifecycle-governator</module>
-
-        <module>jaxrs-genericresponse</module>
-        <module>resteasy-genericresponse</module>
-
+        <module>health</module>
         <module>jackson</module>
         <module>jaxrs</module>
-        <module>health</module>
-        <module>common</module>
+        <module>jaxrs-genericresponse</module>
+        <module>lifecycle</module>
+        <module>lifecycle-governator</module>
+        <module>resteasy</module>
+        <module>resteasy-genericresponse</module>
         <module>stagemonitor</module>
         <module>swagger</module>
         <module>testing</module>
-        <module>avro</module>
-        <module>core</module>
-        <module>resteasy</module>
-        <module>archetype</module>
-        <module>configuration</module>
-
-        <module>client</module>
     </modules>
 
     <scm>
