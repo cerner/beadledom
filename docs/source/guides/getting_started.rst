@@ -104,6 +104,9 @@ default ``api``.
 Go ahead and play around with the ``healthcheck`` and ``hello`` resources for a while. Once you
 get tired of that move onto the next section where we will breakdown the components.
 
+Stagemonitor web widget is disabled by default, to enable it set ``stagemonitor.web.widget.enabled`` to ``true`` in
+``service/src/main/resources/stagemonitor.properties``.
+
 The Breakdown
 -------------
 
