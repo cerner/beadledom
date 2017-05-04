@@ -82,6 +82,11 @@
                 <version>2.0.2</version>
             </dependency>
             <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>15.0</version>
+            </dependency>
+            <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
@@ -125,6 +130,11 @@
                 <groupId>com.wordnik</groupId>
                 <artifactId>swagger-core_${scala.binary.version}</artifactId>
                 <version>${swagger-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
