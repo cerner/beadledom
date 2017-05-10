@@ -28,6 +28,10 @@ public class FakeModel {
   @JsonProperty("inner_models")
   public List<FakeInnerModel> innerModels;
 
+  public FakeModel() {
+
+  }
+
   public FakeModel(
       String id, String name, int times, List<String> tags, List<FakeInnerModel> innerModels) {
     this.id = id;
@@ -35,6 +39,32 @@ public class FakeModel {
     this.times = times;
     this.tags = tags;
     this.innerModels = innerModels;
+  }
+
+  public FakeModel setId(String id) {
+    this.id = id;
+    return this;
+  }
+
+  public FakeModel setName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public FakeModel setTimes(int times) {
+    this.times = times;
+    return this;
+  }
+
+  public FakeModel setTags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public FakeModel setInnerModels(
+      List<FakeInnerModel> innerModels) {
+    this.innerModels = innerModels;
+    return this;
   }
 
   @JsonProperty("id")
