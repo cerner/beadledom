@@ -17,4 +17,12 @@ public class ResourceOneImpl implements ResourceOne {
   public JsonOne echo(JsonOne json) {
     return json;
   }
+
+  @Override
+  public JsonOne patch(JsonOne json) {
+    return json.builder()
+        .setHello("Hola")
+        .setOne("New Json")
+        .build();
+  }
 }

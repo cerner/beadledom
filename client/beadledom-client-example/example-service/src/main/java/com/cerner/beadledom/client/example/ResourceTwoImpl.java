@@ -17,4 +17,12 @@ public class ResourceTwoImpl implements ResourceTwo {
   public JsonTwo echo(JsonTwo json) {
     return json;
   }
+
+  @Override
+  public JsonTwo patch(JsonTwo json) {
+    return json.builder()
+        .setHello("Hola")
+        .setTwo("New Json")
+        .build();
+  }
 }
