@@ -85,3 +85,10 @@ or
       return customCorrelationIdName;
     }
   }
+
+PATCH annotation
+--------------
+
+As of Version 2.5 we have added a PATCH annotation. JAX-RS does not have a PATCH annotation for
+supporting HTTP patch method like it does for others like GET or POST. The PATCH annotation was
+added to Beadledom so that consumers of Beadledom can use the patch HTTP method.
