@@ -20,5 +20,4 @@ public class FakeResource {
     model.setName("newName");
     return Response.ok(model).build();
   }
-
 }
