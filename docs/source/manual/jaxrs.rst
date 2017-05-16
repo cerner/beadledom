@@ -32,7 +32,7 @@ PATCH annotation
 As of Version 2.5 we have added a PATCH annotation. JAX-RS does not have a PATCH annotation for
 supporting HTTP patch method like it does for others like GET or POST. The PATCH annotation was
 added to Beadledom so that consumers of Beadledom can use the patch HTTP method. For more details on
-the PATCH method visit the PATCH RFC.
+the PATCH method visit the PATCH RFC_.
 
 To use the PATCH method and annotation for your resource, simply add the PATCH annotation above your
 resource like you would with a GET or POST method. Here is an example of a PATCH method of an
