@@ -48,7 +48,7 @@ interface.
     @ApiParam(value = "changes to make to the object with the specified id")
     PatchObject patchObject);
 
->> _RFC: https://tools.ietf.org/html/rfc5789
+>> RFC: https://tools.ietf.org/html/rfc5789
 
 Download
 --------
