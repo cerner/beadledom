@@ -10,7 +10,7 @@ import javax.ws.rs.HttpMethod;
 /**
  * Indicates that the annotated method responds to HTTP PATCH requests.
  *
- * @author John Leacox
+ * @author Eric Christensen
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

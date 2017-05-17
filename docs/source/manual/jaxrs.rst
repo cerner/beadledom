@@ -29,11 +29,18 @@ To include the correlation id in the catalina.out file using log4j, update the l
 PATCH
 --------------
 
-`PATCH <https://en.wikipedia.org/wiki/Patch_verb>`_ is a HTTP verb (similar to GET, POST, DELETE, PUT) to push partial changes to the REST resource. JAX-RS by default doesn't support PATCH hence Beadledom adds the support for PATCH explicitly.
+`JAX-RS 2.0 (see section 3.3 for Resource Methods) <http://download.oracle.com/otn-pub/jcp/jaxrs-2_0_rev_A-mrel-eval-spec/jsr339-jaxrs-2.0-final-spec.pdf?AuthParam=1494975982_179302191fa8833291d2b6647856d11b>`_ does not require implementations to support the
+``PATCH`` HTTP method. This is likely due to the fact that ``PATCH`` was introduced in a later `rfc <https://tools.ietf.org/html/rfc5789>`_ that added
+the new HTTP method to the already existing HTTP/1.1 specification.
 
-For more details on the PATCH method visit the PATCH RFC_.
+``@PATCH`` was added to `beadledom-jaxrs <https://github.com/cerner/beadledom/tree/master/jaxrs>`_ to allow services to support partial updates without the need of
+overloading ``@POST``. The annotation has no opinion on how the service decides to implement the
+resource performing the ``PATCH`` operation. Implementing services have the freedom to support `JSON
+Patch <https://tools.ietf.org/html/rfc6902>`_ and/or `JSON Merge Patch <https://tools.ietf.org/html/rfc7386>`_.
 
-To use the PATCH method and annotation for your resource, simply annotate your JAX-RS resource method with the PATCH annotation as shown below
+As long as a service has ``beadledom-jaxrs`` as a dependency ``@PATCH`` can be used just like any of the
+HTTP method annotations defined by JAX-RS. Below is a small example of ``@PATCH`` being used in an
+interface for a resource.
 
 .. code-block:: java
 
