@@ -29,7 +29,7 @@ To include the correlation id in the catalina.out file using log4j, update the l
 PATCH
 --------------
 
-`PATCH is a HTTP verb (similar to GET, POST, DELETE, PUT) to push partial changes to the REST resource. JAX-RS by default doesn't support PATCH hence Beadledom adds the support for PATCH explicitly.
+`PATCH <https://en.wikipedia.org/wiki/Patch_verb>`_ is a HTTP verb (similar to GET, POST, DELETE, PUT) to push partial changes to the REST resource. JAX-RS by default doesn't support PATCH hence Beadledom adds the support for PATCH explicitly.
 
 For more details on the PATCH method visit the PATCH RFC_.
 
