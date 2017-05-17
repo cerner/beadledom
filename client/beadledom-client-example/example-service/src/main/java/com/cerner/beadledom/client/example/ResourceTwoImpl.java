@@ -21,7 +21,7 @@ public class ResourceTwoImpl implements ResourceTwo {
   @Override
   public JsonTwo patch(JsonTwo json) {
     return json.builder()
-        .setHello("Hola")
+        .setHello("Hola2")
         .setTwo("New Json")
         .build();
   }

@@ -21,7 +21,7 @@ public class ResourceOneImpl implements ResourceOne {
   @Override
   public JsonOne patch(JsonOne json) {
     return json.builder()
-        .setHello("Hola")
+        .setHello("Hola1")
         .setOne("New Json")
         .build();
   }

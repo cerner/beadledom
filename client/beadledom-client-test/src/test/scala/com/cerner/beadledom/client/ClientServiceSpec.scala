@@ -34,12 +34,12 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
         val resourceOne = injector.getInstance(classOf[ResourceOne])
         val resourceTwo = injector.getInstance(classOf[ResourceTwo])
 
-        val jsonNewOne = JsonOne.create("New Json", "Hola")
+        val jsonNewOne = JsonOne.create("New Json", "Hola1")
         val jsonOne = JsonOne.create("LocalOne", "Hi")
         resourceOne.echo(jsonOne) mustBe jsonOne
         resourceOne.patch(jsonOne) mustBe jsonNewOne
 
-        val jsonNewTwo = JsonTwo.create("New Json", "Hola")
+        val jsonNewTwo = JsonTwo.create("New Json", "Hola2")
         val jsonTwo = JsonTwo.create("LocalTwo", "Howdy")
         resourceTwo.echo(jsonTwo) mustBe jsonTwo
         resourceTwo.patch(jsonTwo) mustBe jsonNewTwo

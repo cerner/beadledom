@@ -7,6 +7,11 @@ import java.lang.annotation.Target;
 
 import javax.ws.rs.HttpMethod;
 
+/**
+ * Indicates that the annotated method responds to HTTP PATCH requests.
+ *
+ * @author John Leacox
+ */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @HttpMethod("PATCH")

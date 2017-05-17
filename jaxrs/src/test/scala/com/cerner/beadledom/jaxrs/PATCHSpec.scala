@@ -29,27 +29,7 @@ class PATCHSpec extends FunSpec with BeforeAndAfterAll with ShouldMatchers with 
     dispatcher.getProviderFactory.registerProvider(classOf[JacksonJsonProvider])
 
     describe("PATCH") {
-      it("calls PATCH resource without error") {
-
-        val model = new FakeModel()
-            .setId("id")
-            .setName("name")
-            .setTimes(10)
-            .setTags(List.empty[String].asJava)
-            .setInnerModels(List.empty[FakeModel.FakeInnerModel].asJava)
-
-        val mapper = new ObjectMapper
-        val request: MockHttpRequest = MockHttpRequest.create("PATCH", "/fakeResource/Patch")
-        request.contentType(MediaType.APPLICATION_JSON)
-        request.content(new ByteArrayInputStream(mapper.writeValueAsBytes(model)))
-
-        val response: MockHttpResponse = new MockHttpResponse()
-        dispatcher.invoke(request, response)
-
-        response.getStatus shouldBe 200
-      }
-
-      it("should change the request model fields") {
+      it("the resource is patched correctly") {
 
         val model = new FakeModel()
             .setId("id")

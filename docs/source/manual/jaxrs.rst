@@ -26,30 +26,26 @@ To include the correlation id in the catalina.out file using log4j, update the l
 .. |usageLink| replace:: More on this later
 .. _usageLink: `Usage`_
 
-PATCH annotation
+PATCH
 --------------
 
-As of Version 2.5 we have added a PATCH annotation. JAX-RS does not have a PATCH annotation for
-supporting HTTP patch method like it does for others like GET or POST. The PATCH annotation was
-added to Beadledom so that consumers of Beadledom can use the patch HTTP method. For more details on
-the PATCH method visit the PATCH RFC_.
+`PATCH <https://github.com/ktoso/maven-git-commit-id-plugin>`_ is a HTTP verb (similar to GET, POST, DELETE, PUT) to push partial changes to the REST resource. JAX-RS by default doesn't support PATCH hence Beadledom adds the support for PATCH explicitly.
 
-To use the PATCH method and annotation for your resource, simply add the PATCH annotation above your
-resource like you would with a GET or POST method. Here is an example of a PATCH method of an
-interface.
+For more details on the PATCH method visit the PATCH RFC_.
+
+To use the PATCH method and annotation for your resource, simply annotate your JAX-RS resource method with the PATCH annotation as shown below
 
 .. code-block:: java
 
-  @PATCH
-  @Path("path/to/patch")
-  @Produces(MediaType.APPLICATION_JSON)
-  public Response patch(
-    @PathParam("id") final Long id,
-    @ApiParam(value = "changes to make to the object with the specified id")
-    PatchObject patchObject);
+ @PATCH
+ @Path("path/to/patch")
+ @Produces(MediaType.APPLICATION_JSON)
+ public Response patch(
+   @PathParam("id") final Long id,
+   @ApiParam(value = "changes to make to the object with the specified id")
+   PatchObject patchObject);
 
 .. _RFC: https://tools.ietf.org/html/rfc5789
-
 Download
 --------
 
