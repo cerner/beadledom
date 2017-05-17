@@ -11,6 +11,7 @@ import javax.ws.rs.HttpMethod;
  * Indicates that the annotated method responds to HTTP PATCH requests.
  *
  * @author Eric Christensen
+ * @since 2.5
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
