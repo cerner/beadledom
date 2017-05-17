@@ -30,7 +30,7 @@ PATCH
 --------------
 
 `JAX-RS 2.0 (see section 3.3 for Resource Methods) <http://download.oracle.com/otn-pub/jcp/jaxrs-2_0_rev_A-mrel-eval-spec/jsr339-jaxrs-2.0-final-spec.pdf?AuthParam=1494975982_179302191fa8833291d2b6647856d11b>`_ does not require implementations to support the
-``PATCH`` HTTP method. This is likely due to the fact that ``PATCH`` was introduced in a later `rfc <https://tools.ietf.org/html/rfc5789>`_ that added
+`PATCH <https://en.wikipedia.org/wiki/Patch_verb>`_ HTTP method. This is likely due to the fact that ``PATCH`` was introduced in a later `rfc <https://tools.ietf.org/html/rfc5789>`_ that added
 the new HTTP method to the already existing HTTP/1.1 specification.
 
 ``@PATCH`` was added to `beadledom-jaxrs <https://github.com/cerner/beadledom/tree/master/jaxrs>`_ to allow services to support partial updates without the need of
