@@ -4,4 +4,5 @@
     <suppress files="generated-sources" checks=".*"/>
     <suppress files="generated-test-sources" checks=".*"/>
     <suppress files="com.cerner.beadledom.client.resteasy.ApacheHttpClient4Dot3Engine" checks=".*"/>
+    <suppress files="com.cerner.beadledom.jaxrs.PATCH" checks="AbbreviationAsWordInName" />
 </suppressions>
