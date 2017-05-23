@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 2.5 - ???
+## 2.5 - 23 May 2017
 
 ### Additions
 * Add Bill of Material(BOM) pom for dependency management.
