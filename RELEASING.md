@@ -70,9 +70,14 @@ After preparing the project for the release follow the below steps
         * a commit for the release
         * a commit for the next development cycle
         * the tag that was cut for the release
-    * **Note**: If at anytime the release need to be stopped. Cancel the maven commands using (ctrl + z) and run the below command
-
-          mvn release:rollback
+    * **Note**: 
+        * Currently accounts that have the ability to perform releases must have [two factor authentication](https://help.github.com/articles/about-two-factor-authentication/) enabled. Because of this we need to generate a [personal access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) to use in lieu of a password during a release.
+        * If at anytime the release need to be stopped. Cancel the maven commands using (ctrl + z) and run the below command 
+        
+        ```
+        mvn release:rollback
+        ```
+        
 * Travis starts a new build for released tag and pushes the artifact to [sonatype staging repo](https://oss.sonatype.org/#stagingpositories).
 * Once the artifacts are pushed to the Sonatype staging repo
     * Scroll down to the latest beadledom repo from the list. 
