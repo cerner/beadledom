@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 2.6 - In Development
+## 2.5.1 - 19 August 2017
 
 ### Enhancements
 * Add exception to request trace error logging when serializing the trace to JSON fails.
