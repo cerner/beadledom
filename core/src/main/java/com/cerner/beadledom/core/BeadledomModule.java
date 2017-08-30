@@ -6,10 +6,13 @@ import com.cerner.beadledom.configuration.BeadledomConfigurationModule;
 import com.cerner.beadledom.health.HealthModule;
 import com.cerner.beadledom.jackson.JacksonModule;
 import com.cerner.beadledom.jaxrs.JaxRsModule;
-import com.cerner.beadledom.jaxrs.PlainTextWebApplicationExceptionMapper;
+import com.cerner.beadledom.jaxrs.exceptionmappers.FailureExceptionMapper;
+import com.cerner.beadledom.jaxrs.exceptionmappers.ThrowableExceptionMapper;
+import com.cerner.beadledom.jaxrs.exceptionmappers.WebApplicationExceptionMapper;
 import com.cerner.beadledom.jaxrs.provider.FilteringJacksonJsonProvider;
 import com.cerner.beadledom.stagemonitor.StagemonitorModule;
 import com.cerner.beadledom.swagger.SwaggerModule;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.base.JsonMappingExceptionMapper;
 import com.fasterxml.jackson.jaxrs.base.JsonParseExceptionMapper;
@@ -25,7 +28,7 @@ import com.google.inject.Provides;
  *
  * <p>Provides:
  * <ul>
- *     <li>{@link PlainTextWebApplicationExceptionMapper}</li>
+ *     <li>{@link WebApplicationExceptionMapper}</li>
  *     <li>{@link JsonParseExceptionMapper}</li>
  *     <li>{@link JsonMappingExceptionMapper}</li>
  *     <li>{@link JacksonJsonProvider} with field filtering</li>
@@ -44,9 +47,12 @@ public class BeadledomModule extends AbstractModule {
     install(new StagemonitorModule());
     install(new SwaggerModule());
 
-    bind(PlainTextWebApplicationExceptionMapper.class);
     bind(JsonParseExceptionMapper.class);
     bind(JsonMappingExceptionMapper.class);
+
+    bind(WebApplicationExceptionMapper.class);
+    bind(FailureExceptionMapper.class);
+    bind(ThrowableExceptionMapper.class);
   }
 
   @Provides
