@@ -56,7 +56,7 @@ class ThrowableExceptionMapperSpec extends FunSpec with ShouldMatchers with Mock
               .message(INTERNAL_SERVER_ERROR.getReasonPhrase)
               .build
           val gson = new Gson
-          Json.parse(gson.toJson(jsonError)) shouldBe Json.parse(response.getContentAsString)
+          Json.parse(response.getContentAsString) shouldBe Json.parse(gson.toJson(jsonError))
         }
       }
     }
