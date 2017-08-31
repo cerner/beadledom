@@ -35,7 +35,7 @@ public class FakeResource {
   @GET
   @Path("/ExceptionEndpoint")
   @Produces({MediaType.APPLICATION_JSON})
-  public Response fakeExceptionEndpoint() {
+  public Response fakeExceptionEndpoint() throws Exception {
     return Response.ok(fakeDao.fakeMethod()).build();
   }
 }
