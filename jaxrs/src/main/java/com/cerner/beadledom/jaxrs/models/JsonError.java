@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
@@ -25,6 +26,7 @@ import javax.annotation.Nullable;
     "message"})
 @AutoValue
 @ApiModel(value = "Standard error body")
+@JsonDeserialize(builder = JsonError.Builder.class)
 public abstract class JsonError {
 
   @JsonProperty("message")

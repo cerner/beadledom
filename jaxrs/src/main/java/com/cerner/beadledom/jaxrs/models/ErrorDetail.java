@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
@@ -25,7 +26,9 @@ import javax.annotation.Nullable;
     "location"})
 @AutoValue
 @ApiModel(value = "Standard error details")
+@JsonDeserialize(builder = ErrorDetail.Builder.class)
 public abstract class ErrorDetail {
+
   @Nullable
   @JsonProperty("domain")
   @ApiModelProperty(value = "A subsystem or context where an error occurred")

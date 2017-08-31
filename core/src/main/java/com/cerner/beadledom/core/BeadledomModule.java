@@ -28,9 +28,11 @@ import com.google.inject.Provides;
  *
  * <p>Provides:
  * <ul>
- *     <li>{@link WebApplicationExceptionMapper}</li>
  *     <li>{@link JsonParseExceptionMapper}</li>
  *     <li>{@link JsonMappingExceptionMapper}</li>
+ *     <li>{@link WebApplicationExceptionMapper}</li>
+ *     <li>{@link FailureExceptionMapper}</li>
+ *     <li>{@link ThrowableExceptionMapper}</li>
  *     <li>{@link JacksonJsonProvider} with field filtering</li>
  * </ul>
  * @author John Leacox
@@ -49,7 +51,6 @@ public class BeadledomModule extends AbstractModule {
 
     bind(JsonParseExceptionMapper.class);
     bind(JsonMappingExceptionMapper.class);
-
     bind(WebApplicationExceptionMapper.class);
     bind(FailureExceptionMapper.class);
     bind(ThrowableExceptionMapper.class);

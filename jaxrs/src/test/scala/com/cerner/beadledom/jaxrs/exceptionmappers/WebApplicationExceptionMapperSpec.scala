@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response.Status._
 import javax.ws.rs.core.{MediaType, Response}
 
 /**
- * Spec tests for {@link WebApplicationExceptionMapper}.
+ * Unit tests for {@link WebApplicationExceptionMapper}.
  *
  * @author Mayank Singh
  * @author Cal Fisher

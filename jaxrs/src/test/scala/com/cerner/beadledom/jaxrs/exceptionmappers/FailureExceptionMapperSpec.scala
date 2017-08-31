@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response.Status._
 
 /**
-  * Spec tests for {@link FailureExceptionMapper}.
+  * Unit tests for {@link FailureExceptionMapper}.
   *
   * @author Cal Fisher
   */
