@@ -823,18 +823,18 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
   }
 }
 
-class CustomWebApplicationExceptionWithResponse(val message: String, val response: Response)
+class CustomWebApplicationExceptionWithResponse(message: String, response: Response)
     extends WebApplicationException(message, response)
 
-class CustomWebApplicationException(val message: String) extends WebApplicationException(message)
+class CustomWebApplicationException(message: String) extends WebApplicationException(message)
 
-class CustomBadRequestException(val message: String) extends BadRequestException(message)
+class CustomBadRequestException(message: String) extends BadRequestException(message)
 
-class CustomNotAuthorizedException(val message: String) extends NotAuthorizedException(message)
+class CustomNotAuthorizedException(message: String) extends NotAuthorizedException(message)
 
-class CustomForbiddenException(val message: String) extends ForbiddenException(message)
+class CustomForbiddenException(message: String) extends ForbiddenException(message)
 
-class CustomNotFoundException(val message: String) extends NotFoundException(message)
+class CustomNotFoundException(message: String) extends NotFoundException(message)
 
-class CustomInternalServerErrorException(val message: String)
+class CustomInternalServerErrorException(message: String)
     extends InternalServerErrorException(message)
