@@ -30,6 +30,7 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
   context.getServletContext.setAttribute(Globals.ALT_DD_ATTR, "src/test/webapp/WEB-INF/web.xml")
 
   tomcat.start()
+  Thread.sleep(5000)
 
   override protected def afterAll(): Unit = {
     tomcat.stop()

@@ -1,21 +1,21 @@
 package com.cerner.beadledom.client.resteasy
 
-import javax.ws.rs.client.ClientRequestFilter
 import com.cerner.beadledom.client._
-
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.{DeserializationFeature, ObjectMapper, PropertyNamingStrategy, SerializationFeature}
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
-
+import javax.ws.rs.client.ClientRequestFilter
 import org.scalatest._
 import org.slf4j.MDC
 
 /**
-  * @author John Leacox
-  */
+ * @author John Leacox
+ */
 @DoNotDiscover
 class ResteasyClientSpec(contextRoot: String, servicePort: Int)
     extends FunSpec with MustMatchers with BeforeAndAfter {
+  val baseUrl = s"http://localhost:$servicePort$contextRoot"
+
   after {
     MDC.clear()
   }
@@ -36,7 +36,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
       val client = BeadledomResteasyClientBuilder.newBuilder()
           .register(captureFilter, Array[Class[_]](classOf[ClientRequestFilter]): _*)
           .build()
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(s"$baseUrl/")
           .proxy(classOf[TestResource])
 
       proxy.loopyGetCorrelationId() must be(captureFilter.getCapturedCorrelationId)
@@ -51,7 +51,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           .register(captureFilter, Array[Class[_]](classOf[ClientRequestFilter]): _*)
           .build()
 
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(baseUrl)
           .proxy(classOf[TestResource])
 
       proxy.echoCorrelationId() mustBe "mdcFallbackId"
@@ -62,7 +62,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)
           .build()
 
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(baseUrl)
           .proxy(classOf[TestResource])
 
       val jsonModel = proxy.getJson
@@ -76,7 +76,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)
           .build()
 
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(baseUrl)
           .proxy(classOf[TestResource])
 
       val response = proxy.getResponseJson
@@ -91,7 +91,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)
           .build()
 
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(baseUrl)
           .proxy(classOf[TestResource])
 
       val response = proxy.getGenericResponseJson
@@ -106,7 +106,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)
           .build()
 
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(baseUrl)
           .proxy(classOf[TestResource])
 
       val response = proxy.getResponseError
@@ -119,7 +119,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)
           .build()
 
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(baseUrl)
           .proxy(classOf[TestResource])
 
       val response = proxy.getGenericResponseError
@@ -132,7 +132,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)
           .build()
 
-      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+      val proxy = client.target(baseUrl)
           .proxy(classOf[TestResource])
 
       val response = proxy.getGenericResponseJsonError
@@ -142,9 +142,9 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
   }
 
   /**
-    * Return a default {@link ObjectMapper} that is configured to match the default server side
-    * settings from {@code beadledom-jackson}.
-    */
+   * Return a default {@link ObjectMapper} that is configured to match the default server side
+   * settings from {@code beadledom-jackson}.
+   */
   private def getDefaultBeadledomObjectMapper: ObjectMapper = {
     val objectMapper: ObjectMapper = new ObjectMapper
     objectMapper

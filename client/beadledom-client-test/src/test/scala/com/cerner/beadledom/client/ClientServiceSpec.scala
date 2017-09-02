@@ -13,7 +13,7 @@ import org.scalatest.{BeforeAndAfter, DoNotDiscover, FunSpec, MustMatchers}
 @DoNotDiscover
 class ClientServiceSpec(contextRoot: String, servicePort: Int)
     extends FunSpec with MustMatchers with BeforeAndAfter {
-  val baseUri = s"http://localhost:$servicePort/$contextRoot"
+  val baseUri = s"http://localhost:$servicePort$contextRoot"
 
   def getInjector(modules: List[Module]): Injector = {
     val module = new AbstractModule() {

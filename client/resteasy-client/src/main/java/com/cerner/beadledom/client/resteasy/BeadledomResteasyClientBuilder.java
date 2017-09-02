@@ -5,32 +5,25 @@ import com.cerner.beadledom.client.BeadledomClientBuilder;
 import com.cerner.beadledom.client.BeadledomClientConfiguration;
 import com.cerner.beadledom.client.CorrelationIdContext;
 import com.cerner.beadledom.client.CorrelationIdFilter;
-import com.cerner.beadledom.client.resteasy.http.DefaultServiceUnavailableRetryStrategy;
-import com.cerner.beadledom.client.resteasy.http.X509HostnameVerifierAdapter;
+import java.security.GeneralSecurityException;
 import java.security.KeyStore;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Configuration;
-import org.apache.http.client.RedirectStrategy;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.config.SocketConfig;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContexts;
-import org.apache.http.conn.ssl.X509HostnameVerifier;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultRedirectStrategy;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
+import net.ltgt.resteasy.client.okhttp3.OkHttpClientEngine;
+import okhttp3.ConnectionPool;
+import okhttp3.OkHttpClient;
 import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient43Engine;
 
 /**
  * Abstraction for creating Clients.
@@ -280,78 +273,76 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
   }
 
   private ClientHttpEngine initDefaultHttpEngine(BeadledomClientConfiguration clientConfig) {
-    SocketConfig socketConfig = SocketConfig.custom()
-        .setSoTimeout(clientConfig.socketTimeoutMillis())
-        .build();
+    ConnectionPool connectionPool =
+        new ConnectionPool(
+            clientConfig.connectionPoolSize(), clientConfig.ttlMillis(), TimeUnit.MILLISECONDS);
 
-    PoolingHttpClientConnectionManager connectionManager =
-        new PoolingHttpClientConnectionManager(clientConfig.ttlMillis(), TimeUnit.SECONDS);
-    connectionManager.setMaxTotal(clientConfig.connectionPoolSize());
-    connectionManager.setDefaultMaxPerRoute(clientConfig.maxPooledPerRouteSize());
-    connectionManager.setDefaultSocketConfig(socketConfig);
+    OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
+        .connectTimeout(clientConfig.connectionTimeoutMillis(), TimeUnit.MILLISECONDS)
+        .readTimeout(clientConfig.socketTimeoutMillis(), TimeUnit.MILLISECONDS)
+        .writeTimeout(clientConfig.socketTimeoutMillis(), TimeUnit.MILLISECONDS)
+        .connectionPool(connectionPool)
+        .addInterceptor(new DefaultServiceUnavailableRetryInterceptor());
 
-    RequestConfig requestConfig =
-        RequestConfig.custom()
-            .setConnectionRequestTimeout(clientConfig.connectionTimeoutMillis())
-            .setConnectTimeout(clientConfig.connectionTimeoutMillis())
-            .setSocketTimeout(clientConfig.socketTimeoutMillis())
-            .build();
-
-    // DefaultRedirectStrategy will only redirect HEAD and GET requests.
-    RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-
-    HttpClientBuilder httpClientBuilder =
-        HttpClientBuilder.create()
-            .setConnectionManager(connectionManager)
-            .setDefaultRequestConfig(requestConfig)
-            .setDefaultSocketConfig(socketConfig)
-            .setRedirectStrategy(redirectStrategy)
-            .setRetryHandler(
-                new StandardHttpRequestRetryHandler(3, true))
-            .setServiceUnavailableRetryStrategy(
-                new DefaultServiceUnavailableRetryStrategy(DEFAULT_RETRY_INTERVAL_MILLIS));
-
-    X509HostnameVerifier verifier = null;
-    if (clientConfig.verifier() != null) {
-      verifier = X509HostnameVerifierAdapter.adapt(clientConfig.verifier());
-    }
-
+    HostnameVerifier verifier = clientConfig.verifier();
     if (verifier != null) {
-      httpClientBuilder.setHostnameVerifier(verifier);
+      okHttpClientBuilder.hostnameVerifier(verifier);
     }
 
+    SSLSocketFactory sslSocketFactory = null;
+    X509TrustManager x509TrustManager = null;
     try {
-      SSLConnectionSocketFactory sslConnectionSocketFactory;
+      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+          TrustManagerFactory.getDefaultAlgorithm());
+
       SSLContext configuredContext = clientConfig.sslContext();
       if (configuredContext != null) {
-        sslConnectionSocketFactory = new SSLConnectionSocketFactory(configuredContext, verifier);
-      } else if (clientKeyStore != null || clientConfig.trustStore() != null) {
-        SSLContext tlsContext = SSLContexts.custom()
-            .useProtocol(SSLConnectionSocketFactory.TLS)
-            .setSecureRandom(null)
-            .loadKeyMaterial(
-                clientKeyStore,
-                clientPrivateKeyPassword != null ? clientPrivateKeyPassword.toCharArray() : null)
-            .loadTrustMaterial(clientConfig.trustStore())
-            .build();
-        sslConnectionSocketFactory = new SSLConnectionSocketFactory(tlsContext, verifier);
-      } else {
-        SSLContext tlsContext = SSLContext.getInstance(SSLConnectionSocketFactory.TLS);
-        tlsContext.init(null, null, null);
-        sslConnectionSocketFactory = new SSLConnectionSocketFactory(tlsContext, verifier);
-      }
+        sslSocketFactory = configuredContext.getSocketFactory();
 
-      httpClientBuilder.setSSLSocketFactory(sslConnectionSocketFactory);
-    } catch (Exception e) {
-      throw new RuntimeException("An error occurred configuring SSL", e);
+        TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+        if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+          throw new IllegalStateException("Unexpected default trust managers:"
+              + Arrays.toString(trustManagers));
+        }
+
+        x509TrustManager = (X509TrustManager) trustManagers[0];
+      } else if (clientKeyStore != null || clientConfig.trustStore() != null) {
+
+        KeyManagerFactory keyManagerFactory =
+            KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        keyManagerFactory.init(
+            clientKeyStore,
+            clientPrivateKeyPassword != null
+                ? clientPrivateKeyPassword.toCharArray()
+                : null);
+
+        trustManagerFactory.init(clientConfig.trustStore());
+
+        SSLContext tlsContext = SSLContext.getInstance("TLS");
+        tlsContext
+            .init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
+
+        sslSocketFactory = tlsContext.getSocketFactory();
+
+        TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+        if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+          throw new IllegalStateException("Unexpected default trust managers:"
+              + Arrays.toString(trustManagers));
+        }
+
+        x509TrustManager = (X509TrustManager) trustManagers[0];
+      }
+    } catch (GeneralSecurityException e) {
+      throw new RuntimeException(e);
     }
 
-    CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
+    if (sslSocketFactory != null) {
+      okHttpClientBuilder.sslSocketFactory(sslSocketFactory, x509TrustManager);
+    }
 
-    HttpContext context = new BasicHttpContext();
-    context.setAttribute(HttpClientContext.REQUEST_CONFIG, requestConfig);
+    OkHttpClient client = okHttpClientBuilder.build();
 
-    return new ApacheHttpClient43Engine(closeableHttpClient, context);
+    return new OkHttpClientEngine(client);
   }
 
   @Override
