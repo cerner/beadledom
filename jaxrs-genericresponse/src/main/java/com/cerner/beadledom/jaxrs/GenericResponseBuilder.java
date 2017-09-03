@@ -33,7 +33,7 @@ public abstract class GenericResponseBuilder<T> {
 
   /**
    * Creates a new {@link GenericResponseBuilder} that delegates to the underlying
-   * @code rawBuilder}.
+   * {@code rawBuilder}.
    */
   protected GenericResponseBuilder(Response.ResponseBuilder rawBuilder) {
     this.rawBuilder = rawBuilder;

@@ -1,8 +1,6 @@
 package com.cerner.beadledom.client;
 
-
 import com.google.auto.value.AutoValue;
-
 import java.security.KeyStore;
 import javax.annotation.Nullable;
 import javax.net.ssl.HostnameVerifier;

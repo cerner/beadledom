@@ -10,7 +10,7 @@ import com.wordnik.swagger.converter.ModelConverter;
  *
  * <p>Provides:
  * <ul>
- *     <li>Avro serialization support for Swagger via {@link Multibinder&lt;ModelConvert&gt;}</li>
+ *     <li>Avro serialization support for Swagger via {@link Multibinder Multibinder&lt;ModelConverter&gt;}</li>
  * </ul>
  *
  * <p>Installs:
