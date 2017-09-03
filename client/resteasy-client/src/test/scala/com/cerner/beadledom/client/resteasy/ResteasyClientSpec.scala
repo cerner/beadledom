@@ -101,6 +101,21 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
       jsonModel.getFieldTwo mustBe "two"
     }
 
+    it("gets a generic response with json from retrying an endpoint that returns a 503") {
+      val client = BeadledomResteasyClientBuilder.newBuilder()
+          .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)
+          .build()
+
+      val proxy = client.target(baseUrl)
+          .proxy(classOf[TestResource])
+
+      val response = proxy.getGenericResponseJsonWithRetries
+
+      val jsonModel = response.body()
+      jsonModel.getFieldOne mustBe "one"
+      jsonModel.getFieldTwo mustBe "two"
+    }
+
     it("gets a response with an error") {
       val client = BeadledomResteasyClientBuilder.newBuilder()
           .register(new JacksonJsonProvider(getDefaultBeadledomObjectMapper), 1)

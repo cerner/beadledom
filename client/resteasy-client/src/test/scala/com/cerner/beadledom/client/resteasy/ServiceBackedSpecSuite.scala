@@ -36,12 +36,10 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
     tomcat.stop()
   }
 
-  val defaultClientHttpEngineSpec = new DefaultClientHttpEngineSpec(contextRoot, tomcatPort)
   val resteasyClientSpec = new ResteasyClientSpec(contextRoot, tomcatPort)
 
   override def nestedSuites: IndexedSeq[Suite] = {
     Vector(
-      defaultClientHttpEngineSpec,
       resteasyClientSpec
     )
   }

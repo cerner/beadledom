@@ -1,7 +1,6 @@
 package com.cerner.beadledom.client;
 
 import com.cerner.beadledom.jaxrs.GenericResponse;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -53,13 +52,18 @@ public interface TestResource {
   GenericResponse<JsonModel> getGenericResponseJson();
 
   @GET
+  @Path("genericResponseJsonWithRetries")
+  @Produces(MediaType.APPLICATION_JSON)
+  GenericResponse<JsonModel> getGenericResponseJsonWithRetries();
+
+  @GET
   @Path("responseError")
-  @Produces({ MediaType.APPLICATION_JSON })
+  @Produces({MediaType.APPLICATION_JSON})
   Response getResponseError();
 
   @GET
   @Path("genericResponseError")
-  @Produces({ MediaType.APPLICATION_JSON })
+  @Produces({MediaType.APPLICATION_JSON})
   GenericResponse<JsonModel> getGenericResponseError();
 
   @GET

@@ -3,11 +3,16 @@ package com.cerner.beadledom.client;
 import com.cerner.beadledom.client.resteasy.BeadledomResteasyClientBuilder;
 import com.cerner.beadledom.jaxrs.GenericResponse;
 import com.cerner.beadledom.jaxrs.GenericResponses;
-
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.ServiceUnavailableException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -16,6 +21,8 @@ import javax.ws.rs.core.Response;
  * @author John Leacox
  */
 public class TestResourceImpl implements TestResource {
+  private static final AtomicInteger genericResponseWithRetriesCount = new AtomicInteger();
+
   @Context
   HttpHeaders httpHeaders;
 
@@ -69,6 +76,17 @@ public class TestResourceImpl implements TestResource {
   @Override
   public GenericResponse<JsonModel> getGenericResponseJson() {
     return GenericResponses.ok(getJson()).build();
+  }
+
+  @GET
+  @Path("genericResponseJsonWithRetries")
+  @Produces(MediaType.APPLICATION_JSON)
+  public GenericResponse<JsonModel> getGenericResponseJsonWithRetries() {
+    if (genericResponseWithRetriesCount.incrementAndGet() % 3 == 0) {
+      return getGenericResponseJson();
+    }
+
+    throw new ServiceUnavailableException();
   }
 
   @Override

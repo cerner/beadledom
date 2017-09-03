@@ -11,12 +11,6 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.UriBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 
-/**
- * A Beadledom Wrapper for {@link ResteasyClient}.
- *
- * @author Sundeep Paruvu
- * @since 2.0
- */
 public class BeadledomResteasyClient extends BeadledomClient {
   private final ResteasyClient client;
 
