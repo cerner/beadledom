@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 /**
- * A Guice provider for {@link BeadledomClient}
+ * A Guice provider for {@link BeadledomClient}.
  *
  * @author Sundeep Paruvu
  * @since 2.0

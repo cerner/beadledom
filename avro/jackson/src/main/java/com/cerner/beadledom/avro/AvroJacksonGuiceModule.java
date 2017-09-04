@@ -10,7 +10,7 @@ import com.google.inject.multibindings.MultibindingsScanner;
  *
  * <p>Provides:
  * <ul>
- *     <li>Avro serialization support for Jackson via {@link Multibinder&lt;Module&gt;}</li>
+ *     <li>Avro serialization support for Jackson via {@link Multibinder Multibinder&lt;Module&gt;}</li>
  * </ul>
  *
  * <p>Requires:
