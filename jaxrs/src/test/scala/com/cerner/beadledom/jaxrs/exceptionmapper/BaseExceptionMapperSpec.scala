@@ -1,4 +1,4 @@
-package com.cerner.beadledom.jaxrs.exceptionmappers
+package com.cerner.beadledom.jaxrs.exceptionmapper
 
 import com.cerner.beadledom.jaxrs.models.JsonError
 
