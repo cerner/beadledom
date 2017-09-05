@@ -32,8 +32,8 @@ public class WebApplicationExceptionMapper implements ExceptionMapper<WebApplica
    *
    * @param exception the {@link WebApplicationException} that was not handled.
    * @return a {@link Response} object with a status of the {@link WebApplicationException} or 500
-   *    if the exception's response is null, content-type of 'application/json', and a
-   *    {@link JsonError} entity containing details about the unhandled exception in JSON format.
+   *     if the exception's response is null, content-type of 'application/json', and a
+   *     {@link JsonError} entity containing details about the unhandled exception in JSON format.
    */
   @Override
   public Response toResponse(WebApplicationException exception) {

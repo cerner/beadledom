@@ -35,14 +35,19 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
    *
    * @param exception the {@link Failure} exception that was not handled
    * @return a {@link Response} object with a {@code Status} of the {@link Failure} or 500 if the
-   *    exception's response is null, a content-type of 'application/json', and a {@link JsonError}
-   *    entity containing details about the unhandled exception in JSON format.
+   *     exception's response is null, a content-type of 'application/json', and a {@link JsonError}
+   *     entity containing details about the unhandled exception in JSON format.
    */
   @Override
   public Response toResponse(Failure exception) {
 
-    Response response = exception.getResponse();
-    int code = response == null ? INTERNAL_SERVER_ERROR.getStatusCode() : response.getStatus();
+    int code = exception.getErrorCode();
+    Response.Status status = Response.Status.fromStatusCode(code);
+
+    if (status == null) {
+      code = INTERNAL_SERVER_ERROR.getStatusCode();
+      status = INTERNAL_SERVER_ERROR;
+    }
 
     if (code >= 400 && code < 500) {
       logger.warn("An unhandled exception was thrown.", exception);
@@ -51,16 +56,13 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
     }
 
     return Response
-        .status(code)
-        .entity(createJsonError(code))
+        .status(status)
+        .entity(
+            JsonError.builder()
+                .code(status.getStatusCode())
+                .message(status.getReasonPhrase())
+                .build())
         .type(MediaType.APPLICATION_JSON)
-        .build();
-  }
-
-  private static JsonError createJsonError(int code) {
-    return JsonError.builder()
-        .code(code)
-        .message(Response.Status.fromStatusCode(code).getReasonPhrase())
         .build();
   }
 }
