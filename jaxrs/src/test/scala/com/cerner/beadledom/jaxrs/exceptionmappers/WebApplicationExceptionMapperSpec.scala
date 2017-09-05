@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response.Status._
 import javax.ws.rs.core.{MediaType, Response}
 
 /**
-  * Unit tests for {@link WebApplicationExceptionMapper}.
+  * Unit tests for [[WebApplicationExceptionMapper]].
   *
   * @author Cal Fisher
   */

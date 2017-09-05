@@ -13,10 +13,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Exception Mapper for all unhandled Exceptions thrown by the service.
+ * An {@link ExceptionMapper} for the {@link Throwable} family of exceptions.
+ *
+ * <p>The intention of this exception mapper is to handle all unhandled exceptions thrown by a
+ * service (i.e. exceptions that are not handled in try/catch blocks or do not have an
+ * {@link ExceptionMapper} already implemented). The exceptions are restructured into a standard
+ * JSON format.
  *
  * @author Brian van de Boogaard
  * @author Cal Fisher
+ * @since 2.6
  */
 @Provider
 public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
@@ -24,11 +30,11 @@ public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
   private static final Logger logger = LoggerFactory.getLogger(ThrowableExceptionMapper.class);
 
   /**
-   * Generates a Response object with a Status of 500, Content-Type 'application/json', and a
-   * JsonError entity containing details about the unhandled exception in Json format.
+   * Maps an unhandled {@link Throwable} to a {@link Response}.
    *
-   * @param exception the Throwable exception that was not handled
-   * @return a json response with status 500
+   * @param exception the {@link Throwable} exception that was not handled.
+   * @return a {@link Response} object with a status of 500, content-type of 'application/json', and
+   *    a {@link JsonError} entity containing details about the unhandled exception in JSON format.
    */
   @Override
   public Response toResponse(Throwable exception) {

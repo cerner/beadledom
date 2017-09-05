@@ -14,15 +14,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A Mapper for {@link WebApplicationException}s that sets the {@code Content-Type} header and
- * entity body.
+ * An {@link ExceptionMapper} for the {@link WebApplicationException} family of exceptions.
  *
- * <p>The default handling of {@link WebApplicationException}s, at least in Resteasy, does not
- * include the exception message or the {@code Content-Type} header. This mapper will set both of
- * the {@code Content-Type} and entity body if they are not set as well as log the exception
- * message.
+ * <p>The intention of this exception mapper is to restructure the exceptions into a standard JSON
+ * format.
  *
  * @author Cal Fisher
+ * @since 2.6
  */
 @Provider
 public class WebApplicationExceptionMapper implements ExceptionMapper<WebApplicationException> {
@@ -30,12 +28,12 @@ public class WebApplicationExceptionMapper implements ExceptionMapper<WebApplica
   private static final Logger logger = LoggerFactory.getLogger(WebApplicationExceptionMapper.class);
 
   /**
-   * Generates a Response object with a Status of the WebApplicationException, Content-Type
-   * 'application/json', and a JsonError entity containing details about the unhandled exception in
-   * Json format.
+   * Maps an unhandled {@link WebApplicationException} to a {@link Response}.
    *
-   * @param exception the WebApplicationException that was not handled
-   * @return a json response with the exception's status or 500 if the exception has no response
+   * @param exception the {@link WebApplicationException} that was not handled.
+   * @return a {@link Response} object with a status of the {@link WebApplicationException} or 500
+   *    if the exception's response is null, content-type of 'application/json', and a
+   *    {@link JsonError} entity containing details about the unhandled exception in JSON format.
    */
   @Override
   public Response toResponse(WebApplicationException exception) {

@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response.Status._
 
 /**
-  * Unit tests for {@link ThrowableExceptionMapper}.
+  * Unit tests for [[ThrowableExceptionMapper]].
   *
   * @author Cal Fisher
   */

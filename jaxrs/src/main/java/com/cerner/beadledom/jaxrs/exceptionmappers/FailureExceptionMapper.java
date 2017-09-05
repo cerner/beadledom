@@ -10,19 +10,20 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 import org.jboss.resteasy.spi.Failure;
-import org.jboss.resteasy.spi.ReaderException;
-import org.jboss.resteasy.spi.WriterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Exception Mapper for all unhandled Exceptions extending from the {@link Failure} hierarchy
- * (specifically for Resteasy Built-in Internally-Thrown Exceptions like {@link ReaderException},
- * {@link WriterException}, etc.) thrown by the service. See
- * http://docs.jboss.org/resteasy/docs/3.1.4.Final/userguide/html_single/index.html#builtinException
- * for more information.
+ * An {@link ExceptionMapper} for the {@link Failure} family of exceptions.
+ *
+ * <p>{@link Failure} is a family of exceptions that Resteasy will throw when errors occur
+ * internally within the framework. The intention of this exception mapper is to restructure the
+ * exceptions into a standard JSON format.
+ *
+ * @see <a href="http://docs.jboss.org/resteasy/docs/3.1.4.Final/userguide/html_single/index.html#builtinException">Resteasy Built-in Internally-Thrown Exceptions</a>
  *
  * @author Cal Fisher
+ * @since 2.6
  */
 @Provider
 public class FailureExceptionMapper implements ExceptionMapper<Failure> {
@@ -30,16 +31,15 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
   private static final Logger logger = LoggerFactory.getLogger(FailureExceptionMapper.class);
 
   /**
-   * Generates a Response object with a Status of the Failure, Content-Type 'application/json', and
-   * a JsonError entity containing details about the unhandled exception in Json format.
+   * Maps an unhandled {@link Failure} to a {@link Response}.
    *
-   * @param exception the Failure exception that was not handled
-   * @return a json response with the exception's status or 500 if the exception has no response
+   * @param exception the {@link Failure} exception that was not handled
+   * @return a {@link Response} object with a {@code Status} of the {@link Failure} or 500 if the
+   *    exception's response is null, a content-type of 'application/json', and a {@link JsonError}
+   *    entity containing details about the unhandled exception in JSON format.
    */
   @Override
   public Response toResponse(Failure exception) {
-
-    logger.error("An unhandled Failure exception was thrown.", exception);
 
     int statusCode;
     if (exception.getResponse() != null) {

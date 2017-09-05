@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
  * Standard error body for RESTful APIs.
  *
  * @author Brian van de Boogaard
+ * @since 2.6
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
