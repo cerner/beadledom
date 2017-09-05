@@ -41,30 +41,26 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
   @Override
   public Response toResponse(Failure exception) {
 
-    int statusCode;
-    if (exception.getResponse() != null) {
-      statusCode = exception.getResponse().getStatus();
-    } else {
-      statusCode = INTERNAL_SERVER_ERROR.getStatusCode();
-    }
+    Response response = exception.getResponse();
+    int code = response == null ? INTERNAL_SERVER_ERROR.getStatusCode() : response.getStatus();
 
-    if (statusCode >= 400 && statusCode < 500) {
-      logger.warn("An unhandled WebApplicationException was thrown.", exception);
-    } else if (statusCode >= 500) {
-      logger.error("An unhandled WebApplicationException was thrown.", exception);
+    if (code >= 400 && code < 500) {
+      logger.warn("An unhandled exception was thrown.", exception);
+    } else if (code >= 500) {
+      logger.error("An unhandled exception was thrown.", exception);
     }
 
     return Response
-        .status(statusCode)
-        .entity(createJsonError(statusCode))
+        .status(code)
+        .entity(createJsonError(code))
         .type(MediaType.APPLICATION_JSON)
         .build();
   }
 
-  private static JsonError createJsonError(int statusCode) {
+  private static JsonError createJsonError(int code) {
     return JsonError.builder()
-        .code(statusCode)
-        .message(Response.Status.fromStatusCode(statusCode).getReasonPhrase())
+        .code(code)
+        .message(Response.Status.fromStatusCode(code).getReasonPhrase())
         .build();
   }
 }

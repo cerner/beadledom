@@ -39,19 +39,16 @@ public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
   @Override
   public Response toResponse(Throwable exception) {
 
-    logger.error("Unhandled Exception Occurred.", exception);
+    logger.error("An unhandled exception was thrown.", exception);
 
     return Response
         .status(Response.Status.INTERNAL_SERVER_ERROR)
-        .entity(createJsonError())
+        .entity(
+            JsonError.builder()
+                .code(INTERNAL_SERVER_ERROR.getStatusCode())
+                .message(INTERNAL_SERVER_ERROR.getReasonPhrase())
+                .build())
         .type(MediaType.APPLICATION_JSON)
-        .build();
-  }
-
-  private static JsonError createJsonError() {
-    return JsonError.builder()
-        .code(INTERNAL_SERVER_ERROR.getStatusCode())
-        .message(INTERNAL_SERVER_ERROR.getReasonPhrase())
         .build();
   }
 }

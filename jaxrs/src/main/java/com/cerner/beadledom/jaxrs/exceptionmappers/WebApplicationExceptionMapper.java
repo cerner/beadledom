@@ -38,22 +38,18 @@ public class WebApplicationExceptionMapper implements ExceptionMapper<WebApplica
   @Override
   public Response toResponse(WebApplicationException exception) {
 
-    int statusCode;
-    if (exception.getResponse() != null) {
-      statusCode = exception.getResponse().getStatus();
-    } else {
-      statusCode = INTERNAL_SERVER_ERROR.getStatusCode();
-    }
+    Response response = exception.getResponse();
+    int status = response == null ? INTERNAL_SERVER_ERROR.getStatusCode() : response.getStatus();
 
-    if (statusCode >= 400 && statusCode < 500) {
-      logger.warn("An unhandled WebApplicationException was thrown.", exception);
-    } else if (statusCode >= 500) {
-      logger.error("An unhandled WebApplicationException was thrown.", exception);
+    if (status >= 400 && status < 500) {
+      logger.warn("An unhandled exception was thrown.", exception);
+    } else if (status >= 500) {
+      logger.error("An unhandled exception was thrown.", exception);
     }
 
     return Response
-        .status(statusCode)
-        .entity(createJsonError(statusCode))
+        .status(status)
+        .entity(createJsonError(status))
         .type(MediaType.APPLICATION_JSON)
         .build();
   }
