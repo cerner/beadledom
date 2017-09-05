@@ -29,6 +29,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
   val url = "/fakeResource/ExceptionEndpoint"
   val request = MockHttpRequest.get(url)
   var response: MockHttpResponse = _
+  val dispatcher = MockDispatcherFactory.createDispatcher()
 
   val badRequestJsonError = createJsonError(BAD_REQUEST)
   val unauthorizedJsonError = createJsonError(UNAUTHORIZED)
@@ -36,19 +37,19 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
   val notFoundJsonError = createJsonError(NOT_FOUND)
   val internalServerErrorJsonError = createJsonError(INTERNAL_SERVER_ERROR)
 
+  override def beforeAll(): Unit = {
+    dispatcher.getRegistry.addSingletonResource(fakeResource)
+    dispatcher.getProviderFactory.registerProvider(classOf[JacksonJsonProvider])
+    dispatcher.getProviderFactory.registerProvider(classOf[WebApplicationExceptionMapper])
+  }
+
   before {
     Mockito.reset(fakeRepository)
     response = new MockHttpResponse
   }
 
   describe("WebApplicationExceptionMapper") {
-    describe("unit testing the behavior of ThrowableExceptionMapper class when an exception is " +
-        "thrown from a resource") {
-      val dispatcher = MockDispatcherFactory.createDispatcher()
-      dispatcher.getRegistry.addSingletonResource(fakeResource)
-      dispatcher.getProviderFactory.registerProvider(classOf[JacksonJsonProvider])
-      dispatcher.getProviderFactory.registerProvider(classOf[WebApplicationExceptionMapper])
-
+    describe("when an exception is thrown from a resource") {
       describe("when the service throws a WebApplicationException") {
         it("returns a Json response with internal server error and status 500") {
           val exception = new WebApplicationException("Exception Message")

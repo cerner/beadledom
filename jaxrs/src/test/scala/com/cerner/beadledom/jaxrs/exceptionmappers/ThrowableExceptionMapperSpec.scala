@@ -28,7 +28,14 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
   val url = "/fakeResource/ExceptionEndpoint"
   val request = MockHttpRequest.get(url)
   var response: MockHttpResponse = _
+  val dispatcher = MockDispatcherFactory.createDispatcher()
   val internalServerErrorJsonError = createJsonError(INTERNAL_SERVER_ERROR)
+
+  override def beforeAll(): Unit = {
+    dispatcher.getRegistry.addSingletonResource(fakeResource)
+    dispatcher.getProviderFactory.registerProvider(classOf[JacksonJsonProvider])
+    dispatcher.getProviderFactory.registerProvider(classOf[ThrowableExceptionMapper])
+  }
 
   before {
     Mockito.reset(fakeRepository)
@@ -36,13 +43,7 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
   }
 
   describe("ThrowableExceptionMapper") {
-    describe("unit testing the behavior of ThrowableExceptionMapper class when an exception is " +
-        "thrown from a resource") {
-      val dispatcher = MockDispatcherFactory.createDispatcher()
-      dispatcher.getRegistry.addSingletonResource(fakeResource)
-      dispatcher.getProviderFactory.registerProvider(classOf[JacksonJsonProvider])
-      dispatcher.getProviderFactory.registerProvider(classOf[ThrowableExceptionMapper])
-
+    describe("when an exception is thrown from a resource") {
       describe("when the service throws a RuntimeException") {
         it("returns a Json response with internal server error and status 500") {
           val exception = new RuntimeException("Exception Message")
