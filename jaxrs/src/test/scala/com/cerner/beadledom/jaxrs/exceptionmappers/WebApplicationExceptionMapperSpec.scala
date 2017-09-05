@@ -1,7 +1,7 @@
 package com.cerner.beadledom.jaxrs.exceptionmappers
 
 import com.cerner.beadledom.jaxrs.models.JsonError
-import com.cerner.beadledom.jaxrs.provider.{FakeDao, FakeResource}
+import com.cerner.beadledom.jaxrs.provider.{FakeRepository, FakeResource}
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 
@@ -24,8 +24,8 @@ import javax.ws.rs.core.{MediaType, Response}
 class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
   val webApplicationExceptionMapper = new WebApplicationExceptionMapper
-  val fakeDao = mock[FakeDao]
-  val fakeResource = new FakeResource(fakeDao)
+  val fakeRepository = mock[FakeRepository]
+  val fakeResource = new FakeResource(fakeRepository)
   val url = "/fakeResource/ExceptionEndpoint"
   val request = MockHttpRequest.get(url)
   var response: MockHttpResponse = _
@@ -36,8 +36,8 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
   val notFoundJsonError = createJsonError(NOT_FOUND)
   val internalServerErrorJsonError = createJsonError(INTERNAL_SERVER_ERROR)
 
-  override def beforeEach {
-    Mockito.reset(fakeDao)
+  before {
+    Mockito.reset(fakeRepository)
     response = new MockHttpResponse
   }
 
@@ -53,13 +53,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 500") {
           val exception = new WebApplicationException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
         }
       }
 
@@ -71,13 +71,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
               .build
           val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe BAD_REQUEST.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe badRequestJsonError
+          response.getStatus mustBe BAD_REQUEST.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe badRequestJsonError
         }
       }
 
@@ -89,13 +89,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
               .build
           val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe unauthorizedJsonError
+          response.getStatus mustBe UNAUTHORIZED.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
         }
       }
 
@@ -107,13 +107,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
               .build
           val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe FORBIDDEN.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe forbiddenJsonError
+          response.getStatus mustBe FORBIDDEN.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe forbiddenJsonError
         }
       }
 
@@ -125,13 +125,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
               .build
           val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe NOT_FOUND.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe notFoundJsonError
+          response.getStatus mustBe NOT_FOUND.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe notFoundJsonError
         }
       }
 
@@ -143,13 +143,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
               .build
           val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
         }
       }
 
@@ -157,13 +157,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 400") {
           val exception = new BadRequestException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe BAD_REQUEST.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe badRequestJsonError
+          response.getStatus mustBe BAD_REQUEST.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe badRequestJsonError
         }
       }
 
@@ -171,13 +171,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 401") {
           val exception = new NotAuthorizedException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe unauthorizedJsonError
+          response.getStatus mustBe UNAUTHORIZED.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
         }
       }
 
@@ -185,13 +185,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 403") {
           val exception = new ForbiddenException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe FORBIDDEN.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe forbiddenJsonError
+          response.getStatus mustBe FORBIDDEN.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe forbiddenJsonError
         }
       }
 
@@ -199,13 +199,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 404") {
           val exception = new NotFoundException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe NOT_FOUND.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe notFoundJsonError
+          response.getStatus mustBe NOT_FOUND.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe notFoundJsonError
         }
       }
 
@@ -213,13 +213,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 500") {
           val exception = new InternalServerErrorException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
         }
       }
 
@@ -228,13 +228,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
           it("returns a Json response with internal server error and status 500") {
             val exception = new CustomWebApplicationException("Exception Message")
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+            response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
           }
         }
 
@@ -247,13 +247,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
             val exception =
               new CustomWebApplicationExceptionWithResponse("Exception Message", exceptionResponse)
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe BAD_REQUEST.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe badRequestJsonError
+            response.getStatus mustBe BAD_REQUEST.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe badRequestJsonError
           }
         }
 
@@ -266,13 +266,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
             val exception =
               new CustomWebApplicationExceptionWithResponse("Exception Message", exceptionResponse)
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe unauthorizedJsonError
+            response.getStatus mustBe UNAUTHORIZED.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
           }
         }
 
@@ -285,13 +285,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
             val exception =
               new CustomWebApplicationExceptionWithResponse("Exception Message", exceptionResponse)
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe FORBIDDEN.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe forbiddenJsonError
+            response.getStatus mustBe FORBIDDEN.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe forbiddenJsonError
           }
         }
 
@@ -304,13 +304,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
             val exception =
               new CustomWebApplicationExceptionWithResponse("Exception Message", exceptionResponse)
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe NOT_FOUND.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe notFoundJsonError
+            response.getStatus mustBe NOT_FOUND.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe notFoundJsonError
           }
         }
 
@@ -323,13 +323,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
             val exception =
               new CustomWebApplicationExceptionWithResponse("Exception Message", exceptionResponse)
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+            response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
           }
         }
 
@@ -337,13 +337,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
           it("returns a Json response with internal server error and status 400") {
             val exception = new CustomBadRequestException("Exception Message")
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe BAD_REQUEST.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe badRequestJsonError
+            response.getStatus mustBe BAD_REQUEST.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe badRequestJsonError
           }
         }
 
@@ -351,13 +351,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
           it("returns a Json response with internal server error and status 401") {
             val exception = new CustomNotAuthorizedException("Exception Message")
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe unauthorizedJsonError
+            response.getStatus mustBe UNAUTHORIZED.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
           }
         }
 
@@ -365,13 +365,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
           it("returns a Json response with internal server error and status 403") {
             val exception = new CustomForbiddenException("Exception Message")
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe FORBIDDEN.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe forbiddenJsonError
+            response.getStatus mustBe FORBIDDEN.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe forbiddenJsonError
           }
         }
 
@@ -379,13 +379,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
           it("returns a Json response with internal server error and status 404") {
             val exception = new CustomNotFoundException("Exception Message")
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe NOT_FOUND.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe notFoundJsonError
+            response.getStatus mustBe NOT_FOUND.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe notFoundJsonError
           }
         }
 
@@ -393,13 +393,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
           it("returns a Json response with internal server error and status 500") {
             val exception = new CustomInternalServerErrorException("Exception Message")
 
-            when(fakeDao.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
             dispatcher.invoke(request, response)
 
-            response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+            response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
           }
         }
       }
@@ -412,13 +412,13 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
               .build
           val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
         }
       }
     }
@@ -430,12 +430,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
         }
       }
 
@@ -449,12 +449,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe BAD_REQUEST.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe BAD_REQUEST.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe BAD_REQUEST.getStatusCode
-          jsonError.message shouldBe BAD_REQUEST.getReasonPhrase
+          jsonError.code mustBe BAD_REQUEST.getStatusCode
+          jsonError.message mustBe BAD_REQUEST.getReasonPhrase
         }
       }
 
@@ -468,12 +468,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe UNAUTHORIZED.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe UNAUTHORIZED.getStatusCode
-          jsonError.message shouldBe UNAUTHORIZED.getReasonPhrase
+          jsonError.code mustBe UNAUTHORIZED.getStatusCode
+          jsonError.message mustBe UNAUTHORIZED.getReasonPhrase
         }
       }
 
@@ -487,12 +487,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe FORBIDDEN.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe FORBIDDEN.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe FORBIDDEN.getStatusCode
-          jsonError.message shouldBe FORBIDDEN.getReasonPhrase
+          jsonError.code mustBe FORBIDDEN.getStatusCode
+          jsonError.message mustBe FORBIDDEN.getReasonPhrase
         }
       }
 
@@ -506,12 +506,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe NOT_FOUND.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe NOT_FOUND.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe NOT_FOUND.getStatusCode
-          jsonError.message shouldBe NOT_FOUND.getReasonPhrase
+          jsonError.code mustBe NOT_FOUND.getStatusCode
+          jsonError.message mustBe NOT_FOUND.getReasonPhrase
         }
       }
 
@@ -525,12 +525,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
         }
       }
 
@@ -540,12 +540,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe BAD_REQUEST.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe BAD_REQUEST.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe BAD_REQUEST.getStatusCode
-          jsonError.message shouldBe BAD_REQUEST.getReasonPhrase
+          jsonError.code mustBe BAD_REQUEST.getStatusCode
+          jsonError.message mustBe BAD_REQUEST.getReasonPhrase
         }
       }
 
@@ -555,12 +555,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe UNAUTHORIZED.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe UNAUTHORIZED.getStatusCode
-          jsonError.message shouldBe UNAUTHORIZED.getReasonPhrase
+          jsonError.code mustBe UNAUTHORIZED.getStatusCode
+          jsonError.message mustBe UNAUTHORIZED.getReasonPhrase
         }
       }
 
@@ -570,12 +570,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe FORBIDDEN.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe FORBIDDEN.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe FORBIDDEN.getStatusCode
-          jsonError.message shouldBe FORBIDDEN.getReasonPhrase
+          jsonError.code mustBe FORBIDDEN.getStatusCode
+          jsonError.message mustBe FORBIDDEN.getReasonPhrase
         }
       }
 
@@ -585,12 +585,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe NOT_FOUND.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe NOT_FOUND.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe NOT_FOUND.getStatusCode
-          jsonError.message shouldBe NOT_FOUND.getReasonPhrase
+          jsonError.code mustBe NOT_FOUND.getStatusCode
+          jsonError.message mustBe NOT_FOUND.getReasonPhrase
         }
       }
 
@@ -600,12 +600,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
         }
       }
 
@@ -616,12 +616,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+            jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
           }
         }
 
@@ -636,12 +636,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe BAD_REQUEST.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe BAD_REQUEST.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe BAD_REQUEST.getStatusCode
-            jsonError.message shouldBe BAD_REQUEST.getReasonPhrase
+            jsonError.code mustBe BAD_REQUEST.getStatusCode
+            jsonError.message mustBe BAD_REQUEST.getReasonPhrase
           }
         }
 
@@ -656,12 +656,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe UNAUTHORIZED.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe UNAUTHORIZED.getStatusCode
-            jsonError.message shouldBe UNAUTHORIZED.getReasonPhrase
+            jsonError.code mustBe UNAUTHORIZED.getStatusCode
+            jsonError.message mustBe UNAUTHORIZED.getReasonPhrase
           }
         }
 
@@ -676,12 +676,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe FORBIDDEN.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe FORBIDDEN.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe FORBIDDEN.getStatusCode
-            jsonError.message shouldBe FORBIDDEN.getReasonPhrase
+            jsonError.code mustBe FORBIDDEN.getStatusCode
+            jsonError.message mustBe FORBIDDEN.getReasonPhrase
           }
         }
 
@@ -696,12 +696,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe NOT_FOUND.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe NOT_FOUND.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe NOT_FOUND.getStatusCode
-            jsonError.message shouldBe NOT_FOUND.getReasonPhrase
+            jsonError.code mustBe NOT_FOUND.getStatusCode
+            jsonError.message mustBe NOT_FOUND.getReasonPhrase
           }
         }
 
@@ -716,12 +716,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+            jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
           }
         }
 
@@ -731,12 +731,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe BAD_REQUEST.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe BAD_REQUEST.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe BAD_REQUEST.getStatusCode
-            jsonError.message shouldBe BAD_REQUEST.getReasonPhrase
+            jsonError.code mustBe BAD_REQUEST.getStatusCode
+            jsonError.message mustBe BAD_REQUEST.getReasonPhrase
           }
         }
 
@@ -746,12 +746,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe UNAUTHORIZED.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe UNAUTHORIZED.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe UNAUTHORIZED.getStatusCode
-            jsonError.message shouldBe UNAUTHORIZED.getReasonPhrase
+            jsonError.code mustBe UNAUTHORIZED.getStatusCode
+            jsonError.message mustBe UNAUTHORIZED.getReasonPhrase
           }
         }
 
@@ -761,12 +761,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe FORBIDDEN.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe FORBIDDEN.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe FORBIDDEN.getStatusCode
-            jsonError.message shouldBe FORBIDDEN.getReasonPhrase
+            jsonError.code mustBe FORBIDDEN.getStatusCode
+            jsonError.message mustBe FORBIDDEN.getReasonPhrase
           }
         }
 
@@ -776,12 +776,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe NOT_FOUND.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe NOT_FOUND.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe NOT_FOUND.getStatusCode
-            jsonError.message shouldBe NOT_FOUND.getReasonPhrase
+            jsonError.code mustBe NOT_FOUND.getStatusCode
+            jsonError.message mustBe NOT_FOUND.getReasonPhrase
           }
         }
 
@@ -791,12 +791,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             val response = webApplicationExceptionMapper.toResponse(exception)
 
-            response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
             val jsonError = response.getEntity.asInstanceOf[JsonError]
-            jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-            jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+            jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+            jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
           }
         }
       }
@@ -811,12 +811,12 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
         }
       }
     }

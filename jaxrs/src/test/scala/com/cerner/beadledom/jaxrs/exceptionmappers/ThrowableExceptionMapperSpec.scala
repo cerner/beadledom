@@ -1,7 +1,7 @@
 package com.cerner.beadledom.jaxrs.exceptionmappers
 
 import com.cerner.beadledom.jaxrs.models.JsonError
-import com.cerner.beadledom.jaxrs.provider.{FakeDao, FakeResource}
+import com.cerner.beadledom.jaxrs.provider.{FakeRepository, FakeResource}
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 
@@ -23,15 +23,15 @@ import javax.ws.rs.core.Response.Status._
 class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
 
   val throwableExceptionMapper = new ThrowableExceptionMapper
-  val fakeDao = mock[FakeDao]
-  val fakeResource = new FakeResource(fakeDao)
+  val fakeRepository = mock[FakeRepository]
+  val fakeResource = new FakeResource(fakeRepository)
   val url = "/fakeResource/ExceptionEndpoint"
   val request = MockHttpRequest.get(url)
   var response: MockHttpResponse = _
   val internalServerErrorJsonError = createJsonError(INTERNAL_SERVER_ERROR)
 
-  override def beforeEach {
-    Mockito.reset(fakeDao)
+  before {
+    Mockito.reset(fakeRepository)
     response = new MockHttpResponse
   }
 
@@ -47,13 +47,13 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 500") {
           val exception = new RuntimeException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
         }
       }
 
@@ -61,13 +61,13 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 500") {
           val exception = new Exception("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
         }
       }
 
@@ -75,13 +75,13 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
         it("returns a Json response with internal server error and status 500") {
           val exception = new CustomException("Exception Message")
 
-          when(fakeDao.fakeMethod()).thenThrow(exception)
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) shouldBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) shouldBe internalServerErrorJsonError
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
         }
       }
     }
@@ -93,12 +93,12 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = throwableExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
         }
       }
 
@@ -108,12 +108,12 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = throwableExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
         }
       }
 
@@ -123,12 +123,12 @@ class ThrowableExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           val response = throwableExceptionMapper.toResponse(exception)
 
-          response.getStatus shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString shouldBe MediaType.APPLICATION_JSON
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
           val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code shouldBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message shouldBe INTERNAL_SERVER_ERROR.getReasonPhrase
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
         }
       }
     }

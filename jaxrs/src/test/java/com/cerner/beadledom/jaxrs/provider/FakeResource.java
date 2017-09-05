@@ -12,14 +12,14 @@ import javax.ws.rs.core.Response;
 @Path("/fakeResource")
 public class FakeResource {
 
-  private final FakeDao fakeDao;
+  private final FakeRepository fakeRepository;
 
   public FakeResource() {
-    fakeDao = new FakeDao();
+    fakeRepository = new FakeRepository();
   }
 
-  public FakeResource(FakeDao fakeDao) {
-    this.fakeDao = fakeDao;
+  public FakeResource(FakeRepository fakeRepository) {
+    this.fakeRepository = fakeRepository;
   }
 
   @PATCH
@@ -36,6 +36,6 @@ public class FakeResource {
   @Path("/ExceptionEndpoint")
   @Produces({MediaType.APPLICATION_JSON})
   public Response fakeExceptionEndpoint() throws Exception {
-    return Response.ok(fakeDao.fakeMethod()).build();
+    return Response.ok(fakeRepository.fakeMethod()).build();
   }
 }
