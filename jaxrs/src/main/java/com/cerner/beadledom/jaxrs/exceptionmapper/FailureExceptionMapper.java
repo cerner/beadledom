@@ -2,7 +2,7 @@ package com.cerner.beadledom.jaxrs.exceptionmapper;
 
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
-import com.cerner.beadledom.jaxrs.models.JsonError;
+import com.cerner.beadledom.json.common.models.JsonError;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

@@ -1,7 +1,7 @@
 package com.cerner.beadledom.jaxrs.exceptionmapper
 
-import com.cerner.beadledom.jaxrs.models.JsonError
 import com.cerner.beadledom.jaxrs.provider.{FakeRepository, FakeResource}
+import com.cerner.beadledom.json.common.models.JsonError
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 

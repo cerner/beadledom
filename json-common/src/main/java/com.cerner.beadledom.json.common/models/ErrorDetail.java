@@ -1,4 +1,4 @@
-package com.cerner.beadledom.jaxrs.models;
+package com.cerner.beadledom.json.common.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;

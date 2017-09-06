@@ -53,6 +53,7 @@
         <module>jackson</module>
         <module>jaxrs</module>
         <module>jaxrs-genericresponse</module>
+        <module>json-common</module>
         <module>lifecycle</module>
         <module>lifecycle-governator</module>
         <module>resteasy</module>
@@ -172,6 +173,11 @@
             <dependency>
                 <groupId>com.cerner.beadledom</groupId>
                 <artifactId>beadledom-jaxrs-genericresponse</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cerner.beadledom</groupId>
+                <artifactId>beadledom-json-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
