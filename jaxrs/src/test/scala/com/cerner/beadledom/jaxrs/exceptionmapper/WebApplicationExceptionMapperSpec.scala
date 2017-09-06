@@ -2,12 +2,15 @@ package com.cerner.beadledom.jaxrs.exceptionmapper
 
 import com.cerner.beadledom.json.common.models.JsonError
 import com.cerner.beadledom.jaxrs.provider.{FakeRepository, FakeResource}
+import com.cerner.beadledom.testing.JsonErrorMatchers._
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 
 import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttpResponse}
 import org.mockito.Mockito
 import org.mockito.Mockito._
+import org.scalatest.mock.MockitoSugar
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
 
 import play.api.libs.json.Json
 
@@ -21,7 +24,8 @@ import javax.ws.rs.core.{MediaType, Response}
   *
   * @author Cal Fisher
   */
-class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
+class WebApplicationExceptionMapperSpec
+    extends FunSpec with MustMatchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
 
   val webApplicationExceptionMapper = new WebApplicationExceptionMapper
   val fakeRepository = mock[FakeRepository]
@@ -30,12 +34,6 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
   val request = MockHttpRequest.get(url)
   var response: MockHttpResponse = _
   val dispatcher = MockDispatcherFactory.createDispatcher()
-
-  val badRequestJsonError = createJsonError(BAD_REQUEST)
-  val unauthorizedJsonError = createJsonError(UNAUTHORIZED)
-  val forbiddenJsonError = createJsonError(FORBIDDEN)
-  val notFoundJsonError = createJsonError(NOT_FOUND)
-  val internalServerErrorJsonError = createJsonError(INTERNAL_SERVER_ERROR)
 
   override def beforeAll(): Unit = {
     dispatcher.getRegistry.addSingletonResource(fakeResource)
@@ -60,7 +58,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
 
@@ -78,7 +76,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe BAD_REQUEST.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe badRequestJsonError
+          response.getContentAsString must beBadRequestError()
         }
       }
 
@@ -96,7 +94,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe UNAUTHORIZED.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
+          response.getContentAsString must beUnauthorizedError()
         }
       }
 
@@ -114,7 +112,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe FORBIDDEN.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe forbiddenJsonError
+          response.getContentAsString must beForbiddenError()
         }
       }
 
@@ -132,7 +130,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe NOT_FOUND.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe notFoundJsonError
+          response.getContentAsString must beNotFoundError()
         }
       }
 
@@ -150,7 +148,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
 
@@ -164,7 +162,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe BAD_REQUEST.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe badRequestJsonError
+          response.getContentAsString must beBadRequestError()
         }
       }
 
@@ -178,7 +176,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe UNAUTHORIZED.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
+          response.getContentAsString must beUnauthorizedError()
         }
       }
 
@@ -192,7 +190,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe FORBIDDEN.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe forbiddenJsonError
+          response.getContentAsString must beForbiddenError()
         }
       }
 
@@ -206,7 +204,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe NOT_FOUND.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe notFoundJsonError
+          response.getContentAsString must beNotFoundError()
         }
       }
 
@@ -220,7 +218,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
 
@@ -235,7 +233,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+            response.getContentAsString must beInternalServerError()
           }
         }
 
@@ -254,7 +252,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe BAD_REQUEST.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe badRequestJsonError
+            response.getContentAsString must beBadRequestError()
           }
         }
 
@@ -273,7 +271,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe UNAUTHORIZED.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
+            response.getContentAsString must beUnauthorizedError()
           }
         }
 
@@ -292,7 +290,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe FORBIDDEN.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe forbiddenJsonError
+            response.getContentAsString must beForbiddenError()
           }
         }
 
@@ -311,7 +309,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe NOT_FOUND.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe notFoundJsonError
+            response.getContentAsString must beNotFoundError()
           }
         }
 
@@ -330,7 +328,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+            response.getContentAsString must beInternalServerError()
           }
         }
 
@@ -344,7 +342,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe BAD_REQUEST.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe badRequestJsonError
+            response.getContentAsString must beBadRequestError()
           }
         }
 
@@ -358,7 +356,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe UNAUTHORIZED.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe unauthorizedJsonError
+            response.getContentAsString must beUnauthorizedError()
           }
         }
 
@@ -372,7 +370,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe FORBIDDEN.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe forbiddenJsonError
+            response.getContentAsString must beForbiddenError()
           }
         }
 
@@ -386,7 +384,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe NOT_FOUND.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe notFoundJsonError
+            response.getContentAsString must beNotFoundError()
           }
         }
 
@@ -400,7 +398,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
             response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-            Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+            response.getContentAsString must beInternalServerError()
           }
         }
       }
@@ -419,7 +417,7 @@ class WebApplicationExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
     }

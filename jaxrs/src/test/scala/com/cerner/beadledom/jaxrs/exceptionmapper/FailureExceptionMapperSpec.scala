@@ -2,6 +2,7 @@ package com.cerner.beadledom.jaxrs.exceptionmapper
 
 import com.cerner.beadledom.jaxrs.provider.{FakeRepository, FakeResource}
 import com.cerner.beadledom.json.common.models.JsonError
+import com.cerner.beadledom.testing.JsonErrorMatchers._
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 
@@ -9,6 +10,8 @@ import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttp
 import org.jboss.resteasy.spi.{Failure, LoggableFailure, ReaderException, WriterException}
 import org.mockito.Mockito
 import org.mockito.Mockito._
+import org.scalatest.mock.MockitoSugar
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
 
 import play.api.libs.json.Json
 
@@ -21,7 +24,8 @@ import javax.ws.rs.core.Response.Status._
   *
   * @author Cal Fisher
   */
-class FailureExceptionMapperSpec extends BaseExceptionMapperSpec {
+class FailureExceptionMapperSpec
+    extends FunSpec with MustMatchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
 
   val failureExceptionMapper = new FailureExceptionMapper
   val fakeRepository = mock[FakeRepository]
@@ -30,7 +34,6 @@ class FailureExceptionMapperSpec extends BaseExceptionMapperSpec {
   val request = MockHttpRequest.get(url)
   var response: MockHttpResponse = _
   val dispatcher = MockDispatcherFactory.createDispatcher()
-  val internalServerErrorJsonError = createJsonError(INTERNAL_SERVER_ERROR)
 
   override def beforeAll(): Unit = {
     dispatcher.getRegistry.addSingletonResource(fakeResource)
@@ -55,7 +58,7 @@ class FailureExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
 
@@ -69,7 +72,7 @@ class FailureExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
 
@@ -83,7 +86,7 @@ class FailureExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
 
@@ -97,7 +100,7 @@ class FailureExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
 
@@ -111,7 +114,7 @@ class FailureExceptionMapperSpec extends BaseExceptionMapperSpec {
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
           response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          Json.parse(response.getContentAsString) mustBe internalServerErrorJsonError
+          response.getContentAsString must beInternalServerError()
         }
       }
     }

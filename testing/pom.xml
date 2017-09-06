@@ -13,8 +13,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.cerner.beadledom</groupId>
+            <artifactId>beadledom-json-common</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
         </dependency>
 
         <!--Test Dependencies-->
