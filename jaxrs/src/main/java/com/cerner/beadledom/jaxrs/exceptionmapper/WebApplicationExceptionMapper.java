@@ -39,25 +39,41 @@ public class WebApplicationExceptionMapper implements ExceptionMapper<WebApplica
   public Response toResponse(WebApplicationException exception) {
 
     Response response = exception.getResponse();
-    int status = response == null ? INTERNAL_SERVER_ERROR.getStatusCode() : response.getStatus();
+    int code = response == null ? INTERNAL_SERVER_ERROR.getStatusCode() : response.getStatus();
+    Response.Status status = Response.Status.fromStatusCode(code);
 
-    if (status >= 400 && status < 500) {
+    if (status == null) {
+      code = INTERNAL_SERVER_ERROR.getStatusCode();
+      status = INTERNAL_SERVER_ERROR;
+    }
+
+    if (code >= 400 && code < 500) {
       logger.warn("An unhandled exception was thrown.", exception);
-    } else if (status >= 500) {
+    } else if (code >= 500) {
       logger.error("An unhandled exception was thrown.", exception);
     }
 
-    return Response
-        .status(status)
-        .entity(createJsonError(status))
-        .type(MediaType.APPLICATION_JSON)
-        .build();
-  }
-
-  private static JsonError createJsonError(int statusCode) {
-    return JsonError.builder()
-        .code(statusCode)
-        .message(Response.Status.fromStatusCode(statusCode).getReasonPhrase())
-        .build();
+    if (response != null) {
+      return Response
+          .fromResponse(response)
+          .status(status)
+          .entity(
+              JsonError.builder()
+                  .code(code)
+                  .message(status.getReasonPhrase())
+                  .build())
+          .type(MediaType.APPLICATION_JSON)
+          .build();
+    } else {
+      return Response
+          .status(status)
+          .entity(
+              JsonError.builder()
+                  .code(code)
+                  .message(status.getReasonPhrase())
+                  .build())
+          .type(MediaType.APPLICATION_JSON)
+          .build();
+    }
   }
 }

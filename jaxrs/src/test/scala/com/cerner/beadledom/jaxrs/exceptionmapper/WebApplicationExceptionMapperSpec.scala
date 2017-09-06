@@ -420,6 +420,39 @@ class WebApplicationExceptionMapperSpec
           response.getContentAsString must beInternalServerError()
         }
       }
+
+      describe("when an exception code is not valid") {
+        it("returns a Json response with internal server error and status 500") {
+          val exceptionResponse = Response
+              .status(499)
+              .`type`(MediaType.APPLICATION_JSON)
+              .build
+          val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
+
+          dispatcher.invoke(request, response)
+
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getContentAsString must beInternalServerError()
+        }
+      }
+
+      describe("when an exception response is null") {
+        it("returns a Json response with internal server error and status 500") {
+          val exception = mock[WebApplicationException]
+          when(exception.getResponse).thenReturn(null)
+
+          when(fakeRepository.fakeMethod()).thenThrow(exception)
+
+          dispatcher.invoke(request, response)
+
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getContentAsString must beInternalServerError()
+        }
+      }
     }
 
     describe("unit testing the WebApplicationExceptionMapper class") {
@@ -807,6 +840,41 @@ class WebApplicationExceptionMapperSpec
               .`type`(MediaType.TEXT_PLAIN)
               .build
           val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+          val response = webApplicationExceptionMapper.toResponse(exception)
+
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+
+          val jsonError = response.getEntity.asInstanceOf[JsonError]
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
+        }
+      }
+
+      describe("when an exception code is not valid") {
+        it("is mapped to a Json response with internal server error and status 500") {
+          val exceptionResponse = Response
+              .status(499)
+              .`type`(MediaType.APPLICATION_JSON)
+              .build
+          val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+          val response = webApplicationExceptionMapper.toResponse(exception)
+
+          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+
+          val jsonError = response.getEntity.asInstanceOf[JsonError]
+          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
+          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
+        }
+      }
+
+      describe("when an exception response is null") {
+        it("is mapped to a Json response with internal server error and status 500") {
+          val exception = mock[WebApplicationException]
+          when(exception.getResponse).thenReturn(null)
 
           val response = webApplicationExceptionMapper.toResponse(exception)
 

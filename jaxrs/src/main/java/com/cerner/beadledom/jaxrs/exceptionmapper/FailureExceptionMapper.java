@@ -55,14 +55,28 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
       logger.error("An unhandled exception was thrown.", exception);
     }
 
-    return Response
-        .status(status)
-        .entity(
-            JsonError.builder()
-                .code(status.getStatusCode())
-                .message(status.getReasonPhrase())
-                .build())
-        .type(MediaType.APPLICATION_JSON)
-        .build();
+    Response response = exception.getResponse();
+    if (response != null) {
+      return Response
+          .fromResponse(response)
+          .status(status)
+          .entity(
+              JsonError.builder()
+                  .code(code)
+                  .message(status.getReasonPhrase())
+                  .build())
+          .type(MediaType.APPLICATION_JSON)
+          .build();
+    } else {
+      return Response
+          .status(status)
+          .entity(
+              JsonError.builder()
+                  .code(code)
+                  .message(status.getReasonPhrase())
+                  .build())
+          .type(MediaType.APPLICATION_JSON)
+          .build();
+    }
   }
 }

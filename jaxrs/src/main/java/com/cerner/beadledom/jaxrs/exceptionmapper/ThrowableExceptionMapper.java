@@ -42,7 +42,7 @@ public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
     logger.error("An unhandled exception was thrown.", exception);
 
     return Response
-        .status(Response.Status.INTERNAL_SERVER_ERROR)
+        .status(INTERNAL_SERVER_ERROR)
         .entity(
             JsonError.builder()
                 .code(INTERNAL_SERVER_ERROR.getStatusCode())
