@@ -1,6 +1,6 @@
 package com.cerner.beadledom.testing
 
-import com.cerner.beadledom.json.common.models.JsonError
+import com.cerner.beadledom.json.common.model.JsonError
 
 import com.fasterxml.jackson.databind.ObjectMapper
 

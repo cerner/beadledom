@@ -1,6 +1,6 @@
-package com.cerner.beadledom.jaxrs.exceptionmapper
+package com.cerner.beadledom.jaxrs.exceptionmapping
 
-import com.cerner.beadledom.json.common.models.JsonError
+import com.cerner.beadledom.json.common.model.JsonError
 import com.cerner.beadledom.jaxrs.provider.{FakeRepository, FakeResource}
 import com.cerner.beadledom.testing.JsonErrorMatchers._
 
