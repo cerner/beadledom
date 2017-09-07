@@ -12,8 +12,6 @@ import org.mockito.Mockito._
 import org.scalatest.mock.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
 
-import play.api.libs.json.Json
-
 import javax.ws.rs._
 import javax.ws.rs.core.HttpHeaders._
 import javax.ws.rs.core.Response.Status._

@@ -1,7 +1,6 @@
 package com.cerner.beadledom.jaxrs.provider;
 
 import com.cerner.beadledom.jaxrs.PATCH;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

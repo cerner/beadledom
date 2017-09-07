@@ -1,23 +1,20 @@
-package com.cerner.beadledom.jaxrs.exceptionmapping
+package com.cerner.beadledom.resteasy.exceptionmapping
 
-import com.cerner.beadledom.jaxrs.provider.{FakeRepository, FakeResource}
 import com.cerner.beadledom.json.common.model.JsonError
+import com.cerner.beadledom.resteasy.fauxservice.dao.HelloDao
+import com.cerner.beadledom.resteasy.fauxservice.resource.HelloResource
 import com.cerner.beadledom.testing.JsonErrorMatchers._
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
-
+import javax.ws.rs.core.HttpHeaders._
+import javax.ws.rs.core.Response.Status._
+import javax.ws.rs.core.{MediaType, Response}
 import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttpResponse}
 import org.jboss.resteasy.spi.{Failure, LoggableFailure, ReaderException, WriterException}
 import org.mockito.Mockito
 import org.mockito.Mockito._
 import org.scalatest.mock.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
-
-import play.api.libs.json.Json
-
-import javax.ws.rs.core.HttpHeaders._
-import javax.ws.rs.core.{MediaType, Response}
-import javax.ws.rs.core.Response.Status._
 
 /**
   * Unit tests for [[FailureExceptionMapper]].
@@ -28,21 +25,21 @@ class FailureExceptionMapperSpec
     extends FunSpec with MustMatchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
 
   val failureExceptionMapper = new FailureExceptionMapper
-  val fakeRepository = mock[FakeRepository]
-  val fakeResource = new FakeResource(fakeRepository)
-  val url = "/fakeResource/ExceptionEndpoint"
+  val helloDao = mock[HelloDao]
+  val helloResource = new HelloResource(helloDao)
+  val url = "/hello"
   val request = MockHttpRequest.get(url)
   var response: MockHttpResponse = _
   val dispatcher = MockDispatcherFactory.createDispatcher()
 
   override def beforeAll(): Unit = {
-    dispatcher.getRegistry.addSingletonResource(fakeResource)
+    dispatcher.getRegistry.addSingletonResource(helloResource)
     dispatcher.getProviderFactory.registerProvider(classOf[JacksonJsonProvider])
     dispatcher.getProviderFactory.registerProvider(classOf[FailureExceptionMapper])
   }
 
   before {
-    Mockito.reset(fakeRepository)
+    Mockito.reset(helloDao)
     response = new MockHttpResponse
   }
 
@@ -52,7 +49,7 @@ class FailureExceptionMapperSpec
         it("returns a Json response with internal server error and status 500") {
           val exception = new ReaderException("Exception Message")
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+          when(helloDao.getHello()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
@@ -66,7 +63,7 @@ class FailureExceptionMapperSpec
         it("returns a Json response with internal server error and status 500") {
           val exception = new WriterException("Exception Message")
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+          when(helloDao.getHello()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
@@ -80,7 +77,7 @@ class FailureExceptionMapperSpec
         it("returns a Json response with internal server error and status 500") {
           val exception = new LoggableFailure("Exception Message")
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+          when(helloDao.getHello()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
@@ -94,7 +91,7 @@ class FailureExceptionMapperSpec
         it("returns a Json response with internal server error and status 500") {
           val exception = new Failure("Exception Message")
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+          when(helloDao.getHello()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
@@ -108,7 +105,7 @@ class FailureExceptionMapperSpec
         it("returns a Json response with internal server error and status 500") {
           val exception = new CustomFailureException("Exception Message")
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+          when(helloDao.getHello()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
@@ -126,7 +123,7 @@ class FailureExceptionMapperSpec
               .build
           val exception = new Failure("Exception Message", exceptionResponse)
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+          when(helloDao.getHello()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 
@@ -141,7 +138,7 @@ class FailureExceptionMapperSpec
           val exception = mock[Failure]
           when(exception.getResponse).thenReturn(null)
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+          when(helloDao.getHello()).thenThrow(exception)
 
           dispatcher.invoke(request, response)
 

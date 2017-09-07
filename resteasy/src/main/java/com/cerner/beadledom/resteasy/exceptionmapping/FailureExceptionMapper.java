@@ -1,4 +1,4 @@
-package com.cerner.beadledom.jaxrs.exceptionmapping;
+package com.cerner.beadledom.resteasy.exceptionmapping;
 
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
