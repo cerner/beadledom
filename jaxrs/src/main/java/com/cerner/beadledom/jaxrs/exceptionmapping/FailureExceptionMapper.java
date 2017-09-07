@@ -3,12 +3,10 @@ package com.cerner.beadledom.jaxrs.exceptionmapping;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
 import com.cerner.beadledom.json.common.model.JsonError;
-
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-
 import org.jboss.resteasy.spi.Failure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
