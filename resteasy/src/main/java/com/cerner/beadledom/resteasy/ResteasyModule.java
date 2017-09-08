@@ -1,6 +1,7 @@
 package com.cerner.beadledom.resteasy;
 
 import com.cerner.beadledom.core.BeadledomModule;
+import com.cerner.beadledom.resteasy.exceptionmapping.FailureExceptionMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import javax.servlet.ServletContext;
@@ -18,6 +19,7 @@ import org.jboss.resteasy.plugins.guice.ext.RequestScopeModule;
  * <p>Provides:
  * <ul>
  *     <li>{@link GzipContentEncodingFilter}</li>
+ *     <li>{@link FailureExceptionMapper}</li>
  * </ul>
  *
  * @author John Leacox
@@ -27,6 +29,8 @@ public class ResteasyModule extends AbstractModule {
   protected void configure() {
     install(new BeadledomModule());
     install(new RequestScopeModule());
+
+    bind(FailureExceptionMapper.class);
   }
 
   @Provides

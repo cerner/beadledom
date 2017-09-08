@@ -13,6 +13,7 @@
 * Andy Nelson [@anelson425][andy-nelson]
 * Bryan Baugher [@bbaugher][bryan-baugher]
 * Eric Christensen [@EricChristensen][eric-christensen]
+* Cal Fisher [@cbfshr][cal-fisher]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -27,3 +28,4 @@
 [andy-nelson]: https://github.com/anelson425
 [bryan-baugher]: https://github.com/bbaugher
 [eric-christensen]: https://github.com/EricChristensen
+[cal-fisher]: https://github.com/cbfshr

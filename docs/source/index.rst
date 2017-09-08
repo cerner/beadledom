@@ -9,6 +9,7 @@ Beadledom
 
    about/introduction
    guides/getting_started
+   guides/error_handling
    manual/index
    guides/troubleshooting
 
