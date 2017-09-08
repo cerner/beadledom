@@ -419,21 +419,95 @@ class WebApplicationExceptionMapperSpec
         }
       }
 
-      describe("when an exception code is not valid") {
-        it("returns a Json response with internal server error and status 500") {
-          val exceptionResponse = Response
-              .status(499)
-              .`type`(MediaType.APPLICATION_JSON)
-              .build
-          val exception = new WebApplicationException("Exception Message", exceptionResponse)
+      describe("when an exception code is not recognized") {
+        describe("when the exception code is 100-199") {
+          it("returns a Json response with the code and the informational family message") {
+            val exceptionResponse = Response
+                .status(199)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          when(fakeRepository.fakeMethod()).thenThrow(exception)
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
 
-          dispatcher.invoke(request, response)
+            dispatcher.invoke(request, response)
 
-          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
-          response.getContentAsString must beInternalServerError()
+            response.getStatus mustBe 199
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getContentAsString must beJsonError(199, "Informational")
+          }
+        }
+
+        describe("when the exception code is 200-299") {
+          it("returns a Json response with the code and the successful family message") {
+            val exceptionResponse = Response
+                .status(299)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
+
+            dispatcher.invoke(request, response)
+
+            response.getStatus mustBe 299
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getContentAsString must beJsonError(299, "Successful")
+          }
+        }
+
+        describe("when the exception code is 300-399") {
+          it("returns a Json response with the code and the redirection family message") {
+            val exceptionResponse = Response
+                .status(399)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
+
+            dispatcher.invoke(request, response)
+
+            response.getStatus mustBe 399
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getContentAsString must beJsonError(399, "Redirection")
+          }
+        }
+
+        describe("when the exception code is 400-499") {
+          it("returns a Json response with the code and the client error family message") {
+            val exceptionResponse = Response
+                .status(499)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
+
+            dispatcher.invoke(request, response)
+
+            response.getStatus mustBe 499
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getContentAsString must beJsonError(499, "Client Error")
+          }
+        }
+
+        describe("when the exception code is 500-599") {
+          it("returns a Json response with the code and the server error family message") {
+            val exceptionResponse = Response
+                .status(599)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            when(fakeRepository.fakeMethod()).thenThrow(exception)
+
+            dispatcher.invoke(request, response)
+
+            response.getStatus mustBe 599
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getContentAsString must beJsonError(599, "Server Error")
+          }
         }
       }
 
@@ -850,22 +924,100 @@ class WebApplicationExceptionMapperSpec
         }
       }
 
-      describe("when an exception code is not valid") {
-        it("is mapped to a Json response with internal server error and status 500") {
-          val exceptionResponse = Response
-              .status(499)
-              .`type`(MediaType.APPLICATION_JSON)
-              .build
-          val exception = new WebApplicationException("Exception Message", exceptionResponse)
+      describe("when an exception code is not recognized") {
+        describe("when the exception code is 100-199") {
+          it("is mapped to a Json response with the code and the informational family message") {
+            val exceptionResponse = Response
+                .status(199)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
 
-          val response = webApplicationExceptionMapper.toResponse(exception)
+            val response = webApplicationExceptionMapper.toResponse(exception)
 
-          response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+            response.getStatus mustBe 199
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
 
-          val jsonError = response.getEntity.asInstanceOf[JsonError]
-          jsonError.code mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          jsonError.message mustBe INTERNAL_SERVER_ERROR.getReasonPhrase
+            val jsonError = response.getEntity.asInstanceOf[JsonError]
+            jsonError.code mustBe 199
+            jsonError.message mustBe "Informational"
+          }
+        }
+
+        describe("when the exception code is 200-299") {
+          it("is mapped to a Json response with the code and the successful family message") {
+            val exceptionResponse = Response
+                .status(299)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            val response = webApplicationExceptionMapper.toResponse(exception)
+
+            response.getStatus mustBe 299
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+
+            val jsonError = response.getEntity.asInstanceOf[JsonError]
+            jsonError.code mustBe 299
+            jsonError.message mustBe "Successful"
+          }
+        }
+
+        describe("when the exception code is 300-399") {
+          it("is mapped to a Json response with the code and the redirection family message") {
+            val exceptionResponse = Response
+                .status(399)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            val response = webApplicationExceptionMapper.toResponse(exception)
+
+            response.getStatus mustBe 399
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+
+            val jsonError = response.getEntity.asInstanceOf[JsonError]
+            jsonError.code mustBe 399
+            jsonError.message mustBe "Redirection"
+          }
+        }
+
+        describe("when the exception code is 400-499") {
+          it("is mapped to a Json response with the code and the client error family message") {
+            val exceptionResponse = Response
+                .status(499)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            val response = webApplicationExceptionMapper.toResponse(exception)
+
+            response.getStatus mustBe 499
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+
+            val jsonError = response.getEntity.asInstanceOf[JsonError]
+            jsonError.code mustBe 499
+            jsonError.message mustBe "Client Error"
+          }
+        }
+
+        describe("when the exception code is 500-599") {
+          it("is mapped to a Json response with the code and the server error family message") {
+            val exceptionResponse = Response
+                .status(599)
+                .`type`(MediaType.APPLICATION_JSON)
+                .build
+            val exception = new WebApplicationException("Exception Message", exceptionResponse)
+
+            val response = webApplicationExceptionMapper.toResponse(exception)
+
+            response.getStatus mustBe 599
+            response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+
+            val jsonError = response.getEntity.asInstanceOf[JsonError]
+            jsonError.code mustBe 599
+            jsonError.message mustBe "Server Error"
+          }
         }
       }
 

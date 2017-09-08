@@ -76,17 +76,18 @@ that extend from the ``WebApplicationException`` hierarchy. This includes except
 ``BadRequestException``, ``NotFoundException``, custom exceptions extending from
 ``WebApplicationException``, etc. ``WebApplicationExceptionMapper`` treats the exception as-is but
 sanitizes the exception's response, status, and message and formats it as JSON before sending back
-a response. The status will be propagated through to the response as long as it is a valid code; if
-the code is invalid, this will be treated as an Internal Server Error (500 status code). The
-response message will be derived from the resulting status code.
+a response. The status will be propagated through to the response. The response message will be
+derived from the resulting status code or the status code's family if the status is unrecognized.
 
 The ``FailureExceptionMapper`` is meant to be used with projects using Resteasy and handles all
 exceptions thrown internally by Resteasy that extend from the ``Failure`` hierarchy. Resteasy has
 `built-in internally-thrown exceptions <https://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html/ExceptionHandling.html#builtinException>`_
-that need to be handled and reformatted before sending back a response. The error code on the
-``Failure`` exception will be used as the status of the response as long as it is a valid code; if
-the code is invalid, this will be treated as an Internal Server Error (500 status code). The
-response message will be derived from the resulting status code.
+that need to be handled and reformatted before sending back a response. If the exception's response
+is not null, its status code will be used as the status of the response. If the exception's response
+is null, then the error code on the ``Failure`` exception will be used as the status of the
+response if it is in the valid status code range (100-599). If neither of these are true, the
+status is mapped to an Internal Server Error (500 status code). The response message will be
+derived from the resulting status code or the status code's family if the status is unrecognized.
 
 ``ThrowableExceptionMapper`` is the exception mapper that will behave as a catch-all for all
 exceptions that go unhandled. An unhandled exception could match any of the following scenarios:

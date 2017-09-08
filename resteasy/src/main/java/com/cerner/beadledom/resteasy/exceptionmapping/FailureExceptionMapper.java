@@ -3,6 +3,7 @@ package com.cerner.beadledom.resteasy.exceptionmapping;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 
 import com.cerner.beadledom.json.common.model.JsonError;
+import java.util.Optional;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -34,17 +35,19 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
    * @param exception the {@link Failure} exception that was not handled
    * @return a {@link Response} object with a {@code Status} of the {@link Failure} or 500 if the
    *     exception's response is null, a content-type of 'application/json', and a {@link JsonError}
-   *     entity containing details about the unhandled exception in JSON format.
+   *     entity containing details about the unhandled exception in JSON format
    */
   @Override
   public Response toResponse(Failure exception) {
 
-    int code = exception.getErrorCode();
-    Response.Status status = Response.Status.fromStatusCode(code);
+    int code = INTERNAL_SERVER_ERROR.getStatusCode();
+    int errorCode = exception.getErrorCode();
 
-    if (status == null) {
-      code = INTERNAL_SERVER_ERROR.getStatusCode();
-      status = INTERNAL_SERVER_ERROR;
+    Response response = exception.getResponse();
+    if (response != null) {
+      code = response.getStatus();
+    } else if (errorCode >= 100 && errorCode <= 599) {
+      code = exception.getErrorCode();
     }
 
     if (code >= 400 && code < 500) {
@@ -53,28 +56,38 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
       logger.error("An unhandled exception was thrown.", exception);
     }
 
-    Response response = exception.getResponse();
-    if (response != null) {
-      return Response
-          .fromResponse(response)
-          .status(status)
-          .entity(
-              JsonError.builder()
-                  .code(code)
-                  .message(status.getReasonPhrase())
-                  .build())
-          .type(MediaType.APPLICATION_JSON)
-          .build();
-    } else {
-      return Response
-          .status(status)
-          .entity(
-              JsonError.builder()
-                  .code(code)
-                  .message(status.getReasonPhrase())
-                  .build())
-          .type(MediaType.APPLICATION_JSON)
-          .build();
+    return Optional.ofNullable(exception.getResponse())
+        .map(Response::fromResponse)
+        .orElse(Response.status(code))
+        .entity(
+            JsonError.builder()
+                .code(code)
+                .message(getMessage(code))
+                .build())
+        .type(MediaType.APPLICATION_JSON)
+        .build();
+  }
+
+  private String getMessage(int code) {
+    Response.Status status = Response.Status.fromStatusCode(code);
+    if (status != null) {
+      return status.getReasonPhrase();
+    }
+
+    switch (Response.Status.Family.familyOf(code)) {
+      case INFORMATIONAL:
+        return "Informational";
+      case SUCCESSFUL:
+        return "Successful";
+      case REDIRECTION:
+        return "Redirection";
+      case CLIENT_ERROR:
+        return "Client Error";
+      case SERVER_ERROR:
+        return "Server Error";
+      case OTHER:
+      default:
+        return "Unrecognized Status Code";
     }
   }
 }

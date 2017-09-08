@@ -30,9 +30,9 @@ public class ThrowableExceptionMapper implements ExceptionMapper<Throwable> {
   /**
    * Maps an unhandled {@link Throwable} to a {@link Response}.
    *
-   * @param exception the {@link Throwable} exception that was not handled.
+   * @param exception the {@link Throwable} exception that was not handled
    * @return a {@link Response} object with a status of 500, content-type of 'application/json', and
-   *     a {@link JsonError} entity containing details about the unhandled exception in JSON format.
+   *     a {@link JsonError} entity containing details about the unhandled exception in JSON format
    */
   @Override
   public Response toResponse(Throwable exception) {
