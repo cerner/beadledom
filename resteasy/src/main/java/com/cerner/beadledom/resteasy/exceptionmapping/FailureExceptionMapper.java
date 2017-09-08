@@ -33,9 +33,10 @@ public class FailureExceptionMapper implements ExceptionMapper<Failure> {
    * Maps an unhandled {@link Failure} to a {@link Response}.
    *
    * @param exception the {@link Failure} exception that was not handled
-   * @return a {@link Response} object with a {@code Status} of the {@link Failure} or 500 if the
-   *     exception's response is null, a content-type of 'application/json', and a {@link JsonError}
-   *     entity containing details about the unhandled exception in JSON format
+   * @return a {@link Response} object with status code of the {@link Failure}'s response or the
+   *     error code if the response is null (defaults to 500 if the exception's response is null
+   *     and the error code is not a valid status code), a content-type of 'application/json', and
+   *     a {@link JsonError} entity containing details about the unhandled exception in JSON format
    */
   @Override
   public Response toResponse(Failure exception) {
