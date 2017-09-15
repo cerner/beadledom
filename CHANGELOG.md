@@ -1,11 +1,11 @@
 # Beadledom Changelog
 
-# 2.6 - In Development
+## 2.6 - 15 September 2017
 
 ### Enhancements
-* Added JsonError and ErrorDetail models to standardize JSON error response structure. Addresses [Issue #24](https://github.com/cerner/beadledom/issues/24).
-* Updated the WebApplicationExceptionMapper to follow JSON error response structure.
-* Added two new exception mappers for other uncaught error cases that also follow the JSON error response structure. Addresses [Issue #43](https://github.com/cerner/beadledom/issues/43).
+* Add `JsonError` and `ErrorDetail` models to standardize JSON error response structure. Addresses [Issue #24](https://github.com/cerner/beadledom/issues/24).
+* Update the `WebApplicationExceptionMapper` to follow JSON error response structure.
+* Add two new exception mappers, `ThrowableExceptionMapper` and `FailureExceptionMapper`, for other uncaught error cases that also follow the JSON error response structure. Addresses [Issue #43](https://github.com/cerner/beadledom/issues/43).
 
 ## 2.5.1 - 19 August 2017
 
