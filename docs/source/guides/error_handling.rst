@@ -60,7 +60,7 @@ or HTML that may contain stack traces or other system-specific information that 
 displayed to the end-user.
 
 Beadledom addresses this concern by implementing exception mappers. By default, Beadledom comes
-packaged with three exception mappers that handle this functionality behind the scenes:
+packaged with five exception mappers that handle this functionality behind the scenes:
 
 - `WebApplicationExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/WebApplicationExceptionMapper.java>`_
   - An exception mapper for exceptions in the WebApplicationException family.
@@ -68,6 +68,10 @@ packaged with three exception mappers that handle this functionality behind the 
   - An exception mapper for exceptions in the Failure family which encompasses internal exceptions raised by Resteasy.
 - `ThrowableExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/ThrowableExceptionMapper.java>`_
   - A catch-all exception mapper for all other unhandled exceptions.
+- `JsonMappingExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonMappingExceptionMapper.java>`_
+  - An exception mapper for Jackson JsonMappingExceptions.
+- `JsonParseExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonParseExceptionMapper.java>`_
+  - An exception mapper for Jackson JsonParseExceptions.
 
 Each of these ExceptionMapper classes has a distinct role in a RESTful service.
 
