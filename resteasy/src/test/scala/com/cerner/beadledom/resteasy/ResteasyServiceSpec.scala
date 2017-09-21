@@ -1,6 +1,7 @@
 package com.cerner.beadledom.resteasy
 
 import com.cerner.beadledom.resteasy.fauxservice.health.ImportantThingHealthDependency
+import com.cerner.beadledom.testing.JsonErrorMatchers.beBadRequestError
 import com.cerner.beadledom.testing.JsonMatchers.equalJson
 import com.google.common.base.Charsets
 import java.io.File
@@ -513,17 +514,16 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
         val response = client.target(s"$rootUrl/hello/echo").request(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON).post(Entity.json("""{"text":"HI""""))
         response.getStatus must be(400)
-        response.readEntity(classOf[String]) must include("Unexpected end-of-input")
-        response.getMediaType must be(MediaType.TEXT_PLAIN_TYPE)
+        response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+        response.readEntity(classOf[String]) must beBadRequestError("Unable to parse request JSON")
       }
 
       it("returns 400 for invalid request json") {
         val response = client.target(s"$rootUrl/hello/echo").request(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON).post(Entity.json("""{"text":{"yo":3}}"""))
         response.getStatus must be(400)
-        response.readEntity(classOf[String]) must
-            include("Can not deserialize instance of java.lang.String out of START_OBJECT")
-        response.getMediaType must be(MediaType.TEXT_PLAIN_TYPE)
+        response.getMediaType.toString mustBe MediaType.APPLICATION_JSON
+        response.readEntity(classOf[String]) must beBadRequestError("Unable to map request JSON")
       }
     }
   }
