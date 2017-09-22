@@ -1,9 +1,8 @@
 # Beadledom Changelog
 
-## 2.6.1 - In Development
+## 2.6.1 - 22 September 2017
 
 ### Enhancements
-
 * Add `JsonMappingExceptionMapper` and `JsonParseExceptionMapper` to map Jackson exceptions to the JSON error response structure.
 
 ## 2.6 - 15 September 2017
