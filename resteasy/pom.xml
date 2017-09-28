@@ -132,6 +132,21 @@
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.cerner.beadledom</groupId>
+            <artifactId>beadledom-swagger</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.cerner.beadledom.avro</groupId>
+            <artifactId>beadledom-avro-jackson</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.cerner.beadledom.avro</groupId>
+            <artifactId>beadledom-avro-swagger</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

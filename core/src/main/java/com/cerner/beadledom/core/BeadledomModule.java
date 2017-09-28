@@ -1,7 +1,5 @@
 package com.cerner.beadledom.core;
 
-import com.cerner.beadledom.avro.AvroJacksonGuiceModule;
-import com.cerner.beadledom.avro.AvroSwaggerGuiceModule;
 import com.cerner.beadledom.configuration.BeadledomConfigurationModule;
 import com.cerner.beadledom.health.HealthModule;
 import com.cerner.beadledom.jackson.JacksonModule;
@@ -11,7 +9,6 @@ import com.cerner.beadledom.jaxrs.exceptionmapping.JsonParseExceptionMapper;
 import com.cerner.beadledom.jaxrs.exceptionmapping.ThrowableExceptionMapper;
 import com.cerner.beadledom.jaxrs.exceptionmapping.WebApplicationExceptionMapper;
 import com.cerner.beadledom.jaxrs.provider.FilteringJacksonJsonProvider;
-import com.cerner.beadledom.swagger.SwaggerModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.AbstractModule;
@@ -36,13 +33,10 @@ import com.google.inject.Provides;
 public class BeadledomModule extends AbstractModule {
   @Override
   protected void configure() {
-    install(new AvroJacksonGuiceModule());
-    install(new AvroSwaggerGuiceModule());
     install(new BeadledomConfigurationModule());
     install(new HealthModule());
     install(new JacksonModule());
     install(new JaxRsModule());
-    install(new SwaggerModule());
 
     bind(JsonParseExceptionMapper.class);
     bind(JsonMappingExceptionMapper.class);
