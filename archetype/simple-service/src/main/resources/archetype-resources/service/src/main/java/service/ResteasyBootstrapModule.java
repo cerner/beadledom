@@ -15,6 +15,7 @@ public class ResteasyBootstrapModule extends AbstractModule {
 
   protected void configure() {
     install(new ResteasyModule());
+    install(new StagemonitorModule());
 
     BuildInfo buildInfo = BuildInfo.load(ResteasyBootstrapModule.class.getResourceAsStream("build-info.properties"));
     bind(BuildInfo.class).toInstance(buildInfo);

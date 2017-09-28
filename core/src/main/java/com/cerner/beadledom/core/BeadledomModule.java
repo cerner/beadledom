@@ -11,7 +11,6 @@ import com.cerner.beadledom.jaxrs.exceptionmapping.JsonParseExceptionMapper;
 import com.cerner.beadledom.jaxrs.exceptionmapping.ThrowableExceptionMapper;
 import com.cerner.beadledom.jaxrs.exceptionmapping.WebApplicationExceptionMapper;
 import com.cerner.beadledom.jaxrs.provider.FilteringJacksonJsonProvider;
-import com.cerner.beadledom.stagemonitor.StagemonitorModule;
 import com.cerner.beadledom.swagger.SwaggerModule;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
@@ -19,9 +18,9 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
 /**
- * The core Beadledom module that installs and integrates all of the beadledom components.
+ * The core Beadledom module that installs and integrates all of the Beadledom components.
  *
- * <p>This module is only dependent on the jax-rs API. When using beadledom with a jax-rs
+ * <p>This module is only dependent on the jax-rs API. When using Beadledom with a jax-rs
  * implementation, use something like the {@code ResteasyModule} from beadledom-resteasy.
  *
  * <p>Provides:
@@ -43,7 +42,6 @@ public class BeadledomModule extends AbstractModule {
     install(new HealthModule());
     install(new JacksonModule());
     install(new JaxRsModule());
-    install(new StagemonitorModule());
     install(new SwaggerModule());
 
     bind(JsonParseExceptionMapper.class);

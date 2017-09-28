@@ -30,10 +30,6 @@
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-stagemonitor</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
             <artifactId>beadledom-swagger</artifactId>
         </dependency>
         <dependency>
