@@ -67,14 +67,6 @@ Guice Module:
       bind(ExampleLifecycleHook.class).asEagerSingleton();
     }
 
-    @Provides
-    SwaggerConfig provideSwaggerConfig(ServiceMetadata serviceMetadata) {
-      SwaggerConfig config = new SwaggerConfig();
-      config.setApiVersion(serviceMetadata.getBuildInfo().getVersion());
-      config.setSwaggerVersion(SwaggerSpec.version());
-      return config;
-    }
-
     private static class ExampleLifecycleHook {
       @PostConstruct
       public void postConstruct() {
