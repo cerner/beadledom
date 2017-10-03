@@ -80,7 +80,7 @@ and `Defining a custom natural ordering <#defining-a-custom-natural-ordering>`__
 Environment Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Environment variables are a common way to configuration applications in a `Twelve-Factor App
+Environment variables are a common way to configure applications in a `Twelve-Factor App
 <https://12factor.net/config>`__.
 
 To load the environment-based configuration use
