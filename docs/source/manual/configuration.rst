@@ -51,7 +51,7 @@ configuration. Each ConfigurationSource is assigned a default priority,
 however the consumer can override the priority at the time of object
 creation. These priorities acts as the natural ordering on the
 ConfigurationSources. The higher priority configuration sources takes
-precendence over the lower priority configuration sources. If a
+precedence over the lower priority configuration sources. If a
 configuration key is found in two different sources, the value from the
 higher priority source will be in the final configuration and the value
 from the lower priority source will not be present in the final
@@ -65,15 +65,29 @@ ConfigurationSourcesModuleBuilder as explained in the `usage <#usage>`__. For mo
 defining a custom configuration sources see `Adding Custom ConfigurationSource <#adding-custom-configurationSource>`__ 
 and `Defining a custom natural ordering <#defining-a-custom-natural-ordering>`__ sections.
 
-+------------------------------------------------------------+--------------------+
-| Configuration type                                         | Default Priority   |
-+============================================================+====================+
-| `Jndi Configuration <#jndi-configuration>`__               | 300                |
-+------------------------------------------------------------+--------------------+
-| `Properties Configuration <#properties-configuration>`__   | 200                |
-+------------------------------------------------------------+--------------------+
-| `XML Configuration <#xml-configuration>`__                 | 100                |
-+------------------------------------------------------------+--------------------+
++--------------------------------------------------------------------------+--------------------+
+| Configuration type                                                       | Default Priority   |
++==========================================================================+====================+
+| `Environment Configuration <#environment-configuration>`__               | 400                |
++--------------------------------------------------------------------------+--------------------+
+| `Jndi Configuration <#jndi-configuration>`__                             | 300                |
++--------------------------------------------------------------------------+--------------------+
+| `Properties Configuration <#properties-configuration>`__                 | 200                |
++--------------------------------------------------------------------------+--------------------+
+| `XML Configuration <#xml-configuration>`__                               | 100                |
++--------------------------------------------------------------------------+--------------------+
+
+Environment Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Environment variables are a common way to configuration applications in a `Twelve-Factor App
+<https://12factor.net/config>`__.
+
+To load the environment-based configuration use
+
+.. code:: java
+
+  EnvironmentConfigurationSource environmentConfigurationSource = EnvironmentConfigurationSource.create());
 
 JNDI Configuration
 ~~~~~~~~~~~~~~~~~~

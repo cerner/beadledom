@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 2.7 - 
+
+### Additions
+* Add environment variables configuration source
+
 ## 2.6.1 - 22 September 2017
 
 ### Enhancements
