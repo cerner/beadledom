@@ -6,6 +6,8 @@ import org.apache.commons.configuration2.EnvironmentConfiguration;
 /**
  * An implementation class of {@link ConfigurationSource} for the source of environment variables.
  *
+ * @see <a href="https://docs.oracle.com/javase/tutorial/essential/environment/env.html">Environment Variables</a>
+ *
  * @author Nathan Schile
  * @since 2.7
  */
