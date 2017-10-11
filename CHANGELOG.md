@@ -4,8 +4,9 @@
 
 ### Breaking Changes
 
-* Removes StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, and AvroSwaggerGuiceModule modules from being installed by BeadledomModule. If the 
-removed functionality is desired, install the removed modules in the consuming guice module.
+* Removes StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, and AvroSwaggerGuiceModule 
+modules from being installed by BeadledomModule. If the removed functionality is desired, install 
+the removed modules in the consuming guice module.
 
 ## 2.6.1 - 22 September 2017
 
