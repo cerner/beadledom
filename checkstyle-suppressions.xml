@@ -5,4 +5,9 @@
     <suppress files="generated-test-sources" checks=".*"/>
     <suppress files="com.cerner.beadledom.client.resteasy.ApacheHttpClient4Dot3Engine" checks=".*"/>
     <suppress files="com.cerner.beadledom.jaxrs.PATCH" checks="AbbreviationAsWordInName" />
+
+    <suppress files="com.cerner.beadledom.jooq.DSLContextProvider"
+              checks="AbbreviationAsWordInName"/>
+    <suppress files="com.cerner.beadledom.jooq.DSLContextProviderImpl"
+              checks="AbbreviationAsWordInName"/>
 </suppressions>

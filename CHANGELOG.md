@@ -3,7 +3,8 @@
 ## 2.7 - 
 
 ### Additions
-* Add environment variables configuration source
+* Add environment variables configuration source.
+* Add [jOOQ](https://www.jooq.org/) module for database interaction.
 
 ## 2.6.1 - 22 September 2017
 
