@@ -48,7 +48,7 @@ class FilteringJacksonJsonProviderSpec
       val json = objectMapper.writeValueAsString(fakeModel)
       val captor = ArgumentCaptor.forClass(classOf[Array[Byte]])
       Mockito.verify(output)
-          .write(captor.capture(), mockito.Matchers.anyInt(), mockito.Matchers.anyInt())
+          .write(captor.capture(), mockito.ArgumentMatchers.anyInt(), mockito.ArgumentMatchers.anyInt())
       json should be === objectMapper.readTree(captor.getValue).toString
     }
 
@@ -73,7 +73,7 @@ class FilteringJacksonJsonProviderSpec
       val json = """{"id":"id1","name":"name1","times":1}"""
       val captor = ArgumentCaptor.forClass(classOf[Array[Byte]])
       Mockito.verify(output)
-          .write(captor.capture(), mockito.Matchers.anyInt(), mockito.Matchers.anyInt())
+          .write(captor.capture(), mockito.ArgumentMatchers.anyInt(), mockito.ArgumentMatchers.anyInt())
       json should be === objectMapper.readTree(captor.getValue).toString
     }
 

@@ -4,16 +4,17 @@ import com.google.inject.spi.ProvisionListener.ProvisionInvocation
 import com.google.inject.{Binding, Key}
 import javax.annotation.{PostConstruct, PreDestroy}
 import org.hamcrest.Matchers.contains
-import org.mockito.{Matchers, Mockito}
+import org.mockito.Mockito
+import org.mockito.hamcrest.MockitoHamcrest
 import org.scalatest.mock.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.reflect.Manifest
 
 /**
-  * Unit tests for [[LifecycleProvisionListener]].
-  *
-  * @author John Leacox
-  */
+ * Unit tests for [[LifecycleProvisionListener]].
+ *
+ * @author John Leacox
+ */
 class LifecycleProvisionListenerSpec extends FunSpec with MustMatchers with MockitoSugar {
   describe("LifecycleProvisionListener") {
     describe("#onProvision") {
@@ -32,7 +33,7 @@ class LifecycleProvisionListenerSpec extends FunSpec with MustMatchers with Mock
       it("executes PostConstruct methods on the parent class of injectee") {
         val shutdownManager = mock[LifecycleShutdownManager]
         val provisionListener = new LifecycleProvisionListener()
-                LifecycleProvisionListener.init(shutdownManager, provisionListener)
+        LifecycleProvisionListener.init(shutdownManager, provisionListener)
 
         val injectee = new TestPostConstructWithParent
         val provision = createMockProvision(injectee, classOf[TestPostConstructWithParent])
@@ -44,7 +45,7 @@ class LifecycleProvisionListenerSpec extends FunSpec with MustMatchers with Mock
       it("adds PreDestroy methods to the shutdown manager") {
         val shutdownManager = mock[LifecycleShutdownManager]
         val provisionListener = new LifecycleProvisionListener()
-                LifecycleProvisionListener.init(shutdownManager, provisionListener)
+        LifecycleProvisionListener.init(shutdownManager, provisionListener)
 
         val injectee = new TestPreDestroy
         val provision = createMockProvision(injectee, classOf[TestPreDestroy])
@@ -54,7 +55,7 @@ class LifecycleProvisionListenerSpec extends FunSpec with MustMatchers with Mock
           classOf[TestPreDestroy].getDeclaredMethod("shutdown"), classOf[PreDestroy])
 
         Mockito.verify(shutdownManager).addPreDestroyMethods(
-          Matchers.argThat(contains(invokableShutdownMethod))
+          MockitoHamcrest.argThat(contains(invokableShutdownMethod))
               .asInstanceOf[java.util.List[InvokableLifecycleMethod]])
       }
     }

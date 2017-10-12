@@ -36,7 +36,7 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with ShouldMatchers {
 
       val captor = ArgumentCaptor.forClass(classOf[String])
       Mockito.verify(request)
-          .setProperty(mockito.Matchers.eq(mdcName), captor.capture())
+          .setProperty(mockito.ArgumentMatchers.eq(mdcName), captor.capture())
       MDC.get(mdcName) should be(captor.getValue)
     }
 
@@ -67,8 +67,8 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with ShouldMatchers {
       filter.filter(request, response)
 
       MDC.get(mdcName) should be(null)
-      Mockito.verify(headers).add(mockito.Matchers.eq(headerName),
-        mockito.Matchers.anyString())
+      Mockito.verify(headers).add(mockito.ArgumentMatchers.eq(headerName),
+        mockito.ArgumentMatchers.anyString())
     }
   }
 }

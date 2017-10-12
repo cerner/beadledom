@@ -8,7 +8,7 @@ import com.github.mustachejava.DefaultMustacheFactory
 import com.google.inject.{AbstractModule, Guice}
 import java.net.URI
 import javax.ws.rs.core.{UriBuilder, UriInfo}
-import org.mockito.Matchers.any
+import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
 import org.scalatest._
 import org.scalatest.mock.MockitoSugar
