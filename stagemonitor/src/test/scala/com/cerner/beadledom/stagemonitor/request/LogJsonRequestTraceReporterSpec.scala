@@ -4,7 +4,7 @@ import com.cerner.beadledom.stagemonitor.JsonRequestTraceLoggerPlugin
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.mockito.ArgumentCaptor
-import org.mockito.Matchers.any
+import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.{never, verify, when}
 import org.scalatest._
 import org.scalatest.mock.MockitoSugar

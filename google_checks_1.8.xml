@@ -113,7 +113,7 @@
                      value="Parameter name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="CatchParameterName">
-            <property name="format" value="(^e$)|(^[]a-z][a-z0-9][a-zA-Z0-9]*$)"/>
+            <property name="format" value="(^e$)|(^t$)|(^[]a-z][a-z0-9][a-zA-Z0-9]*$)"/>
             <message key="name.invalidPattern"
                      value="Catch parameter name ''{0}'' must match pattern ''{1}''."/>
         </module>
@@ -201,7 +201,7 @@
             <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
             <property name="minLineCount" value="2"/>
-            <property name="allowedAnnotations" value="Override, Test, GET, POST, PUT, DELETE, HEAD"/>
+            <property name="allowedAnnotations" value="Override, Test, GET, POST, PUT, PATCH, DELETE, HEAD"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
             <property name="suppressLoadErrors" value="true"/>
         </module>
