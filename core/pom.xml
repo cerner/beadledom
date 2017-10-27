@@ -18,10 +18,6 @@
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-health</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
             <artifactId>beadledom-jackson</artifactId>
         </dependency>
         <dependency>

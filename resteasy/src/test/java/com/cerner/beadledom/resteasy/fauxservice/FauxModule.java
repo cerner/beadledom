@@ -3,6 +3,7 @@ package com.cerner.beadledom.resteasy.fauxservice;
 import com.cerner.beadledom.avro.AvroJacksonGuiceModule;
 import com.cerner.beadledom.avro.AvroSwaggerGuiceModule;
 import com.cerner.beadledom.health.HealthDependency;
+import com.cerner.beadledom.health.HealthModule;
 import com.cerner.beadledom.metadata.BuildInfo;
 import com.cerner.beadledom.metadata.ServiceMetadata;
 import com.cerner.beadledom.resteasy.ResteasyModule;
@@ -30,6 +31,7 @@ public class FauxModule extends AbstractModule {
     install(new SwaggerModule());
     install(new AvroJacksonGuiceModule());
     install(new AvroSwaggerGuiceModule());
+    install(new HealthModule());
 
     bind(HelloDao.class).in(Singleton.class);
     bind(HelloResource.class);

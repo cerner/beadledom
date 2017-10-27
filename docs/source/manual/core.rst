@@ -6,7 +6,6 @@ A Guice module that pulls all of the beadledom components together for consumpti
 The following beadledom guice modules are installed.
 
 * `BeadledomConfigurationModule <configuration>`_
-* `HealthModule <health>`_
 * `JacksonModule <jackson>`_
 * `JaxRsModule <jaxrs>`_
 

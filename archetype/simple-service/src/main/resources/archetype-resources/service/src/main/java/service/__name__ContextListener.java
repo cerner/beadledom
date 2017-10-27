@@ -3,7 +3,6 @@
 #set( $symbol_escape = '\' )
 package ${package}.service;
 
-import com.cerner.beadledom.configuration.ConfigurationSource;
 import com.cerner.beadledom.resteasy.ResteasyContextListener;
 import com.google.common.collect.Lists;
 import com.google.inject.Module;

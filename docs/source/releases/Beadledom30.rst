@@ -11,7 +11,7 @@ New Features
 Migrating from Beadledom 2.0
 ----------------------------
 Beadledom 3.0 no longer installs StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule,
-and AvroSwaggerGuiceModule modules with BeadledomModule. If the removed functionality is
+AvroSwaggerGuiceModule, and HealthModule modules with BeadledomModule. If the removed functionality is
 desired, install the removed modules in the consuming Guice module. ResteasyModule installs the
 BeadledomModule module, so the removed modules also apply.
 
@@ -34,5 +34,6 @@ BeadledomModule module, so the removed modules also apply.
       install(new SwaggerModule());
       install(new AvroJacksonGuiceModule());
       install(new AvroSwaggerGuiceModule());
+      install(new HealthModule());
     }
   }

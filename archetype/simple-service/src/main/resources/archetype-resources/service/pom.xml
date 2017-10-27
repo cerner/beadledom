@@ -30,6 +30,10 @@
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>
+            <artifactId>beadledom-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cerner.beadledom</groupId>
             <artifactId>beadledom-jaxrs-genericresponse</artifactId>
         </dependency>
         <dependency>

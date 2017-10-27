@@ -1,7 +1,6 @@
 package com.cerner.beadledom.core;
 
 import com.cerner.beadledom.configuration.BeadledomConfigurationModule;
-import com.cerner.beadledom.health.HealthModule;
 import com.cerner.beadledom.jackson.JacksonModule;
 import com.cerner.beadledom.jaxrs.JaxRsModule;
 import com.cerner.beadledom.jaxrs.exceptionmapping.JsonMappingExceptionMapper;
@@ -34,7 +33,6 @@ public class BeadledomModule extends AbstractModule {
   @Override
   protected void configure() {
     install(new BeadledomConfigurationModule());
-    install(new HealthModule());
     install(new JacksonModule());
     install(new JaxRsModule());
 
