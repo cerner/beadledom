@@ -53,6 +53,7 @@
         <module>jackson</module>
         <module>jaxrs</module>
         <module>jaxrs-genericresponse</module>
+        <module>jooq</module>
         <module>json-common</module>
         <module>lifecycle</module>
         <module>lifecycle-governator</module>
@@ -428,6 +429,11 @@
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jaxrs</artifactId>
                 <version>${resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq</artifactId>
+                <version>3.10.1</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
