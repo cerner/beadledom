@@ -32,6 +32,16 @@ public interface DependenciesResource {
   @ApiResponses(value = {
       @ApiResponse(code = 503, message = "unhealthy", response = HealthDependencyDto.class),
       @ApiResponse(code = 200, message = "healthy", response = HealthDependencyDto.class)})
+  @io.swagger.annotations.ApiOperation(value = "Dependency Listing",
+      notes = "Returns the name, internal URL and external URL (if applicable) of all "
+          + "dependencies.",
+      response = HealthDependencyDto.class,
+      responseContainer = "List")
+  @io.swagger.annotations.ApiResponses(value = {
+      @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy",
+          response = HealthDependencyDto.class),
+      @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
+          response = HealthDependencyDto.class)})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   List<HealthDependencyDto> getDependencyListing();
@@ -50,6 +60,17 @@ public interface DependenciesResource {
   @ApiResponses(value = {
       @ApiResponse(code = 503, message = "unhealthy", response = HealthDependencyDto.class),
       @ApiResponse(code = 200, message = "healthy", response = HealthDependencyDto.class)})
+  @io.swagger.annotations.ApiOperation(value = "Availability Check for Dependency",
+      notes =
+          "Invokes the basic availability check on the given dependency. "
+              + "The response code will match the code returned by the dependency, and will be "
+              + "omitted from the JSON.",
+      response = HealthDependencyDto.class)
+  @io.swagger.annotations.ApiResponses(value = {
+      @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy",
+          response = HealthDependencyDto.class),
+      @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
+          response = HealthDependencyDto.class)})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @JsonView(HealthJsonViews.Dependency.class)

@@ -25,20 +25,25 @@ import javax.annotation.Nullable;
     "message"})
 @AutoValue
 @ApiModel(value = "Standard error body")
+@io.swagger.annotations.ApiModel(value = "Standard error body")
 @JsonDeserialize(builder = JsonError.Builder.class)
 public abstract class JsonError {
 
   @JsonProperty("message")
-  @ApiModelProperty(value = "Human readable description of an Error")
+  @ApiModelProperty(value = "Human readable description of an error")
+  @io.swagger.annotations.ApiModelProperty(value = "Human readable description of an error")
   public abstract String message();
 
   @JsonProperty("code")
   @ApiModelProperty(value = "HTTP response status code representing the error")
+  @io.swagger.annotations.ApiModelProperty(
+      value = "HTTP response status code representing the error")
   public abstract int code();
 
   @Nullable
   @JsonProperty("errors")
   @ApiModelProperty(value = "List of additional error details")
+  @io.swagger.annotations.ApiModelProperty(value = "List of additional error details")
   public abstract List<ErrorDetail> errors();
 
   public static Builder builder() {

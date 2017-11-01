@@ -2,10 +2,10 @@
 
 .. Defined for inline java code highlighting
 .. role:: java(code)
-   :language: java
+  :language: java
 
 .. toctree::
-   :name: getting_started_toc
+  :name: getting_started_toc
    :includehidden:
 
 Getting Started
@@ -94,18 +94,12 @@ After a successful project creation we can go ahead and build our project and st
   awesome-thing> cd service
   awesome-thing/service> mvn tomcat7:run-war
 
-Once the service has started we can navigate to our swagger resource to explore the rest of the
-default ``api``.
+Once the service has started we can navigate to our swagger resource to retrieve the swagger
+specification of the default ``api``.
 
 .. code-block:: html
 
-  http://localhost:8080/awesome-thing-service/meta/swagger/ui
-
-Go ahead and play around with the ``healthcheck`` and ``hello`` resources for a while. Once you
-get tired of that move onto the next section where we will breakdown the components.
-
-Stagemonitor web widget is disabled by default, to enable it set ``stagemonitor.web.widget.enabled`` to ``true`` in
-``service/src/main/resources/stagemonitor.properties``.
+  http://localhost:8080/awesome-thing-service/api-docs
 
 The Breakdown
 -------------
@@ -116,8 +110,8 @@ of these and talk about the classes they contain.
 API sub-module
 ~~~~~~~~~~~~~~
 
-This module contains the interfaces defining your service ``api`` and the models defining your
-``responses``. The code living here ends up being used by both the ``client`` and the ``service``.
+This module contains the the models defining your ``requests`` and ``responses``. The code living
+here ends up being used by both the ``client`` and the ``service``.
 
 HelloWorldResource
 ++++++++++++++++++
@@ -255,7 +249,7 @@ resources
 +++++++++
 
 :Files:
-  - **log4j.properties** - configuration for our logger
+    - **log4j.properties** - configuration for our logger
   - **stagemonitor.properties** - configuration for `stagemonitor <http://www.stagemonitor.org/>`_
   - **build-info.properties** - properties from the current build used in health checks
 
@@ -267,7 +261,7 @@ AwesomeThingContextListener
 +++++++++++++++++++++++++++
 
 .. Note:: Your class names might be slightly different depending on what you choose for your
-   ``Project Name``.
+  ``Project Name``.
 
 .. code-block:: java
 

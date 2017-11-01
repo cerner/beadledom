@@ -63,6 +63,7 @@
     <module>resteasy-genericresponse</module>
     <module>stagemonitor</module>
     <module>swagger1</module>
+    <module>swagger2</module>
     <module>testing</module>
   </modules>
 
@@ -352,6 +353,26 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>2.6</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jersey2-jaxrs</artifactId>
+        <version>1.5.18</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <artifactId>org.glassfish.jersey.media</artifactId>
+            <groupId>jersey-media-multipart</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>1.5.18</version>
       </dependency>
       <dependency>
         <groupId>javax.annotation</groupId>
