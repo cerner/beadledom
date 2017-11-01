@@ -1,5 +1,13 @@
 # Beadledom Changelog
 
+## 3.0 - In Development
+
+### Breaking Changes
+
+* Removes StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, AvroSwaggerGuiceModule, and 
+HealthModule modules from being installed by BeadledomModule. If the removed functionality is 
+desired, install the removed modules in the consuming guice module.
+
 ## 2.8 - 16 May 2018
 
 ### Additions
