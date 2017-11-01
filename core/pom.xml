@@ -18,31 +18,11 @@
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-health</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
             <artifactId>beadledom-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>
             <artifactId>beadledom-jaxrs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-stagemonitor</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-swagger</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom.avro</groupId>
-            <artifactId>beadledom-avro-jackson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom.avro</groupId>
-            <artifactId>beadledom-avro-swagger</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

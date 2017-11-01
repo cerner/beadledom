@@ -3,9 +3,12 @@
 #set( $symbol_escape = '\' )
 package ${package}.service;
 
+import com.cerner.beadledom.health.HealthModule;
 import com.cerner.beadledom.metadata.BuildInfo;
 import com.cerner.beadledom.metadata.ServiceMetadata;
 import com.cerner.beadledom.resteasy.ResteasyModule;
+import com.cerner.beadledom.stagemonitor.StagemonitorModule;
+import com.cerner.beadledom.swagger.SwaggerModule;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.wordnik.swagger.config.SwaggerConfig;
@@ -15,6 +18,9 @@ public class ResteasyBootstrapModule extends AbstractModule {
 
   protected void configure() {
     install(new ResteasyModule());
+    install(new StagemonitorModule());
+    install(new SwaggerModule());
+    install(new HealthModule());
 
     BuildInfo buildInfo = BuildInfo.load(ResteasyBootstrapModule.class.getResourceAsStream("build-info.properties"));
     bind(BuildInfo.class).toInstance(buildInfo);

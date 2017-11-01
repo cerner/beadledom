@@ -1,7 +1,5 @@
 package com.cerner.beadledom.resteasy;
 
-import com.cerner.beadledom.configuration.BeadledomConfigurationModule;
-import com.cerner.beadledom.configuration.ConfigurationSource;
 import com.cerner.beadledom.lifecycle.GuiceLifecycleContainers;
 import com.cerner.beadledom.lifecycle.LifecycleContainer;
 import com.cerner.beadledom.lifecycle.LifecycleInjector;
