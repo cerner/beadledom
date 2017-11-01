@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-
 import java.util.Optional;
 
 /**
@@ -19,7 +18,9 @@ import java.util.Optional;
  */
 @AutoValue
 @JsonDeserialize(builder = BuildDto.Builder.class)
-@ApiModel(description = "Indicates the list of dependencies of this service.")
+@ApiModel(description = "Service build and version information.")
+@io.swagger.annotations.ApiModel(
+    description = "Service build and version information.")
 public abstract class BuildDto {
   /**
    * Creates a new builder for {@code BuildDto}.
@@ -32,14 +33,19 @@ public abstract class BuildDto {
   }
 
   @ApiModelProperty("The name of the artifact")
+  @io.swagger.annotations.ApiModelProperty("The name of the artifact")
   @JsonProperty("artifactName")
   public abstract Optional<String> getArtifactName();
 
   @ApiModelProperty("The version of the service which served this health check response")
+  @io.swagger.annotations.ApiModelProperty(
+      "The version of the service which served this health check response")
   @JsonProperty("version")
   public abstract Optional<String> getVersion();
 
   @ApiModelProperty("The build date/time of the service or application in ISO-8601 format")
+  @io.swagger.annotations.ApiModelProperty(
+      "The build date/time of the service or application in ISO-8601 format")
   @JsonProperty("buildDateTime")
   public abstract Optional<String> getBuildDateTime();
 

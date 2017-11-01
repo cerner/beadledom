@@ -11,6 +11,8 @@
       <Class name="com.cerner.beadledom.jackson.JacksonModule"/>
       <Class name="com.cerner.beadledom.swagger.SwaggerModule"/>
       <Class name="com.cerner.beadledom.health.HealthModule"/>
+      <Class name="com.cerner.beadledom.swagger.SwaggerModule"/>
+      <Class name="com.cerner.beadledom.swagger2.Swagger2Module"/>
     </Or>
     <Method name="configure"/>
     <Bug pattern="DLS_DEAD_LOCAL_STORE"/>

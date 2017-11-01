@@ -5,6 +5,7 @@
 ### Additions
 * Add OffsetPaginatedListDto interface to the pagination module.
 * Add configuration to allow 0 as a pagination limit value (disabled by default - limit=1 as minimum value).
+* Add Swagger 2 module.
 
 ### Defects Corrected
 * Fix isHealthy field being included in the health dependency list JSON.

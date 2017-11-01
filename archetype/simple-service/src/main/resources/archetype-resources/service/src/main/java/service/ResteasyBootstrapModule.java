@@ -7,19 +7,17 @@ import com.cerner.beadledom.health.HealthModule;
 import com.cerner.beadledom.metadata.BuildInfo;
 import com.cerner.beadledom.metadata.ServiceMetadata;
 import com.cerner.beadledom.resteasy.ResteasyModule;
-import com.cerner.beadledom.stagemonitor.StagemonitorModule;
-import com.cerner.beadledom.swagger.SwaggerModule;
+import com.cerner.beadledom.swagger2.Swagger2Module;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.wordnik.swagger.config.SwaggerConfig;
-import com.wordnik.swagger.core.SwaggerSpec;
+import io.swagger.models.Info;
+import javax.inject.Singleton;
 
 public class ResteasyBootstrapModule extends AbstractModule {
 
   protected void configure() {
     install(new ResteasyModule());
-    install(new StagemonitorModule());
-    install(new SwaggerModule());
+    install(new Swagger2Module());
     install(new HealthModule());
 
     BuildInfo buildInfo = BuildInfo.load(ResteasyBootstrapModule.class.getResourceAsStream("build-info.properties"));
@@ -28,10 +26,10 @@ public class ResteasyBootstrapModule extends AbstractModule {
   }
 
   @Provides
-  SwaggerConfig provideSwaggerConfig(ServiceMetadata serviceMetadata) {
-    SwaggerConfig config = new SwaggerConfig();
-    config.setApiVersion(serviceMetadata.getBuildInfo().getVersion());
-    config.setSwaggerVersion(SwaggerSpec.version());
-    return config;
+  @Singleton
+  Info provideSwagger2Info(ServiceMetadata serviceMetadata) {
+    return new Info()
+        .title("${name}")
+        .version(serviceMetadata.getBuildInfo().getVersion());
   }
 }

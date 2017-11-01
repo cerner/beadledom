@@ -2,9 +2,8 @@ package com.cerner.beadledom.pagination.parameters;
 
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
 import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
-import javax.inject.Inject;
+import com.google.inject.Inject;
+import com.wordnik.swagger.annotations.ApiParam;
 
 /**
  * Represent the offset parameter used for pagination.
@@ -17,10 +16,11 @@ import javax.inject.Inject;
  * @author Will Pruyn
  * @since 3.1
  */
-@ApiModel
 public class OffsetParameter extends AbstractParameter<Long> {
 
-  @ApiModelProperty(value = "Number of items to offset the response by.", dataType = "int",
+  @ApiParam(value = "Number of items to offset the response by.",
+      allowableValues = "range[0, " + Long.MAX_VALUE + "]")
+  @io.swagger.annotations.ApiParam(value = "Number of items to offset the response by.",
       allowableValues = "range[0, " + Long.MAX_VALUE + "]")
   private final String offset;
 

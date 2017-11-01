@@ -39,10 +39,12 @@
     <dependency>
       <groupId>com.wordnik</groupId>
       <artifactId>swagger-annotations</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.wordnik</groupId>
       <artifactId>swagger-core_${scala.binary.version}</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>javax.xml.bind</groupId>
