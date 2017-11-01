@@ -1,6 +1,9 @@
 package com.cerner.beadledom.resteasy.fauxservice;
 
+import com.cerner.beadledom.avro.AvroJacksonGuiceModule;
+import com.cerner.beadledom.avro.AvroSwaggerGuiceModule;
 import com.cerner.beadledom.health.HealthDependency;
+import com.cerner.beadledom.health.HealthModule;
 import com.cerner.beadledom.metadata.BuildInfo;
 import com.cerner.beadledom.metadata.ServiceMetadata;
 import com.cerner.beadledom.resteasy.ResteasyModule;
@@ -8,6 +11,8 @@ import com.cerner.beadledom.resteasy.fauxservice.dao.HelloDao;
 import com.cerner.beadledom.resteasy.fauxservice.health.ImportantHealthDependency2;
 import com.cerner.beadledom.resteasy.fauxservice.health.ImportantThingHealthDependency;
 import com.cerner.beadledom.resteasy.fauxservice.resource.HelloResource;
+import com.cerner.beadledom.swagger.SwaggerModule;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.multibindings.Multibinder;
@@ -23,6 +28,10 @@ public class FauxModule extends AbstractModule {
   @Override
   protected void configure() {
     install(new ResteasyModule());
+    install(new SwaggerModule());
+    install(new AvroJacksonGuiceModule());
+    install(new AvroSwaggerGuiceModule());
+    install(new HealthModule());
 
     bind(HelloDao.class).in(Singleton.class);
     bind(HelloResource.class);
