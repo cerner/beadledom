@@ -63,7 +63,7 @@ Making a database call:
     }
   }
 
-Configuring the required bindings:
+Below is an example of configuring the required binding uses a C3P0 pooling datasource.
 
 .. code-block:: java
 
