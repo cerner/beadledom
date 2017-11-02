@@ -86,6 +86,11 @@
             </dependency>
             <dependency>
                 <groupId>com.cerner.beadledom</groupId>
+                <artifactId>beadledom-jooq</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cerner.beadledom</groupId>
                 <artifactId>beadledom-lifecycle</artifactId>
                 <version>${project.version}</version>
             </dependency>
