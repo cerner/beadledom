@@ -11,10 +11,6 @@
     <artifactId>beadledom-jackson</artifactId>
     <name>Beadledom Jackson</name>
 
-    <properties>
-        <java.version>1.6</java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
