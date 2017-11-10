@@ -4,9 +4,10 @@
 
 ### Breaking Changes
 
-* Removes StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, AvroSwaggerGuiceModule, and 
+* Remove StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, AvroSwaggerGuiceModule, and 
 HealthModule modules from being installed by BeadledomModule. If the removed functionality is 
 desired, install the removed modules in the consuming guice module.
+* Bump minimum Java version to 1.8 for all modules.
 
 ## 2.7 - In Development
 

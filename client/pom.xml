@@ -26,12 +26,6 @@
         <module>beadledom-client-test</module>
     </modules>
 
-    <properties>
-        <java.version>1.6</java.version>
-        <!-- Cannot go past 3.0.12.Final since 3.0.13.Final+ require Java 7 -->
-        <resteasy.client.version>3.0.12.Final</resteasy.client.version>
-    </properties>
-    
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -51,23 +45,18 @@
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
-                <artifactId>jaxrs-api</artifactId>
-                <version>${resteasy.client.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-client</artifactId>
-                <version>${resteasy.client.version}</version>
+                <version>${resteasy.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-guice</artifactId>
-                <version>${resteasy.client.version}</version>
+                <version>${resteasy.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-jaxrs</artifactId>
-                <version>${resteasy.client.version}</version>
+                <version>${resteasy.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
