@@ -11,10 +11,6 @@
     <artifactId>beadledom-guice</artifactId>
     <name>Beadledom Guice</name>
 
-    <properties>
-        <java.version>1.6</java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.google.inject</groupId>
