@@ -10,10 +10,6 @@
     <artifactId>beadledom-configuration</artifactId>
     <name>Beadledom Configuration</name>
 
-    <properties>
-        <java.version>1.6</java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
