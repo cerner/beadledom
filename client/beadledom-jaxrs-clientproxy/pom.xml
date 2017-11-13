@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>beadledom-client-parent</artifactId>
-        <groupId>com.cerner.beadledom</groupId>
-        <version>2.9-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <artifactId>beadledom-client-parent</artifactId>
+    <groupId>com.cerner.beadledom</groupId>
+    <version>2.9-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>beadledom-jaxrs-clientproxy</artifactId>
-    <name>Beadledom Client Proxy - JAX-RS</name>
+  <artifactId>beadledom-jaxrs-clientproxy</artifactId>
+  <name>Beadledom Client Proxy - JAX-RS</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-jaxrs-genericresponse</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-        </dependency>
+  <dependencies>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-jaxrs-genericresponse</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.javassist</groupId>
+      <artifactId>javassist</artifactId>
+    </dependency>
 
-        <!-- Test Dependencies -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-        </dependency>
-    </dependencies>
+    <!-- Test Dependencies -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+    </dependency>
+  </dependencies>
 </project>
