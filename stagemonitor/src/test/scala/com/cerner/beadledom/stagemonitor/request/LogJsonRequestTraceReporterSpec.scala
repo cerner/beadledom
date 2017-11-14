@@ -7,7 +7,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.{never, verify, when}
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.slf4j.Logger
 import org.stagemonitor.requestmonitor.reporter.RequestTraceReporter.{IsActiveArguments, ReportArguments}
 import org.stagemonitor.requestmonitor.{RequestMonitorPlugin, RequestTrace}

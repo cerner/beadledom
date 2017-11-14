@@ -1,12 +1,12 @@
 package com.cerner.beadledom.metadata
 
 import java.util.Properties
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.{FunSpec, Matchers}
 
 /**
  * Spec tests for {@link BuildInfo}.
  */
-class BuildInfoSpec extends FunSpec with ShouldMatchers {
+class BuildInfoSpec extends FunSpec with Matchers {
   val properties = new Properties()
   properties.setProperty("git.commit.id", "abcdef")
   properties.setProperty("project.artifactId", "blub-factory")

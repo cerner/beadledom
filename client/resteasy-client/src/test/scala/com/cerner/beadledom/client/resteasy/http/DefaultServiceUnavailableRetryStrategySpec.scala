@@ -6,13 +6,13 @@ import org.apache.http.client.ServiceUnavailableRetryStrategy
 import org.apache.http.client.protocol.HttpClientContext
 import org.apache.http.{HttpRequest, HttpResponse, RequestLine, StatusLine}
 import org.mockito.Mockito
-import org.scalatest.mock.MockitoSugar
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{FunSpec, Matchers}
 
 /**
   * @author John Leacox
   */
-class DefaultServiceUnavailableRetryStrategySpec extends FunSpec with ShouldMatchers with MockitoSugar with RetryRequestBehaviors {
+class DefaultServiceUnavailableRetryStrategySpec extends FunSpec with Matchers with MockitoSugar with RetryRequestBehaviors {
   describe("DefaultServiceUnavailableRetryStrategySpec") {
     describe("#getRetryInterval") {
       it("returns the retry interval given to the constructor") {
@@ -64,7 +64,7 @@ class DefaultServiceUnavailableRetryStrategySpec extends FunSpec with ShouldMatc
   }
 }
 
-trait RetryRequestBehaviors extends ShouldMatchers with MockitoSugar {
+trait RetryRequestBehaviors extends Matchers with MockitoSugar {
   this: FunSpec =>
 
   def retryableRequest(retryStrategy: ServiceUnavailableRetryStrategy, statusCode: Int, executionCount: Int): Unit = {

@@ -8,7 +8,7 @@ import javax.ws.rs.core._
 
 import com.cerner.beadledom.testing.UnitSpec
 import org.mockito.Mockito.when
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 
 class ResponseToStringWrapperSpec extends UnitSpec with MockitoSugar {
   describe("ResponseToStringWrapper") {

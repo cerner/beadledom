@@ -80,7 +80,7 @@ public abstract class BuildInfo {
   }
 
   public static Builder builder(BuildInfo buildInfo) {
-    return new AutoValue_BuildInfo.Builder(buildInfo);
+    return buildInfo.toBuilder();
   }
 
   /**
@@ -171,6 +171,11 @@ public abstract class BuildInfo {
    * Returns the the build date/time.
    */
   public abstract Optional<String> getBuildDateTime();
+
+  /**
+   * Returns a builder with same property values as this; allowing modification of some values.
+   */
+  public abstract Builder toBuilder();
 
   @AutoValue.Builder
   public abstract static class Builder {

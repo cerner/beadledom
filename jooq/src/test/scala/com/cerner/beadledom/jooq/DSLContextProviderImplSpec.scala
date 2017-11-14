@@ -2,7 +2,7 @@ package com.cerner.beadledom.jooq
 
 import javax.sql.DataSource
 import org.jooq.{DSLContext, SQLDialect}
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
 
 /**

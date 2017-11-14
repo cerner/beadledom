@@ -6,13 +6,13 @@ import com.google.common.io.Resources
 import com.wordnik.swagger.annotations.ApiModel
 import com.wordnik.swagger.converter.ModelConverters
 import com.wordnik.swagger.core.util.JsonSerializer
-import org.scalatest.{BeforeAndAfterAll, FunSpec, ShouldMatchers}
+import org.scalatest.{BeforeAndAfterAll, FunSpec, Matchers}
 
 /**
  * Spec tests for {@link SwaggerAvroModelConverter}.
  */
 class SwaggerAvroModelConverterSpec
-    extends FunSpec with ShouldMatchers with JsonMatchers with BeforeAndAfterAll {
+    extends FunSpec with Matchers with JsonMatchers with BeforeAndAfterAll {
   val converter = new SwaggerAvroModelConverter
 
   override def beforeAll = {

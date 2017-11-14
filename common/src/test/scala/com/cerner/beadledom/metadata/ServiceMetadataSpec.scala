@@ -2,13 +2,13 @@ package com.cerner.beadledom.metadata
 
 import java.net.InetAddress
 import java.time.Instant
-import org.scalatest.mock.MockitoSugar
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{FunSpec, Matchers}
 
 /**
  * Spec tests for {@link ServiceMetadata}.
  */
-class ServiceMetadataSpec extends FunSpec with ShouldMatchers with MockitoSugar {
+class ServiceMetadataSpec extends FunSpec with Matchers with MockitoSugar {
   describe("ServiceMetadata") {
     describe(".create") {
       it("builds a default object correctly") {

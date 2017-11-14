@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-
 import java.util.Optional;
 
 /**
@@ -35,7 +34,7 @@ public abstract class HealthDependencyDto {
    * {@code HealthDependencyDto}.
    */
   public static Builder builder(HealthDependencyDto healthDependencyDto) {
-    return new AutoValue_HealthDependencyDto.Builder(healthDependencyDto);
+    return healthDependencyDto.toBuilder();
   }
 
   @ApiModelProperty("The id of the dependency")
@@ -68,6 +67,11 @@ public abstract class HealthDependencyDto {
   @ApiModelProperty("A human readable explanation of the health check status")
   @JsonProperty("message")
   public abstract Optional<String> getMessage();
+
+  /**
+   * Returns a builder with same property values as this; allowing modification of some values.
+   */
+  public abstract Builder toBuilder();
 
   @AutoValue.Builder
   public abstract static class Builder {

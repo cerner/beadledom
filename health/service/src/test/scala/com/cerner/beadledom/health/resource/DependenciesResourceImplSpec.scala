@@ -11,7 +11,7 @@ import javax.ws.rs.core.{UriBuilder, UriInfo}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 
 /**
  * Spec tests for DependenciesResourceImplSpec.

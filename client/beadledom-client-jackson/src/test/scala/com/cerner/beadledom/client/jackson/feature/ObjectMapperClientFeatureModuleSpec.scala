@@ -8,7 +8,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 import com.google.inject.multibindings.ProvidesIntoSet
 import com.google.inject.{AbstractModule, Guice, Key, Module}
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 
 /**
  * Unit tests for ObjectMapperClientFeatureModule.
@@ -16,7 +16,7 @@ import org.scalatest.mock.MockitoSugar
  * @author John Leacox
  */
 class ObjectMapperClientFeatureModuleSpec
-    extends FunSpec with BeforeAndAfter with ShouldMatchers with MockitoSugar {
+    extends FunSpec with BeforeAndAfter with Matchers with MockitoSugar {
   var testModule: Module = _
 
   before {

@@ -7,7 +7,7 @@ import javax.ws.rs.core.MultivaluedHashMap
 import com.cerner.beadledom.client.CorrelationIdFilter
 import org.mockito.Mockito
 import org.scalatest.matchers.{BeMatcher, MatchResult}
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.{FunSpec, Matchers}
 
 import scala.util.Try
 
@@ -16,7 +16,7 @@ import scala.util.Try
   *
   * @author John Leacox
   */
-trait CorrelationIdFilterBehaviors extends ShouldMatchers {
+trait CorrelationIdFilterBehaviors extends Matchers {
   this: FunSpec =>
 
   val aUUID =

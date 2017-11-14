@@ -10,10 +10,10 @@ import javax.inject.Inject
 import javax.naming.{Context, InitialContext}
 import javax.servlet.{ServletContext, ServletContextEvent}
 import org.apache.commons.configuration2.ImmutableHierarchicalConfiguration
-import org.jboss.resteasy.spi.{Registry, ResteasyProviderFactory}
+import org.jboss.resteasy.spi.{Registry, ResteasyDeployment, ResteasyProviderFactory}
 import org.mockito.Mockito._
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
 
 /**
@@ -23,6 +23,7 @@ class BaseContextListenerSpec
     extends FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
 
   val context = mock[ServletContext]
+  val deployment: ResteasyDeployment = mock[ResteasyDeployment]
   val registry: Registry = mock[Registry]
   val providerFactory = mock[ResteasyProviderFactory]
   val initializedEvent = mock[ServletContextEvent]
@@ -33,9 +34,10 @@ class BaseContextListenerSpec
     initialContext = new InitialContext
     initialContext.createSubcontext("test")
 
-    when(context.getAttribute(classOf[Registry].getName)).thenReturn(registry, registry)
-    when(context.getAttribute(classOf[ResteasyProviderFactory].getName))
-        .thenReturn(providerFactory, providerFactory)
+    when(context.getAttribute(classOf[ResteasyDeployment].getName))
+        .thenReturn(deployment, deployment)
+    when(deployment.getRegistry).thenReturn(registry)
+    when(deployment.getProviderFactory).thenReturn(providerFactory)
     when(initializedEvent.getServletContext).thenReturn(context)
   }
 
