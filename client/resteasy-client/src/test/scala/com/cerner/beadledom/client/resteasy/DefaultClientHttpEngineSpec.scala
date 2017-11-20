@@ -1,20 +1,19 @@
 package com.cerner.beadledom.client.resteasy
 
+import com.cerner.beadledom.client.TestResource
 import java.util.concurrent.atomic.AtomicLong
 import javax.ws.rs.NotFoundException
 import javax.ws.rs.client.{Client, Entity}
-
-import com.cerner.beadledom.client.TestResource
 import org.scalatest.{BeforeAndAfter, DoNotDiscover, FunSpec, Matchers}
 import org.slf4j.{Logger, LoggerFactory}
 
 /**
-  * @author John Leacox
-  */
+ * @author John Leacox
+ */
 @DoNotDiscover
-class ApacheHttpClient4Dot3EngineSpec(contextRoot: String, servicePort: Int)
+class DefaultClientHttpEngineSpec(contextRoot: String, servicePort: Int)
     extends FunSpec with Matchers with BeforeAndAfter {
-  val logger: Logger = LoggerFactory.getLogger(classOf[ApacheHttpClient4Dot3EngineSpec])
+  val logger: Logger = LoggerFactory.getLogger(classOf[DefaultClientHttpEngineSpec])
 
   val threadCount = 7
   val requestCount = 1
