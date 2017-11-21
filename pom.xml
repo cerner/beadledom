@@ -60,7 +60,7 @@
     <module>resteasy</module>
     <module>resteasy-genericresponse</module>
     <module>stagemonitor</module>
-    <module>swagger</module>
+    <module>swagger1</module>
     <module>testing</module>
   </modules>
 
@@ -203,7 +203,7 @@
       </dependency>
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
-        <artifactId>beadledom-swagger</artifactId>
+        <artifactId>beadledom-swagger1</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -328,6 +328,21 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>2.6</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>2.0.0-rc3</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-integration</artifactId>
+        <version>2.0.0-rc3</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-jaxrs2</artifactId>
+        <version>2.0.0-rc3</version>
       </dependency>
       <dependency>
         <groupId>javax.annotation</groupId>

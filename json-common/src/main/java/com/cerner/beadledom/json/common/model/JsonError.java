@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import javax.annotation.Nullable;
 
@@ -29,16 +30,19 @@ import javax.annotation.Nullable;
 public abstract class JsonError {
 
   @JsonProperty("message")
-  @ApiModelProperty(value = "Human readable description of an Error")
+  @ApiModelProperty(value = "Human readable description of an error")
+  @Schema(description = "Human readable description of an error")
   public abstract String message();
 
   @JsonProperty("code")
   @ApiModelProperty(value = "HTTP response status code representing the error")
+  @Schema(description = "HTTP response status code representing the error")
   public abstract int code();
 
   @Nullable
   @JsonProperty("errors")
   @ApiModelProperty(value = "List of additional error details")
+  @Schema(description = "List of additional error details")
   public abstract List<ErrorDetail> errors();
 
   public static Builder builder() {

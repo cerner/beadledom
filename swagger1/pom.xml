@@ -8,7 +8,7 @@
     <version>2.8-SNAPSHOT</version>
   </parent>
 
-  <artifactId>beadledom-swagger</artifactId>
+  <artifactId>beadledom-swagger1</artifactId>
   <name>Beadledom Swagger</name>
 
   <dependencies>
@@ -43,6 +43,14 @@
     <dependency>
       <groupId>com.wordnik</groupId>
       <artifactId>swagger-jaxrs_${scala.binary.version}</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-integration</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-jaxrs2</artifactId>
     </dependency>
     <dependency>
       <groupId>javax.inject</groupId>

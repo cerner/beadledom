@@ -46,7 +46,7 @@
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-swagger</artifactId>
+            <artifactId>beadledom-swagger1</artifactId>
         </dependency>
         <dependency>
             <groupId>com.wordnik</groupId>

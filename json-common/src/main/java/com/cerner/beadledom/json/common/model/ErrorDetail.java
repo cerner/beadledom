@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import javax.annotation.Nullable;
 
 /**
@@ -32,26 +33,31 @@ public abstract class ErrorDetail {
   @Nullable
   @JsonProperty("domain")
   @ApiModelProperty(value = "A subsystem or context where an error occurred")
+  @Schema(description = "A subsystem or context where an error occurred")
   public abstract String domain();
 
   @Nullable
   @JsonProperty("reason")
   @ApiModelProperty(value = "short name or key for an error")
+  @Schema(description = "short name or key for an error")
   public abstract String reason();
 
   @Nullable
   @JsonProperty("message")
   @ApiModelProperty(value = "Human readable description of an error")
+  @Schema(description = "Human readable description of an error")
   public abstract String message();
 
   @Nullable
   @JsonProperty("locationType")
   @ApiModelProperty(value = "Location or type of the value that caused an error")
+  @Schema(description = "Location or type of the value that caused an error")
   public abstract String locationType();
 
   @Nullable
   @JsonProperty("location")
   @ApiModelProperty(value = "Name of the value that caused an error")
+  @Schema(description = "Name of the value that caused an error")
   public abstract String location();
 
   public static Builder builder() {
