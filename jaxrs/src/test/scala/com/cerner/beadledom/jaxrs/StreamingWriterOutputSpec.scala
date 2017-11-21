@@ -3,13 +3,13 @@ package com.cerner.beadledom.jaxrs
 import com.google.common.base.Charsets
 import java.io.{ByteArrayOutputStream, OutputStreamWriter}
 import java.util.function.Consumer
-import org.scalatest.mock.MockitoSugar
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{FunSpec, Matchers}
 
 /**
   * @author John Leacox
   */
-class StreamingWriterOutputSpec extends FunSpec with ShouldMatchers with MockitoSugar {
+class StreamingWriterOutputSpec extends FunSpec with Matchers with MockitoSugar {
 
   implicit def toConsumer[A](function: A => Unit): Consumer[A] = new Consumer[A]() {
     override def accept(arg: A): Unit = function.apply(arg)

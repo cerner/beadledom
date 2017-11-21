@@ -3,7 +3,7 @@ package com.cerner.beadledom.lifecycle.governator
 import com.google.inject.{AbstractModule, Module}
 import com.netflix.governator.InjectorBuilder
 import javax.annotation.PreDestroy
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
 

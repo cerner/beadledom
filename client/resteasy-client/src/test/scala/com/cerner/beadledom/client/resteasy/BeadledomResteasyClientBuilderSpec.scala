@@ -1,14 +1,14 @@
 package com.cerner.beadledom.client.resteasy
 
 import com.cerner.beadledom.client.BeadledomClientBuilder
-import org.scalatest.{BeforeAndAfter, FunSpec, ShouldMatchers}
+import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
 
 import scala.language.postfixOps
 
 /**
   * @author John Leacox
   */
-class BeadledomResteasyClientBuilderSpec extends FunSpec with ShouldMatchers with BeforeAndAfter {
+class BeadledomResteasyClientBuilderSpec extends FunSpec with Matchers with BeforeAndAfter {
   describe("BeadledomResteasyClientBuilder") {
     describe("ServiceLoader") {
       it("loads the resteasy builder implementation") {

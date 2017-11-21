@@ -12,7 +12,7 @@ import java.lang.reflect.ParameterizedType;
  * Static convenience methods for creating {@link DynamicBindingProvider} instances.
  *
  * @author John Leacox
- * @see {@link DynamicBindingProvider}
+ * @see DynamicBindingProvider
  * @since 1.2
  */
 class DynamicAnnotations {

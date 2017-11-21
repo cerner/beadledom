@@ -3,7 +3,7 @@ package com.cerner.beadledom.health
 import com.cerner.beadledom.metadata.ServiceMetadata
 import com.google.inject._
 import com.google.inject.multibindings.{Multibinder, ProvidesIntoSet}
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import javax.ws.rs.core.UriInfo
 

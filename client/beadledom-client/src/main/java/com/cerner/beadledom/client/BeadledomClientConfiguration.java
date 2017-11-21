@@ -22,7 +22,7 @@ public abstract class BeadledomClientConfiguration {
   }
 
   public static Builder builder(BeadledomClientConfiguration config) {
-    return new AutoValue_BeadledomClientConfiguration.Builder(config);
+    return config.toBuilder();
   }
 
   /**
@@ -58,6 +58,11 @@ public abstract class BeadledomClientConfiguration {
 
   @Nullable
   public abstract HostnameVerifier verifier();
+
+  /**
+   * Returns a builder with same property values as this; allowing modification of some values.
+   */
+  public abstract Builder toBuilder();
 
   @AutoValue.Builder
   public abstract static class Builder {

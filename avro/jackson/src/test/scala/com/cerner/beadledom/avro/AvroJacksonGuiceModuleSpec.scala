@@ -5,14 +5,14 @@ import com.fasterxml.jackson.databind.{Module, ObjectMapper}
 import com.google.inject._
 import com.google.inject.multibindings.ProvidesIntoSet
 import java.util.Properties
-import org.scalatest.mock.MockitoSugar
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{FunSpec, Matchers}
 import scala.collection.JavaConverters._
 
 /**
  * Spec tests for {@link AvroJacksonGuiceModule}.
  */
-class AvroJacksonGuiceModuleSpec extends FunSpec with ShouldMatchers with MockitoSugar {
+class AvroJacksonGuiceModuleSpec extends FunSpec with Matchers with MockitoSugar {
   val injector = Guice.createInjector(new AbstractModule() {
     override def configure(): Unit = {
       val buildInfo = BuildInfo.builder()
