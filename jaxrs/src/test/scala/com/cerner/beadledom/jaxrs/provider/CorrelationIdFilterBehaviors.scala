@@ -4,13 +4,13 @@ import javax.ws.rs.container.{ContainerRequestContext, ContainerResponseContext}
 import org.jboss.resteasy.core.Headers
 import org.mockito
 import org.mockito.{ArgumentCaptor, Mockito}
-import org.scalatest.{BeforeAndAfter, FunSpec, ShouldMatchers}
+import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
 import org.slf4j.MDC
 
 /**
  * @author John Leacox
  */
-trait CorrelationIdFilterBehaviors extends BeforeAndAfter with ShouldMatchers {
+trait CorrelationIdFilterBehaviors extends BeforeAndAfter with Matchers {
   this: FunSpec =>
 
   def correlationIdFilter(filter: CorrelationIdFilter, headerName: String,

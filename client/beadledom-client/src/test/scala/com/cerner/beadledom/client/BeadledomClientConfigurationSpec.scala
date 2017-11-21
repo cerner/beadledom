@@ -1,8 +1,8 @@
 package com.cerner.beadledom.client
 
-import org.scalatest.{BeforeAndAfter, FunSpec, ShouldMatchers}
+import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
 
-class BeadledomClientConfigurationSpec extends FunSpec with ShouldMatchers with BeforeAndAfter{
+class BeadledomClientConfigurationSpec extends FunSpec with Matchers with BeforeAndAfter{
 
   describe("BeadledomClientConfiguration") {
 

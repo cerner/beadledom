@@ -13,6 +13,7 @@ import javax.servlet.ServletContextListener;
 import org.jboss.resteasy.plugins.guice.ModuleProcessor;
 import org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap;
 import org.jboss.resteasy.spi.Registry;
+import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 /**
@@ -32,9 +33,10 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
     super.contextInitialized(event);
 
     final ServletContext context = event.getServletContext();
-    final Registry registry = (Registry) context.getAttribute(Registry.class.getName());
-    final ResteasyProviderFactory providerFactory =
-        (ResteasyProviderFactory) context.getAttribute(ResteasyProviderFactory.class.getName());
+    final ResteasyDeployment deployment =
+        (ResteasyDeployment) context.getAttribute(ResteasyDeployment.class.getName());
+    final Registry registry = deployment.getRegistry();
+    final ResteasyProviderFactory providerFactory = deployment.getProviderFactory();
     final ModuleProcessor processor = new ModuleProcessor(registry, providerFactory);
 
     final List<? extends Module> appModules = getModules(context);

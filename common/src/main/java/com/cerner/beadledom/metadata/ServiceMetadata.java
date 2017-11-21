@@ -26,7 +26,7 @@ public abstract class ServiceMetadata {
    * Creates a new builder initialized with the values from the provided serviceMetadata.
    */
   public static Builder builder(ServiceMetadata serviceMetadata) {
-    return new AutoValue_ServiceMetadata.Builder(serviceMetadata);
+    return serviceMetadata.toBuilder();
   }
 
   /**
@@ -64,6 +64,11 @@ public abstract class ServiceMetadata {
    * Returns approximately when the service was started.
    */
   public abstract Instant getStartupTime();
+
+  /**
+   * Returns a builder with same property values as this; allowing modification of some values.
+   */
+  public abstract Builder toBuilder();
 
   @AutoValue.Builder
   public abstract static class Builder {

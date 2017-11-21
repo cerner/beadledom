@@ -5,7 +5,7 @@ import javax.servlet.ServletConfig
 import javax.ws.rs.core.Application
 import org.mockito.Mockito.when
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
 
 /**
@@ -13,7 +13,7 @@ import scala.collection.JavaConverters._
  * 
  * @author John Leacox
  */
-class SwaggerGuiceJaxrsScannerSpec extends FunSpec with ShouldMatchers with MockitoSugar {
+class SwaggerGuiceJaxrsScannerSpec extends FunSpec with Matchers with MockitoSugar {
   describe("SwaggerGuiceJaxrsScanner") {
     describe("#classesFromContext") {
       it("returns classes with direct path annotation") {

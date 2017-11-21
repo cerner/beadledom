@@ -3,7 +3,7 @@ package com.cerner.beadledom.lifecycle
 import com.cerner.beadledom.lifecycle.legacy.BeadledomLifecycleInjectorBuilder
 import com.google.inject.{AbstractModule, Module}
 import java.util.Collections
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
 

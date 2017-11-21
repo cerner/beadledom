@@ -305,8 +305,8 @@ public class SwaggerAvroModelConverter extends SwaggerSchemaConverter {
    * Given an Avro field, return the name that should be used for the Swagger property.
    */
   protected String getFieldName(Schema.Field field) {
-    return ((PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy)
-        PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES)
+    return ((PropertyNamingStrategy.SnakeCaseStrategy)
+        PropertyNamingStrategy.SNAKE_CASE)
         .translate(field.name());
   }
 

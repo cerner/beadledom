@@ -1,7 +1,7 @@
 package com.cerner.beadledom.lifecycle.legacy
 
 import org.mockito.Mockito
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
 

@@ -6,7 +6,7 @@ import org.jooq.tools.jdbc._
 import org.jooq.{ConnectionProvider, ContextTransactionalCallable, DSLContext}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.{spy, times, verify, when}
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
 
 /**

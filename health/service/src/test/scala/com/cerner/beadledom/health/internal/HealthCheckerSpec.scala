@@ -9,7 +9,7 @@ import java.util.Optional
 import javax.ws.rs.WebApplicationException
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.Mockito.when
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
 

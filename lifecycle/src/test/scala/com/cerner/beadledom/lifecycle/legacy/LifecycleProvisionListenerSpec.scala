@@ -6,7 +6,7 @@ import javax.annotation.{PostConstruct, PreDestroy}
 import org.hamcrest.Matchers.contains
 import org.mockito.Mockito
 import org.mockito.hamcrest.MockitoHamcrest
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.reflect.Manifest
 

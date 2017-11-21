@@ -40,7 +40,7 @@ public abstract class HealthDto {
    * {@code HealthDto}.
    */
   public static Builder builder(HealthDto healthDto) {
-    return new AutoValue_HealthDto.Builder(healthDto);
+    return healthDto.toBuilder();
   }
 
   /**
@@ -89,16 +89,21 @@ public abstract class HealthDto {
   @JsonView({Primary.class, Diagnostic.class, HealthJsonViews.Dependency.class})
   public abstract Optional<List<HealthDependencyDto>> getDependencies();
 
-  @ApiModelProperty("Build and version information of the service serving the health check response")
+  @ApiModelProperty(
+      "Build and version information of the service serving the health check response")
   @JsonProperty("build")
   @JsonView(Diagnostic.class)
   public abstract Optional<BuildDto> getBuild();
-
 
   @ApiModelProperty("Runtime and environment information of the server")
   @JsonProperty("server")
   @JsonView(Diagnostic.class)
   public abstract Optional<ServerDto> getServer();
+
+  /**
+   * Returns a builder with same property values as this; allowing modification of some values.
+   */
+  public abstract Builder toBuilder();
 
   @AutoValue.Builder
   public abstract static class Builder {

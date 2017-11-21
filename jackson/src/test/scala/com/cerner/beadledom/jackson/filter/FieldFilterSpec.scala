@@ -8,13 +8,13 @@ import com.fasterxml.jackson.databind.util.TokenBuffer
 import com.google.common.collect.Lists
 import java.io.ByteArrayOutputStream
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
 
 /**
  * Field filter spec for testing different serialization cases.
  */
-class FieldFilterSpec extends FunSpec with BeforeAndAfterAll with ShouldMatchers with MockitoSugar {
+class FieldFilterSpec extends FunSpec with BeforeAndAfterAll with Matchers with MockitoSugar {
 
   describe("Processing of fields for the field filter.") {
     it("Handles fields with trailing slashes.") {

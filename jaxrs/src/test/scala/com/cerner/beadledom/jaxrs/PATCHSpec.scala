@@ -9,7 +9,7 @@ import org.jboss.resteasy.core.Dispatcher
 import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttpResponse}
 import org.jboss.resteasy.plugins.server.resourcefactory.POJOResourceFactory
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 
 import java.io._
 
@@ -21,7 +21,7 @@ import javax.ws.rs.core.MediaType
   *
   * @author Eric Christensen
   */
-class PATCHSpec extends FunSpec with BeforeAndAfterAll with ShouldMatchers with MockitoSugar {
+class PATCHSpec extends FunSpec with BeforeAndAfterAll with Matchers with MockitoSugar {
 
     val dispatcher: Dispatcher = MockDispatcherFactory.createDispatcher()
     val noDefaults: POJOResourceFactory = new POJOResourceFactory(classOf[FakeResource])
