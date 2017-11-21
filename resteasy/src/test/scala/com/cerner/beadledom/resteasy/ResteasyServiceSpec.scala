@@ -9,7 +9,7 @@ import javax.ws.rs.client.Entity
 import javax.ws.rs.core.MediaType
 import org.apache.commons.io.{FileUtils, IOUtils}
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
 import org.skyscreamer.jsonassert.{JSONCompare, JSONCompareMode}
 import play.api.libs.json.Json

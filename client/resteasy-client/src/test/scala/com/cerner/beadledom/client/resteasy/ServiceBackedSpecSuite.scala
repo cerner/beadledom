@@ -1,15 +1,12 @@
 package com.cerner.beadledom.client.resteasy
 
 import com.cerner.beadledom.client.FauxContextListener
-
+import java.io.File
 import org.apache.catalina.Globals
 import org.apache.catalina.startup.Tomcat
 import org.apache.commons.io.FileUtils
 import org.apache.naming.resources.VirtualDirContext
 import org.scalatest.{BeforeAndAfterAll, FunSpec, Suite}
-
-import java.io.File
-
 import scala.collection.immutable.IndexedSeq
 
 /**
@@ -38,12 +35,12 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
     tomcat.stop()
   }
 
-  val apacheHttpClient43EnginSpec = new ApacheHttpClient4Dot3EngineSpec(contextRoot, tomcatPort)
+  val defaultClientHttpEngineSpec = new DefaultClientHttpEngineSpec(contextRoot, tomcatPort)
   val resteasyClientSpec = new ResteasyClientSpec(contextRoot, tomcatPort)
 
   override def nestedSuites: IndexedSeq[Suite] = {
     Vector(
-      apacheHttpClient43EnginSpec,
+      defaultClientHttpEngineSpec,
       resteasyClientSpec
     )
   }

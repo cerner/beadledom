@@ -30,6 +30,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient43Engine;
 
 /**
  * Abstraction for creating Clients.
@@ -350,7 +351,7 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
     HttpContext context = new BasicHttpContext();
     context.setAttribute(HttpClientContext.REQUEST_CONFIG, requestConfig);
 
-    return new ApacheHttpClient4Dot3Engine(closeableHttpClient, context);
+    return new ApacheHttpClient43Engine(closeableHttpClient, context);
   }
 
   @Override

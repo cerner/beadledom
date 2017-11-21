@@ -3,7 +3,7 @@ package com.cerner.beadledom.client.proxy
 import com.cerner.beadledom.jaxrs.GenericResponse
 
 import org.scalatest.{FunSpec, MustMatchers}
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.mockito.Mockito._
 
 import javax.ws.rs.core.{GenericType, Response}

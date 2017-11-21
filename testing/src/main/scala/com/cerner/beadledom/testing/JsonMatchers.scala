@@ -64,9 +64,9 @@ trait JsonMatchers {
       }
     }
 
-  private def parse(obj: Any) = obj match {
-    case str: String => play.libs.Json.parse(str)
-    case json: JsValue => play.libs.Json.parse(Json.stringify(json))
+  private def parse(obj: Any): JsonNode = obj match {
+    case str: String => objectMapper.readTree(str)
+    case json: JsValue => objectMapper.readTree(Json.stringify(json))
     case json: JsonNode => json
     case _ => throw new IllegalArgumentException(s"Cannot parse json from $obj")
   }
@@ -80,8 +80,8 @@ trait JsonMatchers {
 
   private def jsonAssertDiff(left: JsonNode, right: JsonNode) =
     Try(JSONCompare.compareJSON(
-      play.libs.Json.stringify(right),
-      play.libs.Json.stringify(left),
+      objectMapper.writeValueAsString(right),
+      objectMapper.writeValueAsString(left),
       JSONCompareMode.STRICT).toString).getOrElse("<jsonassert diff unavailable>")
 }
 

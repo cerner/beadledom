@@ -4,14 +4,14 @@ import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.{DeserializationFeature, MapperFeature, ObjectMapper, SerializationFeature}
 import com.google.inject.multibindings.MultibindingsScanner
 import com.google.inject.{AbstractModule, Guice}
-import org.scalatest.mock.MockitoSugar
-import org.scalatest.{FunSpec, ShouldMatchers}
+import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{FunSpec, Matchers}
 import scala.collection.JavaConverters._
 
 /**
  * Spec tests for {@link JacksonModule}.
  */
-class JacksonModuleSpec extends FunSpec with ShouldMatchers with MockitoSugar {
+class JacksonModuleSpec extends FunSpec with Matchers with MockitoSugar {
   val injector = Guice.createInjector(new AbstractModule() {
     override def configure(): Unit = {
       install(new JacksonTestModule)

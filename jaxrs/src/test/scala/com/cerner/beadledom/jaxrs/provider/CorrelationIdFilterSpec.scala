@@ -1,10 +1,10 @@
 package com.cerner.beadledom.jaxrs.provider
 
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.slf4j.MDC
 
-class CorrelationIdFilterSpec extends FunSpec with BeforeAndAfter with ShouldMatchers
+class CorrelationIdFilterSpec extends FunSpec with BeforeAndAfter with Matchers
 with MockitoSugar with CorrelationIdFilterBehaviors {
   val defaultHeaderName = "Correlation-Id"
   val defaultMdcName = "Correlation-Id"
