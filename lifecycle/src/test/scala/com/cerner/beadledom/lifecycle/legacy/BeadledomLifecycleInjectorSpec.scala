@@ -2,7 +2,7 @@ package com.cerner.beadledom.lifecycle.legacy
 
 import com.google.inject.Injector
 import org.mockito.Mockito
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 
 /**

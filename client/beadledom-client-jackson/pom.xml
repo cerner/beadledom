@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>beadledom-client-parent</artifactId>
-        <groupId>com.cerner.beadledom</groupId>
-        <version>2.5-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <artifactId>beadledom-client-parent</artifactId>
+    <groupId>com.cerner.beadledom</groupId>
+    <version>2.8-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>beadledom-client-jackson</artifactId>
-    <name>Beadledom Client - Jackson</name>
-    <dependencies>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-guice</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-guice-dynamicbindings</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-jackson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-        </dependency>
+  <artifactId>beadledom-client-jackson</artifactId>
+  <name>Beadledom Client - Jackson</name>
+  <dependencies>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-guice</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-guice-dynamicbindings</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-jackson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+    </dependency>
 
-        <!--Tests -->
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
-    </dependencies>
+    <!--Tests -->
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+    </dependency>
+  </dependencies>
 </project>

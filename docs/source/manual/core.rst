@@ -5,14 +5,9 @@ A Guice module that pulls all of the beadledom components together for consumpti
 
 The following beadledom guice modules are installed.
 
-* `AvroJacksonGuiceModule <avro_jackson>`_
-* `AvroSwaggerGuiceModule <avro_swagger>`_
 * `BeadledomConfigurationModule <configuration>`_
-* `HealthModule <health>`_
 * `JacksonModule <jackson>`_
 * `JaxRsModule <jaxrs>`_
-* `StagemonitorModule <stagemonitor>`_
-* `SwaggerModule <swagger>`_
 
 Download
 --------

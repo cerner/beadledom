@@ -1,6 +1,7 @@
 package com.cerner.beadledom.client.example;
 
 import com.cerner.beadledom.client.example.model.JsonTwo;
+import com.cerner.beadledom.jaxrs.PATCH;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -23,4 +24,9 @@ public interface ResourceTwo {
   @Produces("application/json")
   @Consumes("application/json")
   JsonTwo echo(JsonTwo json);
+
+  @PATCH
+  @Produces("application/json")
+  @Consumes("application/json")
+  JsonTwo patch(JsonTwo json);
 }

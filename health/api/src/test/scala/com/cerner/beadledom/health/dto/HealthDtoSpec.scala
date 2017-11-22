@@ -2,7 +2,7 @@ package com.cerner.beadledom.health.dto
 
 import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import org.mockito.Mockito.when
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import java.time.Instant
 import scala.collection.JavaConverters._

@@ -1,42 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>beadledom-parent</artifactId>
-        <groupId>com.cerner.beadledom</groupId>
-        <version>2.5-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <artifactId>beadledom-parent</artifactId>
+    <groupId>com.cerner.beadledom</groupId>
+    <version>2.8-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>beadledom-resteasy-genericresponse</artifactId>
-    <name>Beadledom Generic Response - Resteasy</name>
+  <artifactId>beadledom-resteasy-genericresponse</artifactId>
+  <name>Beadledom Generic Response - Resteasy</name>
 
-    <properties>
-        <java.version>1.6</java.version>
-    </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-jaxrs-genericresponse</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxrs</artifactId>
+    </dependency>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-jaxrs-genericresponse</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxrs</artifactId>
-        </dependency>
-
-        <!--Test Dependencies-->
-        <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-testing</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.scalacheck</groupId>
-            <artifactId>scalacheck_${scala.binary.version}</artifactId>
-        </dependency>
-    </dependencies>
+    <!--Test Dependencies-->
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-testing</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.scalacheck</groupId>
+      <artifactId>scalacheck_${scala.binary.version}</artifactId>
+    </dependency>
+  </dependencies>
 </project>

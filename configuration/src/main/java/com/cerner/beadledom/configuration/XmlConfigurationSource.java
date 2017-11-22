@@ -12,7 +12,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.io.FileHandler;
 
 /**
- * An implementation class of {@link ConfigurationSource} for the source of type {@link Properties}.
+ * An implementation class of {@link ConfigurationSource} for the source of type {@link XMLConfiguration}.
  *
  * <p>A property whose value is a sequence (ex: list, set) of objects must be placed in its own
  * attribute name. For example
@@ -88,8 +88,7 @@ public final class XmlConfigurationSource extends AbstractConfigurationSource {
 
     FileBasedConfigurationBuilder<FileBasedConfiguration> builder =
         new FileBasedConfigurationBuilder<FileBasedConfiguration>(XMLConfiguration.class)
-            .configure(new Parameters()
-                .xml());
+            .configure(new Parameters().xml());
 
     FileBasedConfiguration fileBasedConfiguration = builder.getConfiguration();
 

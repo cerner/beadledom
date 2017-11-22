@@ -250,4 +250,10 @@ public class DelegatingGenericResponse<T> extends Response implements GenericRes
   public String getHeaderString(String name) {
     return rawResponse.getHeaderString(name);
   }
+
+  @Override
+  public String toString() {
+    return "DelegatingGenericResponse{body=" + body + ", bodyClass=" + bodyClass + ", errorBody=" + errorBody
+            + ", rawResponse=" + new ResponseToStringWrapper(rawResponse) + " }";
+  }
 }

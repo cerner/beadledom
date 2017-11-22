@@ -15,7 +15,7 @@ Download
       ...
       <dependency>
           <groupId>com.cerner.beadledom</groupId>
-         <artifactId>beadledom-swagger</artifactId>
+          <artifactId>beadledom-swagger</artifactId>
           <version>[Insert latest version]</version>
       </dependency>
       ...
@@ -37,5 +37,13 @@ the ``/api-docs`` endpoint as well as a ``/meta/swagger/ui`` endpoint containing
       ...
       install(new SwaggerModule());
       ...
+    }
+
+    @Provides
+    SwaggerConfig provideSwaggerConfig(ServiceMetadata serviceMetadata) {
+      SwaggerConfig config = new SwaggerConfig();
+      config.setApiVersion(serviceMetadata.getBuildInfo().getVersion());
+      config.setSwaggerVersion(SwaggerSpec.version());
+      return config;
     }
   }

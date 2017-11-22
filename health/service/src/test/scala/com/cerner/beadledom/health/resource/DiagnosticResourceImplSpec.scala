@@ -8,10 +8,10 @@ import com.github.mustachejava.DefaultMustacheFactory
 import com.google.inject.{AbstractModule, Guice}
 import java.net.URI
 import javax.ws.rs.core.{UriBuilder, UriInfo}
-import org.mockito.Matchers._
+import org.mockito.ArgumentMatchers._
 import org.mockito.Mockito._
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 
 /**
  * Spec tests for DiagnosticResourceImpl.

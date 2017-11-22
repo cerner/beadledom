@@ -11,19 +11,18 @@ import org.jboss.resteasy.specimpl.MultivaluedMapImpl
 import org.mockito
 import org.mockito.{ArgumentCaptor, Mockito}
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
 
 /**
  * Spec tests for {@link FilteringJacksonJsonProvider}.
  */
 class FilteringJacksonJsonProviderSpec
-    extends FunSpec with BeforeAndAfterAll with ShouldMatchers with MockitoSugar {
+    extends FunSpec with BeforeAndAfterAll with Matchers with MockitoSugar {
 
   val objectMapper = new ObjectMapper()
 
   describe("PartialResponseFilter with a container response of a FakeModel") {
-
     val fakeInnerModel1 = new FakeInnerModel("inner_id1", "inner_name1", List("inner_tag1").asJava)
     val fakeInnerModel2 = new FakeInnerModel("inner_id2", "inner_name2", List("inner_tag2").asJava)
     val fakeModel = new FakeModel("id1", "name1", 1, List("tag1", "tag2").asJava,
@@ -48,8 +47,9 @@ class FilteringJacksonJsonProviderSpec
       val json = objectMapper.writeValueAsString(fakeModel)
       val captor = ArgumentCaptor.forClass(classOf[Array[Byte]])
       Mockito.verify(output)
-          .write(captor.capture(), mockito.Matchers.anyInt(), mockito.Matchers.anyInt())
-      json should be === objectMapper.readTree(captor.getValue).toString
+          .write(captor.capture(), mockito.ArgumentMatchers.anyInt(),
+            mockito.ArgumentMatchers.anyInt())
+      json should be(objectMapper.readTree(captor.getValue).toString)
     }
 
     it("filters simple bean properties") {
@@ -73,8 +73,9 @@ class FilteringJacksonJsonProviderSpec
       val json = """{"id":"id1","name":"name1","times":1}"""
       val captor = ArgumentCaptor.forClass(classOf[Array[Byte]])
       Mockito.verify(output)
-          .write(captor.capture(), mockito.Matchers.anyInt(), mockito.Matchers.anyInt())
-      json should be === objectMapper.readTree(captor.getValue).toString
+          .write(captor.capture(), mockito.ArgumentMatchers.anyInt(),
+            mockito.ArgumentMatchers.anyInt())
+      json should be(objectMapper.readTree(captor.getValue).toString)
     }
 
     it("filters nested bean properties") {
@@ -95,9 +96,8 @@ class FilteringJacksonJsonProviderSpec
         null,
         output)
 
-
       val json = """{"id":"id1","name":"name1","inner_models":[{"id":"inner_id1"},{"id":"inner_id2"}]}"""
-      json should be === output.toString(Charset.defaultCharset().name())
+      json should be(output.toString(Charset.defaultCharset().name()))
     }
 
     it("serializes a complex object with filtering") {
@@ -140,7 +140,7 @@ class FilteringJacksonJsonProviderSpec
         output)
 
       val json = """{"id":"venue_id1","name":"THE venue","tenors":[{"pitch_pipe":"perfect","name":"TenorOne","albums":[{"name":"album name 1"},{"name":"album_name2"}]}],"guitarists":[{"attitude":"HAPPY","name":"GuitaristOne"}],"failures":[{"name":"Most Musicians","excuses":["There's always an excuse.","Also terrible."]}],"vocalists":[{"albums":[{"id":"go","name":"go"},{"id":"wrong","name":"Everything is Wrong"}],"hair_style":"bald","id":"vocalist1","name":"VocalistOne"},{"albums":[{"id":"album_id1","name":"album name 1"},{"id":"album_id2","name":"album_name2"}],"hair_style":"curly + long","id":"vocalist2","name":"VocalistTwo"}]}"""
-      json should be === output.toString(Charset.defaultCharset().name())
+      json should be(output.toString(Charset.defaultCharset().name()))
     }
   }
 
@@ -169,7 +169,7 @@ class FilteringJacksonJsonProviderSpec
     }
 
     it("serializes a large FakeModel - about 6MB") {
-      (0 until 100000).foreach({ value => fakeModel.innerModels.add(fakeInnerModel1)})
+      (0 until 100000).foreach({ value => fakeModel.innerModels.add(fakeInnerModel1) })
       val uriInfo = Mockito.mock(classOf[UriInfo])
       Mockito.when(uriInfo.getQueryParameters).thenReturn(new MultivaluedMapImpl[String, String])
 
@@ -196,7 +196,7 @@ class FilteringJacksonJsonProviderSpec
     }
 
     it("serializes a large FakeModel with filtering - about 6MB") {
-      (0 until 100000).foreach({ value => fakeModel.innerModels.add(fakeInnerModel1)})
+      (0 until 100000).foreach({ value => fakeModel.innerModels.add(fakeInnerModel1) })
       val uriInfo = Mockito.mock(classOf[UriInfo])
       val queryParams = new MultivaluedMapImpl[String, String]
       queryParams.add("fields", "id,name,inner_models/id")

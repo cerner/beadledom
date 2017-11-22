@@ -2,6 +2,8 @@ package com.cerner.beadledom.client.example.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 
 /**
@@ -10,7 +12,12 @@ import com.google.auto.value.AutoValue;
  * @author John Leacox
  */
 @AutoValue
+@JsonDeserialize(builder = AutoValue_JsonTwo.Builder.class)
 public abstract class JsonTwo {
+
+  public static Builder builder() {
+    return new AutoValue_JsonTwo.Builder();
+  }
 
   /**
    * Creates a new instance of JsonOne.
@@ -19,7 +26,10 @@ public abstract class JsonTwo {
   public static JsonTwo create(
       @JsonProperty("two") String two,
       @JsonProperty("hello") String hello) {
-    return new AutoValue_JsonTwo(two, hello);
+    return builder()
+        .setTwo(two)
+        .setHello(hello)
+        .build();
   }
 
   @JsonProperty("two")
@@ -27,4 +37,15 @@ public abstract class JsonTwo {
 
   @JsonProperty("hello")
   public abstract String getHello();
+
+  @AutoValue.Builder
+  @JsonPOJOBuilder(withPrefix = "set")
+  public abstract static class Builder {
+
+    public abstract Builder setTwo(String two);
+
+    public abstract Builder setHello(String hello);
+
+    public abstract JsonTwo build();
+  }
 }

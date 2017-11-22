@@ -16,6 +16,8 @@ This file contains the list of developers who contributed to this repository
 * Jason Gassel [@jpeg][jason-gassel]
 * Andy Nelson [@anelson425][andy-nelson]
 * Bryan Baugher [@bbaugher][bryan-baugher]
+* Eric Christensen [@EricChristensen][eric-christensen]
+* Cal Fisher [@cbfshr][cal-fisher]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -29,6 +31,7 @@ This file contains the list of developers who contributed to this repository
 [jason-gassel]: https://github.com/jpeg
 [andy-nelson]: https://github.com/anelson425
 [bryan-baugher]: https://github.com/bbaugher
-
+[eric-christensen]: https://github.com/EricChristensen
+[cal-fisher]: https://github.com/cbfshr
 
 Thanks to everyone who helped in building this Repository.

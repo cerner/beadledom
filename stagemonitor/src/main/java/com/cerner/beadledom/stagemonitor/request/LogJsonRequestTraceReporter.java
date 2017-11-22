@@ -11,8 +11,6 @@ import org.stagemonitor.requestmonitor.RequestTrace;
 import org.stagemonitor.requestmonitor.profiler.CallStackElement;
 import org.stagemonitor.requestmonitor.reporter.RequestTraceReporter;
 
-
-
 /**
  * An implementation of {@link RequestTraceReporter} that logs the {@link RequestTrace} JSON
  * representation.
@@ -22,10 +20,8 @@ import org.stagemonitor.requestmonitor.reporter.RequestTraceReporter;
  * @since 1.0
  */
 public class LogJsonRequestTraceReporter extends RequestTraceReporter {
-  private static final Logger errorLogger =
-      LoggerFactory.getLogger(LogJsonRequestTraceReporter.class.getSimpleName() + ".Error");
-
   private final Logger logger;
+  private final Logger errorLogger;
   private final RequestMonitorPlugin requestMonitorPlugin;
   private final JsonRequestTraceLoggerPlugin jsonRequestTraceLoggerPlugin;
   private final ObjectMapper objectMapper;
@@ -35,6 +31,8 @@ public class LogJsonRequestTraceReporter extends RequestTraceReporter {
    */
   public LogJsonRequestTraceReporter(ObjectMapper objectMapper) {
     this.logger = LoggerFactory.getLogger(LogJsonRequestTraceReporter.class);
+    this.errorLogger =
+        LoggerFactory.getLogger(LogJsonRequestTraceReporter.class.getSimpleName() + ".Error");
     this.objectMapper = objectMapper;
     this.requestMonitorPlugin = Stagemonitor.getPlugin(RequestMonitorPlugin.class);
     this.jsonRequestTraceLoggerPlugin = Stagemonitor.getPlugin(JsonRequestTraceLoggerPlugin.class);
@@ -42,9 +40,11 @@ public class LogJsonRequestTraceReporter extends RequestTraceReporter {
 
   //@VisibleForTesting
   LogJsonRequestTraceReporter(
-      Logger logger, ObjectMapper objectMapper, RequestMonitorPlugin requestMonitorPlugin,
+      Logger logger, Logger errorLogger, ObjectMapper objectMapper,
+      RequestMonitorPlugin requestMonitorPlugin,
       JsonRequestTraceLoggerPlugin jsonRequestTraceLoggerPlugin) {
     this.logger = logger;
+    this.errorLogger = errorLogger;
     this.requestMonitorPlugin = requestMonitorPlugin;
     this.objectMapper = objectMapper;
     this.jsonRequestTraceLoggerPlugin = jsonRequestTraceLoggerPlugin;
@@ -60,10 +60,14 @@ public class LogJsonRequestTraceReporter extends RequestTraceReporter {
         CondensedCallStackElement condensedCallStackElement = getCondensedCallStack(requestTrace);
         logger.info(objectMapper
             .writeValueAsString(new RequestTraceWrapper(requestTrace, condensedCallStackElement)));
-      } catch (JsonProcessingException ok) {
-        // It's not valid JSON, this log should only contain JSON, so log to error logger instead
+      } catch (JsonProcessingException e) {
+        // Error writing call stack to JSON, this log should only contain JSON,
+        // so log to error logger instead.
         errorLogger
-            .error("Unable to serialize stack request trace to json. Request: {}", requestTrace);
+            .error(
+                "Unable to serialize stack request trace to json. Error: {} Request: {}",
+                e,
+                requestTrace);
       }
     }
   }
