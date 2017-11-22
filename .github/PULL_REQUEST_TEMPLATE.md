@@ -10,6 +10,6 @@
 
 ### How to test
 
-> This is bare minimum acceptable testing*
+> This is bare minimum acceptable testing
 
 - [ ] `mvn clean install -U`

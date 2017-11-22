@@ -30,4 +30,5 @@ This file contains the list of developers who contributed to this repository
 [andy-nelson]: https://github.com/anelson425
 [bryan-baugher]: https://github.com/bbaugher
 
-* Thanks to everyone who helped in building this Repository :)*
+
+Thanks to everyone who helped in building this Repository.
