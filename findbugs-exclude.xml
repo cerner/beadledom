@@ -1,30 +1,25 @@
 <FindBugsFilter>
-    <!-- Don't look at Scala files -->
-    <Match>
-        <Source name="~.*\.scala" />
-    </Match>
+  <!-- Don't look at Scala files -->
+  <Match>
+    <Source name="~.*\.scala"/>
+  </Match>
 
-    <!-- Empty Multibinder -->
-    <Match>
-        <Or>
-            <Class name="com.cerner.beadledom.jackson.JacksonModule"/>
-            <Class name="com.cerner.beadledom.swagger.SwaggerModule"/>
-            <Class name="com.cerner.beadledom.health.HealthModule"/>
-        </Or>
-        <Method name="configure"/>
-        <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
-    </Match>
+  <!-- Empty Multibinder -->
+  <Match>
+    <Or>
+      <Class name="com.cerner.beadledom.jackson.JacksonModule"/>
+      <Class name="com.cerner.beadledom.swagger.SwaggerModule"/>
+      <Class name="com.cerner.beadledom.swagger.Swagger3Module"/>
+      <Class name="com.cerner.beadledom.health.HealthModule"/>
+    </Or>
+    <Method name="configure"/>
+    <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
+  </Match>
 
-    <!-- Resteasy will close the InputStream after streaming it to the output -->
-    <Match>
-        <Class name="com.cerner.beadledom.swagger.SwaggerUiResource"/>
-        <Method name="getSwaggerUiAsset"/>
-        <Bug pattern="OBL_UNSATISFIED_OBLIGATION"/>
-    </Match>
-
-    <Match>
-        <Class name="com.cerner.beadledom.client.resteasy.ApacheHttpClient4Dot3Engine"/>
-        <Method name="finalize"/>
-        <Bug pattern="FI_PUBLIC_SHOULD_BE_PROTECTED"/>
-    </Match>
+  <!-- Resteasy will close the InputStream after streaming it to the output -->
+  <Match>
+    <Class name="com.cerner.beadledom.swagger.SwaggerUiResource"/>
+    <Method name="getSwaggerUiAsset"/>
+    <Bug pattern="OBL_UNSATISFIED_OBLIGATION"/>
+  </Match>
 </FindBugsFilter>

@@ -13,12 +13,15 @@ import javax.inject.Inject;
 import javax.ws.rs.Path;
 
 /**
+ * An {@link OpenApiScanner} that scans Guice bindings.
+ *
  * @author John Leacox
+ * @since 3.0
  */
 public class Swagger3GuiceJaxrsScanner implements OpenApiScanner {
   private final Injector injector;
 
-  private OpenAPIConfiguration openAPIConfiguration;
+  private OpenAPIConfiguration openApiConfiguration;
 
   @Inject
   Swagger3GuiceJaxrsScanner(Injector injector) {
@@ -27,8 +30,8 @@ public class Swagger3GuiceJaxrsScanner implements OpenApiScanner {
 
   // TODO: Could we also set this through Guice?
   @Override
-  public void setConfiguration(OpenAPIConfiguration openAPIConfiguration) {
-    this.openAPIConfiguration = openAPIConfiguration;
+  public void setConfiguration(OpenAPIConfiguration openApiConfiguration) {
+    this.openApiConfiguration = openApiConfiguration;
   }
 
   @Override
