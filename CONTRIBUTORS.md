@@ -1,3 +1,7 @@
+# Contributors
+
+This file contains the list of developers who contributed to this repository
+
 * Cerner Corporation
 * John Leacox [@johnlcox][john-leacox]
 * Jacob Williams [@brokensandals][jacob-williams]
@@ -25,3 +29,5 @@
 [jason-gassel]: https://github.com/jpeg
 [andy-nelson]: https://github.com/anelson425
 [bryan-baugher]: https://github.com/bbaugher
+
+* Thanks to everyone who helped in building this Repository :)*
