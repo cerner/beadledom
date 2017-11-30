@@ -34,4 +34,4 @@ This file contains the list of developers who contributed to this repository
 [eric-christensen]: https://github.com/EricChristensen
 [cal-fisher]: https://github.com/cbfshr
 
-Thanks to everyone who helped in building this Repository.
+Thanks to everyone who helped in building this repository.
