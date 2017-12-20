@@ -3,7 +3,7 @@ package com.cerner.beadledom.swagger;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.multibindings.MultibindingsScanner;
-import com.wordnik.swagger.converter.ModelConverter;
+import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.jaxrs2.Reader;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 import io.swagger.v3.oas.integration.api.OpenApiReader;
