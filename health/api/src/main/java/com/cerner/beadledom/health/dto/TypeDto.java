@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Optional;
 
 /**
@@ -15,6 +15,7 @@ import java.util.Optional;
  *  @since 1.4
  */
 @ApiModel(description = "Indicates the type of dependency, which may have additional properties")
+@Schema(description = "Indicates the type of dependency, which may have additional properties")
 @AutoValue
 public abstract class TypeDto {
   /**
@@ -26,6 +27,7 @@ public abstract class TypeDto {
   }
 
   @ApiModelProperty("Properties of the HTTP service dependency")
+  @Schema(description = "Properties of the HTTP service dependency")
   @JsonProperty("httpService")
   public abstract Optional<HttpServiceDto> getHttpService();
 

@@ -1,12 +1,9 @@
-package com.cerner.beadledom.swagger;
+package com.cerner.beadledom.openapi3;
 
 import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.core.converter.ModelConverters;
-import io.swagger.v3.oas.integration.GenericOpenApiContext;
 import io.swagger.v3.oas.integration.OpenApiConfigurationException;
-import io.swagger.v3.oas.integration.SwaggerConfiguration;
-import io.swagger.v3.oas.integration.api.OpenApiReader;
-import io.swagger.v3.oas.integration.api.OpenApiScanner;
+import io.swagger.v3.oas.integration.api.OpenApiContext;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -18,20 +15,14 @@ import javax.inject.Inject;
  * @since 3.0
  */
 public class Swagger3Lifecycle {
-  private final SwaggerConfiguration swaggerConfiguration;
-  private final OpenApiScanner openApiScanner;
-  private final OpenApiReader openApiReader;
+  private final OpenApiContext context;
   private final Set<ModelConverter> modelConverters;
 
   @Inject
   Swagger3Lifecycle(
-      SwaggerConfiguration swaggerConfiguration,
-      OpenApiScanner openApiScanner,
-      OpenApiReader openApiReader,
+      OpenApiContext context,
       Set<ModelConverter> modelConverters) {
-    this.swaggerConfiguration = swaggerConfiguration;
-    this.openApiScanner = openApiScanner;
-    this.openApiReader = openApiReader;
+    this.context = context;
     this.modelConverters = modelConverters;
   }
 
@@ -56,11 +47,7 @@ public class Swagger3Lifecycle {
     }
 
     try {
-      new GenericOpenApiContext<>()
-          .openApiConfiguration(swaggerConfiguration)
-          .openApiScanner(openApiScanner)
-          .openApiReader(openApiReader)
-          .init();
+      context.init();
     } catch (OpenApiConfigurationException e) {
       throw new RuntimeException("Failed to initialize Open API 3");
     }

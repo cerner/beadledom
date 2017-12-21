@@ -1,11 +1,10 @@
 package com.cerner.beadledom.health.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Optional;
 
 /**
@@ -16,6 +15,7 @@ import java.util.Optional;
  * @since 1.4
  */
 @ApiModel(description = "Indicates the list of dependencies of this service.")
+@Schema(description = "Indicates the list of dependencies of this service.")
 @AutoValue
 public abstract class BuildDto {
   /**
@@ -29,14 +29,17 @@ public abstract class BuildDto {
   }
 
   @ApiModelProperty("The name of the artifact")
+  @Schema(description = "The name of the artifact")
   @JsonProperty("artifactName")
   public abstract Optional<String> getArtifactName();
 
   @ApiModelProperty("The version of the service which served this health check response")
+  @Schema(description = "The version of the service which served this health check response")
   @JsonProperty("version")
   public abstract Optional<String> getVersion();
 
   @ApiModelProperty("The build date/time of the service or application in ISO-8601 format")
+  @Schema(description = "The build date/time of the service or application in ISO-8601 format")
   @JsonProperty("buildDateTime")
   public abstract Optional<String> getBuildDateTime();
 

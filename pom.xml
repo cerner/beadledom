@@ -62,6 +62,7 @@
     <module>stagemonitor</module>
     <module>swagger1</module>
     <module>testing</module>
+    <module>openapi3</module>
   </modules>
 
   <scm>

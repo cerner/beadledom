@@ -1,4 +1,4 @@
-package com.cerner.beadledom.swagger;
+package com.cerner.beadledom.openapi3;
 
 import com.google.inject.Injector;
 import com.google.inject.Key;
@@ -21,17 +21,14 @@ import javax.ws.rs.Path;
 public class Swagger3GuiceJaxrsScanner implements OpenApiScanner {
   private final Injector injector;
 
-  private OpenAPIConfiguration openApiConfiguration;
-
   @Inject
   Swagger3GuiceJaxrsScanner(Injector injector) {
     this.injector = injector;
   }
 
-  // TODO: Could we also set this through Guice?
   @Override
   public void setConfiguration(OpenAPIConfiguration openApiConfiguration) {
-    this.openApiConfiguration = openApiConfiguration;
+    // NO-OP. The configuration isn't used for scanning.
   }
 
   @Override

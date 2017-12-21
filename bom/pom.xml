@@ -101,6 +101,11 @@
       </dependency>
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
+        <artifactId>beadledom-openapi3</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.cerner.beadledom</groupId>
         <artifactId>beadledom-resteasy</artifactId>
         <version>${project.version}</version>
       </dependency>

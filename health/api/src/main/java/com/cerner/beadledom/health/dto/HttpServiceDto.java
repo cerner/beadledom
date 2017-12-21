@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Optional;
 
 /**
@@ -13,6 +13,7 @@ import java.util.Optional;
  *  @since 1.4
  */
 @ApiModel(description = "Properties of the HTTP service dependency")
+@Schema(description = "Properties of the HTTP service dependency")
 @AutoValue
 public abstract class HttpServiceDto {
   /**
@@ -23,10 +24,12 @@ public abstract class HttpServiceDto {
   }
 
   @ApiModelProperty("Availability check URL of the remote dependency")
+  @Schema(description = "Availability check URL of the remote dependency")
   @JsonProperty("url")
   public abstract String getUrl();
 
   @ApiModelProperty("HTTP status code returned by the service")
+  @Schema(description = "HTTP status code returned by the service")
   @JsonProperty("status")
   public abstract Optional<Integer> getStatus();
 

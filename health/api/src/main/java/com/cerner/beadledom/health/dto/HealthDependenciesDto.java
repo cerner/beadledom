@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ import java.util.List;
  * <p>This can be used to construct health responses dependencies list.
  */
 @ApiModel(description = "Indicates the list of dependencies of this service.")
+@Schema(description = "Indicates the list of dependencies of this service.")
 @AutoValue
 public abstract class HealthDependenciesDto {
   /**
@@ -24,6 +26,8 @@ public abstract class HealthDependenciesDto {
 
   @ApiModelProperty(
       "the results of any dependency health checks invoked as part of this health check")
+  @Schema(
+      description = "the results of any dependency health checks invoked as part of this health check")
   @JsonProperty("dependencies")
   @JsonView(HealthJsonViews.Primary.class)
   public abstract List<HealthDependencyDto> getDependencies();

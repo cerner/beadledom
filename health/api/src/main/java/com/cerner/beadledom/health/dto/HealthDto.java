@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ import java.util.Optional;
  * Primary Health Check, and Diagnostic Health Check.
  */
 @ApiModel(description = "Indicates the health of this service.")
+@Schema(description = "Indicates the health of this service.")
 @AutoValue
 public abstract class HealthDto {
   /**
@@ -71,6 +73,7 @@ public abstract class HealthDto {
    * information.
    */
   @ApiModelProperty(value = "a human-readable status description", required = true)
+  @Schema(description = "a human-readable status description", required = true)
   @JsonProperty("message")
   @JsonView(Availability.class)
   public abstract Optional<String> getMessage();
@@ -85,17 +88,22 @@ public abstract class HealthDto {
 
   @ApiModelProperty(
       "the results of any dependency health checks invoked as part of this health check")
+  @Schema(
+      description = "the results of any dependency health checks invoked as part of this health check")
   @JsonProperty("dependencies")
   @JsonView({Primary.class, Diagnostic.class, HealthJsonViews.Dependency.class})
   public abstract Optional<List<HealthDependencyDto>> getDependencies();
 
   @ApiModelProperty(
       "Build and version information of the service serving the health check response")
+  @Schema(
+      description = "Build and version information of the service serving the health check response")
   @JsonProperty("build")
   @JsonView(Diagnostic.class)
   public abstract Optional<BuildDto> getBuild();
 
   @ApiModelProperty("Runtime and environment information of the server")
+  @Schema(description = "Runtime and environment information of the server")
   @JsonProperty("server")
   @JsonView(Diagnostic.class)
   public abstract Optional<ServerDto> getServer();

@@ -9,7 +9,7 @@
     <Or>
       <Class name="com.cerner.beadledom.jackson.JacksonModule"/>
       <Class name="com.cerner.beadledom.swagger.SwaggerModule"/>
-      <Class name="com.cerner.beadledom.swagger.Swagger3Module"/>
+      <Class name="com.cerner.beadledom.openapi3.Swagger3Module"/>
       <Class name="com.cerner.beadledom.health.HealthModule"/>
     </Or>
     <Method name="configure"/>
@@ -21,5 +21,13 @@
     <Class name="com.cerner.beadledom.swagger.SwaggerUiResource"/>
     <Method name="getSwaggerUiAsset"/>
     <Bug pattern="OBL_UNSATISFIED_OBLIGATION"/>
+  </Match>
+
+  <Match>
+    <Or>
+      <Class name="com.cerner.beadledom.openapi3.Swagger3ApiResource"/>
+    </Or>
+    <Method name="getQueryParams"/>
+    <Bug pattern="WMI_WRONG_MAP_ITERATOR"/>
   </Match>
 </FindBugsFilter>
