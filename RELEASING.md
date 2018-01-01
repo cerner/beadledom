@@ -1,12 +1,19 @@
 # Releasing Beadledom
 
-The [Preparing for the Release](preparing-for-the-release) section is needed only for the initial setup. If the setup is already made once, skip to [Release process](release-process)
+## Release approval process
+
+* Update the change log by replacing the text `in development` against the current version in the changelog to the release date.
+* Create a pull request for the above change with the title `Release Review {release_version}`.
+* Approving the release review pull request implies that the core maintainers of Beadledom has approved the release of Beadledom for the current version. *Requires approval from atleast two core maintainers*.
+* Once the release review is merged, release manager starts the release.
+
+Note: Releasing the project requires an initial set up. The [Preparing for the Release](preparing-for-the-release) section is needed only for the initial setup. If the setup is already made once, skip to [Release process](release-process)
 
 ## Preparing for the Release
 
 * A valid Sonatype user account is required to release this project. To create an account sign up with [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa).
 * Execute the following commands in your terminal to prepare travis-ci
-    
+
     ```
     $ cd /path/to/beadledom
     $ gem install travis
@@ -19,14 +26,14 @@ The [Preparing for the Release](preparing-for-the-release) section is needed onl
 	* install it via brew - `brew install gpg2`. There are other ways to install this tool but doing it via brew can help us all to be in sync with the version of the tool we are using.
 	* Follow this [guide](http://central.sonatype.org/pages/working-with-pgp-signatures.html#generating-a-key-pair) to generate your own gpg key and secret.
 	* Choose a password to encrypt the public and private keys that were generated in the previous step using gpg2. Execute the below steps to encrypt the keys.
-	
+
 	```    
     $ export ENCRYPTION_PASSWORD=<password to encrypt>
     $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/secring.gpg -out .travis/secring.gpg.enc
     $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/pubring.gpg -out .travis/pubring.gpg.enc
 	```
 * All the secrets and passwords must be encrypted and passed on to travis as [secured environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-encrypted-variables-in-.travis.yml).
- 
+
 	```  
     $ travis encrypt --add -r cerner/beadledom SONATYPE_USERNAME=<sonatype username>
     $ travis encrypt --add -r cerner/beadledom SONATYPE_PASSWORD=<sonatype password>
@@ -44,15 +51,13 @@ The [Preparing for the Release](preparing-for-the-release) section is needed onl
 	```
 	$ cd path/to/beadledom
 	$ travis encrypt-file ~/.ssh/deploy_site --add
-	``` 
+	```
 * Commit all the changes to the beadledom repo.
- 
+
 ## Release process
 
-After preparing the project for the release follow the below steps
+After preparing the machine for the release follow the below steps
 
-* Update the changelog with the release data for the releasing version.
-* Commit the change.
 * Clean up the previous release backup/release property files.
 
     ```
@@ -77,10 +82,10 @@ After preparing the project for the release follow the below steps
         ```
         mvn release:rollback
         ```
-        
+
 * Travis starts a new build for released tag and pushes the artifact to [sonatype staging repo](https://oss.sonatype.org/#stagingpositories).
 * Once the artifacts are pushed to the Sonatype staging repo
-    * Scroll down to the latest beadledom repo from the list. 
+    * Scroll down to the latest beadledom repo from the list.
     * click on the release button to push the artifact to maven central.
     * **Note**: It roughly takes about 2 hours for the artifacts to sync with the maven central.
 * Builds the documentation site for the released tag and publishes it to `gh-pages`.
