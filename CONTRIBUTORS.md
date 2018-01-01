@@ -1,3 +1,7 @@
+# Contributors
+
+This file contains the list of developers who contributed to this repository
+
 * Cerner Corporation
 * John Leacox [@johnlcox][john-leacox]
 * Jacob Williams [@brokensandals][jacob-williams]
@@ -29,3 +33,5 @@
 [bryan-baugher]: https://github.com/bbaugher
 [eric-christensen]: https://github.com/EricChristensen
 [cal-fisher]: https://github.com/cbfshr
+
+Thanks to everyone who helped in building this repository.
