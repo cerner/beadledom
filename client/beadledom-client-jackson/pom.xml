@@ -5,7 +5,7 @@
   <parent>
     <artifactId>beadledom-client-parent</artifactId>
     <groupId>com.cerner.beadledom</groupId>
-    <version>2.9-SNAPSHOT</version>
+    <version>3.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>beadledom-client-jackson</artifactId>
