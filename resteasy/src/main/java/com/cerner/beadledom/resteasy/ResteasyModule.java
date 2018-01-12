@@ -4,8 +4,10 @@ import com.cerner.beadledom.core.BeadledomModule;
 import com.cerner.beadledom.resteasy.exceptionmapping.FailureExceptionMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import javax.inject.Singleton;
 import javax.servlet.ServletContext;
 import org.jboss.resteasy.plugins.guice.ext.RequestScopeModule;
+import org.jboss.resteasy.plugins.interceptors.GZIPEncodingInterceptor;
 
 /**
  * The core guice module for Beadledom on Resteasy.
@@ -34,7 +36,14 @@ public class ResteasyModule extends AbstractModule {
   }
 
   @Provides
+  @Singleton
   GzipContentEncodingFilter provideGzipContentEncodingFilter() {
     return new GzipContentEncodingFilter();
+  }
+
+  @Provides
+  @Singleton
+  GZIPEncodingInterceptor provideGzipEncodingInterceptor() {
+    return new GZIPEncodingInterceptor();
   }
 }
