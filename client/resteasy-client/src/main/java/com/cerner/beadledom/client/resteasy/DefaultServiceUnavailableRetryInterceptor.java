@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * any way.
  *
  * @author John Leacox
- * @since 2.6
+ * @since 3.0
  */
 class DefaultServiceUnavailableRetryInterceptor implements Interceptor {
   private static final Logger logger =
