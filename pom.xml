@@ -91,17 +91,18 @@
     <governator.version>1.17.4</governator.version>
     <jackson.version>2.9.2</jackson.version>
     <resteasy.version>3.1.4.Final</resteasy.version>
+    <spotbugs.version>3.1.1</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
     <tomcat-embed.version>7.0.42</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
     <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-    <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
     <maven-project-info-reports-plugin-version>2.9</maven-project-info-reports-plugin-version>
     <scala-maven-plugin.version>3.3.1</scala-maven-plugin.version>
+    <spotbugs.plugin.version>3.1.0</spotbugs.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -603,24 +604,6 @@
         <configuration>
           <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.shared</groupId>
-            <artifactId>maven-shared-jar</artifactId>
-            <version>1.1</version>
-            <exclusions>
-              <exclusion>
-                <groupId>org.apache.bcel</groupId>
-                <artifactId>bcel</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-          <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>bcel-findbugs</artifactId>
-            <version>6.0</version>
-          </dependency>
-        </dependencies>
       </plugin>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
@@ -663,12 +646,12 @@
         </dependencies>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>${findbugs.plugin.version}</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>${spotbugs.plugin.version}</version>
         <configuration>
           <effort>Max</effort>
-          <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+          <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
         </configuration>
         <executions>
           <execution>
@@ -743,14 +726,14 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>findbugs-maven-plugin</artifactId>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
           <version>3.0.5</version>
           <configuration>
             <effort>Max</effort>
             <threshold>Default</threshold>
             <xmlOutput>true</xmlOutput>
-            <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+            <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
           </configuration>
           <executions>
             <execution>
@@ -759,6 +742,13 @@
               </goals>
             </execution>
           </executions>
+          <dependencies>
+            <dependency>
+              <groupId>com.github.spotbugs</groupId>
+              <artifactId>spotbugs</artifactId>
+              <version>${spotbugs.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -808,24 +798,6 @@
           <configuration>
             <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
           </configuration>
-          <dependencies>
-            <dependency>
-              <groupId>org.apache.maven.shared</groupId>
-              <artifactId>maven-shared-jar</artifactId>
-              <version>1.2</version>
-              <exclusions>
-                <exclusion>
-                  <groupId>org.apache.bcel</groupId>
-                  <artifactId>bcel</artifactId>
-                </exclusion>
-              </exclusions>
-            </dependency>
-            <dependency>
-              <groupId>com.google.code.findbugs</groupId>
-              <artifactId>bcel-findbugs</artifactId>
-              <version>6.0</version>
-            </dependency>
-          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
