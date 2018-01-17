@@ -43,7 +43,7 @@
       <plugin>
         <groupId>kr.motd.maven</groupId>
         <artifactId>sphinx-maven-plugin</artifactId>
-        <version>1.6.1.Final</version>
+        <version>1.7.0</version>
         <configuration>
           <sourceDirectory>${project.build.directory}/source</sourceDirectory>
           <builder>html</builder>
