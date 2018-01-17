@@ -728,10 +728,9 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>3.0.5</version>
+          <version>${spotbugs.plugin.version}</version>
           <configuration>
             <effort>Max</effort>
-            <threshold>Default</threshold>
             <xmlOutput>true</xmlOutput>
             <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
           </configuration>
