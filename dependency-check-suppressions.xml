@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
+  <suppress>
+    <notes><![CDATA[
+   file name: compiler-0.9.5.jar
+   ]]></notes>
+    <gav regex="true">^com\.github\.spullara\.mustache\.java:compiler:.*$</gav>
+    <cve>CVE-2015-8862</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: xz-1.8.jar
+   ]]></notes>
+    <gav regex="true">^org\.tukaani:xz:.*$</gav>
+    <cve>CVE-2015-4035</cve>
+  </suppress>
+</suppressions>
