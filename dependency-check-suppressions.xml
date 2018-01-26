@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
+  <!-- This CVE is regarding the javascript not the Java implementation -->
   <suppress>
     <notes><![CDATA[
    file name: compiler-0.9.5.jar
@@ -7,6 +8,7 @@
     <gav regex="true">^com\.github\.spullara\.mustache\.java:compiler:.*$</gav>
     <cve>CVE-2015-8862</cve>
   </suppress>
+  <!-- This CVE is regarding xzgrep not the Java implementation -->
   <suppress>
     <notes><![CDATA[
    file name: xz-1.8.jar
