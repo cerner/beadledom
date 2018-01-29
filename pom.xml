@@ -86,7 +86,7 @@
   <properties>
     <beadledom.url>http://cerner.github.io/beadledom/${project.version}</beadledom.url>
     <java.version>1.8</java.version>
-    <scala.version>2.11.7</scala.version>
+    <scala.version>2.11.12</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
     <governator.version>1.17.4</governator.version>
     <jackson.version>2.9.2</jackson.version>
@@ -451,6 +451,11 @@
         <artifactId>stagemonitor-web</artifactId>
         <version>${stagemonitor.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.tukaani</groupId>
+        <artifactId>xz</artifactId>
+        <version>1.8</version>
+      </dependency>
 
       <!--Test Dependencies-->
       <dependency>
@@ -467,7 +472,25 @@
       </dependency>
       <dependency>
         <groupId>org.scala-lang</groupId>
+        <artifactId>scalap</artifactId>
+        <version>${scala.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-compiler</artifactId>
+        <version>${scala.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scala-lang</groupId>
         <artifactId>scala-library</artifactId>
+        <version>${scala.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-reflect</artifactId>
         <version>${scala.version}</version>
         <scope>test</scope>
       </dependency>
@@ -644,6 +667,22 @@
             <version>1.9.4</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+          <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>aggregate</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>com.github.spotbugs</groupId>
