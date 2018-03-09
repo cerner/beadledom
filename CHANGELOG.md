@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 2.7.1 - 9 March 2017
+
+### Additions
+* Add beadledom-json-common to beadledom-bom.
+
 ## 2.7 - 13 November 2017
 
 ### Additions
