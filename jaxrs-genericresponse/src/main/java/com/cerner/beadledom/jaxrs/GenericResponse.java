@@ -1,5 +1,6 @@
 package com.cerner.beadledom.jaxrs;
 
+import java.io.Closeable;
 import java.net.URI;
 import java.util.Date;
 import java.util.Locale;
@@ -31,7 +32,7 @@ import javax.ws.rs.core.Response;
  * @since 1.3
  * @see Response
  */
-public interface GenericResponse<T> {
+public interface GenericResponse<T> extends Closeable {
   /**
    * Returns true if {@link #getStatus()} is in the range [200..300), false otherwise.
    */
