@@ -1,11 +1,11 @@
 # Beadledom Changelog
 
-## 2.7.2 - In Development
+## 2.7.2 - 11 April 2018
 
 ### Additions
 * Add updated GPG signing key with a longer duration until it expires (20 years).
 
-## 2.7.1 - 9 March 2017
+## 2.7.1 - 9 March 2018
 
 ### Additions
 * Add beadledom-json-common to beadledom-bom.
