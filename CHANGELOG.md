@@ -5,6 +5,9 @@
 ### Additions
 * Add updated GPG signing key with a longer duration until it expires (20 years).
 
+### Enhancements
+* Update GenericResponse to extend the Closeable interface.
+
 ## 2.7.1 - 9 March 2018
 
 ### Additions
