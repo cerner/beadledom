@@ -3,17 +3,16 @@
 #set( $symbol_escape = '\' )
 package ${package}.client;
 
-import ${package}.api.HelloWorldResource;
 import com.cerner.beadledom.client.BeadledomClient;
 import com.cerner.beadledom.client.BeadledomClientConfiguration;
 import com.cerner.beadledom.client.BeadledomClientModule;
 import com.cerner.beadledom.client.BeadledomWebTarget;
 import com.cerner.beadledom.client.jackson.ObjectMapperClientFeatureModule;
-import com.google.inject.PrivateModule;
+import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import javax.inject.Singleton;
 
-public class ${name}ClientModule extends PrivateModule {
+public class ${name}ClientModule extends AbstractModule {
 
   @Override
   public void configure() {
@@ -21,8 +20,6 @@ public class ${name}ClientModule extends PrivateModule {
 
     install(BeadledomClientModule.with(${name}ClientFeature.class));
     install(ObjectMapperClientFeatureModule.with(${name}ClientFeature.class));
-
-    expose(HelloWorldResource.class);
   }
 
   @Provides
