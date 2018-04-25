@@ -20,6 +20,7 @@ User Manual
     Beadledom JAX-RS <jaxrs>
     Beadledom JAX-RS - Generic Response <jaxrs_generic_response>
     Beadledom jOOQ <jooq>
+    Beadledom New Relic <newrelic>
     Beadledom Resteasy <resteasy>
     Beadledom Resteasy - Generic Response <resteasy_generic_response>
     Beadledom Stagemonitor <stagemonitor>

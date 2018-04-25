@@ -57,6 +57,7 @@
         <module>json-common</module>
         <module>lifecycle</module>
         <module>lifecycle-governator</module>
+        <module>newrelic</module>
         <module>resteasy</module>
         <module>resteasy-genericresponse</module>
         <module>stagemonitor</module>
@@ -193,6 +194,11 @@
             </dependency>
             <dependency>
                 <groupId>com.cerner.beadledom</groupId>
+                <artifactId>beadledom-newrelic</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cerner.beadledom</groupId>
                 <artifactId>beadledom-resteasy-genericresponse</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -292,6 +298,11 @@
                 <groupId>com.netflix.governator</groupId>
                 <artifactId>governator-core</artifactId>
                 <version>${governator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.newrelic.agent.java</groupId>
+                <artifactId>newrelic-api</artifactId>
+                <version>4.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.play</groupId>
