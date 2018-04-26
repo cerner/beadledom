@@ -1,5 +1,7 @@
 package com.cerner.beadledom.newrelic;
 
+import com.newrelic.api.agent.NewRelic;
+
 /**
  * Default implementation that delegates to the New Relic API.
  *
@@ -10,6 +12,6 @@ public class NewRelicApiImpl implements NewRelicApi {
 
   @Override
   public void addCustomParameter(String key, String value) {
-    com.newrelic.api.agent.NewRelic.addCustomParameter(key, value);
+    NewRelic.addCustomParameter(key, value);
   }
 }
