@@ -23,7 +23,7 @@ public class NewRelicCorrelationIdFilter implements ContainerRequestFilter {
   private final NewRelicApi newRelic;
 
   /**
-   * Creates a new {@link NewRelicCorrelationIdFilter} with the provided correlation id header.
+   * Creates a new {@link NewRelicCorrelationIdFilter} with the provided header name.
    *
    * @param headerName the correlation id header name to be used in request headers
    * @param newRelic the New Relic API
