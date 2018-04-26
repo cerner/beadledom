@@ -29,6 +29,12 @@ public class NewRelicCorrelationIdFilter implements ContainerRequestFilter {
    * @param newRelic the New Relic API
    */
   public NewRelicCorrelationIdFilter(String headerName, NewRelicApi newRelic) {
+    if (headerName == null) {
+      throw new NullPointerException("headerName: null");
+    }
+    if (newRelic == null) {
+      throw new NullPointerException("newRelic: null");
+    }
     this.headerName = headerName;
     this.newRelic = newRelic;
   }

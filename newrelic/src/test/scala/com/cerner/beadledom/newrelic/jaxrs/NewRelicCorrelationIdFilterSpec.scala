@@ -2,7 +2,7 @@ package com.cerner.beadledom.newrelic.jaxrs
 
 import com.cerner.beadledom.newrelic.NewRelicApi
 import javax.ws.rs.container.ContainerRequestContext
-import org.mockito.Mockito.{reset, when, verify, verifyZeroInteractions}
+import org.mockito.Mockito.{reset, verify, verifyZeroInteractions, when}
 import org.scalatest._
 import org.scalatest.mock.MockitoSugar
 
@@ -17,6 +17,22 @@ class NewRelicCorrelationIdFilterSpec
 
   before {
     reset(newRelic, request)
+  }
+
+  describe("constructor") {
+    it("throws a NullPointerException when the header name is null") {
+      intercept[NullPointerException] {
+        new NewRelicCorrelationIdFilter(null, newRelic)
+      }
+    }
+    it("throws a NullPointerException when the new relic api is null") {
+      intercept[NullPointerException] {
+        new NewRelicCorrelationIdFilter("correlation-id", null)
+      }
+    }
+    it("constructs a NewRelicCorrelationIdFilter") {
+      new NewRelicCorrelationIdFilter(headerName, newRelic)
+    }
   }
 
   describe("filter") {
