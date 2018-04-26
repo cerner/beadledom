@@ -11,8 +11,8 @@ public interface NewRelicApi {
   /**
    * Add a key/value pair to the current transaction.
    *
-   * @param key Custom parameter key.
-   * @param value Custom parameter value.
+   * @param key Custom parameter key
+   * @param value Custom parameter value
    */
   void addCustomParameter(String key, String value);
 
