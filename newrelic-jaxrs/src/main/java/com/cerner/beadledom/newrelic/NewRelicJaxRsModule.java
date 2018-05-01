@@ -9,7 +9,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * A Guice module that provides the New Relic integration.
+ * A Guice module that provides the New Relic JAX-RS integration.
  *
  *
  * <p>Binds:
@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  * @author Nathan Schile
  * @since 2.8
  */
-public class NewRelicModule extends AbstractModule {
+public class NewRelicJaxRsModule extends AbstractModule {
 
   private static final String DEFAULT_HEADER_NAME = "Correlation-Id";
 

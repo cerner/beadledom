@@ -106,7 +106,7 @@
             </dependency>
             <dependency>
                 <groupId>com.cerner.beadledom</groupId>
-                <artifactId>beadledom-newrelic</artifactId>
+                <artifactId>beadledom-newrelic-jaxrs</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
