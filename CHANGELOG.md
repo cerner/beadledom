@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 2.8 - TBD
+
+### Additions
+* Add [New Relic](https://newrelic.com/) module.
+
 ## 2.7.2 - 11 April 2018
 
 ### Additions

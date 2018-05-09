@@ -18,7 +18,7 @@
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
 [jonathan-wright]: https://github.com/jonnywri
-[nathan-schile]: https://github.com/shiftyeyes
+[nathan-schile]: https://github.com/nathanschile
 [alec-sears]: https://github.com/alecxvs
 [nimesh-subramanian]: https://github.com/nimeshsubramanian
 [sundeep-paruvu]: https://github.com/sparuvu
