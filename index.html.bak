@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Beadledom Site Redirect</title>
-    <meta http-equiv="refresh" content="5; url="http://cerner.github.io/beadledom/2.7/docs"">
+    <meta http-equiv="refresh" content="5; url="http://cerner.github.io/beadledom/2.7.2/docs"">
     <script type="text/javascript">
-        window.location.replace("http://cerner.github.io/beadledom/2.7/docs");
+        window.location.replace("http://cerner.github.io/beadledom/2.7.2/docs");
     </script>
   </head>
   <body>
@@ -17,6 +17,7 @@
 <li><a href="http://cerner.github.io/beadledom/2.6/docs">Beadledom Docs Version 2.6</a></li>
 <li><a href="http://cerner.github.io/beadledom/2.6.1/docs">Beadledom Docs Version 2.6.1</a></li>
 <li><a href="http://cerner.github.io/beadledom/2.7/docs">Beadledom Docs Version 2.7</a></li>
+<li><a href="http://cerner.github.io/beadledom/2.7.2/docs">Beadledom Docs Version 2.7.2</a></li>
 </ul>
   </body>
   </html>
