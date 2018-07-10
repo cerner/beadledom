@@ -1,9 +1,6 @@
-package com.cerner.beadledom.client.common.http
-
-import com.cerner.beadledom.client.resteasy.http.X509HostnameVerifierAdapter
+package com.cerner.beadledom.client.resteasy.http
 
 import java.security.cert.X509Certificate
-
 import javax.net.ssl.{HostnameVerifier, SSLException, SSLSession, SSLSocket}
 import org.apache.http.conn.ssl.X509HostnameVerifier
 import org.mockito.Mockito
@@ -11,8 +8,8 @@ import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
 
 /**
-  * @author John Leacox
-  */
+ * @author John Leacox
+ */
 class X509HostnameVerifierAdapterSpec
     extends FunSpec with Matchers with BeforeAndAfter with MockitoSugar {
   describe("X509HostnameVerifierAdapter") {
@@ -45,7 +42,6 @@ class X509HostnameVerifierAdapterSpec
 
         val verifier = mock[HostnameVerifier]
         Mockito.when(verifier.verify(host, sslSession)).thenReturn(false)
-
 
         intercept[SSLException] {
           X509HostnameVerifierAdapter.adapt(verifier).verify(host, sslSocket)
