@@ -9,9 +9,9 @@ before_install:
 install:
 - sudo apt-get install -y gnupg2
 script:
-- mvn install -Dmaven.javadoc.skip=true -B -V -e
+- ./mvnw install -Dmaven.javadoc.skip=true -B -V -e
 after_success:
-- if [[ "$(echo 'VERSION=${project.version}' | mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]]; then export IS_SNAPSHOT=true; fi
+- if [[ "$(echo 'VERSION=${project.version}' | ./mvnw org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate | grep '^VERSION')" == *-SNAPSHOT ]]; then export IS_SNAPSHOT=true; fi
 deploy:
 - provider: script
   script: ".travis/publish.sh"
