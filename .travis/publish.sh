@@ -12,11 +12,11 @@ then
     gpg --fast-import $CI_DIR/signingkey.asc
 
     echo "deploying $TRAVIS_TAG to maven central"
-    mvn deploy --settings $CI_DIR/settings.xml -DattachScaladocs=true -B -U
+    ./mvnw deploy --settings $CI_DIR/settings.xml -DattachScaladocs=true -B -U
 
     echo "building site"
     ${CI_DIR}/publish_site.sh $TRAVIS_TAG
 else
     echo "deploying SNAPSHOT from master"
-    mvn deploy --settings $CI_DIR/settings.xml -Dgpg.skip -B -U
+    ./mvnw deploy --settings $CI_DIR/settings.xml -Dgpg.skip -B -U
 fi

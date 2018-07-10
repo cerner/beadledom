@@ -12,4 +12,4 @@
 
 > This is bare minimum acceptable testing
 
-- [ ] `mvn clean install -U`
+- [ ] `./mvnw clean install -U`
