@@ -21,10 +21,6 @@
       <artifactId>newrelic-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.jboss.resteasy</groupId>
-      <artifactId>jaxrs-api</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.cerner.beadledom</groupId>
       <artifactId>beadledom-jaxrs</artifactId>
     </dependency>
