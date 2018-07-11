@@ -1,6 +1,7 @@
 package com.cerner.beadledom.client.resteasy.http;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.ServiceUnavailableRetryStrategy;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.protocol.HttpContext;
@@ -31,8 +32,7 @@ public class DefaultServiceUnavailableRetryStrategy
   @Override
   public boolean retryRequest(
       HttpResponse httpResponse, int executionCount, HttpContext httpContext) {
-    int status = httpResponse.getStatusLine().getStatusCode();
-    if (executionCount < 3 && status >= 500 && status < 600) {
+    if (executionCount < 3 && isServiceUnavailableResponse(httpResponse)) {
       HttpClientContext context = HttpClientContext.adapt(httpContext);
       logger.info(
           "Retry " + executionCount + " for request for: "
@@ -40,6 +40,10 @@ public class DefaultServiceUnavailableRetryStrategy
       return true;
     }
     return false;
+  }
+
+  private boolean isServiceUnavailableResponse(HttpResponse response) {
+    return response.getStatusLine().getStatusCode() == HttpStatus.SC_SERVICE_UNAVAILABLE;
   }
 
   @Override

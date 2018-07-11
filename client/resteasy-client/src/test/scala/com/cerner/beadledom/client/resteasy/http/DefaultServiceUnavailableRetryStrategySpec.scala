@@ -1,6 +1,4 @@
-package com.cerner.beadledom.client.common.http
-
-import com.cerner.beadledom.client.resteasy.http.DefaultServiceUnavailableRetryStrategy
+package com.cerner.beadledom.client.resteasy.http
 
 import org.apache.http.client.ServiceUnavailableRetryStrategy
 import org.apache.http.client.protocol.HttpClientContext
@@ -10,9 +8,10 @@ import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, Matchers}
 
 /**
-  * @author John Leacox
-  */
-class DefaultServiceUnavailableRetryStrategySpec extends FunSpec with Matchers with MockitoSugar with RetryRequestBehaviors {
+ * @author John Leacox
+ */
+class DefaultServiceUnavailableRetryStrategySpec
+    extends FunSpec with Matchers with MockitoSugar with RetryRequestBehaviors {
   describe("DefaultServiceUnavailableRetryStrategySpec") {
     describe("#getRetryInterval") {
       it("returns the retry interval given to the constructor") {
@@ -26,23 +25,35 @@ class DefaultServiceUnavailableRetryStrategySpec extends FunSpec with Matchers w
 
     describe("#retryRequest") {
       describe("with status code 500 and executionCount 0") {
-        it should behave like retryableRequest(retryStrategy, 500, 0)
+        it should behave like nonRetryableRequest(retryStrategy, 500, 0)
       }
 
       describe("with status code 500 and executionCount 1") {
-        it should behave like retryableRequest(retryStrategy, 500, 1)
+        it should behave like nonRetryableRequest(retryStrategy, 500, 1)
       }
 
       describe("with status code 500 and executionCount 2") {
-        it should behave like retryableRequest(retryStrategy, 500, 2)
+        it should behave like nonRetryableRequest(retryStrategy, 500, 2)
       }
 
       describe("with status code 599 and executionCount 0") {
-        it should behave like retryableRequest(retryStrategy, 599, 0)
+        it should behave like nonRetryableRequest(retryStrategy, 599, 0)
+      }
+
+      describe("with status code 503 and executionCount 0") {
+        it should behave like retryableRequest(retryStrategy, 503, 0)
       }
 
       describe("with status code 503 and executionCount 1") {
         it should behave like retryableRequest(retryStrategy, 503, 1)
+      }
+
+      describe("with status code 503 and executionCount 2") {
+        it should behave like retryableRequest(retryStrategy, 503, 2)
+      }
+
+      describe("with status code 503 and executionCount 3") {
+        it should behave like nonRetryableRequest(retryStrategy, 503, 3)
       }
 
       describe("with status code 500 and executionCount 3") {
@@ -67,10 +78,8 @@ class DefaultServiceUnavailableRetryStrategySpec extends FunSpec with Matchers w
 trait RetryRequestBehaviors extends Matchers with MockitoSugar {
   this: FunSpec =>
 
-  def retryableRequest(retryStrategy: ServiceUnavailableRetryStrategy, statusCode: Int, executionCount: Int): Unit = {
-    require((500 until 600).contains(statusCode))
-    require(executionCount < 3)
-
+  def retryableRequest(retryStrategy: ServiceUnavailableRetryStrategy, statusCode: Int,
+      executionCount: Int): Unit = {
     it(s"returns true") {
       val response = mockResponse(statusCode)
       val context = mockContext()
@@ -79,9 +88,8 @@ trait RetryRequestBehaviors extends Matchers with MockitoSugar {
     }
   }
 
-  def nonRetryableRequest(retryStrategy: ServiceUnavailableRetryStrategy, statusCode: Int, executionCount: Int): Unit = {
-    require(!(500 until 600).contains(statusCode) || !(executionCount < 3))
-
+  def nonRetryableRequest(retryStrategy: ServiceUnavailableRetryStrategy, statusCode: Int,
+      executionCount: Int): Unit = {
     it(s"returns false") {
       val response = mockResponse(statusCode)
       val context = mockContext()
