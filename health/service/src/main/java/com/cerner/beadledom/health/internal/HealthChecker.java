@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public class HealthChecker {
   private static final Logger LOGGER = LoggerFactory.getLogger(HealthChecker.class);
+  private static final Range<Integer> HEALTHY_STATUS_RANGE = Range.closed(200, 299);
 
   private final UriInfo uriInfo;
   private final ServiceMetadata serviceMetadata;
@@ -124,21 +125,12 @@ public class HealthChecker {
 
     try {
       HealthStatus status = dependency.checkAvailability();
-      String message = status.getMessage();
-      builder.setMessage(message);
-      if (status.getException().isPresent()) {
-        LOGGER.error(
-            "Health dependency {} returned an exception", dependency.getName(),
-            status.getException());
-        String stacktrace = Throwables.getStackTraceAsString(status.getException().get());
-        builder.setMessage(new StringBuilder().append(message)
-            .append(' ')
-            .append(stacktrace).toString());
-      }
-      builder.setHealthy(true);
-      if (!Range.closed(200, 299).contains(status.getStatus())) {
-        builder.setHealthy(false);
-      }
+
+      status.getException().ifPresent(
+          e -> LOGGER.error("Health dependency {} returned an exception", dependency.getName(), e));
+
+      builder.setMessage(messageFromStatus(status));
+      builder.setHealthy(isHealthy(status));
     } catch (Exception e) {
       LOGGER.error("Health dependency {} threw  an exception", dependency.getName(), e);
       builder.setHealthy(false)
@@ -146,6 +138,18 @@ public class HealthChecker {
     }
 
     return builder.build();
+  }
+
+  private String messageFromStatus(HealthStatus status) {
+    String message = status.getMessage();
+
+    return status.getException()
+        .map(e -> message + ' ' + Throwables.getStackTraceAsString(e))
+        .orElse(message);
+  }
+
+  private boolean isHealthy(HealthStatus status) {
+    return HEALTHY_STATUS_RANGE.contains(status.getStatus());
   }
 
   private HealthDependencyDto.Builder dependencyDtoBuilder(HealthDependency dependency) {
@@ -161,9 +165,7 @@ public class HealthChecker {
                     .toString())
             .build());
 
-    if (dependency.getDescription().isPresent()) {
-      dto.setName(dependency.getDescription().get());
-    }
+    dependency.getDescription().ifPresent(dto::setName);
     return dto;
   }
 }
