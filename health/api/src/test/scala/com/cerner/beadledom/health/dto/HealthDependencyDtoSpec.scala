@@ -1,20 +1,21 @@
 package com.cerner.beadledom.health.dto
 
-import org.scalatest.{FunSpec, MustMatchers}
 import java.util.Optional
 
-class HealthDependencyDtoSpec extends FunSpec with MustMatchers {
+import org.scalatest.{FunSpec, MustMatchers}
+
+class HealthDependencyDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBehaviors {
   describe("HealthDependencyDto.Builder") {
     it("builds an object correctly") {
       val links = LinksDto.builder().setSelf("localhost").build()
       val dto = HealthDependencyDto.builder()
-              .setHealthy(true)
-              .setId("pikachu")
-              .setName("pikachu")
-              .setMessage("Go to catch them all!!")
-              .setPrimary(true)
-              .setLinks(links)
-              .build()
+        .setHealthy(true)
+        .setId("pikachu")
+        .setName("pikachu")
+        .setMessage("Go to catch them all!!")
+        .setPrimary(true)
+        .setLinks(links)
+        .build()
       dto.isHealthy mustBe true
       dto.isPrimary mustBe true
       dto.getId must be("pikachu")
@@ -29,12 +30,12 @@ class HealthDependencyDtoSpec extends FunSpec with MustMatchers {
       val noneBoolean: Optional[Boolean] = Optional.empty()
       val links = LinksDto.builder().setSelf("localhost").build()
       val dto = HealthDependencyDto.builder()
-          .setHealthy(true)
-          .setId("pikachu")
-          .setName(none)
-          .setMessage(none)
-          .setLinks(links)
-          .build()
+        .setHealthy(true)
+        .setId("pikachu")
+        .setName(none)
+        .setMessage(none)
+        .setLinks(links)
+        .build()
       dto.getMessage must be(none)
       dto.getName must be(none)
     }
@@ -42,9 +43,9 @@ class HealthDependencyDtoSpec extends FunSpec with MustMatchers {
     it("sets the default values for non-required fields") {
       val none = Optional.empty()
       val dto = HealthDependencyDto
-          .builder()
-          .setId("Optional")
-          .build()
+        .builder()
+        .setId("Optional")
+        .build()
       dto.isPrimary must be(false)
       dto.isHealthy must be(false)
       dto.getLinks must be(none)
@@ -53,4 +54,15 @@ class HealthDependencyDtoSpec extends FunSpec with MustMatchers {
       dto.getName must be(none)
     }
   }
+
+  val healthDependencyDto = HealthDependencyDto.builder()
+    .setHealthy(true)
+    .setId("1")
+    .setName("name")
+    .setMessage("message")
+    .setPrimary(true)
+    .setLinks(LinksDto.builder().setSelf("link").build())
+    .build()
+
+  it must behave like aJacksonSerializableObject(healthDependencyDto)
 }

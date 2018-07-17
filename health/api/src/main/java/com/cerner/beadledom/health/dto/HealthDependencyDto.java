@@ -1,7 +1,10 @@
 package com.cerner.beadledom.health.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
@@ -10,10 +13,11 @@ import java.util.Optional;
 /**
  * Represents health of a service dependency.
  */
+@AutoValue
+@JsonDeserialize(builder = HealthDependencyDto.Builder.class)
 @ApiModel(
     description = "Provides information about a dependency of this service, such as an external "
         + "service that it relies on.")
-@AutoValue
 public abstract class HealthDependencyDto {
 
   /**
@@ -74,7 +78,13 @@ public abstract class HealthDependencyDto {
   public abstract Builder toBuilder();
 
   @AutoValue.Builder
+  @JsonPOJOBuilder(withPrefix = "set")
   public abstract static class Builder {
+
+    @JsonCreator
+    private static HealthDependencyDto.Builder create() {
+      return HealthDependencyDto.builder();
+    }
 
     public abstract Builder setId(String id);
 
@@ -82,12 +92,14 @@ public abstract class HealthDependencyDto {
 
     abstract Builder setLinks(Optional<LinksDto> links);
 
+    @JsonProperty("links")
     public Builder setLinks(LinksDto links) {
       return setLinks(Optional.ofNullable(links));
     }
 
     abstract Builder setName(Optional<String> name);
 
+    @JsonProperty("name")
     public Builder setName(String name) {
       return setName(Optional.ofNullable(name));
     }
@@ -96,12 +108,14 @@ public abstract class HealthDependencyDto {
 
     abstract Builder setType(Optional<TypeDto> type);
 
+    @JsonProperty("type")
     public Builder setType(TypeDto type) {
       return setType(Optional.ofNullable(type));
     }
 
     abstract Builder setMessage(Optional<String> message);
 
+    @JsonProperty("message")
     public Builder setMessage(String message) {
       return setMessage(Optional.ofNullable(message));
     }

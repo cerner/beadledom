@@ -6,14 +6,18 @@ import static com.cerner.beadledom.health.dto.HealthJsonViews.Primary;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.cerner.beadledom.metadata.ServiceMetadata;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.Optional;
+import javax.annotation.Nullable;
 
 /**
  * Represents the health of a service.
@@ -21,8 +25,9 @@ import java.util.Optional;
  * <p>This can be used to construct health responses for the Basic Availability Check,
  * Primary Health Check, and Diagnostic Health Check.
  */
-@ApiModel(description = "Indicates the health of this service.")
 @AutoValue
+@JsonDeserialize(builder = HealthDto.Builder.class)
+@ApiModel(description = "Indicates the health of this service.")
 public abstract class HealthDto {
   /**
    * Creates a new builder for {@code HealthDto}.
@@ -81,6 +86,7 @@ public abstract class HealthDto {
    * <p>This is not included in the json model since it is used as the HTTP response code.
    */
   @JsonIgnore
+  @Nullable
   public abstract Integer getStatus();
 
   @ApiModelProperty(
@@ -106,10 +112,17 @@ public abstract class HealthDto {
   public abstract Builder toBuilder();
 
   @AutoValue.Builder
+  @JsonPOJOBuilder(withPrefix = "set")
   public abstract static class Builder {
+
+    @JsonCreator
+    private static HealthDto.Builder create() {
+      return HealthDto.builder();
+    }
 
     abstract Builder setMessage(Optional<String> message);
 
+    @JsonProperty("message")
     public Builder setMessage(String message) {
       return setMessage(Optional.ofNullable(message));
     }
@@ -118,18 +131,21 @@ public abstract class HealthDto {
 
     abstract Builder setDependencies(Optional<List<HealthDependencyDto>> dependencies);
 
+    @JsonProperty("dependencies")
     public Builder setDependencies(List<HealthDependencyDto> dependencies) {
       return setDependencies(Optional.ofNullable(dependencies));
     }
 
     abstract Builder setbuild(Optional<BuildDto> build);
 
+    @JsonProperty("build")
     public Builder setbuild(BuildDto build) {
       return setbuild(Optional.ofNullable(build));
     }
 
     abstract Builder setServer(Optional<ServerDto> server);
 
+    @JsonProperty("server")
     public Builder setServer(ServerDto server) {
       return setServer(Optional.ofNullable(server));
     }
