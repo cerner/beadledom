@@ -16,7 +16,7 @@ trait JacksonSerializationBehaviors { this: FunSpec with MustMatchers =>
   mapper.registerModule(new Jdk8Module)
   mapper.registerModule(new JavaTimeModule)
 
-  def serializableByJackson(dto: => Object) {
+  def aJacksonSerializableObject(dto: => Object) {
     it(s"deserializes JSON to a ${dto.getClass.getSimpleName}") {
       val str = mapper.writeValueAsString(dto)
       mapper.readValue(str, dto.getClass) must be(dto)

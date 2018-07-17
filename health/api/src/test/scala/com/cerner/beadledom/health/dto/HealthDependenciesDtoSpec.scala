@@ -18,5 +18,5 @@ class HealthDependenciesDtoSpec extends FunSpec with MustMatchers with JacksonSe
   var healthDependenciesDto = HealthDependenciesDto.builder()
                               .setDependencies(List(healthDependency).asJava).build()
 
-  it must behave like serializableByJackson(healthDependenciesDto)
+  it must behave like aJacksonSerializableObject(healthDependenciesDto)
 }

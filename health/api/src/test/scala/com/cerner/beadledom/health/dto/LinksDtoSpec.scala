@@ -7,6 +7,6 @@ class LinksDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBe
   val dto = LinksDto.builder()
     .setSelf("self").build()
 
-  it must behave like serializableByJackson(dto)
+  it must behave like aJacksonSerializableObject(dto)
 
 }

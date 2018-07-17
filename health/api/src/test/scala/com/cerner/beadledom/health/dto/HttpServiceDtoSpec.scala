@@ -8,6 +8,6 @@ class HttpServiceDtoSpec extends FunSpec with MustMatchers with JacksonSerializa
             .setStatus(200)
             .setUrl("http://www.google.com").build()
 
-  it must behave like serializableByJackson(dto)
+  it must behave like aJacksonSerializableObject(dto)
 
 }

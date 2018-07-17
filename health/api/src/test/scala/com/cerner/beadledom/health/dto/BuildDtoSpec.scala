@@ -9,5 +9,5 @@ class BuildDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBe
                  .setBuildDateTime("some time")
                  .setVersion("2").build()
 
-  it must behave like serializableByJackson(buildDto)
+  it must behave like aJacksonSerializableObject(buildDto)
 }

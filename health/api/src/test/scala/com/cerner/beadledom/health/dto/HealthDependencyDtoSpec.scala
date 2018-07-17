@@ -64,6 +64,6 @@ class HealthDependencyDtoSpec extends FunSpec with MustMatchers with JacksonSeri
     .setLinks(LinksDto.builder().setSelf("link").build())
     .build()
 
-  it must behave like serializableByJackson(healthDependencyDto)
+  it must behave like aJacksonSerializableObject(healthDependencyDto)
 
 }

@@ -11,5 +11,5 @@ class TypeDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBeh
   val dto = TypeDto.builder()
     .setHttpService(httpServiceDto).build()
 
-  it must behave like serializableByJackson(dto)
+  it must behave like aJacksonSerializableObject(dto)
 }
