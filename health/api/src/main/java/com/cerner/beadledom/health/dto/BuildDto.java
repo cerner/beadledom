@@ -18,8 +18,8 @@ import java.util.Optional;
  * @since 1.4
  */
 @AutoValue
-@ApiModel(description = "Indicates the list of dependencies of this service.")
 @JsonDeserialize(builder = BuildDto.Builder.class)
+@ApiModel(description = "Indicates the list of dependencies of this service.")
 public abstract class BuildDto {
   /**
    * Creates a new builder for {@code BuildDto}.
