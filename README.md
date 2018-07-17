@@ -21,7 +21,7 @@ Beadledom is made up of the following components:
 * [lifecycle-governator](lifecycle-governator#beadledom-lifecycle-governator) - An implementation of the [beadledom-lifecycle](lifecycle#beadledom-lifecycle) using [Governator](https://github.com/Netflix/governator).
 * [resteasy](resteasy#beadledom-resteasy) - RESTEasy implementation and integration of Beadledom components.
 * [stagemonitor](stagemonitor#beadledom-stagemonitor) - Performance monitoring and troubleshooting.
-* [swagger](swagger#beadledom-swagger) - API documentation.
+* [swagger1](swagger1#beadledom-swagger1) - API documentation.
 * [testing](testing#beadledom-testing) - Testing utilities for the services.
 
 ### Additional Documentation:
