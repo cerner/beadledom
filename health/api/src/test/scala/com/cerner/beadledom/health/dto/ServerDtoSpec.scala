@@ -11,5 +11,4 @@ class ServerDtoSpec extends FunSpec with MustMatchers with JacksonSerializationB
     .setStartupDateTime(Instant.parse("2001-02-03T04:05:06Z")).build()
 
   it must behave like aJacksonSerializableObject(dto)
-
 }

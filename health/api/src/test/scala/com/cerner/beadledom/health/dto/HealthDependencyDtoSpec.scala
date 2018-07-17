@@ -65,5 +65,4 @@ class HealthDependencyDtoSpec extends FunSpec with MustMatchers with JacksonSeri
     .build()
 
   it must behave like aJacksonSerializableObject(healthDependencyDto)
-
 }

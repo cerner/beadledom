@@ -8,5 +8,4 @@ class LinksDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBe
     .setSelf("self").build()
 
   it must behave like aJacksonSerializableObject(dto)
-
 }
