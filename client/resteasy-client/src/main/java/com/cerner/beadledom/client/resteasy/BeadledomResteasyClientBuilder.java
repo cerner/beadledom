@@ -9,6 +9,8 @@ import com.cerner.beadledom.client.resteasy.http.DefaultServiceUnavailableRetryS
 import com.cerner.beadledom.client.resteasy.http.X509HostnameVerifierAdapter;
 import java.security.KeyStore;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -248,6 +250,32 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
   @Override
   public BeadledomResteasyClientBuilder hostnameVerifier(HostnameVerifier verifier) {
     this.clientConfigBuilder.verifier(verifier);
+    return this;
+  }
+
+  @Override
+  public ClientBuilder executorService(ExecutorService executorService) {
+    resteasyClientBuilder.executorService(executorService);
+    return this;
+  }
+
+  @Override
+  public ClientBuilder scheduledExecutorService(ScheduledExecutorService scheduledExecutorService) {
+    resteasyClientBuilder.scheduledExecutorService(scheduledExecutorService);
+    return this;
+  }
+
+  // TODO: How does this map to the existing socket/connect timeout settings?
+  @Override
+  public ClientBuilder connectTimeout(long timeout, TimeUnit unit) {
+    resteasyClientBuilder.connectTimeout(timeout, unit);
+    return this;
+  }
+
+  // TODO: How does this map to the existing socket/connect timeout settings?
+  @Override
+  public ClientBuilder readTimeout(long timeout, TimeUnit unit) {
+    resteasyClientBuilder.readTimeout(timeout, unit);
     return this;
   }
 
