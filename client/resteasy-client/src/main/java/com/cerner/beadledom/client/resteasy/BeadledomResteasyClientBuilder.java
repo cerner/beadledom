@@ -144,19 +144,20 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
    * <p>If a {@link ClientHttpEngine} is specified via {@link #setHttpEngine(ClientHttpEngine)},
    * then this property will be ignored.
    *
+   * <p>Deprecated: Use {@link #readTimeout(long, TimeUnit)} instead.
+   *
    * @return this builder
    */
   @Override
-  public BeadledomResteasyClientBuilder setSocketTimeout(
-      int socketTimeout, TimeUnit timeUnit) {
+  @Deprecated
+  public BeadledomResteasyClientBuilder setSocketTimeout(int socketTimeout, TimeUnit timeUnit) {
     long millis = timeUnit.toMillis(socketTimeout);
     if (millis > Integer.MAX_VALUE || millis < 0) {
       throw new IllegalArgumentException(
-          "Socket timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds");
+          "Socket timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds"
+      );
     }
-
-    this.clientConfigBuilder.socketTimeoutMillis((int) millis);
-    return this;
+    return readTimeout((int) millis, TimeUnit.MILLISECONDS);
   }
 
   /**
@@ -166,9 +167,12 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
    * <p>If a {@link ClientHttpEngine} is specified via {@link #setHttpEngine(ClientHttpEngine)},
    * then this property will be ignored.
    *
+   * <p>Deprecated: Use {@link #connectTimeout(long, TimeUnit)} instead.
+   *
    * @return this builder
    */
   @Override
+  @Deprecated
   public BeadledomResteasyClientBuilder setConnectionTimeout(
       int connectionTimeout, TimeUnit timeUnit) {
     long millis = timeUnit.toMillis(connectionTimeout);
@@ -177,8 +181,7 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
           "Connection timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds"
       );
     }
-    this.clientConfigBuilder.connectionTimeoutMillis((int) millis);
-    return this;
+    return connectTimeout((int) millis, TimeUnit.MILLISECONDS);
   }
 
   /**
@@ -265,17 +268,28 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
     return this;
   }
 
-  // TODO: How does this map to the existing socket/connect timeout settings?
   @Override
-  public ClientBuilder connectTimeout(long timeout, TimeUnit unit) {
-    resteasyClientBuilder.connectTimeout(timeout, unit);
+  public BeadledomResteasyClientBuilder connectTimeout(long timeout, TimeUnit unit) {
+    long millis = unit.toMillis(timeout);
+    if (millis > Integer.MAX_VALUE || millis < 0) {
+      throw new IllegalArgumentException(
+          "Connect timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds"
+      );
+    }
+
+    this.clientConfigBuilder.connectionTimeoutMillis((int) millis);
     return this;
   }
 
-  // TODO: How does this map to the existing socket/connect timeout settings?
   @Override
-  public ClientBuilder readTimeout(long timeout, TimeUnit unit) {
-    resteasyClientBuilder.readTimeout(timeout, unit);
+  public BeadledomResteasyClientBuilder readTimeout(long timeout, TimeUnit unit) {
+    long millis = unit.toMillis(timeout);
+    if (millis > Integer.MAX_VALUE || millis < 0) {
+      throw new IllegalArgumentException(
+          "Read timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds");
+    }
+
+    this.clientConfigBuilder.socketTimeoutMillis((int) millis);
     return this;
   }
 
@@ -308,6 +322,7 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
   }
 
   private ClientHttpEngine initDefaultHttpEngine(BeadledomClientConfiguration clientConfig) {
+
     SocketConfig socketConfig = SocketConfig.custom()
         .setSoTimeout(clientConfig.socketTimeoutMillis())
         .build();
