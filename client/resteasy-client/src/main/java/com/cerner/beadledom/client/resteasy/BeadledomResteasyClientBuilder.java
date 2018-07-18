@@ -144,12 +144,9 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
    * <p>If a {@link ClientHttpEngine} is specified via {@link #setHttpEngine(ClientHttpEngine)},
    * then this property will be ignored.
    *
-   * <p>Deprecated: Use {@link #readTimeout(long, TimeUnit)} instead.
-   *
    * @return this builder
    */
   @Override
-  @Deprecated
   public BeadledomResteasyClientBuilder setSocketTimeout(int socketTimeout, TimeUnit timeUnit) {
     long millis = timeUnit.toMillis(socketTimeout);
     if (millis > Integer.MAX_VALUE || millis < 0) {
@@ -167,12 +164,9 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
    * <p>If a {@link ClientHttpEngine} is specified via {@link #setHttpEngine(ClientHttpEngine)},
    * then this property will be ignored.
    *
-   * <p>Deprecated: Use {@link #connectTimeout(long, TimeUnit)} instead.
-   *
    * @return this builder
    */
   @Override
-  @Deprecated
   public BeadledomResteasyClientBuilder setConnectionTimeout(
       int connectionTimeout, TimeUnit timeUnit) {
     long millis = timeUnit.toMillis(connectionTimeout);
@@ -322,7 +316,6 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
   }
 
   private ClientHttpEngine initDefaultHttpEngine(BeadledomClientConfiguration clientConfig) {
-
     SocketConfig socketConfig = SocketConfig.custom()
         .setSoTimeout(clientConfig.socketTimeoutMillis())
         .build();
