@@ -55,3 +55,8 @@ BeadledomModule module, so the removed modules also apply.
       install(new HealthModule());
     }
   }
+
+JAX-RS 2.1 Upgrade
+~~~~~~~~~~~~~~~~~~
+Beadledom 3.0 now uses JAX-RS 2.1 and Resteasy 3.6.x. Change your dependencies on javax.ws.rs-api
+to 2.1 and Resteasy to 3.6.0.Final or the latest 3.6.x version.

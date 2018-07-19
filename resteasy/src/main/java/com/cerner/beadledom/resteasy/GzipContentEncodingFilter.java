@@ -4,7 +4,7 @@ import com.google.common.collect.Sets;
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.ext.Provider;
-import org.jboss.resteasy.plugins.interceptors.ServerContentEncodingAnnotationFilter;
+import org.jboss.resteasy.plugins.interceptors.encoding.ServerContentEncodingAnnotationFilter;
 
 /**
  * A Jax-Rs server filter for setting the gzip content-encoding header if the gzip accept-encoding

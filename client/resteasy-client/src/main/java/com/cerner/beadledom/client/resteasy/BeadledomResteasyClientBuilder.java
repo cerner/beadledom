@@ -9,6 +9,8 @@ import com.cerner.beadledom.client.resteasy.http.DefaultServiceUnavailableRetryS
 import com.cerner.beadledom.client.resteasy.http.X509HostnameVerifierAdapter;
 import java.security.KeyStore;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -145,16 +147,14 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
    * @return this builder
    */
   @Override
-  public BeadledomResteasyClientBuilder setSocketTimeout(
-      int socketTimeout, TimeUnit timeUnit) {
+  public BeadledomResteasyClientBuilder setSocketTimeout(int socketTimeout, TimeUnit timeUnit) {
     long millis = timeUnit.toMillis(socketTimeout);
     if (millis > Integer.MAX_VALUE || millis < 0) {
       throw new IllegalArgumentException(
-          "Socket timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds");
+          "Socket timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds"
+      );
     }
-
-    this.clientConfigBuilder.socketTimeoutMillis((int) millis);
-    return this;
+    return readTimeout((int) millis, TimeUnit.MILLISECONDS);
   }
 
   /**
@@ -175,8 +175,7 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
           "Connection timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds"
       );
     }
-    this.clientConfigBuilder.connectionTimeoutMillis((int) millis);
-    return this;
+    return connectTimeout((int) millis, TimeUnit.MILLISECONDS);
   }
 
   /**
@@ -248,6 +247,43 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
   @Override
   public BeadledomResteasyClientBuilder hostnameVerifier(HostnameVerifier verifier) {
     this.clientConfigBuilder.verifier(verifier);
+    return this;
+  }
+
+  @Override
+  public ClientBuilder executorService(ExecutorService executorService) {
+    resteasyClientBuilder.executorService(executorService);
+    return this;
+  }
+
+  @Override
+  public ClientBuilder scheduledExecutorService(ScheduledExecutorService scheduledExecutorService) {
+    resteasyClientBuilder.scheduledExecutorService(scheduledExecutorService);
+    return this;
+  }
+
+  @Override
+  public BeadledomResteasyClientBuilder connectTimeout(long timeout, TimeUnit unit) {
+    long millis = unit.toMillis(timeout);
+    if (millis > Integer.MAX_VALUE || millis < 0) {
+      throw new IllegalArgumentException(
+          "Connect timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds"
+      );
+    }
+
+    this.clientConfigBuilder.connectionTimeoutMillis((int) millis);
+    return this;
+  }
+
+  @Override
+  public BeadledomResteasyClientBuilder readTimeout(long timeout, TimeUnit unit) {
+    long millis = unit.toMillis(timeout);
+    if (millis > Integer.MAX_VALUE || millis < 0) {
+      throw new IllegalArgumentException(
+          "Read timeout must be smaller than Integer.MAX_VALUE when converted to milliseconds");
+    }
+
+    this.clientConfigBuilder.socketTimeoutMillis((int) millis);
     return this;
   }
 
