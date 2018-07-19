@@ -12,6 +12,9 @@ desired, install the removed modules in the consuming guice module.
 ### Enhancements
 * Support building with JDK 9/10+
 
+### Defects Corrected
+* Fixed health DTOs Jackson deserialization.
+
 ## 2.8 - 16 May 2018
 
 ### Additions
