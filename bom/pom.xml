@@ -126,7 +126,7 @@
       </dependency>
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
-        <artifactId>beadledom-swagger</artifactId>
+        <artifactId>beadledom-swagger1</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

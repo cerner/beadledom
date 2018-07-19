@@ -1,7 +1,7 @@
-beadledom-swagger
-=================
+beadledom-swagger1
+==================
 
-This project provides API documentation via `Swagger <http://swagger.io/>`_.
+This project provides API documentation via `Swagger 1 <http://swagger.io/>`_.
 Additionally the Swagger UI has been updated with an optional field for an Authentication Header.
 
 Download
@@ -15,7 +15,7 @@ Download
       ...
       <dependency>
           <groupId>com.cerner.beadledom</groupId>
-          <artifactId>beadledom-swagger</artifactId>
+          <artifactId>beadledom-swagger1</artifactId>
           <version>[Insert latest version]</version>
       </dependency>
       ...
