@@ -18,7 +18,7 @@ class BeadledomLifecycleModuleSpec extends FunSpec with MustMatchers with Mockit
       val injector = Guice.createInjector(
         new BeadledomLifecycleModule,
         new AbstractModule() {
-          protected def configure() {
+          protected override def configure() {
             bind(classOf[LifecycleShutdownManager]).toInstance(shutdownManager)
           }
         })
@@ -32,7 +32,7 @@ class BeadledomLifecycleModuleSpec extends FunSpec with MustMatchers with Mockit
       val injector = Guice.createInjector(
         new BeadledomLifecycleModule,
         new AbstractModule() {
-          protected def configure() {
+          protected override def configure() {
             bind(classOf[LifecycleShutdownManager]).toInstance(shutdownManager)
           }
         })

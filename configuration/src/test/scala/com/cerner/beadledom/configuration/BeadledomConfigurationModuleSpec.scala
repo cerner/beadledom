@@ -71,7 +71,7 @@ class BeadledomConfigurationModuleSpec extends FunSpec with BeforeAndAfter with 
 
       val injector = Guice.createInjector(module)
 
-      intercept[ConfigurationException] {
+      intercept[ProvisionException] {
         injector.getInstance(classOf[ImmutableHierarchicalConfiguration])
       }
     }

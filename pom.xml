@@ -86,13 +86,14 @@
 
   <properties>
     <beadledom.url>http://cerner.github.io/beadledom/${project.version}</beadledom.url>
+    <autovalue.version>1.6.2</autovalue.version>
     <java.version>1.8</java.version>
     <scala.version>2.11.12</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
-    <governator.version>1.17.4</governator.version>
+    <governator.version>1.17.5</governator.version>
     <jackson.version>2.9.6</jackson.version>
     <resteasy.version>3.6.0.Final</resteasy.version>
-    <spotbugs.version>3.1.1</spotbugs.version>
+    <spotbugs.version>3.1.6</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
     <tomcat-embed.version>7.0.42</tomcat-embed.version>
@@ -271,8 +272,13 @@
       <dependency>
         <groupId>com.google.auto.value</groupId>
         <artifactId>auto-value</artifactId>
-        <version>1.5.2</version>
+        <version>${autovalue.version}</version>
         <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.auto.value</groupId>
+        <artifactId>auto-value-annotations</artifactId>
+        <version>${autovalue.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.code.findbugs</groupId>
@@ -283,17 +289,17 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>23.4-jre</version>
+        <version>26.0-jre</version>
       </dependency>
       <dependency>
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
-        <version>4.1.0</version>
+        <version>4.2.0</version>
       </dependency>
       <dependency>
         <groupId>com.google.inject.extensions</groupId>
         <artifactId>guice-multibindings</artifactId>
-        <version>4.1.0</version>
+        <version>4.2.0</version>
       </dependency>
       <dependency>
         <groupId>com.netflix.governator</groupId>
@@ -303,7 +309,7 @@
       <dependency>
         <groupId>com.newrelic.agent.java</groupId>
         <artifactId>newrelic-api</artifactId>
-        <version>4.0.1</version>
+        <version>4.3.0</version>
       </dependency>
       <dependency>
         <groupId>com.typesafe.play</groupId>
@@ -354,7 +360,7 @@
       <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
-        <version>3.0.1</version>
+        <version>4.0.1</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
@@ -362,10 +368,12 @@
         <artifactId>javax.ws.rs-api</artifactId>
         <version>2.1</version>
       </dependency>
+      <!-- For JDK 9+ the JAXB dependency must be explicit. Additionally, 2.2.12 is the latest -->
+      <!-- version that supports JDK 8 (2.3.x causes issues with Jetty on JDK 8) -->
       <dependency>
         <groupId>javax.xml.bind</groupId>
         <artifactId>jaxb-api</artifactId>
-        <version>2.3.0</version>
+        <version>2.2.12</version>
       </dependency>
       <dependency>
         <groupId>org.apache.avro</groupId>
@@ -380,12 +388,12 @@
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
-        <version>4.5.3</version>
+        <version>4.5.6</version>
       </dependency>
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpcore</artifactId>
-        <version>4.4.8</version>
+        <version>4.4.10</version>
       </dependency>
       <dependency>
         <groupId>org.apache.tomcat</groupId>
@@ -445,7 +453,7 @@
       <dependency>
         <groupId>org.jooq</groupId>
         <artifactId>jooq</artifactId>
-        <version>3.10.1</version>
+        <version>3.11.3</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
@@ -483,7 +491,7 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>2.12.0</version>
+        <version>2.21.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -671,7 +679,7 @@
           <dependency>
             <groupId>org.apache.maven.scm</groupId>
             <artifactId>maven-scm-provider-gitexe</artifactId>
-            <version>1.9.4</version>
+            <version>1.10.0</version>
           </dependency>
         </dependencies>
       </plugin>
