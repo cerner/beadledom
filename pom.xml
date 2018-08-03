@@ -639,9 +639,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>${maven-project-info-reports-plugin.version}</version>
-        <configuration>
-          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
@@ -848,16 +845,13 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven-javadoc-plugin.version}</version>
           <configuration>
-            <additionalparam>-Xdoclint:none</additionalparam>
+            <additionalOptions>-Xdoclint:none</additionalOptions>
           </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>${maven-project-info-reports-plugin.version}</version>
-          <configuration>
-            <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -917,9 +911,6 @@
             <reports/>
           </reportSet>
         </reportSets>
-        <configuration>
-          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-        </configuration>
       </plugin>
     </plugins>
   </reporting>
