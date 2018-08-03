@@ -3,10 +3,12 @@
 Beadledom 3.0
 =============
 
-Released <Date>
+Released August 3rd, 2018
 
 New Features
 ------------
+
+- Support building with JDK 9/10+
 
 Migrating from Beadledom 2.0
 ----------------------------

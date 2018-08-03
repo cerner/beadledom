@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 3.0 - In Development
+## 3.0 - 3 August 2018
 
 ### Breaking Changes
 * Remove StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, AvroSwaggerGuiceModule, and 
@@ -14,6 +14,7 @@ swagger 2 and OpenAPI 3.
 
 ### Enhancements
 * Support building with JDK 9/10+
+* Add [migration guide](http://engineering.cerner.com/beadledom/3.0/docs/releases/Beadledom30.html) to documentation site.
 
 ### Defects Corrected
 * Fixed health DTOs Jackson deserialization.
