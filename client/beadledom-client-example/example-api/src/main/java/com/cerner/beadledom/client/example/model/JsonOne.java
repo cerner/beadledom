@@ -12,7 +12,7 @@ import com.google.auto.value.AutoValue;
  * @author John Leacox
  */
 @AutoValue
-@JsonDeserialize(builder = AutoValue_JsonOne.Builder.class)
+@JsonDeserialize(builder = JsonOne.Builder.class)
 public abstract class JsonOne {
 
   public static Builder builder() {
@@ -41,6 +41,11 @@ public abstract class JsonOne {
   @AutoValue.Builder
   @JsonPOJOBuilder(withPrefix = "set")
   public abstract static class Builder {
+
+    @JsonCreator
+    private static Builder create() {
+      return JsonOne.builder();
+    }
 
     public abstract Builder setOne(String one);
 
