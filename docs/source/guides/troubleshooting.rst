@@ -39,7 +39,7 @@ Problem
 
 
 Swagger
-----------------
+-------
 
 I am seeing resources from clients being treated as service resource by swagger
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
