@@ -45,7 +45,7 @@ import java.lang.annotation.Annotation;
  *   <li>
  *     {@link JacksonJsonProvider} annotated with the given
  *     {@link AnnotatedJacksonModule#clientBindingAnnotation} via a guice provider
- *     {@link ObjectMapperClientProvider}
+ *     {@link AnnotatedObjectMapperProvider}
  *   </li>
  *   <li>
  *     A {@link Multibinder} for {@link SerializationFeatureFlag} annotated with

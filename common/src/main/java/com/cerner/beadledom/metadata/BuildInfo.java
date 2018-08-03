@@ -33,11 +33,11 @@ import org.slf4j.LoggerFactory;
  * <p>If using project.build.date property in the build-info.properties file create the timestamp
  * property in the pom.xml.
  *
- * <pre>
+ * <pre>{@code
  * <properties>
  *   <mvn.build.timestamp>${maven.build.timestamp}</mvn.build.timestamp>
  * </properties>
- * </pre>
+ * }</pre>
  *
  * <p>Maven does not let you pass the maven.build.timestamp property that's why this work around
  * is needed. If curious about the reason Ref: https://issues.apache.org/jira/browse/MRESOURCES-99.
