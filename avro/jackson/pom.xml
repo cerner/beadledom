@@ -4,7 +4,7 @@
   <parent>
     <artifactId>beadledom-avro-parent</artifactId>
     <groupId>com.cerner.beadledom.avro</groupId>
-    <version>3.0</version>
+    <version>3.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>beadledom-avro-jackson</artifactId>
