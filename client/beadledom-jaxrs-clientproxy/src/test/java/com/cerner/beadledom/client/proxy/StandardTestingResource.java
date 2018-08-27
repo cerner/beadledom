@@ -10,5 +10,7 @@ import javax.ws.rs.core.Response;
 public interface StandardTestingResource {
   Response getGeneric();
 
+  Response getGenericWithNoType();
+
   Response getStandard();
 }

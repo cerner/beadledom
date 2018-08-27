@@ -14,5 +14,7 @@ public interface GenericTestingResource {
 
   GenericResponse<String> getGenericWithParameter(String input);
 
+  GenericResponse getGenericWithNoType();
+
   Response getStandard();
 }
