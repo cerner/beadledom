@@ -1,5 +1,14 @@
 # Beadledom Changelog
 
+## 3.1 - TBD
+
+### Breaking Changes
+
+### Enhancements
+
+### Defects Corrected
+* Fixed beadledom client deserialization to GenericResponse when the JAX-RS response has no entity.
+
 ## 3.0 - 3 August 2018
 
 ### Breaking Changes
