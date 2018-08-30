@@ -57,6 +57,7 @@
     <module>json-common</module>
     <module>lifecycle</module>
     <module>lifecycle-governator</module>
+    <module>pagination</module>
     <module>newrelic-jaxrs</module>
     <module>resteasy</module>
     <module>resteasy-genericresponse</module>
