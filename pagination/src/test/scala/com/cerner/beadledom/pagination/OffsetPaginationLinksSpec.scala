@@ -12,6 +12,7 @@ import scala.collection.JavaConverters._
  * Spec for OffsetPaginationLinks.
  *
  * @author John Leacox
+ * @author Ian Kottman
  */
 class OffsetPaginationLinksSpec extends FunSpec with MustMatchers with MockitoSugar {
   private val list = OffsetPaginatedList.builder()
