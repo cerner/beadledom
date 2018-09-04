@@ -202,6 +202,11 @@
       </dependency>
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
+        <artifactId>beadledom-pagination</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.cerner.beadledom</groupId>
         <artifactId>beadledom-resteasy-genericresponse</artifactId>
         <version>${project.version}</version>
       </dependency>

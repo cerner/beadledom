@@ -1,5 +1,7 @@
 package com.cerner.beadledom.client.example;
 
+import com.cerner.beadledom.pagination.BeadledomPaginationModule;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,6 +25,8 @@ public class FauxModule extends AbstractModule {
     install(new RequestScopeModule());
     bind(ResourceOne.class).to(ResourceOneImpl.class);
     bind(ResourceTwo.class).to(ResourceTwoImpl.class);
+    bind(PaginatedResource.class).to(PaginatedResourceImpl.class);
+    install(new BeadledomPaginationModule());
   }
 
   @Provides

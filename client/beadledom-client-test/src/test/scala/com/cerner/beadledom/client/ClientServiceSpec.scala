@@ -1,11 +1,14 @@
 package com.cerner.beadledom.client
 
 import com.cerner.beadledom.client.example.client._
-import com.cerner.beadledom.client.example.model.{JsonOne, JsonTwo}
-import com.cerner.beadledom.client.example.{ResourceOne, ResourceTwo}
+import com.cerner.beadledom.client.example.model.{JsonTwo, JsonOne}
+import com.cerner.beadledom.client.example.{ResourceOne, PaginatedClientResource, ResourceTwo}
+import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
+
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.google.inject._
-import org.scalatest.{BeforeAndAfter, DoNotDiscover, FunSpec, MustMatchers}
+
+import org.scalatest.{DoNotDiscover, FunSpec, BeforeAndAfter, MustMatchers}
 
 /**
  * Specs to test the Clients of a service.
@@ -13,7 +16,7 @@ import org.scalatest.{BeforeAndAfter, DoNotDiscover, FunSpec, MustMatchers}
 @DoNotDiscover
 class ClientServiceSpec(contextRoot: String, servicePort: Int)
     extends FunSpec with MustMatchers with BeforeAndAfter {
-  val baseUri = s"http://localhost:$servicePort/$contextRoot"
+  val baseUri = s"http://localhost:$servicePort$contextRoot"
 
   def getInjector(modules: List[Module]): Injector = {
     val module = new AbstractModule() {
@@ -63,6 +66,38 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
         val mapper = injector.getInstance(Key.get(classOf[ObjectMapper]))
 
         mapper.isEnabled(SerializationFeature.INDENT_OUTPUT) must be(false)
+      }
+    }
+
+    describe("Pagination") {
+      it("injects pagination links to the response") {
+        val injector = getInjector(List(new ResourceOneModule))
+
+        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
+
+        val results : OffsetPaginatedListDto[JsonOne] = paginatedResource.index(0L, 10).body()
+
+        results mustNot be(null)
+        results.totalResults() mustBe 1000
+        results.firstLink() mustBe s"$baseUri/paginated?offset=0&limit=10"
+        results.lastLink() mustBe s"$baseUri/paginated?offset=990&limit=10"
+        results.prevLink() mustBe null
+        results.nextLink() mustBe s"$baseUri/paginated?offset=10&limit=10"
+      }
+
+      it("injects previous link when beyond the first page") {
+        val injector = getInjector(List(new ResourceOneModule))
+
+        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
+
+        val results : OffsetPaginatedListDto[JsonOne] = paginatedResource.index(1L, 10).body()
+
+        results mustNot be(null)
+        results.totalResults() mustBe 1000
+        results.firstLink() mustBe s"$baseUri/paginated?offset=0&limit=10"
+        results.lastLink() mustBe s"$baseUri/paginated?offset=990&limit=10"
+        results.prevLink() mustBe s"$baseUri/paginated?offset=0&limit=10"
+        results.nextLink() mustBe s"$baseUri/paginated?offset=11&limit=10"
       }
     }
 
