@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 /**
- * Proxy client interface for PaginatedResource
+ * Proxy client interface for PaginatedResource.
  *
  * @author Ian Kottman
  */

@@ -11,7 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 /**
- * Example paginated resource
+ * Example paginated resource.
  *
  * @author Ian Kottman
  */
