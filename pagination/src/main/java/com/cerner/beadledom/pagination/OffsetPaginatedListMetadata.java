@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
  * Metadata for an offset based pagination list.
  *
  * @author Will Pruyn
- * @since 2.7
+ * @since 2.9
  */
 @AutoValue
 public abstract class OffsetPaginatedListMetadata {

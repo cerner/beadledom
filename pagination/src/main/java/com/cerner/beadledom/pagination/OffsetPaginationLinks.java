@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author John Leacox
  * @author Will Pruyn
- * @since 2.7
+ * @since 2.9
  */
 class OffsetPaginationLinks {
   private final Logger logger = LoggerFactory.getLogger(OffsetPaginationLinks.class);

@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Brian van de Boogaard
  * @author Will Pruyn
- * @since 2.7
+ * @since 2.9
  */
 public abstract class AbstractParameter<T> {
   private T value;

@@ -15,7 +15,7 @@ import javax.ws.rs.ext.WriterInterceptorContext;
  *
  * @author John Leacox
  * @author Will Pruyn
- * @since 2.7
+ * @since 2.9
  */
 @Provider
 public class OffsetPaginatedListLinksWriterInterceptor implements WriterInterceptor {

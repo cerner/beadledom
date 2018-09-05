@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
  * <p>Represents an offset based paginated list in a rest response.
  *
  * @author John Leacox
- * @since 2.7
+ * @since 2.9
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AutoValue

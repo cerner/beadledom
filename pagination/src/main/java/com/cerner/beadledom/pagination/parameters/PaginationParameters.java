@@ -11,7 +11,7 @@ import javax.ws.rs.core.UriInfo;
  * *NOTE* This will not work with configured field names.
  *
  * @author Will Pruyn
- * @since 2.7
+ * @since 2.9
  */
 public class PaginationParameters {
   @Context

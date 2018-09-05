@@ -11,7 +11,7 @@ import java.util.Objects;
  * JSON response.
  *
  * @author Brian van de Boogaard
- * @since 2.7
+ * @since 2.9
  */
 public final class InvalidParameterException extends RuntimeException {
   private final String message;
