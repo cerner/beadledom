@@ -13,7 +13,7 @@ import javax.ws.rs.core.UriInfo;
  * @author Will Pruyn
  * @since 2.9
  */
-public class PaginationParameters {
+public class OffsetPaginationParameters {
   @Context
   UriInfo uriInfo;
 

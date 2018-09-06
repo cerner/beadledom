@@ -14,12 +14,12 @@ import org.scalatest.{FunSpec, MustMatchers}
   *
   * @author Ian Kottman
   */
-class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSugar {
-  describe("PaginationParameters") {
+class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with MockitoSugar {
+  describe("OffsetPaginationParameters") {
     describe("#getLimit") {
       it("returns the default limit if no query parameter is present") {
         val injector = Guice.createInjector(new BeadledomPaginationModule())
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
         params.getLimit mustBe 20
@@ -27,7 +27,7 @@ class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSug
 
       it("returns the limit from the query parameter when present") {
         val injector = Guice.createInjector(new BeadledomPaginationModule())
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo(queryParams = ("limit", "10"))
 
         params.getLimit mustBe 10
@@ -36,7 +36,7 @@ class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSug
       it("returns the limit from a custom limit parameter") {
         val injector =
           Guice.createInjector(new BeadledomPaginationModule("test_limit", "test_offset"))
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo(queryParams = ("test_limit", "10"))
 
         params.getLimit mustBe 10
@@ -45,7 +45,7 @@ class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSug
       it("returns the custom default limit when no query parameter is present") {
         val injector =
           Guice.createInjector(new BeadledomPaginationModule(50, 0L))
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
         params.getLimit mustBe 50
@@ -55,7 +55,7 @@ class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSug
     describe("#getOffset") {
       it("returns the default offset if it cannot find the limit parameter") {
         val injector = Guice.createInjector(new BeadledomPaginationModule())
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
         params.getOffset mustBe 0
@@ -63,7 +63,7 @@ class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSug
 
       it("returns the offset from the query parameter when present") {
         val injector = Guice.createInjector(new BeadledomPaginationModule())
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo(queryParams = ("offset", "30"))
 
         params.getOffset mustBe 30
@@ -72,7 +72,7 @@ class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSug
       it("returns the limit from a custom offset parameter") {
         val injector =
           Guice.createInjector(new BeadledomPaginationModule("test_limit", "test_offset"))
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo(queryParams = ("test_offset", "1"))
 
         params.getOffset mustBe 1L
@@ -81,7 +81,7 @@ class PaginationParametersSpec extends FunSpec with MustMatchers with MockitoSug
       it("returns the custom default offset when no query parameter is present") {
         val injector =
           Guice.createInjector(new BeadledomPaginationModule(50, 2L))
-        val params = injector.getInstance(classOf[PaginationParameters])
+        val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
         params.getOffset mustBe 2L

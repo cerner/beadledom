@@ -4,7 +4,7 @@ import com.cerner.beadledom.client.example.model.JsonOne;
 import com.cerner.beadledom.jaxrs.GenericResponse;
 import com.cerner.beadledom.jaxrs.GenericResponses;
 import com.cerner.beadledom.pagination.OffsetPaginatedList;
-import com.cerner.beadledom.pagination.parameters.PaginationParameters;
+import com.cerner.beadledom.pagination.parameters.OffsetPaginationParameters;
 
 import com.google.common.collect.Lists;
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.ws.rs.BeanParam;
 public class PaginatedResourceImpl implements PaginatedResource {
   @Override
   public GenericResponse<OffsetPaginatedList<JsonOne>> index(
-      @BeanParam PaginationParameters paginationParams) {
+      @BeanParam OffsetPaginationParameters paginationParams) {
     List<JsonOne> items = Lists.newArrayList();
     for (int i = 0; i < 1000; i++) {
       items.add(JsonOne.create("One", "Hello World"));
