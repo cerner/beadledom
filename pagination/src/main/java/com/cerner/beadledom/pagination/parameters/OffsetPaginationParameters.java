@@ -8,7 +8,9 @@ import javax.ws.rs.core.UriInfo;
  *
  * <p>This class can be added with the @BeanParam annotation to add the query parameters needed
  * to support offset based pagination. Allows for injection of default values for limit and offset.
- * *NOTE* This will not work with configured field names.
+ * </p>
+ *
+ * <p>*NOTE* This will not work with configured field names.</p>
  *
  * @author Will Pruyn
  * @since 2.9
@@ -20,6 +22,7 @@ public class OffsetPaginationParameters {
   /**
    * Retrieves the value of the limit field from the request. Will use the configured field name
    * to find the parameter.
+   *
    * @return The value of the limit.
    */
   public Integer getLimit() {
@@ -33,6 +36,7 @@ public class OffsetPaginationParameters {
   /**
    * Retrieves the value of the offset field from the request. Will use the configured field name
    * to find the parameter
+   *
    * @return The value of the offset.
    */
   public Long getOffset() {
