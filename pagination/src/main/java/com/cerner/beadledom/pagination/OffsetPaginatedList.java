@@ -23,7 +23,7 @@ public abstract class OffsetPaginatedList<T> {
 
   /**
    * Returns the {@link OffsetPaginatedListMetadata} for the {@link OffsetPaginatedList};
-   * {@link BeadledomPaginationModule}.
+   * {@link OffsetPaginationModule}.
    */
   public abstract OffsetPaginatedListMetadata metadata();
 

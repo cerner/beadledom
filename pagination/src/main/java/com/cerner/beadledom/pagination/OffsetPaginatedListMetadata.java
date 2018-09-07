@@ -32,7 +32,7 @@ public abstract class OffsetPaginatedListMetadata {
   /**
    * Returns the page offset that was used to create the current page; null if not set.
    * Uses the configured default field value if not set, null if not using
-   * {@link BeadledomPaginationModule}.
+   * {@link OffsetPaginationModule}.
    */
   @Nullable
   public abstract Long offset();
@@ -40,7 +40,7 @@ public abstract class OffsetPaginatedListMetadata {
   /**
    * Returns the name of the page offset field that was used to create the current page;
    * Uses the configured default field name if not set, null if not using
-   * {@link BeadledomPaginationModule}.
+   * {@link OffsetPaginationModule}.
    */
   @Nullable
   public abstract String offsetFieldName();
@@ -48,7 +48,7 @@ public abstract class OffsetPaginatedListMetadata {
   /**
    * Returns the page limit that was used to create the current page; null if not set.
    * Uses the configured default field value if not set, null if not using
-   * {@link BeadledomPaginationModule}.
+   * {@link OffsetPaginationModule}.
    */
   @Nullable
   public abstract Integer limit();
@@ -56,7 +56,7 @@ public abstract class OffsetPaginatedListMetadata {
   /**
    * Returns the name of the page limit field that was used to create the current page;
    * Uses the configured default field name if not set, null if not using
-   * {@link BeadledomPaginationModule}.
+   * {@link OffsetPaginationModule}.
    */
   @Nullable
   public abstract String limitFieldName();

@@ -20,7 +20,7 @@ import javax.inject.Singleton;
  * @author Will Pruyn
  * @since 3.1
  */
-public class BeadledomPaginationModule extends AbstractModule {
+public class OffsetPaginationModule extends AbstractModule {
   private final Integer defaultLimit;
   private final String defaultLimitFieldName;
   private final Long defaultOffset;
@@ -34,7 +34,7 @@ public class BeadledomPaginationModule extends AbstractModule {
   /**
    * Default constructor that sets the configurable fields using the Beadledom defaults.
    */
-  public BeadledomPaginationModule() {
+  public OffsetPaginationModule() {
     this.defaultLimit = BEADLEDOM_DEFAULT_LIMIT;
     this.defaultOffset = BEADLEDOM_DEFAULT_OFFSET;
     this.defaultLimitFieldName = BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
@@ -47,7 +47,7 @@ public class BeadledomPaginationModule extends AbstractModule {
    * @param defaultLimit the default value for the limit field; 20 if null.
    * @param defaultOffset the default value for the offset field; 0 if null.
    */
-  public BeadledomPaginationModule(Integer defaultLimit, Long defaultOffset) {
+  public OffsetPaginationModule(Integer defaultLimit, Long defaultOffset) {
     this.defaultLimit = defaultLimit != null ? defaultLimit : BEADLEDOM_DEFAULT_LIMIT;
     this.defaultOffset = defaultOffset != null ? defaultOffset : BEADLEDOM_DEFAULT_OFFSET;
     this.defaultLimitFieldName = BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
@@ -60,7 +60,7 @@ public class BeadledomPaginationModule extends AbstractModule {
    * @param defaultLimitFieldName the default value for the limit field name; limit if null.
    * @param defaultOffsetFieldName the default value for the offset field name; offset if null.
    */
-  public BeadledomPaginationModule(
+  public OffsetPaginationModule(
       String defaultLimitFieldName, String defaultOffsetFieldName) {
     this.defaultLimit = BEADLEDOM_DEFAULT_LIMIT;
     this.defaultOffset = BEADLEDOM_DEFAULT_OFFSET;
@@ -78,7 +78,7 @@ public class BeadledomPaginationModule extends AbstractModule {
    * @param defaultOffsetFieldName the default value for the offset field name; offset if null.
    * @param defaultOffset the default value for the offset field; 0 if null.
    */
-  public BeadledomPaginationModule(
+  public OffsetPaginationModule(
       String defaultLimitFieldName, Integer defaultLimit, String defaultOffsetFieldName,
       Long defaultOffset) {
     this.defaultLimit = defaultLimit != null ? defaultLimit : BEADLEDOM_DEFAULT_LIMIT;

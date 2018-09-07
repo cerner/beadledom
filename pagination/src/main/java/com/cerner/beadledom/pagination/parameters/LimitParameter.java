@@ -1,6 +1,6 @@
 package com.cerner.beadledom.pagination.parameters;
 
-import com.cerner.beadledom.pagination.BeadledomPaginationModule;
+import com.cerner.beadledom.pagination.OffsetPaginationModule;
 import com.cerner.beadledom.pagination.parameters.exceptions.InvalidParameterException;
 
 import com.google.inject.Inject;
@@ -80,7 +80,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
 
   /**
    * Retrieves the configured default limit value; null if not using the
-   * {@link BeadledomPaginationModule}.
+   * {@link OffsetPaginationModule}.
    * @return the default limit value.
    */
   public static Integer getDefaultLimit() {
@@ -89,7 +89,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
 
   /**
    * Retrieves the configured default limit field name; null if not using the
-   * {@link BeadledomPaginationModule}.
+   * {@link OffsetPaginationModule}.
    * @return the default limit field name.
    */
   public static String getDefaultLimitFieldName() {
