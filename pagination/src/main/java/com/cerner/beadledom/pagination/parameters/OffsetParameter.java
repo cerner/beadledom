@@ -7,7 +7,6 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-
 import javax.validation.constraints.Pattern;
 
 /**
