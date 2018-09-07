@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
  *
  * @author Brian van de Boogaard
  * @author Will Pruyn
- * @since 2.9
+ * @since 3.1
  */
 @ApiModel
 public class OffsetParameter extends AbstractParameter<Long> {

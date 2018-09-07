@@ -12,7 +12,7 @@ import java.util.List;
  * Offset based pagination list.
  *
  * @author Will Pruyn
- * @since 2.9
+ * @since 3.1
  */
 @AutoValue
 public abstract class OffsetPaginatedList<T> {

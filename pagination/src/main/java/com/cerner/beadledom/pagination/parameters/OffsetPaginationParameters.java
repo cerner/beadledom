@@ -13,7 +13,7 @@ import javax.ws.rs.core.UriInfo;
  * <p>*NOTE* This will not work with configured field names.</p>
  *
  * @author Will Pruyn
- * @since 2.9
+ * @since 3.1
  */
 public class OffsetPaginationParameters {
   @Context

@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.1 - TBD
+
+### Additions
+* Add Offset based pagination with beadledom-pagination
+
 ## 3.0 - 3 August 2018
 
 ### Breaking Changes
@@ -18,11 +23,6 @@ swagger 2 and OpenAPI 3.
 
 ### Defects Corrected
 * Fixed health DTOs Jackson deserialization.
-
-## 2.9 - September 5 2018
-
-### Additions
-* Add Offset based pagination with beadledom-pagination 
 
 ## 2.8 - 16 May 2018
 

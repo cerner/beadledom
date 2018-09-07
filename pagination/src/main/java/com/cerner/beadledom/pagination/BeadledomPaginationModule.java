@@ -18,7 +18,7 @@ import javax.inject.Singleton;
  * their respective field names can be configured using one of the provided constructors.
  *
  * @author Will Pruyn
- * @since 2.9
+ * @since 3.1
  */
 public class BeadledomPaginationModule extends AbstractModule {
   private final Integer defaultLimit;
