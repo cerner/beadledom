@@ -1,9 +1,8 @@
 package com.cerner.beadledom.client
 
 import com.cerner.beadledom.client.example.client._
-import com.cerner.beadledom.client.example.model.{JsonTwo, JsonOne}
+import com.cerner.beadledom.client.example.model.{JsonTwo, JsonOneOffsetPaginatedListDto, JsonOne}
 import com.cerner.beadledom.client.example.{ResourceOne, PaginatedClientResource, ResourceTwo}
-import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
 
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.google.inject._
@@ -75,10 +74,11 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : OffsetPaginatedListDto[JsonOne] = paginatedResource.index(0L, 10).body()
+        val results : JsonOneOffsetPaginatedListDto = paginatedResource.index(0L, 10).body()
 
         results mustNot be(null)
         results.totalResults() mustBe 1000
+        results.items().get(0).getHello mustBe "Hello World"
         results.firstLink() mustBe s"$baseUri/paginated?offset=0&limit=10"
         results.lastLink() mustBe s"$baseUri/paginated?offset=990&limit=10"
         results.prevLink() mustBe null
@@ -90,10 +90,11 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : OffsetPaginatedListDto[JsonOne] = paginatedResource.index(1L, 10).body()
+        val results : JsonOneOffsetPaginatedListDto = paginatedResource.index(1L, 10).body()
 
         results mustNot be(null)
         results.totalResults() mustBe 1000
+        results.items().get(0).getHello mustBe "Hello World"
         results.firstLink() mustBe s"$baseUri/paginated?offset=0&limit=10"
         results.lastLink() mustBe s"$baseUri/paginated?offset=990&limit=10"
         results.prevLink() mustBe s"$baseUri/paginated?offset=0&limit=10"

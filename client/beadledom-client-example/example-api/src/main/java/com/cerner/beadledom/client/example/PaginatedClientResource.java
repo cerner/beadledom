@@ -1,8 +1,7 @@
 package com.cerner.beadledom.client.example;
 
-import com.cerner.beadledom.client.example.model.JsonOne;
+import com.cerner.beadledom.client.example.model.JsonOneOffsetPaginatedListDto;
 import com.cerner.beadledom.jaxrs.GenericResponse;
-import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,7 +17,7 @@ import javax.ws.rs.QueryParam;
 public interface PaginatedClientResource {
   @GET
   @Produces("application/json")
-  GenericResponse<OffsetPaginatedListDto<JsonOne>> index(
+  GenericResponse<JsonOneOffsetPaginatedListDto> index(
       @QueryParam("offset") final Long offset,
       @QueryParam("limit") final Integer limit);
 }
