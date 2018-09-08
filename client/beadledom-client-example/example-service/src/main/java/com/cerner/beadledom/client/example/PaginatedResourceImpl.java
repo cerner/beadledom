@@ -5,7 +5,6 @@ import com.cerner.beadledom.jaxrs.GenericResponse;
 import com.cerner.beadledom.jaxrs.GenericResponses;
 import com.cerner.beadledom.pagination.OffsetPaginatedList;
 import com.cerner.beadledom.pagination.parameters.OffsetPaginationParameters;
-
 import com.google.common.collect.Lists;
 import java.util.List;
 import javax.ws.rs.BeanParam;
@@ -26,7 +25,7 @@ public class PaginatedResourceImpl implements PaginatedResource {
 
     OffsetPaginatedList<JsonOne> body = OffsetPaginatedList.<JsonOne>builder()
         .items(items)
-        .metadata(paginationParams.getLimit(), paginationParams.getOffset(), 1000L, null)
+        .metadata(1000L)
         .build();
 
     return GenericResponses.ok(body).build();

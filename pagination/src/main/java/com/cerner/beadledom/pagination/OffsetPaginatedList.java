@@ -87,6 +87,20 @@ public abstract class OffsetPaginatedList<T> {
           OffsetParameter.getDefaultOffsetFieldName(), offset, totalResults, hasMore);
     }
 
+    /**
+     * Convenience method that creates metadata with total results and default field names
+     * without having to manually build a {@link OffsetPaginatedListMetadata} object.
+     *
+     * @param totalResults the total results available.
+     * @return The {@link Builder} being used for the {@link OffsetPaginatedList}.
+     */
+    public OffsetPaginatedList.Builder<T> metadata(Long totalResults) {
+      return metadata(
+          LimitParameter.getDefaultLimitFieldName(), null,
+          OffsetParameter.getDefaultOffsetFieldName(), null,
+          totalResults, null);
+    }
+
     public abstract OffsetPaginatedList<T> build();
   }
 }
