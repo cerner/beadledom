@@ -2,7 +2,6 @@ package com.cerner.beadledom.pagination;
 
 import com.cerner.beadledom.pagination.parameters.LimitParameter;
 import com.cerner.beadledom.pagination.parameters.OffsetParameter;
-
 import javax.ws.rs.core.UriInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

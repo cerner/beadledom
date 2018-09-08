@@ -2,7 +2,6 @@ package com.cerner.beadledom.pagination;
 
 import com.cerner.beadledom.pagination.parameters.LimitParameter;
 import com.cerner.beadledom.pagination.parameters.OffsetParameter;
-
 import com.google.auto.value.AutoValue;
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,6 @@ package com.cerner.beadledom.pagination;
 
 import com.cerner.beadledom.pagination.parameters.LimitParameter;
 import com.cerner.beadledom.pagination.parameters.OffsetParameter;
-
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Named;

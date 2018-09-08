@@ -1,7 +1,6 @@
 package com.cerner.beadledom.pagination.parameters.exceptions;
 
 import com.cerner.beadledom.json.common.model.ErrorDetail;
-
 import java.util.List;
 import java.util.Objects;
 

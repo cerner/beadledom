@@ -1,10 +1,9 @@
 package com.cerner.beadledom.pagination
 
-import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
-
-import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
-
 import javax.ws.rs.core.UriInfo
+
+import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
+import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when

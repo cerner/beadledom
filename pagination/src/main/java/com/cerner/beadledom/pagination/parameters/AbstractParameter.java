@@ -2,7 +2,6 @@ package com.cerner.beadledom.pagination.parameters;
 
 import com.cerner.beadledom.json.common.model.JsonError;
 import com.cerner.beadledom.pagination.parameters.exceptions.InvalidParameterException;
-
 import java.util.Optional;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;

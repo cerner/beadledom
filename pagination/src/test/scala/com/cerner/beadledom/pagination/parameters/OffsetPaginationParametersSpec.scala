@@ -1,10 +1,9 @@
 package com.cerner.beadledom.pagination.parameters
 
-import com.cerner.beadledom.pagination.OffsetPaginationModule
-
-import com.google.inject.Guice
-
 import javax.ws.rs.core.UriInfo
+
+import com.cerner.beadledom.pagination.OffsetPaginationModule
+import com.google.inject.Guice
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
