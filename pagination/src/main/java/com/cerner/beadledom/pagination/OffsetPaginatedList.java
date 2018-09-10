@@ -5,6 +5,7 @@ import com.cerner.beadledom.pagination.parameters.OffsetParameter;
 import com.google.auto.value.AutoValue;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Offset based pagination list.
@@ -57,8 +58,8 @@ public abstract class OffsetPaginatedList<T> {
      * @return The {@link Builder} being used for the {@link OffsetPaginatedList}.
      */
     public OffsetPaginatedList.Builder<T> metadata(
-        String limitFieldName, Integer limit, String offsetFieldName, Long offset,
-        Long totalResults, Boolean hasMore) {
+        @Nullable String limitFieldName, @Nullable Integer limit, @Nullable String offsetFieldName,
+        @Nullable Long offset, @Nullable Long totalResults, @Nullable Boolean hasMore) {
       return metadata(OffsetPaginatedListMetadata.builder()
           .limitFieldName(limitFieldName)
           .limit(limit)
@@ -81,7 +82,8 @@ public abstract class OffsetPaginatedList<T> {
      * @return The {@link Builder} being used for the {@link OffsetPaginatedList}.
      */
     public OffsetPaginatedList.Builder<T> metadata(
-        Integer limit, Long offset, Long totalResults, Boolean hasMore) {
+        @Nullable Integer limit, @Nullable Long offset, @Nullable Long totalResults,
+        @Nullable Boolean hasMore) {
       return metadata(
           LimitParameter.getDefaultLimitFieldName(), limit,
           OffsetParameter.getDefaultOffsetFieldName(), offset, totalResults, hasMore);
@@ -94,7 +96,7 @@ public abstract class OffsetPaginatedList<T> {
      * @param totalResults the total results available.
      * @return The {@link Builder} being used for the {@link OffsetPaginatedList}.
      */
-    public OffsetPaginatedList.Builder<T> metadata(Long totalResults) {
+    public OffsetPaginatedList.Builder<T> metadata(@Nullable Long totalResults) {
       return metadata(
           LimitParameter.getDefaultLimitFieldName(), null,
           OffsetParameter.getDefaultOffsetFieldName(), null,
