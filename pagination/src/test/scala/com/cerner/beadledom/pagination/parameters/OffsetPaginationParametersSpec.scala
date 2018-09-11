@@ -4,7 +4,8 @@ import javax.ws.rs.core.UriInfo
 
 import com.cerner.beadledom.pagination.OffsetPaginationModule
 import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration
-import com.google.inject.Guice
+import com.google.inject.multibindings.OptionalBinder
+import com.google.inject.{AbstractModule, Guice, Injector}
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
@@ -37,7 +38,7 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
         val paginationConfig = OffsetPaginationConfiguration.builder()
           .setLimitFieldName("test_limit")
           .build()
-        val injector = Guice.createInjector(new OffsetPaginationModule(paginationConfig))
+        val injector = getInjector(paginationConfig)
         val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo(queryParams = ("test_limit", "10"))
 
@@ -46,7 +47,7 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
 
       it("returns the custom default limit when no query parameter is present") {
         val paginationConfig = OffsetPaginationConfiguration.builder().setDefaultLimit(50).build()
-        val injector = Guice.createInjector(new OffsetPaginationModule(paginationConfig))
+        val injector = getInjector(paginationConfig)
         val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
@@ -75,7 +76,7 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
         val paginationConfig = OffsetPaginationConfiguration.builder()
           .setOffsetFieldName("test_offset")
           .build()
-        val injector = Guice.createInjector(new OffsetPaginationModule(paginationConfig))
+        val injector = getInjector(paginationConfig)
         val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo(queryParams = ("test_offset", "1"))
 
@@ -84,7 +85,7 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
 
       it("returns the custom default offset when no query parameter is present") {
         val paginationConfig = OffsetPaginationConfiguration.builder().setDefaultOffset(2L).build()
-        val injector = Guice.createInjector(new OffsetPaginationModule(paginationConfig))
+        val injector = getInjector(paginationConfig)
         val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
@@ -100,5 +101,19 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
     val uriInfo = new ResteasyUriInfo("example.com", queryString, "")
 
     uriInfo
+  }
+
+  private def getInjector(paginationConfig: OffsetPaginationConfiguration): Injector = {
+    val module = new AbstractModule() {
+      override def configure(): Unit = {
+        install(new OffsetPaginationModule)
+
+        OptionalBinder.newOptionalBinder(binder, classOf[OffsetPaginationConfiguration])
+          .setBinding()
+          .toInstance(paginationConfig)
+      }
+    }
+
+    Guice.createInjector(module)
   }
 }

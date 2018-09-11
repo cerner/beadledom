@@ -105,7 +105,7 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(-1L, 20)
+        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(-1L, 1)
 
         results mustNot be(null)
         results.getStatus mustBe 400
@@ -127,7 +127,7 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, 201)
+        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, 20)
 
         results mustNot be(null)
         results.getStatus mustBe 400

@@ -5,6 +5,7 @@ import com.cerner.beadledom.pagination.parameters.LimitParameter;
 import com.cerner.beadledom.pagination.parameters.OffsetParameter;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.multibindings.OptionalBinder;
 import com.google.inject.name.Named;
 import javax.inject.Singleton;
 
@@ -21,25 +22,15 @@ import javax.inject.Singleton;
  * @since 3.1
  */
 public class OffsetPaginationModule extends AbstractModule {
-  private final OffsetPaginationConfiguration config;
-
-  /**
-   * Default constructor that sets the configurable fields using the Beadledom defaults. For
-   * the default values see {@link OffsetPaginationConfiguration}
-   */
-  public OffsetPaginationModule() {
-    this.config = OffsetPaginationConfiguration.builder().build();
-  }
-
-  /**
-   * Override Beadledom defaults.
-   */
-  public OffsetPaginationModule(OffsetPaginationConfiguration config) {
-    this.config = config;
-  }
-
   @Override
   protected void configure() {
+    // provide default configuration
+    OptionalBinder
+        .newOptionalBinder(
+            binder(),
+            OffsetPaginationConfiguration.class)
+        .setDefault().toInstance(OffsetPaginationConfiguration.builder().build());
+
     requestStaticInjection(LimitParameter.class);
     requestStaticInjection(OffsetParameter.class);
 
@@ -49,35 +40,35 @@ public class OffsetPaginationModule extends AbstractModule {
   @Provides
   @Singleton
   @Named("defaultLimit")
-  Integer provideDefaultLimit() {
+  Integer provideDefaultLimit(OffsetPaginationConfiguration config) {
     return config.defaultLimit();
   }
 
   @Provides
   @Singleton
   @Named("maxLimit")
-  Integer provideMaxLimit() {
+  Integer provideMaxLimit(OffsetPaginationConfiguration config) {
     return config.maxLimit();
   }
 
   @Provides
   @Singleton
   @Named("defaultOffset")
-  Long provideDefaultOffset() {
+  Long provideDefaultOffset(OffsetPaginationConfiguration config) {
     return config.defaultOffset();
   }
 
   @Provides
   @Singleton
   @Named("limitFieldName")
-  String provideLimitFieldName() {
+  String provideLimitFieldName(OffsetPaginationConfiguration config) {
     return config.limitFieldName();
   }
 
   @Provides
   @Singleton
   @Named("offsetFieldName")
-  String provideOffsetFieldName() {
+  String provideOffsetFieldName(OffsetPaginationConfiguration config) {
     return config.offsetFieldName();
   }
 }

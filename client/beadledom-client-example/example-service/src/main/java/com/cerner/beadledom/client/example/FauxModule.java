@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.multibindings.OptionalBinder;
 import javax.inject.Singleton;
 import org.jboss.resteasy.plugins.guice.ext.RequestScopeModule;
 
@@ -28,9 +29,16 @@ public class FauxModule extends AbstractModule {
     bind(PaginatedResource.class).to(PaginatedResourceImpl.class);
 
     OffsetPaginationConfiguration paginationConfig = OffsetPaginationConfiguration.builder()
-        .setMaxLimit(200)
+        .setDefaultLimit(10)
+        .setMaxLimit(10)
         .build();
-    install(new OffsetPaginationModule(paginationConfig));
+    OptionalBinder
+        .newOptionalBinder(
+            binder(),
+            OffsetPaginationConfiguration.class)
+        .setBinding().toInstance(paginationConfig);
+
+    install(new OffsetPaginationModule());
   }
 
   @Provides
