@@ -52,7 +52,7 @@ class GenericClientProxy implements InvocationHandler {
   private Object buildGenericResponse(Method method, Response response) {
     int code = response.getStatus();
     Object entity = null;
-    if (!(code < 200 || code >= 300)) {
+    if (!(code < 200 || code >= 300) && response.hasEntity()) {
       ParameterizedType genericReturnType = (ParameterizedType) method.getGenericReturnType();
       Type bodyType = genericReturnType.getActualTypeArguments()[0];
 
