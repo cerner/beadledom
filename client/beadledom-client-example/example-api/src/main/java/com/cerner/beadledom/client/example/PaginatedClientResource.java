@@ -2,7 +2,6 @@ package com.cerner.beadledom.client.example;
 
 import com.cerner.beadledom.client.example.model.JsonOneOffsetPaginatedListDto;
 import com.cerner.beadledom.jaxrs.GenericResponse;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
