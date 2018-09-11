@@ -3,6 +3,7 @@ package com.cerner.beadledom.pagination
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.UriInfo
 
+import com.google.inject.Guice
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
@@ -87,6 +88,9 @@ class OffsetPaginationLinksSpec extends FunSpec with MustMatchers with MockitoSu
 
     describe("with total results") {
       describe("with total results less than page limit") {
+        // allow static injection of the pagination parameters
+        Guice.createInjector(new OffsetPaginationModule())
+
         val totalResultsList = OffsetPaginatedList.builder()
             .items(List("a", "b", "c", "d").asJava)
             .metadata("limit", null, "offset", null, 3L, null)

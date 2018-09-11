@@ -17,14 +17,14 @@ import javax.validation.constraints.Pattern;
  *
  * @author Brian van de Boogaard
  * @author Will Pruyn
+ * @author Ian Kottman
  * @since 3.1
  */
 @ApiModel
 public class LimitParameter extends AbstractParameter<Integer> {
 
-  @ApiModelProperty(value = "Total number of items to return in the response.", dataType = "int",
-      allowableValues = "range[0, 100]")
-  @Pattern(regexp = "^[1-9][0-9]?$|^100$", message = "limit must be an integer between 1 and 100")
+  @ApiModelProperty(value = "Total number of items to return in the response.", dataType = "int")
+  @Pattern(regexp = "^\\d+$", message = "limit must be a non-negative integer")
   private final String limit;
 
   @Inject
@@ -34,6 +34,10 @@ public class LimitParameter extends AbstractParameter<Integer> {
   @Inject
   @Named("defaultLimitFieldName")
   private static String defaultLimitFieldName;
+
+  @Inject
+  @Named("maxLimit")
+  private static int maxLimit;
 
   /**
    * Creates an instance of {@link LimitParameter}.
@@ -67,7 +71,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
               + " - int is required.");
     }
 
-    if (limit < 0 || limit > 100) {
+    if (limit < 0 || limit > maxLimit) {
       throw InvalidParameterException.create(
           "Invalid value for '" + this.getParameterFieldName() + "': " + this.limit
               + "  - value between 0 and 100 is required.");

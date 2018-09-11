@@ -26,7 +26,7 @@ public class FauxModule extends AbstractModule {
     bind(ResourceOne.class).to(ResourceOneImpl.class);
     bind(ResourceTwo.class).to(ResourceTwoImpl.class);
     bind(PaginatedResource.class).to(PaginatedResourceImpl.class);
-    install(new OffsetPaginationModule());
+    install(new OffsetPaginationModule(20, 200, 0L));
   }
 
   @Provides

@@ -16,15 +16,18 @@ import javax.inject.Singleton;
  * their respective field names can be configured using one of the provided constructors.
  *
  * @author Will Pruyn
+ * @author Ian Kottman
  * @since 3.1
  */
 public class OffsetPaginationModule extends AbstractModule {
+  private final Integer maxLimit;
   private final Integer defaultLimit;
   private final String defaultLimitFieldName;
   private final Long defaultOffset;
   private final String defaultOffsetFieldName;
 
   private static final Integer BEADLEDOM_DEFAULT_LIMIT = 20;
+  private static final Integer BEADLEDOM_DEFAULT_MAX_LIMIT = 100;
   private static final String BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME = "limit";
   private static final Long BEADLEDOM_DEFAULT_OFFSET = 0L;
   private static final String BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME = "offset";
@@ -34,6 +37,7 @@ public class OffsetPaginationModule extends AbstractModule {
    */
   public OffsetPaginationModule() {
     this.defaultLimit = BEADLEDOM_DEFAULT_LIMIT;
+    this.maxLimit = BEADLEDOM_DEFAULT_MAX_LIMIT;
     this.defaultOffset = BEADLEDOM_DEFAULT_OFFSET;
     this.defaultLimitFieldName = BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
     this.defaultOffsetFieldName = BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME;
@@ -43,10 +47,12 @@ public class OffsetPaginationModule extends AbstractModule {
    * Constructor that enables setting of default values for the offset and limit fields.
    * Default field names will be set using Beadledom defaults.
    * @param defaultLimit the default value for the limit field; 20 if null.
+   * @param maxLimit the default value for the limit field; 100 if null.
    * @param defaultOffset the default value for the offset field; 0 if null.
    */
-  public OffsetPaginationModule(Integer defaultLimit, Long defaultOffset) {
+  public OffsetPaginationModule(Integer defaultLimit, Integer maxLimit, Long defaultOffset) {
     this.defaultLimit = defaultLimit != null ? defaultLimit : BEADLEDOM_DEFAULT_LIMIT;
+    this.maxLimit = maxLimit != null ? maxLimit : BEADLEDOM_DEFAULT_MAX_LIMIT;
     this.defaultOffset = defaultOffset != null ? defaultOffset : BEADLEDOM_DEFAULT_OFFSET;
     this.defaultLimitFieldName = BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
     this.defaultOffsetFieldName = BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME;
@@ -61,6 +67,7 @@ public class OffsetPaginationModule extends AbstractModule {
   public OffsetPaginationModule(
       String defaultLimitFieldName, String defaultOffsetFieldName) {
     this.defaultLimit = BEADLEDOM_DEFAULT_LIMIT;
+    this.maxLimit = BEADLEDOM_DEFAULT_MAX_LIMIT;
     this.defaultOffset = BEADLEDOM_DEFAULT_OFFSET;
     this.defaultLimitFieldName =
         defaultLimitFieldName != null ? defaultLimitFieldName : BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
@@ -73,13 +80,15 @@ public class OffsetPaginationModule extends AbstractModule {
    * respective field names.
    * @param defaultLimitFieldName the default value for the limit field name; limit if null.
    * @param defaultLimit the default value for the limit field; 20 if null.
+   * @param maxLimit the maximum value for the limit field; 100 if null.
    * @param defaultOffsetFieldName the default value for the offset field name; offset if null.
    * @param defaultOffset the default value for the offset field; 0 if null.
    */
   public OffsetPaginationModule(
-      String defaultLimitFieldName, Integer defaultLimit, String defaultOffsetFieldName,
-      Long defaultOffset) {
+      String defaultLimitFieldName, Integer defaultLimit, Integer maxLimit,
+      String defaultOffsetFieldName, Long defaultOffset) {
     this.defaultLimit = defaultLimit != null ? defaultLimit : BEADLEDOM_DEFAULT_LIMIT;
+    this.maxLimit = maxLimit != null ? maxLimit : BEADLEDOM_DEFAULT_MAX_LIMIT;
     this.defaultOffset = defaultOffset != null ? defaultOffset : BEADLEDOM_DEFAULT_OFFSET;
     this.defaultLimitFieldName =
         defaultLimitFieldName != null ? defaultLimitFieldName : BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
@@ -100,6 +109,13 @@ public class OffsetPaginationModule extends AbstractModule {
   @Named("defaultLimit")
   Integer provideDefaultLimit() {
     return defaultLimit;
+  }
+
+  @Provides
+  @Singleton
+  @Named("maxLimit")
+  Integer provideMaxLimit() {
+    return maxLimit;
   }
 
   @Provides

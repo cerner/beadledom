@@ -1,13 +1,12 @@
 package com.cerner.beadledom.client
 
 import com.cerner.beadledom.client.example.client._
-import com.cerner.beadledom.client.example.model.{JsonTwo, JsonOneOffsetPaginatedListDto, JsonOne}
-import com.cerner.beadledom.client.example.{ResourceOne, PaginatedClientResource, ResourceTwo}
-
+import com.cerner.beadledom.client.example.model.{JsonOne, JsonOneOffsetPaginatedListDto, JsonTwo}
+import com.cerner.beadledom.client.example.{PaginatedClientResource, ResourceOne, ResourceTwo}
+import com.cerner.beadledom.jaxrs.GenericResponse
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.google.inject._
-
-import org.scalatest.{DoNotDiscover, FunSpec, BeforeAndAfter, MustMatchers}
+import org.scalatest.{BeforeAndAfter, DoNotDiscover, FunSpec, MustMatchers}
 
 /**
  * Specs to test the Clients of a service.
@@ -99,6 +98,39 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
         results.lastLink() mustBe s"$baseUri/paginated?offset=990&limit=10"
         results.prevLink() mustBe s"$baseUri/paginated?offset=0&limit=10"
         results.nextLink() mustBe s"$baseUri/paginated?offset=11&limit=10"
+      }
+
+      it("rejects negative offset") {
+        val injector = getInjector(List(new ResourceOneModule))
+
+        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
+
+        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(-1L, 20)
+
+        results mustNot be(null)
+        results.getStatus mustBe 400
+      }
+
+      it("rejects negative limits") {
+        val injector = getInjector(List(new ResourceOneModule))
+
+        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
+
+        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, -10)
+
+        results mustNot be(null)
+        results.getStatus mustBe 400
+      }
+
+      it("rejects limits over the max") {
+        val injector = getInjector(List(new ResourceOneModule))
+
+        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
+
+        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, 201)
+
+        results mustNot be(null)
+        results.getStatus mustBe 400
       }
     }
 

@@ -62,4 +62,4 @@ Example resource:
 Configurable query parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default the query parameters for pagination are ``offset`` and ``limit``. When not provided by the caller ``offset`` defaults to ``0`` and ``limit`` defaults to ``20``. Both the name and default values are configurable. See `OffsetPaginationModule <https://github.com/cerner/beadledom/blob/master/pagination/src/main/java/com/cerner/beadledom/pagination/OffsetPaginationModule.java>`_ for details.
+By default the query parameters for pagination are ``offset`` and ``limit``. When not provided by the caller ``offset`` defaults to ``0`` and ``limit`` defaults to ``20``. The default maximum value for limit is ``100``. Both the name, default values, and max limit are configurable. See `OffsetPaginationModule <https://github.com/cerner/beadledom/blob/master/pagination/src/main/java/com/cerner/beadledom/pagination/OffsetPaginationModule.java>`_ for details.

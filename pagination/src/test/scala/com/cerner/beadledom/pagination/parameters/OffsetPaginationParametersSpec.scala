@@ -43,7 +43,7 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
 
       it("returns the custom default limit when no query parameter is present") {
         val injector =
-          Guice.createInjector(new OffsetPaginationModule(50, 0L))
+          Guice.createInjector(new OffsetPaginationModule(50, 100, 0L))
         val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
@@ -79,7 +79,7 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
 
       it("returns the custom default offset when no query parameter is present") {
         val injector =
-          Guice.createInjector(new OffsetPaginationModule(50, 2L))
+          Guice.createInjector(new OffsetPaginationModule(50, 100, 2L))
         val params = injector.getInstance(classOf[OffsetPaginationParameters])
         params.uriInfo = mockUriInfo()
 
