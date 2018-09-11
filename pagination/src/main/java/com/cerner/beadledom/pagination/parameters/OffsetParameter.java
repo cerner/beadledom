@@ -1,7 +1,6 @@
 package com.cerner.beadledom.pagination.parameters;
 
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
-import com.cerner.beadledom.pagination.parameters.exceptions.InvalidParameterException;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.wordnik.swagger.annotations.ApiModel;

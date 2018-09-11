@@ -1,7 +1,6 @@
 package com.cerner.beadledom.pagination.parameters;
 
 import com.cerner.beadledom.json.common.model.JsonError;
-import com.cerner.beadledom.pagination.parameters.exceptions.InvalidParameterException;
 import java.util.Optional;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
@@ -18,7 +17,7 @@ import javax.ws.rs.core.Response.Status;
  * @author Will Pruyn
  * @since 3.1
  */
-public abstract class AbstractParameter<T> {
+abstract class AbstractParameter<T> {
   private T value;
   private final String originalParameter;
   private final String parameterFieldName;

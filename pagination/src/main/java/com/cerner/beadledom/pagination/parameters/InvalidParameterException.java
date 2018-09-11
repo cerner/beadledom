@@ -1,4 +1,4 @@
-package com.cerner.beadledom.pagination.parameters.exceptions;
+package com.cerner.beadledom.pagination.parameters;
 
 import com.cerner.beadledom.json.common.model.ErrorDetail;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author Brian van de Boogaard
  * @since 3.1
  */
-public final class InvalidParameterException extends RuntimeException {
+final class InvalidParameterException extends RuntimeException {
   private final String message;
   private final List<ErrorDetail> errorDetails;
 
