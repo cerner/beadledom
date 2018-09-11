@@ -30,7 +30,7 @@ public class OffsetParameter extends AbstractParameter<Long> {
   private static Long defaultOffset;
 
   @Inject
-  @Named("defaultOffsetFieldName")
+  @Named("offsetFieldName")
   private static String defaultOffsetFieldName;
 
   /**

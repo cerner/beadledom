@@ -1,7 +1,7 @@
 package com.cerner.beadledom.client.example;
 
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
-
+import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +26,11 @@ public class FauxModule extends AbstractModule {
     bind(ResourceOne.class).to(ResourceOneImpl.class);
     bind(ResourceTwo.class).to(ResourceTwoImpl.class);
     bind(PaginatedResource.class).to(PaginatedResourceImpl.class);
-    install(new OffsetPaginationModule(20, 200, 0L));
+
+    OffsetPaginationConfiguration paginationConfig = OffsetPaginationConfiguration.builder()
+        .setMaxLimit(200)
+        .build();
+    install(new OffsetPaginationModule(paginationConfig));
   }
 
   @Provides

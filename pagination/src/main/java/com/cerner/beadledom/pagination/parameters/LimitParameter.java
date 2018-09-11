@@ -30,7 +30,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
   private static Integer defaultLimit;
 
   @Inject
-  @Named("defaultLimitFieldName")
+  @Named("limitFieldName")
   private static String defaultLimitFieldName;
 
   @Inject

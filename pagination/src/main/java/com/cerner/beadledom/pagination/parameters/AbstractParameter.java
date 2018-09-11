@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 /**
  * Base class to be used for JAX-RS method parameters.
@@ -98,7 +99,7 @@ public abstract class AbstractParameter<T> {
 
   protected JsonError getError(InvalidParameterException e) {
     return JsonError.builder()
-        .code(400)
+        .code(Status.BAD_REQUEST.getStatusCode())
         .message(e.getMessage())
         .errors(e.getErrorDetails())
         .build();

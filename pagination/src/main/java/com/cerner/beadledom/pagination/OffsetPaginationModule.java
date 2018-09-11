@@ -1,5 +1,6 @@
 package com.cerner.beadledom.pagination;
 
+import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration;
 import com.cerner.beadledom.pagination.parameters.LimitParameter;
 import com.cerner.beadledom.pagination.parameters.OffsetParameter;
 import com.google.inject.AbstractModule;
@@ -20,80 +21,21 @@ import javax.inject.Singleton;
  * @since 3.1
  */
 public class OffsetPaginationModule extends AbstractModule {
-  private final Integer maxLimit;
-  private final Integer defaultLimit;
-  private final String defaultLimitFieldName;
-  private final Long defaultOffset;
-  private final String defaultOffsetFieldName;
-
-  private static final Integer BEADLEDOM_DEFAULT_LIMIT = 20;
-  private static final Integer BEADLEDOM_DEFAULT_MAX_LIMIT = 100;
-  private static final String BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME = "limit";
-  private static final Long BEADLEDOM_DEFAULT_OFFSET = 0L;
-  private static final String BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME = "offset";
+  private final OffsetPaginationConfiguration config;
 
   /**
-   * Default constructor that sets the configurable fields using the Beadledom defaults.
+   * Default constructor that sets the configurable fields using the Beadledom defaults. For
+   * the default values see {@link OffsetPaginationConfiguration}
    */
   public OffsetPaginationModule() {
-    this.defaultLimit = BEADLEDOM_DEFAULT_LIMIT;
-    this.maxLimit = BEADLEDOM_DEFAULT_MAX_LIMIT;
-    this.defaultOffset = BEADLEDOM_DEFAULT_OFFSET;
-    this.defaultLimitFieldName = BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
-    this.defaultOffsetFieldName = BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME;
+    this.config = OffsetPaginationConfiguration.builder().build();
   }
 
   /**
-   * Constructor that enables setting of default values for the offset and limit fields.
-   * Default field names will be set using Beadledom defaults.
-   * @param defaultLimit the default value for the limit field; 20 if null.
-   * @param maxLimit the default value for the limit field; 100 if null.
-   * @param defaultOffset the default value for the offset field; 0 if null.
+   * Override Beadledom defaults.
    */
-  public OffsetPaginationModule(Integer defaultLimit, Integer maxLimit, Long defaultOffset) {
-    this.defaultLimit = defaultLimit != null ? defaultLimit : BEADLEDOM_DEFAULT_LIMIT;
-    this.maxLimit = maxLimit != null ? maxLimit : BEADLEDOM_DEFAULT_MAX_LIMIT;
-    this.defaultOffset = defaultOffset != null ? defaultOffset : BEADLEDOM_DEFAULT_OFFSET;
-    this.defaultLimitFieldName = BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
-    this.defaultOffsetFieldName = BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME;
-  }
-
-  /**
-   * Constructor that enables setting of default values for the offset and limit field names.
-   * Default values for these fields will be set using Beadledom defaults.
-   * @param defaultLimitFieldName the default value for the limit field name; limit if null.
-   * @param defaultOffsetFieldName the default value for the offset field name; offset if null.
-   */
-  public OffsetPaginationModule(
-      String defaultLimitFieldName, String defaultOffsetFieldName) {
-    this.defaultLimit = BEADLEDOM_DEFAULT_LIMIT;
-    this.maxLimit = BEADLEDOM_DEFAULT_MAX_LIMIT;
-    this.defaultOffset = BEADLEDOM_DEFAULT_OFFSET;
-    this.defaultLimitFieldName =
-        defaultLimitFieldName != null ? defaultLimitFieldName : BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
-    this.defaultOffsetFieldName = defaultOffsetFieldName != null ? defaultOffsetFieldName
-        : BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME;
-  }
-
-  /**
-   * Constructor that enables setting of default values for the offset, limit, and their
-   * respective field names.
-   * @param defaultLimitFieldName the default value for the limit field name; limit if null.
-   * @param defaultLimit the default value for the limit field; 20 if null.
-   * @param maxLimit the maximum value for the limit field; 100 if null.
-   * @param defaultOffsetFieldName the default value for the offset field name; offset if null.
-   * @param defaultOffset the default value for the offset field; 0 if null.
-   */
-  public OffsetPaginationModule(
-      String defaultLimitFieldName, Integer defaultLimit, Integer maxLimit,
-      String defaultOffsetFieldName, Long defaultOffset) {
-    this.defaultLimit = defaultLimit != null ? defaultLimit : BEADLEDOM_DEFAULT_LIMIT;
-    this.maxLimit = maxLimit != null ? maxLimit : BEADLEDOM_DEFAULT_MAX_LIMIT;
-    this.defaultOffset = defaultOffset != null ? defaultOffset : BEADLEDOM_DEFAULT_OFFSET;
-    this.defaultLimitFieldName =
-        defaultLimitFieldName != null ? defaultLimitFieldName : BEADLEDOM_DEFAULT_LIMIT_FIELD_NAME;
-    this.defaultOffsetFieldName = defaultOffsetFieldName != null ? defaultOffsetFieldName
-        : BEADLEDOM_DEFAULT_OFFSET_FIELD_NAME;
+  public OffsetPaginationModule(OffsetPaginationConfiguration config) {
+    this.config = config;
   }
 
   @Override
@@ -108,34 +50,34 @@ public class OffsetPaginationModule extends AbstractModule {
   @Singleton
   @Named("defaultLimit")
   Integer provideDefaultLimit() {
-    return defaultLimit;
+    return config.defaultLimit();
   }
 
   @Provides
   @Singleton
   @Named("maxLimit")
   Integer provideMaxLimit() {
-    return maxLimit;
+    return config.maxLimit();
   }
 
   @Provides
   @Singleton
   @Named("defaultOffset")
   Long provideDefaultOffset() {
-    return defaultOffset;
+    return config.defaultOffset();
   }
 
   @Provides
   @Singleton
-  @Named("defaultLimitFieldName")
-  String provideDefaultLimitFieldName() {
-    return defaultLimitFieldName;
+  @Named("limitFieldName")
+  String provideLimitFieldName() {
+    return config.limitFieldName();
   }
 
   @Provides
   @Singleton
-  @Named("defaultOffsetFieldName")
-  String provideDefaultOffsetFieldName() {
-    return defaultOffsetFieldName;
+  @Named("offsetFieldName")
+  String provideOffsetFieldName() {
+    return config.offsetFieldName();
   }
 }
