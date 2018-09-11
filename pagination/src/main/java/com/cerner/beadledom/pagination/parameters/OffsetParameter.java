@@ -6,7 +6,6 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-import javax.validation.constraints.Pattern;
 
 /**
  * Represent the offset parameter used for pagination.
@@ -24,7 +23,6 @@ public class OffsetParameter extends AbstractParameter<Long> {
 
   @ApiModelProperty(value = "Number of items to offset the response by.", dataType = "int",
       allowableValues = "range[0, " + Long.MAX_VALUE + "]")
-  @Pattern(regexp = "^0$|^[1-9][0-9]*$", message = "offset must be greater than or equal to zero")
   private final String offset;
 
   @Inject

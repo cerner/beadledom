@@ -6,7 +6,6 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
-import javax.validation.constraints.Pattern;
 
 /**
  * Represent the limit parameter used for pagination.
@@ -24,7 +23,6 @@ import javax.validation.constraints.Pattern;
 public class LimitParameter extends AbstractParameter<Integer> {
 
   @ApiModelProperty(value = "Total number of items to return in the response.", dataType = "int")
-  @Pattern(regexp = "^\\d+$", message = "limit must be a non-negative integer")
   private final String limit;
 
   @Inject
