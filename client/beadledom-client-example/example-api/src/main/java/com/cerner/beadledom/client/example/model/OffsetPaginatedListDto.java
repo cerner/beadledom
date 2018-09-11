@@ -11,7 +11,6 @@ import javax.annotation.Nullable;
  *
  * <p>Represents an offset based paginated list in a rest response. Is used on the client side
  * instead of {@link OffsetPaginatedList} to circumvent type erasure.
- *
  */
 public interface OffsetPaginatedListDto<T> {
 
