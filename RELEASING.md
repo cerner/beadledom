@@ -17,7 +17,7 @@ Note: Releasing the project requires an initial set up. The [Preparing for the R
 * Once you have the Sonatype user account, you need to comment on this [JIRA](https://issues.sonatype.org/browse/OSSRH-27635) to get yourself added to the Beadledom project group.
 
 ### One Time Shared Travis setup
-* These steps need to be performed only if need to do it if we were to revoke secrets in use by travis and create a new one. Since this is shared, only one of the maintainers need to do it. 
+* These steps need to be performed only if we were to revoke secrets that is in use by travis and create a new one. Since this is shared, only one of the maintainers need to do it. 
 * Execute the following commands in your terminal to prepare travis-ci
 
     ```
