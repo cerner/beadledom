@@ -2,9 +2,13 @@
 
 ## 3.1 - TBD
 
+### Additions
+* Add offset based pagination with beadledom-pagination.
+
 ### Breaking Changes
 
 ### Enhancements
+
 
 ### Defects Corrected
 * Fixed beadledom client deserialization to GenericResponse when the JAX-RS response has no entity.

@@ -18,6 +18,8 @@ This file contains the list of developers who contributed to this repository
 * Bryan Baugher [@bbaugher][bryan-baugher]
 * Eric Christensen [@EricChristensen][eric-christensen]
 * Cal Fisher [@cbfshr][cal-fisher]
+* Ian Kottman [@ikottman][ian-kottman]
+* Will Pruyn [@lulzWill][will-pruyn]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -33,5 +35,7 @@ This file contains the list of developers who contributed to this repository
 [bryan-baugher]: https://github.com/bbaugher
 [eric-christensen]: https://github.com/EricChristensen
 [cal-fisher]: https://github.com/cbfshr
+[ian-kottman]: https://github.com/ikottman
+[will-pruyn]: https://github.com/lulzWill
 
 Thanks to everyone who helped in building this repository.
