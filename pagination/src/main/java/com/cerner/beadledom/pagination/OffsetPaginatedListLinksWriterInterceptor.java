@@ -1,6 +1,7 @@
 package com.cerner.beadledom.pagination;
 
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto;
+import com.cerner.beadledom.pagination.models.OffsetPaginatedListDtoImpl;
 import java.io.IOException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
@@ -32,7 +33,7 @@ public class OffsetPaginatedListLinksWriterInterceptor implements WriterIntercep
 
       // Must use raw types because of erasure
       @SuppressWarnings("unchecked")
-      OffsetPaginatedListDto listWithLinks = OffsetPaginatedListDto.builder()
+      OffsetPaginatedListDto listWithLinks = OffsetPaginatedListDtoImpl.builder()
           .items(list.items())
           .totalResults(list.metadata().totalResults())
           .firstLink(links.firstLink())
