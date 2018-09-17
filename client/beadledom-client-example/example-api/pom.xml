@@ -37,5 +37,9 @@
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-client</artifactId>
+    </dependency>
   </dependencies>
 </project>

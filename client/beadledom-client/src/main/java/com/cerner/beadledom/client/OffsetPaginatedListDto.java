@@ -1,4 +1,4 @@
-package com.cerner.beadledom.client.example.model;
+package com.cerner.beadledom.client;
 
 import com.cerner.beadledom.pagination.OffsetPaginatedList;
 
