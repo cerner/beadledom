@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * <p>Represents an offset based paginated list in a rest response.
  *
  * @author John Leacox
- * @since 3.1
+ * @since 3.2
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AutoValue
