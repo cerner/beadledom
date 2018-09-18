@@ -132,6 +132,17 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
         results mustNot be(null)
         results.getStatus mustBe 400
       }
+
+      it("rejects 0 for limit") {
+        val injector = getInjector(List(new ResourceOneModule))
+
+        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
+
+        val results: GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, 0)
+
+        results mustNot be(null)
+        results.getStatus mustBe 400
+      }
     }
 
     it("Uses the configured client configuration") {
