@@ -1,5 +1,6 @@
-package com.cerner.beadledom.pagination.models;
+package com.cerner.beadledom.pagination;
 
+import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
     "prevLink"
 })
 @JsonDeserialize(builder = OffsetPaginatedListDtoImpl.Builder.class)
-public abstract class OffsetPaginatedListDtoImpl<T> implements OffsetPaginatedListDto<T> {
+abstract class OffsetPaginatedListDtoImpl<T> implements OffsetPaginatedListDto<T> {
 
   /**
    * Creates a builder for {@link OffsetPaginatedListDtoImpl}.

@@ -1,6 +1,6 @@
 package com.cerner.beadledom.pagination
 
-import com.cerner.beadledom.pagination.models.{OffsetPaginatedListDto, OffsetPaginatedListDtoImpl}
+import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
 import javax.ws.rs.core.UriInfo
 import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
 import org.jboss.resteasy.spi.ResteasyUriInfo
