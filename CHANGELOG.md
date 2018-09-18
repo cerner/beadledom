@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.2 - In development
+
+### Defects Corrected
+* Fixed beadledom pagination to handle 0 for limit parameter gracefully.
+
 ## 3.1 - 12 September 2018
 
 ### Additions
