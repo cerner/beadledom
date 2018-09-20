@@ -68,7 +68,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
               + " - int is required.");
     }
 
-    if (limit <= 0 || limit > maxLimit) {
+    if (limit < 0 || limit > maxLimit) {
       throw InvalidParameterException.create(
           "Invalid value for '" + this.getParameterFieldName() + "': " + this.limit
               + "  - value between 1 and " + maxLimit + " is required.");

@@ -100,6 +100,21 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
         results.nextLink() mustBe s"$baseUri/paginated?offset=11&limit=10"
       }
 
+      it("accepts 0 limit") {
+        val injector = getInjector(List(new ResourceOneModule))
+
+        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
+
+        val results: JsonOneOffsetPaginatedListDto = paginatedResource.index(1L, 0).body()
+
+        results mustNot be(null)
+        results.totalResults() mustBe 1000
+        results.firstLink() mustBe s"$baseUri/paginated?offset=0&limit=0"
+        results.lastLink() mustBe null
+        results.prevLink() mustBe null
+        results.nextLink() mustBe null
+      }
+
       it("rejects negative offset") {
         val injector = getInjector(List(new ResourceOneModule))
 
@@ -128,17 +143,6 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
         val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, 20)
-
-        results mustNot be(null)
-        results.getStatus mustBe 400
-      }
-
-      it("rejects 0 for limit") {
-        val injector = getInjector(List(new ResourceOneModule))
-
-        val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
-
-        val results: GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, 0)
 
         results mustNot be(null)
         results.getStatus mustBe 400

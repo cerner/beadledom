@@ -78,7 +78,7 @@ class OffsetPaginationLinks {
    * Returns the last page link; null if no last page link is available.
    */
   String lastLink() {
-    if (totalResults == null) {
+    if (totalResults == null || currentLimit == 0L) {
       return null;
     }
 
@@ -108,7 +108,7 @@ class OffsetPaginationLinks {
    * Returns the next prev link; null if no prev page link is available.
    */
   String prevLink() {
-    if (currentOffset == 0) {
+    if (currentOffset == 0 || currentLimit == 0) {
       return null;
     }
 
@@ -116,6 +116,10 @@ class OffsetPaginationLinks {
   }
 
   private boolean hasNext() {
+    if (currentLimit == 0) {
+      return false;
+    }
+
     boolean moreResults = totalResults != null && (currentOffset + currentLimit < totalResults);
 
     if (totalResults == null) {
