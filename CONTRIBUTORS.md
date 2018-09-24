@@ -20,6 +20,7 @@ This file contains the list of developers who contributed to this repository
 * Cal Fisher [@cbfshr][cal-fisher]
 * Ian Kottman [@ikottman][ian-kottman]
 * Will Pruyn [@lulzWill][will-pruyn]
+* Kyle Roush [@kyleroush][kyle-roush]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -37,5 +38,6 @@ This file contains the list of developers who contributed to this repository
 [cal-fisher]: https://github.com/cbfshr
 [ian-kottman]: https://github.com/ikottman
 [will-pruyn]: https://github.com/lulzWill
+[kyle-roush]: https://github.com/kyleroush
 
 Thanks to everyone who helped in building this repository.

@@ -32,7 +32,7 @@ public class OffsetPaginatedListLinksWriterInterceptor implements WriterIntercep
 
       // Must use raw types because of erasure
       @SuppressWarnings("unchecked")
-      OffsetPaginatedListDto listWithLinks = OffsetPaginatedListDto.builder()
+      OffsetPaginatedListDto listWithLinks = OffsetPaginatedListDtoImpl.builder()
           .items(list.items())
           .totalResults(list.metadata().totalResults())
           .firstLink(links.firstLink())

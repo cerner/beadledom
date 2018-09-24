@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.2 - In development
+
+### Additions
+* Add OffsetPaginatedListDto interface to the pagination module.
+
 ## 3.1 - 12 September 2018
 
 ### Additions
