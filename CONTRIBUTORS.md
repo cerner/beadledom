@@ -21,6 +21,7 @@ This file contains the list of developers who contributed to this repository
 * Ian Kottman [@ikottman][ian-kottman]
 * Will Pruyn [@lulzWill][will-pruyn]
 * Venkatesh Sridharan [@venki09][venkatesh-sridharan]
+* Kyle Roush [@kyleroush][kyle-roush]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -39,5 +40,6 @@ This file contains the list of developers who contributed to this repository
 [ian-kottman]: https://github.com/ikottman
 [will-pruyn]: https://github.com/lulzWill
 [venkatesh-sridharan]: https://github.com/venki09
+[kyle-roush]: https://github.com/kyleroush
 
 Thanks to everyone who helped in building this repository.

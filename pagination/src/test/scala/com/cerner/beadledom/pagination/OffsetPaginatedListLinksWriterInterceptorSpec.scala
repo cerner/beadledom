@@ -1,15 +1,13 @@
 package com.cerner.beadledom.pagination
 
-import javax.ws.rs.core.UriInfo
-
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
+import javax.ws.rs.core.UriInfo
 import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
-
 import scala.collection.JavaConverters._
 
 /**
@@ -20,7 +18,7 @@ import scala.collection.JavaConverters._
 class OffsetPaginatedListLinksWriterInterceptorSpec extends FunSpec with MustMatchers with MockitoSugar {
   describe("OffsetPaginatedListLinksWriterInterceptor") {
     describe("#aroundWriteTo") {
-      it("replaces an OffsetPaginatedList entity with an OffsetPaginatedListDto entity") {
+      it("replaces an OffsetPaginatedList entity with an OffsetPaginatedListDtoImpl entity") {
         val list = OffsetPaginatedList.builder()
             .items(List("a", "b").asJava)
             .metadata("limit", 20, "offset", 0L, null, true)

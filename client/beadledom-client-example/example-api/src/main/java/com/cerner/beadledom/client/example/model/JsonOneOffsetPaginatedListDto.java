@@ -1,5 +1,6 @@
 package com.cerner.beadledom.client.example.model;
 
+import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

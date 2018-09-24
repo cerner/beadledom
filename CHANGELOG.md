@@ -2,6 +2,9 @@
 
 ## 3.2 - In development
 
+### Additions
+* Add OffsetPaginatedListDto interface to the pagination module.
+
 ### Defects Corrected
 * Fixed beadledom pagination to handle 0 for limit parameter gracefully.
 
