@@ -14,6 +14,14 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-jaxrs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.spullara.mustache.java</groupId>
+      <artifactId>compiler</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
     </dependency>
@@ -33,6 +41,12 @@
     <dependency>
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>swagger-ui</artifactId>
+      <version>3.19.0</version>
+      <!--<scope>runtime</scope>-->
     </dependency>
     <dependency>
       <groupId>com.cerner.beadledom</groupId>

@@ -60,6 +60,7 @@ public class Swagger2Module extends AbstractModule {
     Multibinder.newSetBinder(binder(), ModelConverter.class);
 
     bind(SwaggerApiResource.class);
+    bind(SwaggerUiResource.class);
 
     bind(SwaggerSerializers.class);
 
