@@ -18,6 +18,8 @@ import javax.ws.rs.core.StreamingOutput;
 
 @Api(value = "/health",
     description = "Lists health check dependencies")
+@io.swagger.annotations.Api(value = "/health",
+    description = "Lists health check dependencies")
 @Path("meta/health/diagnostic/dependencies")
 public interface DependenciesResource {
   @GET

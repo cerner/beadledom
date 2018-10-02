@@ -15,6 +15,8 @@ import javax.ws.rs.core.StreamingOutput;
 
 @Api(value = "/health",
     description = "Health and dependency checks")
+@io.swagger.annotations.Api(value = "/health",
+    description = "Health and dependency checks")
 @Path("meta/availability")
 public interface AvailabilityResource {
   @GET

@@ -15,6 +15,8 @@ import javax.ws.rs.core.Response;
 
 @Api(value = "/health",
     description = "Diagnostic health check")
+@io.swagger.annotations.Api(value = "/health",
+    description = "Diagnostic health check")
 @Path("meta/health/diagnostic")
 public interface DiagnosticResource {
 

@@ -13,6 +13,8 @@ import javax.ws.rs.core.StreamingOutput;
 
 @Api(value = "/health",
     description = "Application Version")
+@io.swagger.annotations.Api(value = "/health",
+    description = "Application Version")
 @Path("meta/version")
 public interface VersionResource {
 

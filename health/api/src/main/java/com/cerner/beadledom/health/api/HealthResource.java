@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Api(value = "/health", description = "Health and dependency checks")
+@io.swagger.annotations.Api(value = "/health", description = "Health and dependency checks")
 @Path("meta/health")
 public interface HealthResource {
   @GET
