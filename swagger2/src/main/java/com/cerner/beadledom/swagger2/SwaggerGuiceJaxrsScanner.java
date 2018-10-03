@@ -69,8 +69,6 @@ public class SwaggerGuiceJaxrsScanner extends DefaultJaxrsScanner implements Swa
     return false;
   }
 
-  // TODO: Test that the info is added to swagger
-
   @Override
   public Swagger configure(Swagger swagger) {
     return swagger.info(info);

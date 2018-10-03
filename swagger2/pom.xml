@@ -33,6 +33,8 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
     </dependency>
+    <!-- This is effectively a pure jaxrs implementation, despite the name. Only usage of the -->
+    <!-- FormDataParam annotation from Jersey will not work with Resteasy. -->
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-jersey2-jaxrs</artifactId>
