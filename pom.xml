@@ -98,6 +98,7 @@
     <spotbugs.version>3.1.6</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
+    <swagger2-core.version>1.5.21</swagger2-core.version>
     <tomcat-embed.version>7.0.42</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -357,7 +358,7 @@
       <dependency>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-jersey2-jaxrs</artifactId>
-        <version>1.5.18</version>
+        <version>${swagger2-core.version}</version>
         <exclusions>
           <exclusion>
             <groupId>org.glassfish.jersey.containers</groupId>
@@ -372,7 +373,7 @@
       <dependency>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-annotations</artifactId>
-        <version>1.5.18</version>
+        <version>${swagger2-core.version}</version>
       </dependency>
       <dependency>
         <groupId>javax.annotation</groupId>
@@ -935,7 +936,7 @@
         <version>${maven-project-info-reports-plugin.version}</version>
         <reportSets>
           <reportSet>
-            <reports />
+            <reports/>
           </reportSet>
         </reportSets>
       </plugin>

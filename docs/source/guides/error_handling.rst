@@ -9,7 +9,7 @@
    :includehidden:
 
 Error Handling
-===============
+==============
 
 Beadledom has implemented a standard behavior for handling errors in a RESTful service that follows
 the `Google API <https://developers.google.com/drive/v2/web/handle-errors>`_ structured error

@@ -283,7 +283,7 @@ The method we are overriding here is providing our ``AwesomeThingModule``, which
 so Let's take a look at the ``ResteasyBootstrapModule`` next.
 
 ResteasyBootstrapModule
-++++++++++++++++++
++++++++++++++++++++++++
 
 .. code-block:: java
 
@@ -291,6 +291,7 @@ ResteasyBootstrapModule
 
     protected void configure() {
       install(new ResteasyModule());
+      install(new Swagger2Module());
 
       BuildInfo buildInfo = BuildInfo.load(getClass().getResourceAsStream("build-info.properties"));
       bind(BuildInfo.class).toInstance(buildInfo);
@@ -298,11 +299,11 @@ ResteasyBootstrapModule
     }
 
     @Provides
-    SwaggerConfig provideSwaggerConfig(ServiceMetadata serviceMetadata) {
-      SwaggerConfig config = new SwaggerConfig();
-      config.setApiVersion(serviceMetadata.getBuildInfo().getVersion());
-      config.setSwaggerVersion(SwaggerSpec.version());
-      return config;
+    @Singleton
+    Info provideSwagger2Info(ServiceMetadata serviceMetadata) {
+     return new Info()
+        .title("Your Service Name")
+        .version(serviceMetadata.getBuildInfo().getVersion());
     }
   }
 
@@ -313,7 +314,7 @@ in order to make our service tick. Below are some of the many awesome features t
 - `Configuration <https://github.com/cerner/beadledom/tree/master/configuration#beadledom-configuration>`_ - lets us access all the configuration through a consistent API.
 - `Health <https://github.com/cerner/beadledom/tree/master/health#beadledom-health>`_ - Health checks for the services
 - `Jackson <https://github.com/cerner/beadledom/tree/master/jackson#beadledom-jackson>`_ - Serialization-DeSerialization for the payload
-- `Swagger <https://github.com/cerner/beadledom/tree/master/swagger1#beadledom-swagger1>`_ - Enables the `Open API <https://openapis.org/specification>`_ documentation and `Swagger UI <http://swagger.io/swagger-ui/>`_
+- `Swagger <https://github.com/cerner/beadledom/tree/master/swagger2#beadledom-swagger2>`_ - Enables the `Open API <https://openapis.org/specification>`_ documentation and `Swagger UI <http://swagger.io/swagger-ui/>`_
 
 The next chunk of code
 

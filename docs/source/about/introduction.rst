@@ -51,5 +51,4 @@ Additional Reading
 
 Java Requirements
 -----------------
-* All the Server ONLY components require **Java 8+**.
-* The components that are usable by clients requires **Java 6+**.
+* All components require **Java 8+**.

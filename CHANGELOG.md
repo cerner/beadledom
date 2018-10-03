@@ -4,6 +4,7 @@
 
 ### Additions
 * Add OffsetPaginatedListDto interface to the pagination module.
+* Add Swagger 2 module.
 
 ## 3.1 - 12 September 2018
 
