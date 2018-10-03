@@ -355,6 +355,8 @@
         <artifactId>commons-io</artifactId>
         <version>2.6</version>
       </dependency>
+      <!-- This is effectively a pure jaxrs implementation, despite the name. Only usage of the -->
+      <!-- FormDataParam annotation from Jersey will not work with Resteasy. -->
       <dependency>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-jersey2-jaxrs</artifactId>
@@ -452,6 +454,11 @@
         <artifactId>tomcat-embed-jasper</artifactId>
         <version>${tomcat-embed.version}</version>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>swagger-ui</artifactId>
+        <version>3.19.0</version>
       </dependency>
       <dependency>
         <groupId>org.hamcrest</groupId>
