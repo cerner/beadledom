@@ -26,25 +26,6 @@ public class SwaggerUiResource {
   private static final MustacheFactory MUSTACHE_FACTORY = new DefaultMustacheFactory(
       "com/cerner/beadledom/swagger2");
 
-  //private static final Set<String> ASSETS = ImmutableSet.of(
-  //    "css/reset.css",
-  //    "css/screen.css",
-  //    "images/explorer_icons.png",
-  //    "images/throbber.gif",
-  //    "lib/backbone-min.js",
-  //    "lib/handlebars-1.0.0.js",
-  //    "lib/highlight.7.3.pack.js",
-  //    "lib/jquery-1.8.0.min.js",
-  //    "lib/jquery.ba-bbq.min.js",
-  //    "lib/jquery.slideto.min.js",
-  //    "lib/jquery.wiggle.min.js",
-  //    "lib/shred.bundle.js",
-  //    "lib/swagger.js",
-  //    "lib/underscore-min.js",
-  //    "lib/shred/content.js",
-  //    "swagger-ui.js"
-  //);
-
   private static final Set<String> ASSETS = ImmutableSet.of(
       "favicon-16x16.png",
       "favicon-32x32.png",
@@ -80,7 +61,7 @@ public class SwaggerUiResource {
       @Override
       public void write(OutputStream outputStream) throws IOException, WebApplicationException {
         try (InputStream inputStream = getClass().getResourceAsStream(WEBJAR_PATH + assetPath)) {
-          int nextByte = 0;
+          int nextByte;
           while ((nextByte = inputStream.read()) != -1) {
             outputStream.write(nextByte);
           }
