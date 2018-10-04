@@ -455,6 +455,7 @@
         <version>${tomcat-embed.version}</version>
         <scope>test</scope>
       </dependency>
+      <!-- If this version is updated the WEBJAR_PATH in SwaggerUiResource must also be updated -->
       <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>swagger-ui</artifactId>

@@ -39,7 +39,7 @@ public class SwaggerUiResource {
   @Path("/ui")
   @Produces(MediaType.TEXT_HTML)
   public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo) {
-    return StreamingWriterOutput.with(writer -> MUSTACHE_FACTORY.compile("ui2.mustache").execute(
+    return StreamingWriterOutput.with(writer -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
         writer, ImmutableMap.of(
             "apiDocsUrl",
             uriInfo.getBaseUriBuilder().path(SwaggerApiResource.class).build().toASCIIString()))
