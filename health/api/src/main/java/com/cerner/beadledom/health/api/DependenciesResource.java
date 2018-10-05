@@ -34,6 +34,7 @@ public interface DependenciesResource {
       @ApiResponse(code = 200, message = "healthy", response = HealthDependencyDto.class)})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
+  @JsonView(HealthJsonViews.Dependency.class)
   List<HealthDependencyDto> getDependencyListing();
 
   @GET
