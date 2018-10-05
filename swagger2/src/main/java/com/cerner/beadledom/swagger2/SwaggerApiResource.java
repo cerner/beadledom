@@ -2,9 +2,11 @@ package com.cerner.beadledom.swagger2;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.jaxrs.listing.AcceptHeaderApiListingResource;
+import io.swagger.models.Swagger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
@@ -29,6 +31,12 @@ public class SwaggerApiResource extends AcceptHeaderApiListingResource {
       @Context ServletConfig servletConfig,
       @Context HttpHeaders headers,
       @Context UriInfo uriInfo) {
-    return getListingJsonResponse(app, context, servletConfig, headers, uriInfo);
+    Swagger swagger = process(app, context, servletConfig, headers, uriInfo);
+    if (swagger == null) {
+      throw new NotFoundException();
+    }
+
+    swagger.basePath(context.getContextPath());
+    return Response.ok().entity(swagger).type(MediaType.APPLICATION_JSON).build();
   }
 }
