@@ -304,16 +304,12 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
                 "self" -> s"$rootUrl/meta/health/diagnostic/dependencies/important-thing"
               ),
               "name" -> "important-thing",
-              "id" -> "important-thing",
-              "primary" -> false,
-              "healthy" -> false
+              "id" -> "important-thing"
             ), Json.obj(
               "id" -> "important-thing2",
               "links" -> Json.obj(
                 "self" -> s"$rootUrl/meta/health/diagnostic/dependencies/important-thing2"
-              ),
-              "primary" -> false,
-              "healthy" -> false
+              )
             )
           )
           response.readEntity(classOf[String]) must equalJson(expected)

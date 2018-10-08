@@ -5,6 +5,9 @@
 ### Additions
 * Add OffsetPaginatedListDto interface to the pagination module.
 
+### Defects Corrected
+* Fix isHealthy field being included in the health dependency list JSON.
+
 ## 3.1 - 12 September 2018
 
 ### Additions

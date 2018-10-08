@@ -40,7 +40,6 @@ class HealthCheckerSpec extends FunSpec with MustMatchers with MockitoSugar {
     override def getDescription: Optional[String] = Optional.ofNullable(desc)
 
     override def checkAvailability(): HealthStatus = status
-
   }
 
   def faultyDependency = new HealthDependency {
@@ -145,173 +144,175 @@ class HealthCheckerSpec extends FunSpec with MustMatchers with MockitoSugar {
         dto.getDependencies.get().get(0).getMessage.get()
             .contains("java.lang.IllegalArgumentException") mustBe true
       }
+    }
 
-      describe("#doDiagnosticHealthCheck") {
-        it("creates success dto when all dependencies are healthy") {
-          val checker = newChecker(
-            "http://localhost/meta/health/diagnostic",
-            List(
-              newDependency("alpha", "alpha health check",
-                HealthStatus.create(200, "A-OK")),
-              newDependency("beta", "beta health check", HealthStatus.create(299, "ratata"))))
-          val dto = checker.doDiagnosticHealthCheck()
-          val links1 = LinksDto.builder()
-              .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha")
-              .build()
-          val links2 = LinksDto.builder()
-              .setSelf("http://localhost/meta/health/diagnostic/dependencies/beta")
-              .build()
-          val dependency1 = HealthDependencyDto.builder()
-              .setHealthy(true)
-              .setPrimary(false)
-              .setId("alpha")
-              .setName("alpha health check")
-              .setMessage("A-OK")
-              .setLinks(links1)
-              .build()
-          val dependency2 = HealthDependencyDto.builder()
-              .setHealthy(true)
-              .setPrimary(false)
-              .setId("beta")
-              .setName("beta health check")
-              .setMessage("ratata")
-              .setLinks(links2)
-              .build()
-          val expected = HealthDto.builder(metadata)
-              .setDependencies(List(dependency1, dependency2).asJava)
-              .setStatus(200)
-              .setMessage("SampleArtifact is available")
-              .build()
-          dto mustBe expected
-        }
-
-        it("creates failure dto when any dependencies are unhealthy") {
-          val checker = newChecker(
-            "http://localhost/meta/health/diagnostic",
-            List(
-              newDependency("alpha", null,
-                HealthStatus.create(200, "A-OK")),
-              newDependency("beta", null, HealthStatus.create(500, "Moltres"))))
-          val dto = checker.doDiagnosticHealthCheck()
-          val links1 = LinksDto.builder()
-              .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha")
-              .build()
-          val links2 = LinksDto.builder()
-              .setSelf("http://localhost/meta/health/diagnostic/dependencies/beta")
-              .build()
-          val dependency1 = HealthDependencyDto.builder()
-              .setHealthy(true)
-              .setPrimary(false)
-              .setId("alpha")
-              .setMessage("A-OK")
-              .setLinks(links1)
-              .build()
-          val dependency2 = HealthDependencyDto.builder()
-              .setHealthy(false)
-              .setPrimary(false)
-              .setId("beta")
-              .setMessage("Moltres")
-              .setLinks(links2)
-              .build()
-          val expected = HealthDto.builder(metadata)
-              .setDependencies(List(dependency1, dependency2).asJava)
-              .setStatus(503)
-              .setMessage("SampleArtifact is unavailable")
-              .build()
-          dto mustBe expected
-        }
-
-        it("includes exception stack trace when illegal argument exception occurs") {
-          val checker = newChecker(
-            "http://localhost/meta/health/diagnostic",
-            List(newDependency("alpha", null,
-              HealthStatus.create(300, "not feeling so hot", testException)))
-          )
-          val dto = checker.doDiagnosticHealthCheck()
-          dto.getStatus must be(503)
-          dto.getMessage.get() must be("SampleArtifact is unavailable")
-          dto.getDependencies.get().get(0).getMessage.get()
-              .contains("java.lang.IllegalArgumentException") mustBe true
-        }
+    describe("#doDiagnosticHealthCheck") {
+      it("creates success dto when all dependencies are healthy") {
+        val checker = newChecker(
+          "http://localhost/meta/health/diagnostic",
+          List(
+            newDependency("alpha", "alpha health check",
+              HealthStatus.create(200, "A-OK")),
+            newDependency("beta", "beta health check", HealthStatus.create(299, "ratata"))))
+        val dto = checker.doDiagnosticHealthCheck()
+        val links1 = LinksDto.builder()
+            .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha")
+            .build()
+        val links2 = LinksDto.builder()
+            .setSelf("http://localhost/meta/health/diagnostic/dependencies/beta")
+            .build()
+        val dependency1 = HealthDependencyDto.builder()
+            .setHealthy(true)
+            .setPrimary(false)
+            .setId("alpha")
+            .setName("alpha health check")
+            .setMessage("A-OK")
+            .setLinks(links1)
+            .build()
+        val dependency2 = HealthDependencyDto.builder()
+            .setHealthy(true)
+            .setPrimary(false)
+            .setId("beta")
+            .setName("beta health check")
+            .setMessage("ratata")
+            .setLinks(links2)
+            .build()
+        val expected = HealthDto.builder(metadata)
+            .setDependencies(List(dependency1, dependency2).asJava)
+            .setStatus(200)
+            .setMessage("SampleArtifact is available")
+            .build()
+        dto mustBe expected
       }
 
-      describe("#doDependencyListing") {
-        it("creates list of all dependencies") {
-          var checked: Boolean = false
-          def noCheckDependency(name: String, url: String) = new HealthDependency {
-            override def getName: String = name
+      it("creates failure dto when any dependencies are unhealthy") {
+        val checker = newChecker(
+          "http://localhost/meta/health/diagnostic",
+          List(
+            newDependency("alpha", null,
+              HealthStatus.create(200, "A-OK")),
+            newDependency("beta", null, HealthStatus.create(500, "Moltres"))))
+        val dto = checker.doDiagnosticHealthCheck()
+        val links1 = LinksDto.builder()
+            .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha")
+            .build()
+        val links2 = LinksDto.builder()
+            .setSelf("http://localhost/meta/health/diagnostic/dependencies/beta")
+            .build()
+        val dependency1 = HealthDependencyDto.builder()
+            .setHealthy(true)
+            .setPrimary(false)
+            .setId("alpha")
+            .setMessage("A-OK")
+            .setLinks(links1)
+            .build()
+        val dependency2 = HealthDependencyDto.builder()
+            .setHealthy(false)
+            .setPrimary(false)
+            .setId("beta")
+            .setMessage("Moltres")
+            .setLinks(links2)
+            .build()
+        val expected = HealthDto.builder(metadata)
+            .setDependencies(List(dependency1, dependency2).asJava)
+            .setStatus(503)
+            .setMessage("SampleArtifact is unavailable")
+            .build()
+        dto mustBe expected
+      }
 
-            override def getBasicAvailabilityUrl: Optional[String] = Optional.ofNullable(url)
+      it("includes exception stack trace when illegal argument exception occurs") {
+        val checker = newChecker(
+          "http://localhost/meta/health/diagnostic",
+          List(newDependency("alpha", null,
+            HealthStatus.create(300, "not feeling so hot", testException)))
+        )
+        val dto = checker.doDiagnosticHealthCheck()
+        dto.getStatus must be(503)
+        dto.getMessage.get() must be("SampleArtifact is unavailable")
+        dto.getDependencies.get().get(0).getMessage.get()
+            .contains("java.lang.IllegalArgumentException") mustBe true
+      }
+    }
 
-            override def checkAvailability(): HealthStatus = {
-              checked = true
-              fail("Dependency was checked")
-            }
+    describe("#doDependencyListing") {
+      it("creates list of all dependencies") {
+        var checked: Boolean = false
+
+        def noCheckDependency(name: String, url: String) = new HealthDependency {
+          override def getName: String = name
+
+          override def getBasicAvailabilityUrl: Optional[String] = Optional.ofNullable(url)
+
+          override def checkAvailability(): HealthStatus = {
+            checked = true
+            fail("Dependency was checked")
           }
-          val checker = newChecker(
-            "http://localhost/meta/health/diagnostic/dependencies",
-            List(
-              noCheckDependency("alpha", "ext1"),
-              noCheckDependency("beta", null)))
-          val links1 = LinksDto.builder()
-              .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha")
-              .build()
-          val links2 = LinksDto.builder()
-              .setSelf("http://localhost/meta/health/diagnostic/dependencies/beta")
-              .build()
-          val dependency1 = HealthDependencyDto.builder()
-              .setId("alpha")
-              .setPrimary(false)
-              .setLinks(links1)
-              .build()
-          val dependency2 = HealthDependencyDto.builder()
-              .setId("beta")
-              .setPrimary(false)
-              .setLinks(links2)
-              .build()
-          val expected = List(dependency1, dependency2)
-          checker.doDependencyListing() must contain theSameElementsAs (expected)
         }
+
+        val checker = newChecker(
+          "http://localhost/meta/health/diagnostic/dependencies",
+          List(
+            noCheckDependency("alpha", "ext1"),
+            noCheckDependency("beta", null)))
+        val links1 = LinksDto.builder()
+            .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha")
+            .build()
+        val links2 = LinksDto.builder()
+            .setSelf("http://localhost/meta/health/diagnostic/dependencies/beta")
+            .build()
+        val dependency1 = HealthDependencyDto.builder()
+            .setId("alpha")
+            .setPrimary(false)
+            .setLinks(links1)
+            .build()
+        val dependency2 = HealthDependencyDto.builder()
+            .setId("beta")
+            .setPrimary(false)
+            .setLinks(links2)
+            .build()
+        val expected = List(dependency1, dependency2)
+        checker.doDependencyListing() must contain theSameElementsAs (expected)
+      }
+    }
+
+    describe("#doDependencyAvailabilityCheck") {
+      it("throws 404 exception if name is not recognized") {
+        val checker = newChecker(
+          "http://localhost/meta/health",
+          List(newDependency("beta", null, HealthStatus.create(299, "sure whatever"))))
+        val expected = the[WebApplicationException] thrownBy
+            checker.doDependencyAvailabilityCheck("alpha")
+        expected.getResponse.getStatus mustBe 404
       }
 
-      describe("#doDependencyAvailabilityCheck") {
-        it("throws 404 exception if name is not recognized") {
-          val checker = newChecker(
-            "http://localhost/meta/health",
-            List(newDependency("beta", null, HealthStatus.create(299, "sure whatever"))))
-          val expected = the[WebApplicationException] thrownBy
-              checker.doDependencyAvailabilityCheck("alpha")
-          expected.getResponse.getStatus mustBe 404
-        }
+      it("builds a correct dto") {
+        val checker = newChecker(
+          "http://localhost/meta/health/diagnostic/dependency/alpha",
+          List(
+            newDependency("alpha", null, HealthStatus.create(901, "huh?")),
+            newDependency("beta", null, HealthStatus.create(299, "sure whatever"))))
+        val expected = HealthDependencyDto.builder()
+            .setMessage("huh?")
+            .setId("alpha")
+            .setPrimary(false)
+            .setHealthy(false)
+            .setLinks(LinksDto.builder()
+                .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha").build())
+            .build()
+        checker.doDependencyAvailabilityCheck("alpha") mustBe expected
+      }
 
-        it("builds a correct dto") {
-          val checker = newChecker(
-            "http://localhost/meta/health/diagnostic/dependency/alpha",
-            List(
-              newDependency("alpha", null,  HealthStatus.create(901, "huh?")),
-              newDependency("beta", null, HealthStatus.create(299, "sure whatever"))))
-          val expected = HealthDependencyDto.builder()
-              .setMessage("huh?")
-              .setId("alpha")
-              .setPrimary(false)
-              .setHealthy(false)
-              .setLinks(LinksDto.builder()
-                  .setSelf("http://localhost/meta/health/diagnostic/dependencies/alpha").build())
-              .build()
-          checker.doDependencyAvailabilityCheck("alpha") mustBe expected
-        }
+      it("includes exception stack trace when illegal argument exception occurs") {
+        val checker = newChecker(
+          "http://localhost/meta/health",
+          List(newDependency("alpha", null,
+            HealthStatus.create(300, "not feeling so hot", testException)))
+        )
+        val dto = checker.doPrimaryHealthCheck()
 
-        it("includes exception stack trace when illegal argument exception occurs") {
-          val checker = newChecker(
-            "http://localhost/meta/health",
-            List(newDependency("alpha", null,
-              HealthStatus.create(300, "not feeling so hot", testException)))
-          )
-          val dto = checker.doPrimaryHealthCheck()
-
-          checker.doDependencyAvailabilityCheck("alpha")
-              .getMessage.get().contains("java.lang.IllegalArgumentException") mustBe true
-        }
+        checker.doDependencyAvailabilityCheck("alpha")
+            .getMessage.get().contains("java.lang.IllegalArgumentException") mustBe true
       }
     }
   }
