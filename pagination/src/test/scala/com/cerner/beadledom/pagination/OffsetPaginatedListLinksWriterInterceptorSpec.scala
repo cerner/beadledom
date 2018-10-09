@@ -3,7 +3,6 @@ package com.cerner.beadledom.pagination
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
 import com.google.inject.Guice
 import javax.ws.rs.core.UriInfo
-import javax.ws.rs.core.UriInfo
 import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.ArgumentMatchers.any
