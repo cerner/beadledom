@@ -6,7 +6,7 @@
 * Add OffsetPaginatedListDto interface to the pagination module.
 
 ### Defects Corrected
-* Fixed beadledom pagination to handle 0 for limit parameter gracefully.
+* Fix isHealthy field being included in the health dependency list JSON.
 
 ## 3.1 - 12 September 2018
 
