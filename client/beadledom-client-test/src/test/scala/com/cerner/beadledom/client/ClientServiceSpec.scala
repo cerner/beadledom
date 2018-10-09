@@ -100,7 +100,7 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
         results.nextLink() mustBe s"$baseUri/paginated?offset=11&limit=10"
       }
 
-      it("accepts 0 limit") {
+      it("rejects 0 limit by default") {
         val injector = getInjector(List(new ResourceOneModule))
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])

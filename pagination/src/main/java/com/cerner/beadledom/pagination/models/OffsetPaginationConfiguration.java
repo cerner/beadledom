@@ -38,6 +38,11 @@ public abstract class OffsetPaginationConfiguration {
   public abstract String offsetFieldName();
 
   /**
+   * Flag to denote whether limit value of 0 is allowed. Defaults to false.
+   */
+  public abstract Boolean allowZeroLimit();
+
+  /**
    * Creates a builder for {@link OffsetPaginationConfiguration}.
    *
    * @return instance of {@link Builder}
@@ -48,7 +53,8 @@ public abstract class OffsetPaginationConfiguration {
         .setDefaultLimit(20)
         .setMaxLimit(100)
         .setLimitFieldName("limit")
-        .setOffsetFieldName("offset");
+        .setOffsetFieldName("offset")
+        .setAllowZeroLimit(false);
   }
 
   @AutoValue.Builder
@@ -63,6 +69,8 @@ public abstract class OffsetPaginationConfiguration {
     public abstract Builder setLimitFieldName(String value);
 
     public abstract Builder setOffsetFieldName(String value);
+
+    public abstract Builder setAllowZeroLimit(Boolean allowZeroLimit);
 
     public abstract OffsetPaginationConfiguration build();
   }

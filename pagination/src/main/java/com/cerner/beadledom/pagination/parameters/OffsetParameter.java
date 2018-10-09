@@ -1,10 +1,10 @@
 package com.cerner.beadledom.pagination.parameters;
 
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
+import javax.inject.Inject;
 
 /**
  * Represent the offset parameter used for pagination.
@@ -25,12 +25,7 @@ public class OffsetParameter extends AbstractParameter<Long> {
   private final String offset;
 
   @Inject
-  @Named("defaultOffset")
-  private static Long defaultOffset;
-
-  @Inject
-  @Named("offsetFieldName")
-  private static String defaultOffsetFieldName;
+  private static OffsetPaginationConfiguration offsetPaginationConfiguration;
 
   /**
    * Creates an instance of {@link OffsetParameter}.
@@ -38,7 +33,7 @@ public class OffsetParameter extends AbstractParameter<Long> {
    * @param param the offset value from a request
    */
   public OffsetParameter(String param) {
-    super(param, defaultOffsetFieldName);
+    super(param, offsetPaginationConfiguration.offsetFieldName());
     this.offset = param;
   }
 
@@ -78,7 +73,7 @@ public class OffsetParameter extends AbstractParameter<Long> {
    * @return the default offset value.
    */
   public static Long getDefaultOffset() {
-    return defaultOffset;
+    return offsetPaginationConfiguration.defaultOffset();
   }
 
   /**
@@ -87,6 +82,6 @@ public class OffsetParameter extends AbstractParameter<Long> {
    * @return the default offset field name.
    */
   public static String getDefaultOffsetFieldName() {
-    return defaultOffsetFieldName;
+    return offsetPaginationConfiguration.offsetFieldName();
   }
 }
