@@ -42,8 +42,7 @@ class LimitParameterSpec extends FunSpec with MustMatchers {
 
           val limitParameter = new LimitParameter("0")
 
-          limitParameter.getValue must be
-          0
+          limitParameter.getValue mustBe 0
         }
       }
     }

@@ -40,7 +40,7 @@ public abstract class OffsetPaginationConfiguration {
   /**
    * Flag to denote whether limit value of 0 is allowed. Defaults to false.
    */
-  public abstract Boolean allowZeroLimit();
+  public abstract boolean allowZeroLimit();
 
   /**
    * Creates a builder for {@link OffsetPaginationConfiguration}.
@@ -70,7 +70,7 @@ public abstract class OffsetPaginationConfiguration {
 
     public abstract Builder setOffsetFieldName(String value);
 
-    public abstract Builder setAllowZeroLimit(Boolean allowZeroLimit);
+    public abstract Builder setAllowZeroLimit(boolean allowZeroLimit);
 
     public abstract OffsetPaginationConfiguration build();
   }
