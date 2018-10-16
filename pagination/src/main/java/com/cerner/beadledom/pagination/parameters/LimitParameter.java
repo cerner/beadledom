@@ -59,21 +59,26 @@ public class LimitParameter extends AbstractParameter<Integer> {
               + " - int is required.");
     }
 
-    if ((offsetPaginationConfiguration.allowZeroLimit() && limit < 0)
-        || limit > offsetPaginationConfiguration.maxLimit()) {
-      throw InvalidParameterException.create(
-          "Invalid value for '" + this.getParameterFieldName() + "': " + this.limit
-              + "  - value between 0 and " + offsetPaginationConfiguration.maxLimit()
-              + " is required.");
-    } else if ((!offsetPaginationConfiguration.allowZeroLimit() && limit <= 0)
-        || limit > offsetPaginationConfiguration.maxLimit()) {
-      throw InvalidParameterException.create(
-          "Invalid value for '" + this.getParameterFieldName() + "': " + this.limit
-              + "  - value between 1 and " + offsetPaginationConfiguration.maxLimit()
-              + " is required.");
-    }
+    checkLimitRange(limit);
 
     return limit;
+  }
+
+  /**
+   * Ensures that the limit is in the allowed range.
+   *
+   * @param limit the parsed limit value to check the range of
+   * @throws InvalidParameterException if the limit value is less outside of the allowed range
+   */
+  private void checkLimitRange(int limit) {
+    int minLimit = offsetPaginationConfiguration.allowZeroLimit() ? 0 : 1;
+
+    if (limit < minLimit || limit > offsetPaginationConfiguration.maxLimit()) {
+      throw InvalidParameterException.create(
+          "Invalid value for '" + this.getParameterFieldName() + "': " + limit
+              + "  - value between " + minLimit + " and " + offsetPaginationConfiguration.maxLimit()
+              + " is required.");
+    }
   }
 
   /**
