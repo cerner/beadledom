@@ -25,7 +25,8 @@ User Manual
     Beadledom Resteasy <resteasy>
     Beadledom Resteasy - Generic Response <resteasy_generic_response>
     Beadledom Stagemonitor <stagemonitor>
-    Beadledom Swagger <swagger1>
+    Beadledom Swagger 1 <swagger1>
+    Beadledom Swagger 2 <swagger2>
     Beadledom Lifecycle <lifecycle>
     Beadledom Lifecycle - Governator <lifecycle_governator>
     Beadledom Testing <testing>

@@ -63,6 +63,7 @@
     <module>resteasy-genericresponse</module>
     <module>stagemonitor</module>
     <module>swagger1</module>
+    <module>swagger2</module>
     <module>testing</module>
   </modules>
 
@@ -97,6 +98,7 @@
     <spotbugs.version>3.1.6</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
+    <swagger2-core.version>1.5.21</swagger2-core.version>
     <tomcat-embed.version>7.0.42</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -300,12 +302,12 @@
       <dependency>
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
-        <version>4.2.0</version>
+        <version>4.2.1</version>
       </dependency>
       <dependency>
         <groupId>com.google.inject.extensions</groupId>
         <artifactId>guice-multibindings</artifactId>
-        <version>4.2.0</version>
+        <version>4.2.1</version>
       </dependency>
       <dependency>
         <groupId>com.netflix.governator</groupId>
@@ -352,6 +354,28 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>2.6</version>
+      </dependency>
+      <!-- This is effectively a pure jaxrs implementation, despite the name. Only usage of the -->
+      <!-- FormDataParam annotation from Jersey will not work with Resteasy. -->
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jersey2-jaxrs</artifactId>
+        <version>${swagger2-core.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <artifactId>org.glassfish.jersey.media</artifactId>
+            <groupId>jersey-media-multipart</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger2-core.version}</version>
       </dependency>
       <dependency>
         <groupId>javax.annotation</groupId>
@@ -430,6 +454,12 @@
         <artifactId>tomcat-embed-jasper</artifactId>
         <version>${tomcat-embed.version}</version>
         <scope>test</scope>
+      </dependency>
+      <!-- If this version is updated the WEBJAR_PATH in SwaggerUiResource must also be updated -->
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>swagger-ui</artifactId>
+        <version>3.19.0</version>
       </dependency>
       <dependency>
         <groupId>org.hamcrest</groupId>
@@ -914,7 +944,7 @@
         <version>${maven-project-info-reports-plugin.version}</version>
         <reportSets>
           <reportSet>
-            <reports />
+            <reports/>
           </reportSet>
         </reportSets>
       </plugin>

@@ -3,8 +3,7 @@ package com.cerner.beadledom.pagination.parameters;
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import com.wordnik.swagger.annotations.ApiParam;
 
 /**
  * Represent the limit parameter used for pagination.
@@ -18,10 +17,10 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @author Ian Kottman
  * @since 3.1
  */
-@ApiModel
 public class LimitParameter extends AbstractParameter<Integer> {
 
-  @ApiModelProperty(value = "Total number of items to return in the response.", dataType = "int")
+  @ApiParam(value = "Total number of items to return in the response.")
+  @io.swagger.annotations.ApiParam(value = "Total number of items to return in the response.")
   private final String limit;
 
   @Inject

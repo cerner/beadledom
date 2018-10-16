@@ -3,132 +3,183 @@
   "swaggerVersion": "1.2",
   "basePath": "http://localhost:TOMCAT_PORT/faux-service",
   "resourcePath": "/health",
-  "apis": [{
-    "path": "/meta/availability",
-    "operations": [{
-      "method": "GET",
-      "summary": "Basic Availability Check",
-      "notes": "Always returns 200. The JSON will only include the message field.",
-      "type": "HealthDto",
-      "nickname": "getBasicAvailabilityCheck",
-      "produces": ["application/json"],
-      "parameters": [],
-      "responseMessages": [{
-        "code": 503,
-        "message": "unhealthy"
-      }, {
-        "code": 200,
-        "message": "healthy"
-      }]
-    }]
-  }, {
-    "path": "/meta/health",
-    "operations": [{
-      "method": "GET",
-      "summary": "Primary Health Check",
-      "notes": "The response JSON will contain a message and the results of checking the health of primary dependencies, although stack traces will be excluded.",
-      "type": "HealthDto",
-      "nickname": "getPrimaryHealthCheck",
-      "produces": ["application/json"],
-      "parameters": [],
-      "responseMessages": [{
-        "code": 503,
-        "message": "unhealthy",
-        "responseModel": "HealthDto"
-      }, {
-        "code": 200,
-        "message": "healthy",
-        "responseModel": "HealthDto"
-      }]
-    }]
-  }, {
-    "path": "/meta/health/diagnostic/dependencies",
-    "operations": [{
-      "method": "GET",
-      "summary": "Dependency Listing",
-      "notes": "Returns the name, internal URL and external URL (if applicable) of all dependencies.",
-      "type": "array",
-      "items": {
-        "$ref": "HealthDependencyDto"
-      },
-      "nickname": "getDependencyListing",
-      "produces": ["application/json"],
-      "parameters": [],
-      "responseMessages": [{
-        "code": 503,
-        "message": "unhealthy",
-        "responseModel": "HealthDependencyDto"
-      }, {
-        "code": 200,
-        "message": "healthy",
-        "responseModel": "HealthDependencyDto"
-      }]
-    }]
-  }, {
-    "path": "/meta/health/diagnostic/dependencies/{name}",
-    "operations": [{
-      "method": "GET",
-      "summary": "Availability Check for Dependency",
-      "notes": "Invokes the basic availability check on the given dependency. The response code will match the code returned by the dependency, and will be omitted from the JSON.",
-      "type": "HealthDependencyDto",
-      "nickname": "getDependencyAvailabilityCheck",
-      "produces": ["application/json"],
-      "parameters": [{
-        "name": "name",
-        "required": true,
-        "type": "string",
-        "paramType": "path",
-        "allowMultiple": false
-      }],
-      "responseMessages": [{
-        "code": 503,
-        "message": "unhealthy",
-        "responseModel": "HealthDependencyDto"
-      }, {
-        "code": 200,
-        "message": "healthy",
-        "responseModel": "HealthDependencyDto"
-      }]
-    }]
-  }, {
-    "path": "/meta/health/diagnostic",
-    "operations": [{
-      "method": "GET",
-      "summary": "Diagnostic Health Check",
-      "notes": "The response JSON will contain all available diagnostic details and the results of checking the health of all dependencies.",
-      "type": "HealthDto",
-      "nickname": "getDiagnosticHealthCheck",
-      "produces": ["application/json"],
-      "parameters": [],
-      "responseMessages": [{
-        "code": 503,
-        "message": "unhealthy",
-        "responseModel": "HealthDto"
-      }, {
-        "code": 200,
-        "message": "healthy",
-        "responseModel": "HealthDto"
-      }]
-    }]
-  }, {
-    "path": "/meta/version",
-    "operations": [{
-      "method": "GET",
-      "summary": "Application Version Information",
-      "notes": "Always returns 200. The version information of the Application.",
-      "type": "BuildDto",
-      "nickname": "getVersionInfo",
-      "produces": ["application/json"],
-      "parameters": [],
-      "responseMessages": [{
-        "code": 503,
-        "message": "unhealthy"
-      }, {
-        "code": 200,
-        "message": "healthy"
-      }]
-    }]
-  }],
+  "apis": [
+    {
+      "path": "/meta/availability",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Basic Availability Check",
+          "notes": "Always returns 200. The JSON will only include the message field.",
+          "type": "HealthDto",
+          "nickname": "getBasicAvailabilityCheck",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 503,
+              "message": "unhealthy"
+            },
+            {
+              "code": 200,
+              "message": "healthy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/meta/health",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Primary Health Check",
+          "notes": "The response JSON will contain a message and the results of checking the health of primary dependencies, although stack traces will be excluded.",
+          "type": "HealthDto",
+          "nickname": "getPrimaryHealthCheck",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 503,
+              "message": "unhealthy",
+              "responseModel": "HealthDto"
+            },
+            {
+              "code": 200,
+              "message": "healthy",
+              "responseModel": "HealthDto"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/meta/health/diagnostic/dependencies",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Dependency Listing",
+          "notes": "Returns the name, internal URL and external URL (if applicable) of all dependencies.",
+          "type": "array",
+          "items": {
+            "$ref": "HealthDependencyDto"
+          },
+          "nickname": "getDependencyListing",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 503,
+              "message": "unhealthy",
+              "responseModel": "HealthDependencyDto"
+            },
+            {
+              "code": 200,
+              "message": "healthy",
+              "responseModel": "HealthDependencyDto"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/meta/health/diagnostic/dependencies/{name}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Availability Check for Dependency",
+          "notes": "Invokes the basic availability check on the given dependency. The response code will match the code returned by the dependency, and will be omitted from the JSON.",
+          "type": "HealthDependencyDto",
+          "nickname": "getDependencyAvailabilityCheck",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "name",
+              "required": true,
+              "type": "string",
+              "paramType": "path",
+              "allowMultiple": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 503,
+              "message": "unhealthy",
+              "responseModel": "HealthDependencyDto"
+            },
+            {
+              "code": 200,
+              "message": "healthy",
+              "responseModel": "HealthDependencyDto"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/meta/health/diagnostic",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Diagnostic Health Check",
+          "notes": "The response JSON will contain all available diagnostic details and the results of checking the health of all dependencies.",
+          "type": "HealthDto",
+          "nickname": "getDiagnosticHealthCheck",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 503,
+              "message": "unhealthy",
+              "responseModel": "HealthDto"
+            },
+            {
+              "code": 200,
+              "message": "healthy",
+              "responseModel": "HealthDto"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/meta/version",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Application Version Information",
+          "notes": "The version information of the Application.",
+          "type": "BuildDto",
+          "nickname": "getVersionInfo",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 503,
+              "message": "Service Unavailable"
+            },
+            {
+              "code": 200,
+              "message": "Success"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "models": {
     "Instant": {
       "id": "Instant",
@@ -166,7 +217,9 @@
     "HealthDto": {
       "id": "HealthDto",
       "description": "Indicates the health of this service.",
-      "required": ["message"],
+      "required": [
+        "message"
+      ],
       "properties": {
         "message": {
           "type": "string",
@@ -254,7 +307,7 @@
     },
     "BuildDto": {
       "id": "BuildDto",
-      "description": "Indicates the list of dependencies of this service.",
+      "description": "Service build and version information.",
       "properties": {
         "version": {
           "type": "string",

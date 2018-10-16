@@ -18,6 +18,8 @@ import java.util.List;
 @AutoValue
 @JsonDeserialize(builder = HealthDependenciesDto.Builder.class)
 @ApiModel(description = "Indicates the list of dependencies of this service.")
+@io.swagger.annotations.ApiModel(
+    description = "Indicates the list of dependencies of this service.")
 public abstract class HealthDependenciesDto {
   /**
    * Creates a new builder for {@code HealthDto}.
@@ -27,6 +29,8 @@ public abstract class HealthDependenciesDto {
   }
 
   @ApiModelProperty(
+      "the results of any dependency health checks invoked as part of this health check")
+  @io.swagger.annotations.ApiModelProperty(
       "the results of any dependency health checks invoked as part of this health check")
   @JsonProperty("dependencies")
   @JsonView(HealthJsonViews.Primary.class)

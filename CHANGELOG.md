@@ -4,6 +4,7 @@
 
 ### Additions
 * Add OffsetPaginatedListDto interface to the pagination module.
+* Add Swagger 2 module.
 
 ### Defects Corrected
 * Fix isHealthy field being included in the health dependency list JSON.

@@ -18,6 +18,8 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 @AutoValue
 @JsonDeserialize(builder = LinksDto.Builder.class)
 @ApiModel(description = "Contains hyperlinks to other resources related to a dependency")
+@io.swagger.annotations.ApiModel(
+    description = "Contains hyperlinks to other resources related to a dependency")
 public abstract class LinksDto {
   /**
    * Creates a new builder for {@code LinksDto}.
@@ -28,6 +30,8 @@ public abstract class LinksDto {
 
   @ApiModelProperty("The health endpoint within a service that can be queried for the health of "
       + "this dependency")
+  @io.swagger.annotations.ApiModelProperty(
+      "The health endpoint within a service that can be queried for the health of this dependency")
   @JsonProperty("self")
   public abstract String getSelf();
 
