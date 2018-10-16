@@ -1,10 +1,10 @@
 package com.cerner.beadledom.pagination.parameters;
 
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
+import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
+import javax.inject.Inject;
 
 /**
  * Represent the limit parameter used for pagination.
@@ -25,16 +25,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
   private final String limit;
 
   @Inject
-  @Named("defaultLimit")
-  private static Integer defaultLimit;
-
-  @Inject
-  @Named("limitFieldName")
-  private static String defaultLimitFieldName;
-
-  @Inject
-  @Named("maxLimit")
-  private static int maxLimit;
+  private static OffsetPaginationConfiguration offsetPaginationConfiguration;
 
   /**
    * Creates an instance of {@link LimitParameter}.
@@ -42,7 +33,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
    * @param param the limit value from a request
    */
   public LimitParameter(String param) {
-    super(param, defaultLimitFieldName);
+    super(param, offsetPaginationConfiguration.limitFieldName());
     this.limit = param;
   }
 
@@ -68,13 +59,26 @@ public class LimitParameter extends AbstractParameter<Integer> {
               + " - int is required.");
     }
 
-    if (limit < 0 || limit > maxLimit) {
-      throw InvalidParameterException.create(
-          "Invalid value for '" + this.getParameterFieldName() + "': " + this.limit
-              + "  - value between 0 and 100 is required.");
-    }
+    checkLimitRange(limit);
 
     return limit;
+  }
+
+  /**
+   * Ensures that the limit is in the allowed range.
+   *
+   * @param limit the parsed limit value to check the range of
+   * @throws InvalidParameterException if the limit value is less outside of the allowed range
+   */
+  private void checkLimitRange(int limit) {
+    int minLimit = offsetPaginationConfiguration.allowZeroLimit() ? 0 : 1;
+
+    if (limit < minLimit || limit > offsetPaginationConfiguration.maxLimit()) {
+      throw InvalidParameterException.create(
+          "Invalid value for '" + this.getParameterFieldName() + "': " + limit
+              + "  - value between " + minLimit + " and " + offsetPaginationConfiguration.maxLimit()
+              + " is required.");
+    }
   }
 
   /**
@@ -83,7 +87,7 @@ public class LimitParameter extends AbstractParameter<Integer> {
    * @return the default limit value.
    */
   public static Integer getDefaultLimit() {
-    return defaultLimit;
+    return offsetPaginationConfiguration.defaultLimit();
   }
 
   /**
@@ -92,6 +96,6 @@ public class LimitParameter extends AbstractParameter<Integer> {
    * @return the default limit field name.
    */
   public static String getDefaultLimitFieldName() {
-    return defaultLimitFieldName;
+    return offsetPaginationConfiguration.limitFieldName();
   }
 }

@@ -1,6 +1,7 @@
 package com.cerner.beadledom.pagination
 
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
+import com.google.inject.Guice
 import javax.ws.rs.core.UriInfo
 import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
 import org.jboss.resteasy.spi.ResteasyUriInfo
@@ -18,7 +19,10 @@ import scala.collection.JavaConverters._
 class OffsetPaginatedListLinksWriterInterceptorSpec extends FunSpec with MustMatchers with MockitoSugar {
   describe("OffsetPaginatedListLinksWriterInterceptor") {
     describe("#aroundWriteTo") {
-      it("replaces an OffsetPaginatedList entity with an OffsetPaginatedListDtoImpl entity") {
+      it("replaces an OffsetPaginatedList entity with an OffsetPaginatedListDto entity") {
+        // Allow static injection for pagination parameters
+        Guice.createInjector(new OffsetPaginationModule())
+
         val list = OffsetPaginatedList.builder()
             .items(List("a", "b").asJava)
             .metadata("limit", 20, "offset", 0L, null, true)

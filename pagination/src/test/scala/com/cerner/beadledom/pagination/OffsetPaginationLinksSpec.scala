@@ -1,13 +1,11 @@
 package com.cerner.beadledom.pagination
 
+import com.google.inject.Guice
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.UriInfo
-
-import com.google.inject.Guice
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
-
 import scala.collection.JavaConverters._
 
 /**
@@ -17,6 +15,9 @@ import scala.collection.JavaConverters._
  * @author Ian Kottman
  */
 class OffsetPaginationLinksSpec extends FunSpec with MustMatchers with MockitoSugar {
+
+  // Allow static injection for pagination parameters
+  Guice.createInjector(new OffsetPaginationModule())
   private val list = OffsetPaginatedList.builder()
       .items(List("a", "b", "c").asJava)
       .metadata("limit", null, "offset", null, null, true)
