@@ -249,7 +249,7 @@ resources
 +++++++++
 
 :Files:
-    - **log4j.properties** - configuration for our logger
+  - **log4j.properties** - configuration for our logger
   - **stagemonitor.properties** - configuration for `stagemonitor <http://www.stagemonitor.org/>`_
   - **build-info.properties** - properties from the current build used in health checks
 

@@ -1,7 +1,6 @@
 package com.cerner.beadledom.swagger2;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.multibindings.Multibinder;
 import com.google.inject.multibindings.MultibindingsScanner;
 import io.swagger.converter.ModelConverter;
 import io.swagger.converter.ModelConverters;
@@ -34,6 +33,7 @@ import javax.inject.Inject;
  * <p>Provides the following JAX-RS resources and providers:
  * <ul>
  *     <li>{@link SwaggerApiResource}</li>
+ *     <li>{@link SwaggerUiResource}</li>
  *     <li>{@link SwaggerSerializers}</li>
  * </ul>
  *
@@ -56,9 +56,6 @@ public class Swagger2Module extends AbstractModule {
   protected void configure() {
     requireBinding(Info.class);
 
-    // Create empty multibinder in case no ModelConverter bindings exist
-    Multibinder.newSetBinder(binder(), ModelConverter.class);
-
     bind(SwaggerApiResource.class);
     bind(SwaggerUiResource.class);
 
@@ -67,8 +64,6 @@ public class Swagger2Module extends AbstractModule {
     bind(JaxrsScanner.class).to(SwaggerGuiceJaxrsScanner.class);
 
     bind(SwaggerLifecycleHook.class).asEagerSingleton();
-
-    install(MultibindingsScanner.asModule());
   }
 
   static class SwaggerLifecycleHook {

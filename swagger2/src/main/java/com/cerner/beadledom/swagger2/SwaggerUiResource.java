@@ -32,7 +32,6 @@ public class SwaggerUiResource {
       "swagger-ui.css",
       "swagger-ui-bundle.js",
       "swagger-ui-standalone-preset.js"
-
   );
 
   @GET

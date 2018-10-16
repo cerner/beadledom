@@ -1,7 +1,7 @@
 package com.cerner.beadledom.swagger2;
 
 import io.swagger.annotations.ApiOperation;
-import io.swagger.jaxrs.listing.AcceptHeaderApiListingResource;
+import io.swagger.jaxrs.listing.BaseApiListingResource;
 import io.swagger.models.Swagger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -21,7 +21,7 @@ import javax.ws.rs.core.UriInfo;
  * swagger 1.
  */
 @Path("/api-docs")
-public class SwaggerApiResource extends AcceptHeaderApiListingResource {
+public class SwaggerApiResource extends BaseApiListingResource {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @ApiOperation(value = "The swagger definition in JSON", hidden = true)

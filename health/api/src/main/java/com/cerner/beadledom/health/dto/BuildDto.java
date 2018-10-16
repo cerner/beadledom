@@ -18,9 +18,9 @@ import java.util.Optional;
  */
 @AutoValue
 @JsonDeserialize(builder = BuildDto.Builder.class)
-@ApiModel(description = "Indicates the list of dependencies of this service.")
+@ApiModel(description = "Service build and version information.")
 @io.swagger.annotations.ApiModel(
-    description = "Indicates the list of dependencies of this service.")
+    description = "Service build and version information.")
 public abstract class BuildDto {
   /**
    * Creates a new builder for {@code BuildDto}.

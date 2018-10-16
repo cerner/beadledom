@@ -23,17 +23,17 @@ public interface VersionResource {
   StreamingOutput getVersionInfoHtml();
 
   @ApiOperation(value = "Application Version Information",
-      notes = "Always returns 200. The version information of the Application.",
+      notes = "The version information of the Application.",
       response = BuildDto.class)
   @ApiResponses(value = {
-      @ApiResponse(code = 503, message = "unhealthy"),
-      @ApiResponse(code = 200, message = "healthy")})
+      @ApiResponse(code = 503, message = "Service Unavailable"),
+      @ApiResponse(code = 200, message = "Success")})
   @io.swagger.annotations.ApiOperation(value = "Application Version Information",
-      notes = "Always returns 200. The version information of the Application.",
+      notes = "The version information of the Application.",
       response = BuildDto.class)
   @io.swagger.annotations.ApiResponses(value = {
-      @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy"),
-      @io.swagger.annotations.ApiResponse(code = 200, message = "healthy")})
+      @io.swagger.annotations.ApiResponse(code = 503, message = "Service Unavailable"),
+      @io.swagger.annotations.ApiResponse(code = 200, message = "Success")})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   BuildDto getVersionInfo();
