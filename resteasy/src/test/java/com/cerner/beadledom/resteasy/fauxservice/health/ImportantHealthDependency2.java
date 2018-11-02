@@ -24,4 +24,7 @@ public class ImportantHealthDependency2 extends HealthDependency {
   public String getName() {
     return "important-thing2";
   }
+
+  @Override
+  public Boolean getPrimary() { return true; }
 }

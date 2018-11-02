@@ -116,8 +116,6 @@ public class HealthModule extends AbstractModule {
     Multibinder<Module> jacksonModuleBinder = Multibinder.newSetBinder(binder(), Module.class);
     jacksonModuleBinder.addBinding().to(Jdk8Module.class);
     jacksonModuleBinder.addBinding().to(JavaTimeModule.class);
-
-    install(MultibindingsScanner.asModule());
   }
 
   /**
