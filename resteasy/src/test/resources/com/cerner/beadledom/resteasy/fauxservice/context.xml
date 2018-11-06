@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Context reloadable="true">
+    <!-- Have to set this so that the common class loader classes are loaded first -->
+    <!-- https://tomcat.apache.org/tomcat-8.5-doc/class-loader-howto.html -->
+    <Loader delegate="true"/>
     <Environment name="beadledom/service/key1"
                  value="value1"
                  type="java.lang.String"

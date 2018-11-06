@@ -99,7 +99,7 @@
     <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
     <swagger2-core.version>1.5.21</swagger2-core.version>
-    <tomcat-embed.version>7.0.42</tomcat-embed.version>
+    <tomcat-embed.version>7.0.91</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
