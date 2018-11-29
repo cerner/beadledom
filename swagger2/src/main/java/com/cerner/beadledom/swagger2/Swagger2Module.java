@@ -1,7 +1,7 @@
 package com.cerner.beadledom.swagger2;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.multibindings.MultibindingsScanner;
+import com.google.inject.multibindings.Multibinder;
 import io.swagger.converter.ModelConverter;
 import io.swagger.converter.ModelConverters;
 import io.swagger.jaxrs.config.JaxrsScanner;
@@ -45,11 +45,6 @@ import javax.inject.Inject;
  * <p>You may also supply set bindings for {@link io.swagger.converter.ModelConverter}.
  * These will be added to the list of model converters (before the default converter, but otherwise
  * in unspecified order).
- *
- * <p>Installs:
- * <ul>
- *   <li> {@link MultibindingsScanner} </li>
- * </ul>
  */
 public class Swagger2Module extends AbstractModule {
   @Override
@@ -64,6 +59,9 @@ public class Swagger2Module extends AbstractModule {
     bind(JaxrsScanner.class).to(SwaggerGuiceJaxrsScanner.class);
 
     bind(SwaggerLifecycleHook.class).asEagerSingleton();
+
+    // Create empty multibinder in case no ModelConverter bindings exist
+    Multibinder.newSetBinder(binder(), ModelConverter.class);
   }
 
   static class SwaggerLifecycleHook {

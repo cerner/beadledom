@@ -2,7 +2,6 @@ package com.cerner.beadledom.swagger;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
-import com.google.inject.multibindings.MultibindingsScanner;
 import com.wordnik.swagger.config.ConfigFactory;
 import com.wordnik.swagger.config.ScannerFactory;
 import com.wordnik.swagger.config.SwaggerConfig;
@@ -62,11 +61,6 @@ import javax.inject.Inject;
  *     <li>{@link com.wordnik.swagger.jaxrs.JaxrsApiReader}</li>
  *     <li>{@link com.wordnik.swagger.jaxrs.config.JaxrsScanner}</li>
  * </ul>
- *
- * <p>Installs:
- * <ul>
- *   <li> {@link MultibindingsScanner} </li>
- * </ul>
  */
 public class SwaggerModule extends AbstractModule {
   @Override
@@ -74,8 +68,7 @@ public class SwaggerModule extends AbstractModule {
     requireBinding(SwaggerConfig.class);
 
     // Create empty multibinder in case no ModelConverter bindings exist
-    Multibinder<ModelConverter> swaggerModelConverterBinder = Multibinder.newSetBinder(
-        binder(), ModelConverter.class);
+    Multibinder.newSetBinder(binder(), ModelConverter.class);
 
     bind(SwaggerApiResource.class);
     bind(SwaggerUiResource.class);
@@ -87,8 +80,6 @@ public class SwaggerModule extends AbstractModule {
     bind(JaxrsScanner.class).to(SwaggerGuiceJaxrsScanner.class);
 
     bind(SwaggerLifecycleHook.class).asEagerSingleton();
-
-    install(MultibindingsScanner.asModule());
   }
 
   static class SwaggerLifecycleHook {

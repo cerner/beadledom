@@ -11,7 +11,7 @@ import java.lang.reflect.Type
 import java.util
 
 /**
- * Spec tests for [Swagger2Module].
+ * Spec tests for [[Swagger2Module]].
  */
 class SwaggerModuleSpec extends UnitSpec {
   val swaggerMockModule = new AbstractModule {
@@ -30,6 +30,12 @@ class SwaggerModuleSpec extends UnitSpec {
     }
   }
 
+  val swaggerMockModuleNoMultibinderDependency = new AbstractModule {
+    override def configure(): Unit = {
+      install(new Swagger2Module)
+    }
+  }
+
   describe("SwaggerModule") {
     it("Adds dependencies to the multibinder") {
       val setType = new TypeLiteral[java.util.Set[ModelConverter]] {}
@@ -37,6 +43,14 @@ class SwaggerModuleSpec extends UnitSpec {
       val dependencies = injector.getInstance(Key.get(setType))
 
       dependencies must have size 2
+    }
+
+    it("Creates empty multibinder if no dependencies exist") {
+      val setType = new TypeLiteral[java.util.Set[ModelConverter]] {}
+      val injector = Guice.createInjector(swaggerMockModuleNoMultibinderDependency)
+      val dependencies = injector.getInstance(Key.get(setType))
+
+      dependencies mustBe empty
     }
   }
 }
