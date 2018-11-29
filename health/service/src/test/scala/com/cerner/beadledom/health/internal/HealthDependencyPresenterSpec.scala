@@ -63,7 +63,7 @@ class HealthDependencyPresenterSpec extends FunSpec with MustMatchers with Mocki
         healthDependencyPresenter.getStatusClass must be ("unhealthy")
       }
     }
-    
+
     describe("#getStatusText") {
       it("returns the Available status") {
         healthDependencyPresenter.getStatusText must be("Available")

@@ -9,6 +9,7 @@
 
 ### Defects Corrected
 * Fix isHealthy field being included in the health dependency list JSON.
+* Health resource (/health) now excludes non-primary health dependencies. The non-primary dependencies are still included in the diagnostic resource (/health/diagnostic). The default for health dependencies is also changed to be primary.
 
 ## 3.1 - 12 September 2018
 

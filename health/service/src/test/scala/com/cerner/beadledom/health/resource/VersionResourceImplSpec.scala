@@ -17,16 +17,16 @@ class VersionResourceImplSpec extends FunSpec with MustMatchers {
     describe("#getVersionInfo") {
       it("returns a dto with status 200") {
         val serviceMetadata = ServiceMetadata.builder()
-            .setBuildInfo(BuildInfo.builder()
-                .setArtifactId("artifactId")
-                .setBuildDateTime("Charmander")
-                .setScmRevision("slowpoke")
-                .setGroupId("groupId")
-                .setRawProperties(new Properties)
-                .setVersion("version")
-                .build())
-            .setStartupTime(Instant.now())
-            .build()
+          .setBuildInfo(BuildInfo.builder()
+            .setArtifactId("artifactId")
+            .setBuildDateTime("Charmander")
+            .setScmRevision("slowpoke")
+            .setGroupId("groupId")
+            .setRawProperties(new Properties)
+            .setVersion("version")
+            .build())
+          .setStartupTime(Instant.now())
+          .build()
 
         val mustacheFactory = new DefaultMustacheFactory("com/cerner/beadledom/health")
 
@@ -34,9 +34,9 @@ class VersionResourceImplSpec extends FunSpec with MustMatchers {
 
         val buildDto = resource.getVersionInfo
 
-        buildDto.getVersion.get() must be ("version")
-        buildDto.getArtifactName.get() must be ("artifactId")
-        buildDto.getBuildDateTime.get() must be ("Charmander")
+        buildDto.getVersion.get() must be("version")
+        buildDto.getArtifactName.get() must be("artifactId")
+        buildDto.getBuildDateTime.get() must be("Charmander")
       }
     }
   }

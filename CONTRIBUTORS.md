@@ -22,6 +22,7 @@ This file contains the list of developers who contributed to this repository
 * Will Pruyn [@lulzWill][will-pruyn]
 * Venkatesh Sridharan [@venki09][venkatesh-sridharan]
 * Kyle Roush [@kyleroush][kyle-roush]
+* Nick Behrens [@nab0310] [nick-behrens]
 
 [john-leacox]: https://github.com/johnlcox
 [jacob-williams]: https://github.com/brokensandals
@@ -41,5 +42,6 @@ This file contains the list of developers who contributed to this repository
 [will-pruyn]: https://github.com/lulzWill
 [venkatesh-sridharan]: https://github.com/venki09
 [kyle-roush]: https://github.com/kyleroush
+[nick-behrens]: https://github.com/nab0310
 
 Thanks to everyone who helped in building this repository.

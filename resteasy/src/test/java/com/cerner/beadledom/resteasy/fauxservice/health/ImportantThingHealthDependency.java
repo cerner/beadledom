@@ -23,14 +23,12 @@ public class ImportantThingHealthDependency extends HealthDependency {
   }
 
   @Override
-  public Optional<String> getBasicAvailabilityUrl() {
-    return Optional.of("http://important.url");
-  }
-
-  @Override
   public String getName() {
     return "important-thing";
   }
+
+  @Override
+  public Boolean getPrimary() { return true; }
 
   @Override
   public Optional<String> getDescription() {

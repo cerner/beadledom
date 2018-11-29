@@ -9,13 +9,29 @@ import java.util.Optional;
  */
 public abstract class HealthDependency {
 
-  private Boolean primary = false;
+  private Boolean primary;
+
+  /**
+   * A constructor for Heath Dependencies that sets the dependency to be primary.
+   */
+  public HealthDependency() {
+    primary = true;
+  }
+
+  /**
+   * A constructor that allows the user to specify if the dependency is primary or not.
+   *
+   * @param primary boolean to indicate if the health dependency is primary
+   */
+  public HealthDependency(Boolean primary) {
+    this.primary = primary;
+  }
 
   /**
    * Invokes the dependency's basic availability health check (or closest equivalent).
    *
-   * <p>Implementations may throw RuntimeExceptions; the health checker will handle them
-   * gracefully and assume the dependency is unhealthy.
+   * <p>Implementations may throw RuntimeExceptions; the health checker will handle them gracefully
+   * and assume the dependency is unhealthy.
    *
    * @return the status of the dependency
    */
@@ -33,10 +49,22 @@ public abstract class HealthDependency {
   }
 
   /**
-   * Returns a Boolean to indicate if this check is a primary check for this service.
+   * Returns true if this is a primary dependency; otherwise false.
+   *
+   * @deprecated as of 3.2, in favor of using {@link #isPrimary()} to access the stored primary
+   *     value. It is also preferred to use constructors {@link #HealthDependency()} or
+   *     {@link #HealthDependency(Boolean)} to set primary value rather than overriding this method.
    */
+  @Deprecated
   public Boolean getPrimary() {
     return primary;
+  }
+
+  /**
+   * Returns true if this is a primary dependency; otherwise false.
+   */
+  public final Boolean isPrimary() {
+    return getPrimary();
   }
 
   /**

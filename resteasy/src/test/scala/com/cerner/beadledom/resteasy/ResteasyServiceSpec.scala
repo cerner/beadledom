@@ -195,7 +195,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
             "dependencies" -> Json.arr(
               Json.obj(
                 "healthy" -> true,
-                "primary" -> false,
+                "primary" -> true,
                 "links" -> Json.obj(
                   "self" -> s"$rootUrl/meta/health/diagnostic/dependencies/important-thing"
                 ),
@@ -208,7 +208,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
                 "links" -> Json.obj(
                   "self" -> s"$rootUrl/meta/health/diagnostic/dependencies/important-thing2"
                 ),
-                "primary" -> false,
+                "primary" -> true,
                 "message" -> "Fortunately, I'm fine."
               )
             ),
@@ -238,7 +238,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
             "dependencies" -> Json.arr(
               Json.obj(
                 "healthy" -> false,
-                "primary" -> false,
+                "primary" -> true,
                 "links" -> Json.obj(
                   "self" -> s"$rootUrl/meta/health/diagnostic/dependencies/important-thing"
                 ),
@@ -248,7 +248,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
               ), Json.obj(
                 "id" -> "important-thing2",
                 "healthy" -> true,
-                "primary" -> false,
+                "primary" -> true,
                 "links" -> Json.obj(
                   "self" -> s"$rootUrl/meta/health/diagnostic/dependencies/important-thing2"
                 ),

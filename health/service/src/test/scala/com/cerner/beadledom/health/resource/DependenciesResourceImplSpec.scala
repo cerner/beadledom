@@ -1,59 +1,51 @@
 package com.cerner.beadledom.health.resource
 
-import com.cerner.beadledom.health.TestModule1
-import com.cerner.beadledom.health.api.DependenciesResource
 import com.cerner.beadledom.health.dto.HealthDependencyDto
 import com.cerner.beadledom.health.internal.HealthChecker
-import com.github.mustachejava.DefaultMustacheFactory
+import com.cerner.beadledom.health.{HealthDependency, HealthServiceModule}
+import com.google.inject.multibindings.Multibinder
 import com.google.inject.{AbstractModule, Guice}
-import java.net.URI
-import javax.ws.rs.core.{UriBuilder, UriInfo}
-import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.when
-import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
+import javax.ws.rs.core.UriInfo
 
 /**
- * Spec tests for DependenciesResourceImplSpec.
- *
- * @author Nimesh Subramanian
- */
-class DependenciesResourceImplSpec extends FunSpec with MustMatchers with MockitoSugar {
-  val mustacheFactory = new DefaultMustacheFactory("com/cerner/beadledom/health")
-  val mockUriInfo = mock[UriInfo]
-  val mockUriBuilder = mock[UriBuilder]
-  val url = URI.create("demoUrl")
-  val healthModule = new AbstractModule {
+  * Spec tests for DependenciesResourceImplSpec.
+  *
+  * @author Nimesh Subramanian
+  */
+class DependenciesResourceImplSpec extends BaseSpec {
+
+  private val dependencyModule = new AbstractModule {
     override def configure(): Unit = {
-      install(new TestModule1)
+      val multibinder: Multibinder[HealthDependency] =
+        Multibinder.newSetBinder(binder(), classOf[HealthDependency])
+      multibinder.addBinding().toInstance(primaryHealthyDependency)
+      multibinder.addBinding().toInstance(ancillaryHealthyDependency)
+      install(new HealthServiceModule)
       bind(classOf[UriInfo]).toInstance(mockUriInfo)
     }
   }
-  val injector = Guice.createInjector(healthModule)
-  val checker = injector.getInstance(classOf[HealthChecker])
+  private val injector = Guice.createInjector(dependencyModule)
+  private val checker = injector.getInstance(classOf[HealthChecker])
 
-  when(mockUriInfo.getBaseUriBuilder()).thenReturn(mockUriBuilder)
-  when(mockUriBuilder.path(any[Class[DependenciesResource]])).thenReturn(mockUriBuilder)
-  when(mockUriBuilder.path(any[String])).thenReturn(mockUriBuilder)
-  when(mockUriBuilder.build()).thenReturn(url)
+  val dependencyResource = new DependenciesResourceImpl(checker, mustacheFactory)
+
 
   describe("DependenciesResourceImpl") {
     describe("#getDependencyListing") {
-      it("returns a dependencies") {
-        val healthResource = new DependenciesResourceImpl(checker, mustacheFactory)
-        val healthCheck = healthResource.getDependencyListing
+      it("returns a list of all dependencies") {
+        val dependencyList = dependencyResource.getDependencyListing
 
-        healthCheck.size() must be (2)
+        dependencyList.size() must be(2)
       }
     }
 
     describe("#getDependencyAvailabilityCheck") {
       it("returns a dto with status 200") {
-        val dependencyResource = new DependenciesResourceImpl(checker, mustacheFactory)
-        val healthCheck = dependencyResource.getDependencyAvailabilityCheck("HealthDependency2")
+        val healthCheck = dependencyResource.getDependencyAvailabilityCheck(primaryHealthyDependency.getName)
         val healthDependencyDto = healthCheck.getEntity.asInstanceOf[HealthDependencyDto]
 
-        healthDependencyDto.getName.get() must be ("HealthDependency2")
+        healthCheck.getStatus must be(200)
+        healthDependencyDto.getName.get() must be(primaryHealthyDependency.getName)
       }
     }
   }
