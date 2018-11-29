@@ -16,4 +16,12 @@
     <gav regex="true">^org\.tukaani:xz:.*$</gav>
     <cve>CVE-2015-4035</cve>
   </suppress>
+  <!-- Vulnerability fix for auto-value is not released yet so we need to suppress it for the time being -->
+  <suppress>
+    <notes><![CDATA[
+   file name: auto-value-1.6.2.jar/META-INF/maven/com.google.guava/guava/pom.xml
+   ]]></notes>
+    <filePath regex="true">.*auto-value-1.6.2\.jar.*$</filePath>
+    <cpe>cpe:/a:google:guava</cpe>
+  </suppress>
 </suppressions>

@@ -10,9 +10,6 @@
 ### Defects Corrected
 * Fix isHealthy field being included in the health dependency list JSON.
 
-### Defects Corrected
-* Fix isHealthy field being included in the health dependency list JSON.
-
 ## 3.1 - 12 September 2018
 
 ### Additions

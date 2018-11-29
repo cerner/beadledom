@@ -7,7 +7,7 @@ import com.wordnik.swagger.converter.ModelConverter
 import com.wordnik.swagger.model.Model
 
 /**
-  * Spec tests for {@link SwaggerModule}
+ * Spec tests for [[SwaggerModule]]
   */
 class SwaggerModuleSpec extends UnitSpec {
   val swaggerMockModule = new AbstractModule {
@@ -26,6 +26,12 @@ class SwaggerModuleSpec extends UnitSpec {
     }
   }
 
+  val swaggerMockModuleNoMultibinderDependency = new AbstractModule {
+    override def configure(): Unit = {
+      install(new SwaggerModule)
+    }
+  }
+
   describe("SwaggerModule") {
     it("Adds dependencies to the multibinder") {
       val setType = new TypeLiteral[java.util.Set[ModelConverter]] {}
@@ -33,6 +39,14 @@ class SwaggerModuleSpec extends UnitSpec {
       val dependencies = injector.getInstance(Key.get(setType))
 
       dependencies must have size 2
+    }
+
+    it("Creates empty multibinder if no dependencies exist") {
+      val setType = new TypeLiteral[java.util.Set[ModelConverter]] {}
+      val injector = Guice.createInjector(swaggerMockModuleNoMultibinderDependency)
+      val dependencies = injector.getInstance(Key.get(setType))
+
+      dependencies mustBe empty
     }
   }
 }
