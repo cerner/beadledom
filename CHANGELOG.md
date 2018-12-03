@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.2.2 - 4 December 2018
+
+### Defects Corrected
+* [internal] Use the `-B` option on our `mvn site` command to reduce log length by eliminating progress dialogs from downloads. [More Info](https://stackoverflow.com/questions/21638697/disable-maven-download-progress-indication) 
+
 ## 3.2.1 - 3 December 2018
 
 ### Defects Corrected
