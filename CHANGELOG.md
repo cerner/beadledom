@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.2.1 - 3 December 2018
+
+### Defects Corrected
+* [internal] Upgrade to spotbug 3.1.8 to eliminate incorrect identification of bugs that was causing Travis to fail. [More Info](https://github.com/spotbugs/spotbugs/pull/688)
+
 ## 3.2 - 30 November 2018
 
 ### Additions
