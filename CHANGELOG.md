@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.2.3 - 4 December 2018
+
+### Defects Corrected
+* [internal] Use the `-q` option on `mvn site` to enable quiet running of the command (only printing errors) in an effort to reduce log length in Travis.
+
 ## 3.2.2 - 4 December 2018
 
 ### Defects Corrected

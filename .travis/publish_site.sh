@@ -84,7 +84,7 @@ else
 fi
 
 printf "${CYAN}Generating site.$RESET \n"
-./mvnw clean site -B
+./mvnw clean site -B -q
 
 printf "${CYAN}Staging site.$RESET \n"
 ./mvnw site:stage -B
