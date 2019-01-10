@@ -44,8 +44,10 @@ class JooqTxnInterceptor implements MethodInterceptor {
 
     Throwable originalThrowable = null;
     try {
+      // TODO: Here or somewhere earlier we need to create a root or nested transaction context
       return dslContextProvider.get().transactionResult(() -> {
         try {
+          // TODO: If a value will be returned, commit the transaction context
           return methodInvocation.proceed();
         } catch (Throwable e) {
           if (e instanceof RuntimeException) {
@@ -56,6 +58,7 @@ class JooqTxnInterceptor implements MethodInterceptor {
         }
       });
     } catch (Throwable t) {
+      // TODO: Rollback the transaction context
       originalThrowable = t;
       throw t;
     } finally {

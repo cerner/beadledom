@@ -26,7 +26,8 @@ class DSLContextProviderImpl implements DSLContextProvider, UnitOfWork {
     // ThreadLocalTransactionProvider handles all of the ThreadLocal semantics for us
     this.configuration = new DefaultConfiguration()
         .set(sqlDialect)
-        .set(new ThreadLocalTransactionProvider(new DataSourceConnectionProvider(dataSource)));
+        .set(new ThreadLocalTransactionProvider(new DataSourceConnectionProvider(dataSource)))
+        .set(new ThreadLocalCommitHookExecutingTransactionListener());
   }
 
   @Override

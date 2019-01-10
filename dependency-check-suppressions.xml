@@ -24,4 +24,13 @@
     <filePath regex="true">.*auto-value-1.6.2\.jar.*$</filePath>
     <cpe>cpe:/a:google:guava</cpe>
   </suppress>
+  <!-- This CVE is regarding slf4j-ext not slf4j-api -->
+  <!-- Exclude slf4j jars except slf4j-ext -->
+  <suppress>
+    <notes><![CDATA[
+   file name: slf4j-api-1.7.5.jar
+   ]]></notes>
+    <gav regex="true">^org\.slf4j:((?!slf4j-ext).)*:.*$</gav>
+    <cve>CVE-2018-8088</cve>
+  </suppress>
 </suppressions>
