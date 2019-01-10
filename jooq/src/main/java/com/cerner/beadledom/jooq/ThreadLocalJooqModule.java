@@ -11,15 +11,19 @@ import org.jooq.SQLDialect;
 /**
  * A guice module that configures the Jooq DSLContext and Jooq Transactions.
  *
- * <p>The configured DSLContexts and transactions will be scoped by thread. This means that this
+ * <p>
+ * The configured DSLContexts and transactions will be scoped by thread. This means that this
  * module should only be used if it is guaranteed that database transactions and contexts will
  * never cross thread boundaries.
+ * </p>
  *
- * <p>Provides:
- * <ul>
+ * <p>
+ * Provides:
+ *   <ul>
  *     <li>{@link DSLContextProvider}</li>
  *     <li>{@link JooqTransactional} AOP interceptor</li>
- * </ul>
+ *   </ul>
+ * </p>
  *
  * @author John Leacox
  * @since 2.7
@@ -29,6 +33,10 @@ public class ThreadLocalJooqModule extends AbstractModule {
   protected void configure() {
     requireBinding(DataSource.class);
     requireBinding(SQLDialect.class);
+
+    bind(JooqTransactionalHooks.class)
+        .to(ThreadLocalJooqTransactionalHooks.class)
+        .in(Singleton.class);
 
     bind(DSLContextProviderImpl.class).in(Singleton.class);
     bind(DSLContextProvider.class).to(DSLContextProviderImpl.class);

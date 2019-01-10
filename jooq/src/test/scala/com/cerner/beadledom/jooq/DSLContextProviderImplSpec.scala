@@ -4,6 +4,7 @@ import javax.sql.DataSource
 import org.jooq.{DSLContext, SQLDialect}
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import scala.collection.mutable
 
 /**
  * Spec for DSLContextProviderImpl.
@@ -12,11 +13,13 @@ import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
  */
 class DSLContextProviderImplSpec extends
     FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
+  val transactionalHooks = mock[JooqTransactionalHooks]
+
   describe("DSLContextProviderImpl") {
     describe("#isActive") {
       it("must return false on a new instance") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         provider.isActive mustBe false
       }
@@ -25,7 +28,7 @@ class DSLContextProviderImplSpec extends
     describe("#end") {
       it("must do nothing if it is not active") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         provider.end()
         provider.isActive mustBe false
@@ -35,7 +38,7 @@ class DSLContextProviderImplSpec extends
     describe("#begin") {
       it("must be active after starting") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         provider.begin()
         provider.isActive mustBe true
@@ -43,7 +46,7 @@ class DSLContextProviderImplSpec extends
 
       it("must not be active after starting and stopping") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         provider.begin()
         provider.end()
@@ -52,7 +55,7 @@ class DSLContextProviderImplSpec extends
 
       it("must throw an IllegalStateException if it is already active") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         provider.begin()
         intercept[IllegalStateException] {
@@ -62,7 +65,7 @@ class DSLContextProviderImplSpec extends
 
       it("must allow restarting after stopping") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         provider.begin()
         provider.end()
@@ -72,7 +75,7 @@ class DSLContextProviderImplSpec extends
 
       it("must be scoped by thread; allow starting from multiple threads") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         val runnable = new Runnable() {
           override def run(): Unit = {
@@ -82,16 +85,21 @@ class DSLContextProviderImplSpec extends
           }
         }
 
+        val threads = mutable.ListBuffer[Thread]()
         for (_ <- 1 to 5) {
-          new Thread(runnable).start()
+          val thread = new Thread(runnable)
+          threads += thread
+          thread.start()
         }
+
+        threads.foreach { t => t.join(5000) }
       }
     }
 
     describe("#get") {
       it("must return an a DSLContext if it is active") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         provider.begin()
         val dslContext = provider.get()
@@ -100,7 +108,7 @@ class DSLContextProviderImplSpec extends
 
       it("must throw an IllegalStateException if it is not active") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         intercept[IllegalStateException] {
           provider.get()
@@ -109,7 +117,7 @@ class DSLContextProviderImplSpec extends
 
       it("must return the same DSLContext on the same thread") {
         val dataSource = mock[DataSource]
-        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL)
+        val provider = new DSLContextProviderImpl(dataSource, SQLDialect.MYSQL, transactionalHooks)
 
         val runnable = new Runnable() {
           override def run(): Unit = {

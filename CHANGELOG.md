@@ -1,8 +1,15 @@
 # Beadledom Changelog
 
-## 3.2.6 - In Development
-* Added archetype for project generation.
-* Updated client documentation to recommend using an abstracted resource pattern.
+## [3.3] - In Development
+
+### Added
+
+* Jooq transaction hooks for executing actions after a successful commit.
+
+### Changed
+* Switch to Keep a Changelog style for Changelog moving forward - https://keepachangelog.com/en/1.0.0/
+* Update maven archetype for project generation with new client recommendations.
+* Update client documentation to recommend using an abstracted resource pattern.
 
 ## 3.2.5 - 25 March 2019
 
