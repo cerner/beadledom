@@ -1,5 +1,17 @@
 # Beadledom Changelog
 
+## 3.2.4 - In development
+
+### Defects Corrected
+* Jackson version uplift from 2.9.6 -> 2.9.8 because of vulnerabilities: 
+  - CVE-2018-19360
+  - CVE-2018-19362
+  - CVE-2018-14720
+  - CVE-2018-19361
+  - CVE-2018-14719
+  - CVE-2018-14718
+  - CVE-2018-14721
+
 ## 3.2.3 - 4 December 2018
 
 ### Defects Corrected
