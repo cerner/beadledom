@@ -30,6 +30,8 @@ public class ThreadLocalJooqModule extends AbstractModule {
     requireBinding(DataSource.class);
     requireBinding(SQLDialect.class);
 
+    bind(JooqTransactionalHooks.class).to(ThreadLocalJooqTransactionalHooks.class);
+
     bind(DSLContextProviderImpl.class).in(Singleton.class);
     bind(DSLContextProvider.class).to(DSLContextProviderImpl.class);
     bind(UnitOfWork.class).to(DSLContextProviderImpl.class);

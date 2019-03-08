@@ -3,7 +3,7 @@ package com.cerner.beadledom.jooq;
 /**
  * @author John Leacox
  */
-class ThreadLocalJooqTransactionalHooks implements JooqTransactionalHooks {
+class ThreadLocalJooqTransactionalHooks extends JooqTransactionalHooks {
   private ThreadLocal<JooqTransaction> transactions = new ThreadLocal<>();
 
   @Override
@@ -14,6 +14,7 @@ class ThreadLocalJooqTransactionalHooks implements JooqTransactionalHooks {
     }
 
     // TODO: What if there isn't a transaction context currently? Throw exception? Run immediately?
+    //   Maybe run immediately and log a message?
   }
 
   void setCurrentTransaction(JooqTransaction transaction) {

@@ -12,11 +12,11 @@ class JooqTransaction implements Transaction {
   private final List<Runnable> commitHooks = new ArrayList<>();
   private final List<JooqTransaction> nestedTransactions = new ArrayList<>();
 
-  public void addCommitHook(Runnable action) {
+  void addCommitHook(Runnable action) {
     commitHooks.add(action);
   }
 
-  public List<Runnable> getCommitHooks() {
+  List<Runnable> getCommitHooks() {
     return commitHooks;
   }
 
@@ -24,11 +24,11 @@ class JooqTransaction implements Transaction {
     nestedTransactions.add(nested);
   }
 
-  public List<JooqTransaction> getNestedTransactions() {
+  List<JooqTransaction> getNestedTransactions() {
     return nestedTransactions;
   }
 
-  public void clearCommitHooks() {
+  void clearCommitHooks() {
     commitHooks.clear();
   }
 }
