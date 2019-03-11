@@ -9,12 +9,13 @@ class ThreadLocalJooqTransactionalHooks extends JooqTransactionalHooks {
   @Override
   public void whenCommitted(Runnable action) {
     JooqTransaction transaction = transactions.get();
-    if (transaction != null) {
-      transaction.addCommitHook(action);
+
+    if (transaction == null) {
+      action.run();
+      return;
     }
 
-    // TODO: What if there isn't a transaction context currently? Throw exception? Run immediately?
-    //   Maybe run immediately and log a message?
+    transaction.addCommitHook(action);
   }
 
   void setCurrentTransaction(JooqTransaction transaction) {

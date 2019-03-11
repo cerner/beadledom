@@ -20,7 +20,7 @@ class JooqTransaction implements Transaction {
     return commitHooks;
   }
 
-  public void addNestedTransaction(JooqTransaction nested) {
+  void addNestedTransaction(JooqTransaction nested) {
     nestedTransactions.add(nested);
   }
 
