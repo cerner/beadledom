@@ -41,7 +41,7 @@ public abstract class JooqTransactionalHooks {
    */
   public abstract void whenCommitted(Runnable action);
 
-  abstract void setCurrentTransaction(JooqTransaction transaction);
+  abstract void setTransaction(JooqTransaction transaction);
 
   abstract void clearTransaction();
 }

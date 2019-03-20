@@ -4,7 +4,7 @@
 
   <groupId>com.cerner.beadledom</groupId>
   <artifactId>beadledom-parent</artifactId>
-  <version>3.3-SNAPSHOT</version>
+  <version>3.3-JOOQ-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Beadledom (Parent)</name>
   <description>A simple, composable framework for building RESTFul services</description>
@@ -994,7 +994,7 @@
         <version>${maven-project-info-reports-plugin.version}</version>
         <reportSets>
           <reportSet>
-            <reports />
+            <reports/>
           </reportSet>
         </reportSets>
       </plugin>

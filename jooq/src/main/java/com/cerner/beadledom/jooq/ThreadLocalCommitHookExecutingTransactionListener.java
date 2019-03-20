@@ -41,7 +41,7 @@ class ThreadLocalCommitHookExecutingTransactionListener extends DefaultTransacti
     // when the top-level transaction is committed, we must track the transaction nesting level
     // ourselves.
     transactions.push(transaction);
-    transactionalHooks.setCurrentTransaction(transaction);
+    transactionalHooks.setTransaction(transaction);
   }
 
   @Override

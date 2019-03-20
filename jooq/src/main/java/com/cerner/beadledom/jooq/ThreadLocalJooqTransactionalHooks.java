@@ -18,7 +18,7 @@ class ThreadLocalJooqTransactionalHooks extends JooqTransactionalHooks {
     transaction.addCommitHook(action);
   }
 
-  void setCurrentTransaction(JooqTransaction transaction) {
+  void setTransaction(JooqTransaction transaction) {
     transactions.set(transaction);
   }
 
