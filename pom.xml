@@ -369,8 +369,8 @@
             <artifactId>jersey-container-servlet-core</artifactId>
           </exclusion>
           <exclusion>
-            <artifactId>org.glassfish.jersey.media</artifactId>
-            <groupId>jersey-media-multipart</groupId>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -994,7 +994,7 @@
         <version>${maven-project-info-reports-plugin.version}</version>
         <reportSets>
           <reportSet>
-            <reports />
+            <reports/>
           </reportSet>
         </reportSets>
       </plugin>
