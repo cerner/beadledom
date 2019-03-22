@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 3.2.4 - In development
+## 3.2.4 - 22 March 2019
 
 ### Defects Corrected
 * Fixed exclusion of `jersey-media-multipart` from `swagger-jersey2-jaxrs`.
