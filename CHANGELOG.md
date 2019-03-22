@@ -3,6 +3,7 @@
 ## 3.2.4 - In development
 
 ### Defects Corrected
+* Fixed exclusion of `jersey-media-multipart` from `swagger-jersey2-jaxrs`.
 * Jackson version uplift from 2.9.6 -> 2.9.8 because of vulnerabilities: 
   - CVE-2018-19360
   - CVE-2018-19362
