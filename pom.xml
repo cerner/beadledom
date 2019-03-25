@@ -368,10 +368,6 @@
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet-core</artifactId>
           </exclusion>
-          <exclusion>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-multipart</artifactId>
-          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -456,6 +452,11 @@
         <artifactId>tomcat-embed-jasper</artifactId>
         <version>${tomcat-embed.version}</version>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-multipart</artifactId>
+        <version>2.28</version>
       </dependency>
       <!-- If this version is updated the WEBJAR_PATH in SwaggerUiResource must also be updated -->
       <dependency>
@@ -994,7 +995,7 @@
         <version>${maven-project-info-reports-plugin.version}</version>
         <reportSets>
           <reportSet>
-            <reports />
+            <reports/>
           </reportSet>
         </reportSets>
       </plugin>
