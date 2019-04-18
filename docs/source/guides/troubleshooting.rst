@@ -52,3 +52,23 @@ Suggested solution
   Make your service module a private module, and expose only your server resources. In another module install ``ResteasyModule`` and bootstrap all the configurations needed for resteasy.
   In your ``ResteasyContextListener`` class install your service module and ``ResteasyBootstrapModule``.
 
+Alternative solution
+  Have client owners provide an alternative means of consuming their client that does not directly expose the JAX-RS resource
+  interfaces through Guice. The wrapper client should be named like ``SomeClient`` and have accessor methods to the individual
+  JAX-RS resources.
+
+Guice
+-----
+
+I am getting duplicate binding or binding not found errors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Multibinder or Optional Binding with PrivateModule issue
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Problem
+  Guice does not support using multibinder or optional bindings for the same type across multiple PrivateModules or between a PrivateModule and AbstractModule.
+
+Solution
+  Make sure any usage of multibinders or optional bindings, including in your installed dependencies, are not used across different types of Guice modules.
+

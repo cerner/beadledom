@@ -226,7 +226,7 @@ HelloWorldDto
     }
   }
 
-This class is much less exciting than the `HelloWorldResource`_. The few things to note here are the
+This class defines the JSON response from the service. The few things to note here are the
 Swagger annotations. :java:`@ApiModel(value = "HelloWordDto")` defines the high level API model,
 and as we are sure you have already guessed :java:`@ApiModelProperty` allows us to add some documentation
 around the various fields that are going to be a part of our response.
@@ -334,18 +334,30 @@ AwesomeThingModule
 
   public class AwesomeThingModule extends PrivateModule {
     protected void configure() {
-      bind(HelloWorldResource.class).to(HelloWorldResourceImpl.class);
+      bind(HelloWorldResource.class);
+
+      // Note: All clients that will be used should be installed in this module to avoid registering
+      // client JAX-RS resources with the server. The Correlation ID header name for clients could
+      // also be configured/overridden here if this is the only PrivateModule that is used.
 
       expose(HelloWorldResource.class);
     }
   }
 
-``AwesomeThingModule`` is a private module, which contains configuration information for our service. PrivateModule encapsulates the service's environment and only exposes objects needed for JAX-RS/Resteasy(ex: resource classes, providers and features). It also prevents dependency issues with a configuration bound to Guice gobally.
+``AwesomeThingModule`` is a private module, which contains configuration information for our service.
+The PrivateModule encapsulates the service's environment and only exposes objects needed for
+JAX-RS/Resteasy(ex: resource classes, providers and features). It also prevents dependency issues
+with any configuration bound to Guice globally.
 
-With this binding :java:`bind(HelloWorldResource.class).to(HelloWorldResourceImpl.class);` we are
-telling Guice that whenever we ask for an instance of `HelloWorldResource`_ we want it to inject
-the implementation `HelloWorldResourceImpl`_. And the next line :java:`expose(HelloWorldResource.class);`, exposes `HelloWorldResource`_ to modules that install `AwesomeThingModule`_.
+As noted by the comment in the generated code, all bindings necessary to setup your JAX-RS resource
+class should be bound here, but only expose the JAX-RS resources and filters that you want to run
+as part of the server. By doing this, you can use Beadledom client modules here to have them injected
+into your classes, but prevent them from being picked up and scanned by Beadledom/JAX-RS as part
+of the service.
 
+By binding :java:`bind(HelloWorldResource.class);` we are making this available to Beadledom and
+JAX-RS which will scan it to fine the JAX-RS annotations and make it available for the proper URL
+path. And the next line :java:`expose(HelloWorldResource.class);`, exposes `HelloWorldResource`_ to modules that install `AwesomeThingModule`_.
 
 That's it! There are additional Beadledom modules that we can install for other functionality, and
 we could even create our own modules or bindings to provide additional classes our service will need
@@ -353,14 +365,23 @@ to operate. We recommend that you take some time and become familiar with `Guice
 so that you will know all it enables you to do.
 
 
-HelloWorldResourceImpl
-++++++++++++++++++++++
+HelloWorldResource
+++++++++++++++++++
 
-Last but not least, we have our implementation of the `HelloWorldResource`_ interface.
+Last but not least, we have our ``/hello`` endpoint implementation.
 
 .. code-block:: java
 
-  public class HelloWorldResourceImpl implements HelloWorldResource {
+  @Api(value = "/hello", description = "Retrieve hello world data")
+  @Path("/hello")
+  public class HelloWorldResource {
+
+    @ApiOperation(
+        value = "Retrieves hello world data.",
+        response = HelloWorldDto.class)
+    @ApiResponse(code = 200, message = "Success")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public GenericResponse<HelloWorldDto> getHelloWorld() {
       return GenericResponses
           .ok(HelloWorldDto.create("Beadledom", "Hello World!"))
@@ -380,7 +401,53 @@ the implementation of your service. What we are able to do is build a client who
 on the same JAX-RS annotations you use for your server. That makes it really easy to make clients
 for your Java consumers; however, it won't help you much with consumers of other languages. Instead
 of trying to explain all the concepts that are going on within the client we recommend you take a
-look at our `client documentation <https://github.com/cerner/beadledom/tree/master/client>`_.
+look at our `client documentation <https://github.com/cerner/beadledom/tree/master/client>`_..
+
+HelloWorldResource
+++++++++++++++++++
+
+.. code-block:: java
+
+  @Path("/hello")
+  public interface HelloWorldResource {
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    GenericResponse<HelloWorldDto> getHelloWorld();
+  }
+
+This is the definition for the ``/hello`` resource from a client-side perspective. This interface
+allows automatically generating a client implementation via a Java proxy object.
+
+.. code-block:: java
+
+  /**
+   * JAX-RS annotation defining the path for the resource.
+   */
+  @Path("/hello")
+  public interface HelloWorldResource {
+
+    /**
+     * JAX-RS annotation for the HTTP verb this method is providing functionality for.
+     */
+    @GET
+
+    /**
+     * JAX-RS annotation for the media type our service returns.
+     */
+    @Produces(MediaType.APPLICATION_JSON)
+
+    /**
+     * Method definition for the resource. The GenericResponse is an implementation provided
+     * by Beadledom. It allows consumers (mostly of the client) to get a type safe response
+     * from the server instead of having to do the casting or deserialization of the Json
+     * payload themselves.
+     *
+     * For responses that will not include a body in the response (ie. DELETE) it's best to
+     * continue using the regular JAX-RS Response class.
+     */
+    public GenericResponse<HelloWorldDto> getHelloWorld();
+  }
 
 Where to go now
 ---------------

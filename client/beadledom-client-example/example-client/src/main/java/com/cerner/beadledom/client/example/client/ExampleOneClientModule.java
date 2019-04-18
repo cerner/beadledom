@@ -5,7 +5,6 @@ import com.cerner.beadledom.client.BeadledomClientConfiguration;
 import com.cerner.beadledom.client.BeadledomClientModule;
 import com.cerner.beadledom.client.BeadledomWebTarget;
 import com.cerner.beadledom.client.example.PaginatedClientResource;
-import com.cerner.beadledom.client.example.ResourceOne;
 import com.cerner.beadledom.client.jackson.ObjectMapperClientFeatureModule;
 
 import com.google.inject.AbstractModule;
@@ -13,7 +12,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 
 /**
- * Guice module for the Example client.
+ * Guice module for the Example One client.
  *
  * <p>Normally a service would have only one module that provides all resource proxies. This example
  * only splits apart the two resources to show what two separate clients would look like and so that
@@ -21,7 +20,7 @@ import com.google.inject.Singleton;
  *
  * @author John Leacox
  */
-public class ResourceOneModule extends AbstractModule {
+public class ExampleOneClientModule extends AbstractModule {
   @Override
   protected void configure() {
     // Bind the client module and object mapper module with this client's binding annotation so
@@ -36,10 +35,9 @@ public class ResourceOneModule extends AbstractModule {
 
   @Provides
   @Singleton
-  ResourceOne provideResourceOne(
+  ExampleOneClient provideExampleOneClient(
       @ResourceOneFeature BeadledomClient client, ExampleClientConfig config) {
-    BeadledomWebTarget target = client.target(config.uri());
-    return target.proxy(ResourceOne.class);
+    return new ExampleOneClient(client, config);
   }
 
   @Provides
