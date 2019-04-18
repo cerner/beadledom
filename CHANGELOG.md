@@ -1,5 +1,9 @@
 # Beadledom Changelog
 
+## 3.2.6 - In Development
+* Added archetype for project generation.
+* Updated client documentation to recommend using an abstracted resource pattern.
+
 ## 3.2.5 - 25 March 2019
 
 ### Defects Corrected

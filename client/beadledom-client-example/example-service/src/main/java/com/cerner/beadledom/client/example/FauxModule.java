@@ -24,8 +24,8 @@ public class FauxModule extends AbstractModule {
   @Override
   protected void configure() {
     install(new RequestScopeModule());
-    bind(ResourceOne.class).to(ResourceOneImpl.class);
-    bind(ResourceTwo.class).to(ResourceTwoImpl.class);
+    bind(ResourceOneImpl.class);
+    bind(ResourceTwoImpl.class);
     bind(PaginatedResource.class).to(PaginatedResourceImpl.class);
 
     OffsetPaginationConfiguration paginationConfig = OffsetPaginationConfiguration.builder()

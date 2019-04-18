@@ -37,8 +37,7 @@
             <artifactId>beadledom-jaxrs-genericresponse</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-resteasy</artifactId>
+          <artifactId>beadledom-resteasy</artifactId>
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>

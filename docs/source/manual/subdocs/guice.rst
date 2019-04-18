@@ -21,7 +21,22 @@ Download using Maven:
 Usage
 -----
 
-Installing the ``BeadledomClientModule`` will make a ``BeadledomClient`` object available that can be used for proxying JAX-RS resource interfaces and then making those resources available through Guice.
+Installing the ``BeadledomClientModule`` will make a ``BeadledomClient`` object available that can be used for proxying JAX-RS resource interfaces and then making those resources available through Guice. It is recommended to create a wrapper class such as ``MyClient`` that has accessor methods to the individual JAX-RS resources rather than directly making the JAX-RS resources available through Guice. The reason for this, is that the clients may be used within a Beadledom service, and the JAX-RS client resources that are directly available through Guice will get picked up by the server and it will attempt to use them to serve traffic at the client paths.
+
+.. code-block:: java
+  public class MyClient {
+    private final MyResource myResource;
+
+    MyClient(BeadledomClient client, MyClientConfig config) {
+      BeadledomWebTarget target = client.target(config.uri());
+
+      this.myResource = target.proxy(MyResource.class);
+    }
+
+    public MyResource myResource() {
+      return myResource;
+    }
+  }
 
 .. code-block:: java
 
@@ -38,10 +53,9 @@ Installing the ``BeadledomClientModule`` will make a ``BeadledomClient`` object 
 
     @Provides
     @Singleton
-    MyResource provideMyResource(
+    MyClient provideMyClient(
         @MyClientAnnotation BeadledomClient client, MyClientConfig config) {
-      BeadledomWebTarget target = client.target(config.uri());
-      return target.proxy(MyResource.class);
+      return new MyClient(client, config);
     }
   }
 
@@ -140,13 +154,13 @@ Custom Features
 
 Additional JAX-RS features and providers can be installed by following a similar pattern to the Jackson JSON module.
 
-Start by creating a client feature Guice module. It's usually ideal to extend from the Guice ``PrivateModule`` and only expose the bindings that should be available for the client. This is useful when there are additional bindings that are required for the feature/provider, but that shouldn't be bound/registered with the client or made available to consumers of the client.
+Start by creating a client feature Guice module. It's usually ideal to extend from the Guice ``AbstractModule`` and only expose the bindings that should be available for the client. This is useful when there are additional bindings that are required for the feature/provider, but that shouldn't be bound/registered with the client or made available to consumers of the client.
 
 The constructor for the client feature module should be private and paired with a static factory method ``with(Class<? extends Annotation> annotation)`` since the feature must be namespaced to the same client binding annotation that the feature is being installed for. This is required to prevent duplicate binding issues when multiple clients are in use.
 
 .. code-block:: java
 
-  public class MyClientFeatureModule extends PrivateModule {
+  public class MyClientFeatureModule extends AbstractModule {
     private final Class<? extends Annotation> annotation;
 
     private MyClientFeatureModule(Class<? extends Annotation> annotation) {

@@ -2,8 +2,6 @@ package com.cerner.beadledom.client.example.client;
 
 import com.cerner.beadledom.client.BeadledomClient;
 import com.cerner.beadledom.client.BeadledomClientModule;
-import com.cerner.beadledom.client.BeadledomWebTarget;
-import com.cerner.beadledom.client.example.ResourceTwo;
 import com.cerner.beadledom.client.jackson.ObjectMapperClientFeatureModule;
 import com.cerner.beadledom.jackson.SerializationFeatureFlag;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -13,7 +11,7 @@ import com.google.inject.Singleton;
 import com.google.inject.multibindings.ProvidesIntoSet;
 
 /**
- * Guice module for the Example client.
+ * Guice module for the Example Two client.
  *
  * <p>Normally a service would have only one module that provides all resource proxies. This example
  * only splits apart the two resources to show what two separate clients would look like and so that
@@ -21,7 +19,7 @@ import com.google.inject.multibindings.ProvidesIntoSet;
  *
  * @author John Leacox
  */
-public class ResourceTwoModule extends AbstractModule {
+public class ExampleTwoClientModule extends AbstractModule {
   @Override
   protected void configure() {
     // Bind the client module and object mapper module with this client's binding annotation so
@@ -35,10 +33,9 @@ public class ResourceTwoModule extends AbstractModule {
 
   @Provides
   @Singleton
-  ResourceTwo provideResourceTwo(
-      @ResourceTwoFeature BeadledomClient beadledomClient, ExampleClientConfig config) {
-    BeadledomWebTarget target = beadledomClient.target(config.uri());
-    return target.proxy(ResourceTwo.class);
+  ExampleTwoClient provideExampleTwoClient(
+      @ResourceTwoFeature BeadledomClient client, ExampleClientConfig config) {
+    return new ExampleTwoClient(client, config);
   }
 
   @ProvidesIntoSet
