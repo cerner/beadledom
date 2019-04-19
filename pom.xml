@@ -4,7 +4,7 @@
 
   <groupId>com.cerner.beadledom</groupId>
   <artifactId>beadledom-parent</artifactId>
-  <version>3.3-JOOQ-SNAPSHOT</version>
+  <version>3.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Beadledom (Parent)</name>
   <description>A simple, composable framework for building RESTFul services</description>
@@ -93,7 +93,7 @@
     <scala.version>2.11.12</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
     <governator.version>1.17.5</governator.version>
-    <jackson.version>2.9.6</jackson.version>
+    <jackson.version>2.9.8</jackson.version>
     <resteasy.version>3.6.0.Final</resteasy.version>
     <spotbugs.version>3.1.8</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
@@ -491,7 +491,7 @@
       <dependency>
         <groupId>org.jooq</groupId>
         <artifactId>jooq</artifactId>
-        <version>3.11.3</version>
+        <version>3.11.11</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
@@ -721,7 +721,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>3.2.1</version>
+        <version>4.0.2</version>
         <configuration>
           <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
           <suppressionFile>dependency-check-suppressions.xml</suppressionFile>

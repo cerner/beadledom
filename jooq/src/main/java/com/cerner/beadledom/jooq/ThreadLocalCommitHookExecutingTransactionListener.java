@@ -112,10 +112,10 @@ class ThreadLocalCommitHookExecutingTransactionListener extends DefaultTransacti
   }
 
   /**
-   * Clears the nested transactions Deque and transaction hooks.
+   * Clears the nested transaction hooks and transactions Deque.
    */
   private void clear() {
     transactionalHooks.clearTransaction();
-    transactions().remove();
+    transactionDeques.remove();
   }
 }
