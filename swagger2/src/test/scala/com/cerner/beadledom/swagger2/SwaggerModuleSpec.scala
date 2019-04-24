@@ -1,6 +1,5 @@
 package com.cerner.beadledom.swagger2
 
-import com.cerner.beadledom.testing.UnitSpec
 import com.google.inject.multibindings.{Multibinder, ProvidesIntoSet}
 import com.google.inject.{AbstractModule, Guice, Key, TypeLiteral}
 import io.swagger.converter.{ModelConverter, ModelConverterContext}
@@ -10,10 +9,12 @@ import java.lang.annotation.Annotation
 import java.lang.reflect.Type
 import java.util
 
+import org.scalatest.{FunSpec, MustMatchers}
+
 /**
  * Spec tests for [[Swagger2Module]].
  */
-class SwaggerModuleSpec extends UnitSpec {
+class SwaggerModuleSpec extends FunSpec with MustMatchers {
   val swaggerMockModule = new AbstractModule {
     override def configure(): Unit = {
       install(new Swagger2Module)
