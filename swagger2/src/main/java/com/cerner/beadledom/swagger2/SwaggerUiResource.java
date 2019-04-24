@@ -1,6 +1,5 @@
 package com.cerner.beadledom.swagger2;
 
-import com.cerner.beadledom.jaxrs.StreamingWriterOutput;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.MustacheFactory;
 import com.google.common.collect.ImmutableMap;
@@ -8,7 +7,10 @@ import com.google.common.collect.ImmutableSet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
+import java.util.function.Consumer;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -38,11 +40,15 @@ public class SwaggerUiResource {
   @Path("/ui")
   @Produces(MediaType.TEXT_HTML)
   public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo) {
-    return StreamingWriterOutput.with(writer -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
-        writer, ImmutableMap.of(
-            "apiDocsUrl",
-            uriInfo.getBaseUriBuilder().path(SwaggerApiResource.class).build().toASCIIString()))
-    );
+    return output -> {
+      Consumer<OutputStreamWriter> consumer = outputStreamWriter -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
+          outputStreamWriter, ImmutableMap.of(
+              "apiDocsUrl",
+              uriInfo.getBaseUriBuilder().path(SwaggerApiResource.class).build().toASCIIString()));
+      OutputStreamWriter writer = new OutputStreamWriter(output, StandardCharsets.UTF_8);
+      consumer.accept(writer);
+      writer.flush();
+    };
   }
 
   // This is a terrible way to serve static assets, but this shouldn't see a lot of traffic.

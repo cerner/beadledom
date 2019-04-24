@@ -12,10 +12,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.cerner.beadledom</groupId>
-      <artifactId>beadledom-jaxrs</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.github.spullara.mustache.java</groupId>
       <artifactId>compiler</artifactId>
     </dependency>
@@ -42,11 +38,6 @@
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>swagger-ui</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.cerner.beadledom</groupId>
-      <artifactId>beadledom-testing</artifactId>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
