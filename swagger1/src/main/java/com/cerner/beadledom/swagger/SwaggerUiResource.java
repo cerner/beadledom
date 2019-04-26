@@ -16,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.StreamingOutput;
 import javax.ws.rs.core.UriInfo;
 
@@ -46,12 +47,13 @@ public class SwaggerUiResource {
   @GET
   @Path("/ui")
   @Produces(MediaType.TEXT_HTML)
-  public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo) {
+  public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo, @Context SecurityContext securityContext) {
+    String httpSchema = securityContext.isSecure() ? "https" : "http";
     return output -> {
       Consumer<OutputStreamWriter> consumer = outputStreamWriter -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
           outputStreamWriter, ImmutableMap.of(
               "apiDocsUrl",
-              uriInfo.getBaseUriBuilder().path(SwaggerApiResource.class).build().toASCIIString()));
+              uriInfo.getBaseUriBuilder().scheme(httpSchema).path(SwaggerApiResource.class).build().toASCIIString()));
       OutputStreamWriter writer = new OutputStreamWriter(output, StandardCharsets.UTF_8);
       consumer.accept(writer);
       writer.flush();
