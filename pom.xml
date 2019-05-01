@@ -458,12 +458,6 @@
         <artifactId>jersey-media-multipart</artifactId>
         <version>2.28</version>
       </dependency>
-      <!-- If this version is updated the WEBJAR_PATH in SwaggerUiResource must also be updated -->
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>swagger-ui</artifactId>
-        <version>3.19.0</version>
-      </dependency>
       <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest-all</artifactId>

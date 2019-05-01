@@ -1,15 +1,15 @@
 package com.cerner.beadledom.swagger
 
+import com.cerner.beadledom.testing.UnitSpec
 import com.google.inject.multibindings.{Multibinder, ProvidesIntoSet}
 import com.google.inject.{AbstractModule, Guice, Key, TypeLiteral}
 import com.wordnik.swagger.converter.ModelConverter
 import com.wordnik.swagger.model.Model
-import org.scalatest.{FunSpec, MustMatchers}
 
 /**
  * Spec tests for [[SwaggerModule]]
   */
-class SwaggerModuleSpec extends FunSpec with MustMatchers {
+class SwaggerModuleSpec extends UnitSpec {
   val swaggerMockModule = new AbstractModule {
     override def configure(): Unit = {
       install(new SwaggerModule)
