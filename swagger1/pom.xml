@@ -13,6 +13,14 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-jaxrs</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.github.spullara.mustache.java</groupId>
       <artifactId>compiler</artifactId>
     </dependency>
@@ -50,6 +58,11 @@
     </dependency>
 
     <!--Test Dependencies-->
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-testing</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>

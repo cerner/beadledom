@@ -1,14 +1,12 @@
 package com.cerner.beadledom.swagger;
 
+import com.cerner.beadledom.jaxrs.StreamingWriterOutput;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.MustacheFactory;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.Set;
-import java.util.function.Consumer;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -49,15 +47,11 @@ public class SwaggerUiResource {
   @Produces(MediaType.TEXT_HTML)
   public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo, @Context SecurityContext securityContext) {
     String httpSchema = securityContext.isSecure() ? "https" : "http";
-    return output -> {
-      Consumer<OutputStreamWriter> consumer = outputStreamWriter -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
-          outputStreamWriter, ImmutableMap.of(
-              "apiDocsUrl",
-              uriInfo.getBaseUriBuilder().scheme(httpSchema).path(SwaggerApiResource.class).build().toASCIIString()));
-      OutputStreamWriter writer = new OutputStreamWriter(output, StandardCharsets.UTF_8);
-      consumer.accept(writer);
-      writer.flush();
-    };
+    return StreamingWriterOutput.with(writer -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
+        writer, ImmutableMap.of(
+            "apiDocsUrl",
+            uriInfo.getBaseUriBuilder().scheme(httpSchema).path(SwaggerApiResource.class).build().toASCIIString()))
+    );
   }
 
   // This is a terrible way to serve static assets, but this shouldn't see a lot of traffic.
