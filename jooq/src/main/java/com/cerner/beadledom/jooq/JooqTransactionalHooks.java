@@ -13,12 +13,15 @@ public abstract class JooqTransactionalHooks {
    * <p>
    * If this method is called while a Jooq transaction is not active, the action will be executed
    * immediately.
+   * </p>
    *
    * <p>
    * If the current Jooq transaction is rolled back instead of committed, then the action will be
    * discarded and never called.
+   * </p>
    *
    * <h3>Savepoints / Nested Transactions</h3>
+   *
    * <p>
    * Actions registered on nested transaction (or savepoints) will be called after the top-level
    * transaction is committed, but not if a rollback to the savepoint or any parent savepoint
@@ -26,22 +29,27 @@ public abstract class JooqTransactionalHooks {
    * with that savepoint or further nested savepoints will not be executed. However, commit hooks
    * associated with savepoints at a higher level of nesting than the rollback, will be executed if
    * the top-level transaction commits.
+   * </p>
    *
    * <h3>Order of Execution</h3>
-   * <p>
-   * The callback actions will be executed in the order they are registered.
+   *
+   * <p>The callback actions will be executed in the order they are registered.</p>
    *
    * <h3>Exception Handling</h3>
+   *
    * <p>
-   * If a callback action throws an exception, no later registered callbacks in the same transaction
-   * will be executed.
+   * If a callback action throws an exception, no later registered callbacks in the same
+   * transaction will be executed.
+   * </p>
    *
    * @param action the action to be executed upon the successful commit of the current Jooq
    *     transaction
    */
   public abstract void whenCommitted(Runnable action);
 
-  abstract void setTransaction(JooqTransaction transaction);
+  void setTransaction(JooqTransaction transaction) {
+  }
 
-  abstract void clearTransaction();
+  void clearTransaction() {
+  }
 }

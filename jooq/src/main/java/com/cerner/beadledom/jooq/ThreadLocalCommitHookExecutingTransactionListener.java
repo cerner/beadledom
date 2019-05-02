@@ -96,8 +96,10 @@ class ThreadLocalCommitHookExecutingTransactionListener extends DefaultTransacti
   /**
    * Executes the commit hooks associated with the transaction and all nested transaction hooks.
    *
+   * <p>
    * If a commit hook throws an exception, the commit hook execution chain will be stopped
    * immediately, and no later registered commit hooks in that same transaction will be executed.
+   * </p>
    *
    * @param transaction the transaction to execute commit hooks for.
    */

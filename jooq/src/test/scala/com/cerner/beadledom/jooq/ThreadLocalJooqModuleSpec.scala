@@ -53,7 +53,6 @@ class ThreadLocalJooqModuleSpec
         override def configure(): Unit = {
           bind(classOf[DataSource]).toInstance(dataSource)
           bind(classOf[SQLDialect]).toInstance(SQLDialect.MYSQL)
-          bind(classOf[JooqTransactionalHooks]).to(classOf[ThreadLocalJooqTransactionalHooks])
 
           install(new ThreadLocalJooqModule)
         }
@@ -72,7 +71,6 @@ class ThreadLocalJooqModuleSpec
         override def configure(): Unit = {
           bind(classOf[DataSource]).toInstance(dataSource)
           bind(classOf[SQLDialect]).toInstance(SQLDialect.MYSQL)
-          bind(classOf[JooqTransactionalHooks]).to(classOf[ThreadLocalJooqTransactionalHooks])
 
           install(new ThreadLocalJooqModule)
 
