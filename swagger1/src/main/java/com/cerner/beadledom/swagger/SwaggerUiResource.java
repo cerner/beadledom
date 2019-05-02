@@ -46,11 +46,11 @@ public class SwaggerUiResource {
   @Path("/ui")
   @Produces(MediaType.TEXT_HTML)
   public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo, @Context SecurityContext securityContext) {
-    String httpSchema = securityContext.isSecure() ? "https" : "http";
+    String httpScheme = securityContext.isSecure() ? "https" : "http";
     return StreamingWriterOutput.with(writer -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
         writer, ImmutableMap.of(
             "apiDocsUrl",
-            uriInfo.getBaseUriBuilder().scheme(httpSchema).path(SwaggerApiResource.class).build().toASCIIString()))
+            uriInfo.getBaseUriBuilder().scheme(httpScheme).path(SwaggerApiResource.class).build().toASCIIString()))
     );
   }
 
