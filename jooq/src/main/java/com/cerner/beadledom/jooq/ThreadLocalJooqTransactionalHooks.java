@@ -12,6 +12,7 @@ class ThreadLocalJooqTransactionalHooks extends JooqTransactionalHooks {
 
   @Override
   public void whenCommitted(Runnable action) {
+    // TODO: NPE if action is null?
     JooqTransaction transaction = transactions.get();
 
     if (transaction == null) {

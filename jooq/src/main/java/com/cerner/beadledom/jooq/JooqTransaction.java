@@ -7,10 +7,11 @@ import java.util.List;
  * A representation of a Jooq Transaction with post-commit hooks and nested transactions.
  *
  * @author John Leacox
+ * @since 3.3
  */
 class JooqTransaction {
   private final List<Runnable> commitHooks = new ArrayList<>();
-  private final List<JooqTransaction> nestedContexts = new ArrayList<>();
+  private final List<JooqTransaction> nestedTransactions = new ArrayList<>();
 
   void addCommitHook(Runnable action) {
     commitHooks.add(action);
@@ -21,14 +22,18 @@ class JooqTransaction {
   }
 
   void addNestedTransaction(JooqTransaction nested) {
-    nestedContexts.add(nested);
+    nestedTransactions.add(nested);
   }
 
   List<JooqTransaction> getNestedTransactions() {
-    return nestedContexts;
+    return nestedTransactions;
   }
 
   void clearCommitHooks() {
     commitHooks.clear();
+  }
+
+  void clearNestedTransaction() {
+    nestedTransactions.clear();
   }
 }

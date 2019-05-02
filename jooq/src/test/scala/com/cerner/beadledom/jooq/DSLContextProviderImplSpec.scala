@@ -4,6 +4,7 @@ import javax.sql.DataSource
 import org.jooq.{DSLContext, SQLDialect}
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import scala.collection.mutable
 
 /**
  * Spec for DSLContextProviderImpl.
@@ -84,9 +85,14 @@ class DSLContextProviderImplSpec extends
           }
         }
 
+        val threads = mutable.ListBuffer[Thread]()
         for (_ <- 1 to 5) {
-          new Thread(runnable).start()
+          val thread = new Thread(runnable)
+          threads += thread
+          thread.start()
         }
+
+        threads.foreach { t => t.join(5000) }
       }
     }
 

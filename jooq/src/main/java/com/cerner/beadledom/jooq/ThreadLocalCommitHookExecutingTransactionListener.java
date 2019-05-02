@@ -65,11 +65,14 @@ class ThreadLocalCommitHookExecutingTransactionListener extends DefaultTransacti
     JooqTransaction transaction = transactions.pop();
 
     transaction.clearCommitHooks();
-    for (JooqTransaction nested : transaction.getNestedTransactions()) {
-      // TODO: Do we need to recurse all the way down? I suspect no, if we remove direct children,
-      //   we also remove the further nested children due to transitivity.
-      nested.clearCommitHooks();
-    }
+    transaction.clearNestedTransaction();
+    //for (JooqTransaction nested : transaction.getNestedTransactions()) {
+    //  // TODO: Do we need to recurse all the way down? I suspect no, if we remove direct children,
+    //  //   we also remove the further nested children due to transitivity.
+    //  //   I think this is actually incorrect as it is now. Shouldn't this actually clear the
+    //  //   nested transactions rather than the commit hooks?
+    //  nested.clearCommitHooks();
+    //}
 
     // This is the top-level transaction
     if (transactions.isEmpty()) {
