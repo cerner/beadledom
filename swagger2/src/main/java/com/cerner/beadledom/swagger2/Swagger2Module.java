@@ -23,7 +23,7 @@ import javax.inject.Inject;
  *     info.title("Name of My Service")
  *         .description("A description of my service. My service lets you do some things. It's owned "
  *             + " by My Awesome Team")
- *         .getVersion(serviceMetadata.getBuildInfo().getVersion());
+ *         .setVersion(serviceMetadata.getBuildInfo().getVersion());
  *     return info;
  *   }
  * }</pre>
