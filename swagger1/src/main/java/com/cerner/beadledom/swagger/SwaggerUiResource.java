@@ -7,11 +7,13 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import java.io.InputStream;
 import java.util.Set;
+import java.util.regex.Pattern;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -45,8 +47,9 @@ public class SwaggerUiResource {
   @GET
   @Path("/ui")
   @Produces(MediaType.TEXT_HTML)
-  public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo, @Context SecurityContext securityContext) {
-    String httpScheme = securityContext.isSecure() ? "https" : "http";
+  public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo,
+      @Context SecurityContext securityContext, @Context HttpHeaders httpHeaders) {
+    String httpScheme = isRequestSecure(securityContext, httpHeaders) ? "https" : "http";
     return StreamingWriterOutput.with(writer -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
         writer, ImmutableMap.of(
             "apiDocsUrl",
@@ -67,5 +70,22 @@ public class SwaggerUiResource {
 
     InputStream stream = getClass().getResourceAsStream("ui-dist/" + assetPath);
     return Response.ok(stream).build();
+  }
+
+  private boolean isRequestSecure(SecurityContext securityContext, HttpHeaders httpHeaders) {
+    return securityContext.isSecure()
+        || secureForwardedHeader(httpHeaders.getRequestHeaders().getFirst("Forwarded"))
+        || secureXForwardedProtoHeader(httpHeaders.getRequestHeaders().getFirst("X-Forwarded-Proto"));
+  }
+
+  private boolean secureForwardedHeader(String forwardedHeader) {
+    Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
+
+    return forwardedHeader != null
+        && forwardedPairs.matcher(forwardedHeader).group("protocolValue").contains("https");
+  }
+
+  private boolean secureXForwardedProtoHeader(String xForwardedProtoHeader) {
+    return xForwardedProtoHeader != null && xForwardedProtoHeader.equals("https");
   }
 }
