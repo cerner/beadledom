@@ -6,11 +6,11 @@ Provides the Beadledom bootstrap script along with an installer for the script.
 
 How to Install
 --------------
-Running the following command will download and execute the `beadledom install.sh script <https://github.com/cerner/beadledom/blob/3.3-SNAPSHOT/archetype/bootstrap/bin/install.sh>`_
+Running the following command will download and execute the `beadledom install.sh script <https://github.com/cerner/beadledom/blob/3.3-beta/archetype/bootstrap/bin/install.sh>`_
 
 .. code-block:: bash
 
-  curl -L http://cerner.github.io/beadledom/3.3-SNAPSHOT/beadledom-archetype/downloads/install.sh | sh
+  curl -L http://cerner.github.io/beadledom/3.3-beta/beadledom-archetype/downloads/install.sh | sh
 
 Usage
 -----

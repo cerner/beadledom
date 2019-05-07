@@ -38,7 +38,7 @@ Then to install execute in your shell
 
 .. code-block:: bash
 
-  curl -L http://cerner.github.io/beadledom/3.3-SNAPSHOT/beadledom-archetype/downloads/install.sh | sh
+  curl -L http://cerner.github.io/beadledom/3.3-beta/beadledom-archetype/downloads/install.sh | sh
 
 Once the download has completed you should be greeted by some sort of success message and now be
 able to run

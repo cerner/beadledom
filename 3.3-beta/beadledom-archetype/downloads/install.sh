@@ -5,7 +5,7 @@
 # downloaded and installed (copied) correctly on the users classpath.
 
 DEFAULT_INSTALL_DIR='/usr/local/bin'
-DEFAULT_REPO='http://cerner.github.io/beadledom/3.3-SNAPSHOT/beadledom-archetype/downloads'
+DEFAULT_REPO='http://cerner.github.io/beadledom/3.3-beta/beadledom-archetype/downloads'
 
 RESET='\e[0m'           # Reset
 RED='\e[0;31m'          # Red

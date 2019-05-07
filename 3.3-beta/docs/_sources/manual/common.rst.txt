@@ -44,7 +44,7 @@ Usage
   git.commit.id=${git.commit.id}
   project.artifactId=docs
   project.groupId=com.cerner.beadledom
-  project.version=3.3-SNAPSHOT
+  project.version=3.3-beta
 
   //Optional Properties
   project.build.date=${mvn.build.timestamp}
@@ -56,7 +56,7 @@ Usage
 .. code-block:: xml
 
   <properties>
-     <mvn.build.timestamp>2019-05-07T15:41:10Z</mvn.build.timestamp>
+     <mvn.build.timestamp>2019-05-07T18:42:42Z</mvn.build.timestamp>
   <properties>
 
 * Filter the resource directory - if the ``build-info.properties`` file is added to the resource directory.
