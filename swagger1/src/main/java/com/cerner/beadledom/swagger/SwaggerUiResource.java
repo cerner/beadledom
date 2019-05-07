@@ -49,10 +49,6 @@ public class SwaggerUiResource {
   @Produces(MediaType.TEXT_HTML)
   public StreamingOutput getSwaggerUi(@Context UriInfo uriInfo,
       @Context SecurityContext securityContext, @Context HttpHeaders httpHeaders) {
-    System.out.println("Base URI: " + uriInfo.getBaseUri().toString());
-    System.out.println("Request URI: " + uriInfo.getRequestUri().toString());
-    System.out.println("Request Headers: ");
-    httpHeaders.getRequestHeaders().forEach((key, value) -> System.out.println("Header Key: "+ key + ", Header value: "+ value));
     String httpScheme = isRequestSecure(securityContext, httpHeaders) ? "https" : "http";
     return StreamingWriterOutput.with(writer -> MUSTACHE_FACTORY.compile("ui.mustache").execute(
         writer, ImmutableMap.of(
