@@ -5,7 +5,7 @@
   <parent>
     <artifactId>beadledom-health-parent</artifactId>
     <groupId>com.cerner.beadledom</groupId>
-    <version>3.3-SNAPSHOT</version>
+    <version>3.3-beta</version>
   </parent>
 
   <artifactId>beadledom-health</artifactId>
