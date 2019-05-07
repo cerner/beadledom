@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>beadledom-configuration &mdash; Beadledom 3.3-SNAPSHOT documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Beadledom 3.3-SNAPSHOT documentation" href="../index.html"/>
+        <link rel="up" title="User Manual" href="index.html"/>
+        <link rel="next" title="beadledom-core" href="core.html"/>
+        <link rel="prev" title="beadledom-common" href="common.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.3-SNAPSHOT
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/error_handling.html">Error Handling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="avro.html">Beadledom Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Beadledom Bootstrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beadledom_client.html">Beadledom Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">Beadledom Common</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Beadledom Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supported-configurations">Supported Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#environment-configuration">Environment Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jndi-configuration">JNDI Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#properties-configuration">Properties Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xml-configuration">XML Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-a-custom-natural-ordering">Defining a custom natural ordering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-custom-configurationsource">Adding Custom ConfigurationSource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Beadledom Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice.html">Beadledom Guice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice_dynamic_bindings.html">Beadledom Guice Dynamic Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="health.html">Beadledom Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jackson.html">Beadledom Jackson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jaxrs.html">Beadledom JAX-RS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jaxrs_generic_response.html">Beadledom JAX-RS - Generic Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jooq.html">Beadledom jOOQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newrelic_jaxrs.html">Beadledom New Relic JAX-RS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Beadledom Pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resteasy.html">Beadledom Resteasy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resteasy_generic_response.html">Beadledom Resteasy - Generic Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stagemonitor.html">Beadledom Stagemonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swagger1.html">Beadledom Swagger 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swagger2.html">Beadledom Swagger 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle.html">Beadledom Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle_governator.html">Beadledom Lifecycle - Governator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Beadledom Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/3.3-SNAPSHOT/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Beadledom</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">User Manual</a> &raquo;</li>
+        
+      <li>beadledom-configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="beadledom-configuration">
+<h1>beadledom-configuration<a class="headerlink" href="#beadledom-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This project exposes a <a class="reference external" href="https://commons.apache.org/proper/commons-configuration/userguide_v1.10/overview.html">immutable
+configuration</a>
+object via a Guice module. It lets the consumer access the configuration
+loaded from different sources in a consistent way via
+<a class="reference external" href="https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/ImmutableHierarchicalConfiguration.html">ImmutableHierarchicalConfiguration</a>,
+an immutable hierarchical configuration.</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
+    <span class="nd">@Inject</span>
+    <span class="n">public</span> <span class="n">MyClass</span><span class="p">(</span><span class="n">ImmutableHierarchicalConfiguration</span> <span class="n">config</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">&quot;my_awesome_key&quot;</span><span class="p">);</span>
+      <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getInt</span><span class="p">(</span><span class="s2">&quot;my_awesome_int_key&quot;</span><span class="p">);</span>
+      <span class="n">String</span> <span class="n">anotherString</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">getString</span><span class="p">(</span><span class="s2">&quot;my.awesome.properties.stringKey&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>Download using Maven:</p>
+<div class="code xml highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="o">.</span><span class="n">cerner</span><span class="o">.</span><span class="n">beadledom</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">beadledom</span><span class="o">-</span><span class="n">configuration</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="p">[</span><span class="n">insert</span> <span class="n">latest</span> <span class="n">version</span><span class="p">]</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supported-configurations">
+<h2>Supported Configurations<a class="headerlink" href="#supported-configurations" title="Permalink to this headline">¶</a></h2>
+<p>Configurations can exist in many different formats like xml, java
+properties etc. Configurations are loaded into the immutable
+hierarchical configuration via the corresponding
+<a class="reference external" href="https://github.com/cerner/beadledom/blob/master/configuration/src/main/java/com/cerner/beadledom/configuration/ConfigurationSource.java">ConfigurationSource</a>.
+<strong>Configuration</strong> and <strong>ConfigurationSource</strong> share one to one
+relationship with each other.</p>
+<p>Each ConfigurationSource is associated with a Priority (a <strong>positive</strong>
+integer) that determines the load order into the immutable hierarchical
+configuration. Each ConfigurationSource is assigned a default priority,
+however the consumer can override the priority at the time of object
+creation. These priorities acts as the natural ordering on the
+ConfigurationSources. The higher priority configuration sources takes
+precedence over the lower priority configuration sources. If a
+configuration key is found in two different sources, the value from the
+higher priority source will be in the final configuration and the value
+from the lower priority source will not be present in the final
+configuration.</p>
+<p>Below is the list of ConfigurationSources along with their default
+priorities that Beadledom supports. It is important to note that the consumers
+are <strong>NOT</strong> restricted to use only the below configuration formats. If
+required, consumers can provide a custom configuration sources and load it via the
+ConfigurationSourcesModuleBuilder as explained in the <a class="reference external" href="#usage">usage</a>. For more information on
+defining a custom configuration sources see <a class="reference external" href="#adding-custom-configurationSource">Adding Custom ConfigurationSource</a>
+and <a class="reference external" href="#defining-a-custom-natural-ordering">Defining a custom natural ordering</a> sections.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="79%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Configuration type</th>
+<th class="head">Default Priority</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference external" href="#environment-configuration">Environment Configuration</a></td>
+<td>400</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="#jndi-configuration">Jndi Configuration</a></td>
+<td>300</td>
+</tr>
+<tr class="row-even"><td><a class="reference external" href="#properties-configuration">Properties Configuration</a></td>
+<td>200</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="#xml-configuration">XML Configuration</a></td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="environment-configuration">
+<h3>Environment Configuration<a class="headerlink" href="#environment-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Environment variables are a common way to configure applications in a <a class="reference external" href="https://12factor.net/config">Twelve-Factor App</a>.</p>
+<p>To load the environment-based configuration use</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">EnvironmentConfigurationSource</span> <span class="n">environmentConfigurationSource</span> <span class="o">=</span> <span class="n">EnvironmentConfigurationSource</span><span class="o">.</span><span class="n">create</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jndi-configuration">
+<h3>JNDI Configuration<a class="headerlink" href="#jndi-configuration" title="Permalink to this headline">¶</a></h3>
+<p>JNDI is primarily used to look up the configuration by name from a
+context. In a typical tomcat deployment this would be the
+<code class="docutils literal"><span class="pre">context.xml</span></code> file.</p>
+<div class="code xml highlight-default"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;Context reloadable=&quot;true&quot;&gt;
+    &lt;Environment name=&quot;keys/key1&quot;
+                 value=&quot;value1&quot;
+                 type=&quot;java.lang.String&quot;
+                 override=&quot;false&quot;/&gt;
+    &lt;Environment name=&quot;keys/key2&quot;
+                 value=&quot;value2&quot;
+                 type=&quot;java.lang.String&quot;
+                 override=&quot;false&quot;/&gt;
+&lt;/Context&gt;
+</pre></div>
+</div>
+<p>See
+<a class="reference external" href="https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/JNDIConfiguration.html">JNDIConfiguration</a>
+for more information on how the configuration is handled by the commons
+configuration.</p>
+<p>To load the jndi based configuration use</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">InitialContext</span> <span class="n">initialContext</span> <span class="o">=</span> <span class="n">new</span> <span class="n">InitialContext</span><span class="p">()</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="s2">&quot;path/to/my/config&quot;</span><span class="p">);</span>
+<span class="n">JndiConfigurationSource</span> <span class="n">jndiSource</span> <span class="o">=</span> <span class="n">JndiConfigurationSource</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">initialContext</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: <a class="reference external" href="https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/JNDIConfiguration.html">JNDIConfiguration</a>
+does not support the property names with dots (<code class="docutils literal"><span class="pre">.</span></code>) for example a
+key like <code class="docutils literal"><span class="pre">beadledom.awesome.keys.key1</span></code> in context.xml. Any
+properties with dots in the name are ignored silently when copying
+those properties to ImmutableCombinedConfiguration. To namespace
+your properties add the property at some path. So the example
+becomes <code class="docutils literal"><span class="pre">beadledom/awesome/keys/key1</span></code>. However, the properties
+are accessed using the dot notation <code class="docutils literal"><span class="pre">config.getString(&quot;beadledom.awesome.keys.key1&quot;)</span></code>
+would give the value of the key at <code class="docutils literal"><span class="pre">beadledom/awesome/keys/key1</span></code>.</p>
+</div>
+<div class="section" id="properties-configuration">
+<h3>Properties Configuration<a class="headerlink" href="#properties-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Property file is one of the most common formats of configuration in the
+Java world. A property file consists of properties with keys and values
+seperated by <code class="docutils literal"><span class="pre">=</span></code> (with no spaces around <code class="docutils literal"><span class="pre">=</span></code>).</p>
+<div class="highlight-properties"><div class="highlight"><pre><span></span><span class="c"># config.properties</span>
+
+<span class="na">key1</span><span class="o">=</span><span class="s">value1</span>
+<span class="na">key2</span><span class="o">=</span><span class="s">value2</span>
+<span class="na">key3</span><span class="o">=</span><span class="s">value3</span>
+</pre></div>
+</div>
+<p>To understand more about how the configuration handles the properties
+file take a look at the documentation of <a class="reference external" href="https://commons.apache.org/proper/commons-configuration/userguide/howto_properties.html#Properties_files">Properties
+Configuration</a></p>
+<p>To load the properties-based configuration use</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">PropertiesConfigurationSource</span> <span class="n">propertiesSource</span> <span class="o">=</span> <span class="n">PropertiesConfigurationSource</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="s2">&quot;path/to/properties/file&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="xml-configuration">
+<h3>XML Configuration<a class="headerlink" href="#xml-configuration" title="Permalink to this headline">¶</a></h3>
+<p>XML-based configurations are fairly common in the java world. Many of
+the modern complex systems like hadoop, hbase loads the configuration
+from xml files. Tomcat is another popular example that loads its
+configurations from xml files. A typical xml based configuration would
+look like</p>
+<div class="code xml highlight-default"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;arbitrary-name&gt;
+    &lt;some-field&gt;1&lt;/some-field&gt;
+    &lt;another-field&gt;2&lt;/another-field&gt;
+    &lt;some-another-field&gt;1&lt;/some-another-field&gt;
+&lt;/arbitrary-name&gt;
+</pre></div>
+</div>
+<p>To load the xml based configuration use</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">XmlConfigurationSource</span> <span class="n">xmlSource</span> <span class="o">=</span> <span class="n">XmlConfigurationSource</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="s2">&quot;path/to/xml/based/configuration&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="defining-a-custom-natural-ordering">
+<h2>Defining a custom natural ordering<a class="headerlink" href="#defining-a-custom-natural-ordering" title="Permalink to this headline">¶</a></h2>
+<p>It is totally possible to add a custom natural ordering to the configuration sources based on some
+custom criteria and still use the guice modules to load the configurations from ConfigurationSources.
+All that is needed is to implement the <strong>ConfigurationSource</strong> interface and define the new natural
+ordering in <strong>compareTo</strong> method. <code class="docutils literal"><span class="pre">BeadledomConfigurationModule</span></code> uses <code class="docutils literal"><span class="pre">compareTo</span></code> method to
+sort the configuration sources as per the natural ordering before loading them into the <code class="docutils literal"><span class="pre">ImmutableHierarchicalConfiguration</span></code>.</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">AwesomeConfigurationSource</span> <span class="n">implements</span> <span class="n">ConfigurationSource</span> <span class="p">{</span>
+  <span class="nd">@Override</span>
+  <span class="n">public</span> <span class="n">Configuration</span> <span class="n">getConfig</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span><span class="n">build</span> <span class="n">a</span> <span class="n">Configuration</span> <span class="ow">and</span> <span class="k">return</span> <span class="n">it</span> <span class="n">here</span><span class="o">.</span>
+  <span class="p">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="n">public</span> <span class="nb">int</span> <span class="n">getPriority</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Priority</span> <span class="n">at</span> <span class="n">which</span> <span class="n">this</span> <span class="n">configuration</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">loaded</span><span class="o">.</span>
+  <span class="p">}</span>
+  <span class="nd">@Override</span>
+  <span class="n">public</span> <span class="n">final</span> <span class="nb">int</span> <span class="n">compareTo</span><span class="p">(</span><span class="nd">@Nonnull</span> <span class="n">ConfigurationSource</span> <span class="n">that</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">logic</span> <span class="k">for</span> <span class="n">implementing</span> <span class="n">the</span> <span class="n">natural</span> <span class="n">ordering</span> <span class="n">of</span> <span class="n">the</span> <span class="n">configuration</span> <span class="n">sources</span> <span class="n">usually</span> <span class="n">but</span> <span class="ow">not</span> <span class="n">necessarily</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">priority</span><span class="o">.</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-custom-configurationsource">
+<h2>Adding Custom ConfigurationSource<a class="headerlink" href="#adding-custom-configurationsource" title="Permalink to this headline">¶</a></h2>
+<p>Adding a custom configuration source is fairly easy process. All that is required is to implement the
+<strong>AbstractConfigurationSource</strong> and implement the missing abstract methods. By extending this abstract
+class the implementation adheres to the default natural ordering i.e., higher priority configuration
+sources are loaded first.</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">AwesomeConfigurationSource</span> <span class="n">extends</span> <span class="n">AbstractConfigurationSource</span> <span class="p">{</span>
+  <span class="nd">@Override</span>
+  <span class="n">public</span> <span class="n">Configuration</span> <span class="n">getConfig</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span><span class="n">build</span> <span class="n">a</span> <span class="n">Configuration</span> <span class="ow">and</span> <span class="k">return</span> <span class="n">it</span> <span class="n">here</span><span class="o">.</span>
+  <span class="p">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="n">public</span> <span class="nb">int</span> <span class="n">getPriority</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span><span class="n">Priority</span> <span class="n">at</span> <span class="n">which</span> <span class="n">this</span> <span class="n">configuration</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">loaded</span><span class="o">.</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">beadledom-configuration</span></code> comes with a Guice module
+<code class="docutils literal"><span class="pre">BeadledomConfigurationModule</span></code>, that provides the
+<strong>ImmutableHierarchicalConfiguration</strong> object. Consumer can use this
+configuration object to retrieve all the loaded configurations. This
+guice module automatically gets intalled with <a class="reference external" href="../core#beadledom-core">Beadledom
+Core</a>.</p>
+<p>To build multiple ConfigurationSources use
+<code class="docutils literal"><span class="pre">ConfigurationSourcesModuleBuilder#addSource</span></code> builder method as shown
+in the below code example. The
+<code class="docutils literal"><span class="pre">ConfigurationSourcesModuleBuilder#build</span></code> creates a Guice Module with
+all the sources and makes it available to the <code class="docutils literal"><span class="pre">BeadledomConfiguration</span></code>
+that provides the Configuration object.</p>
+<div class="code java highlight-default"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="k">class</span> <span class="nc">MyModule</span> <span class="n">extends</span> <span class="n">AbstractModule</span> <span class="p">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="n">protected</span> <span class="n">void</span> <span class="n">configure</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">install</span><span class="p">(</span><span class="n">ConfigurationSourcesModuleBuilder</span><span class="o">.</span><span class="n">newBuilder</span><span class="p">()</span>
+      <span class="o">.</span><span class="n">addSource</span><span class="p">(</span><span class="n">propertiesSource</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">addSource</span><span class="p">(</span><span class="n">jndiSource</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">addSource</span><span class="p">(</span><span class="n">xmlSource</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">build</span><span class="p">());</span>
+
+    <span class="n">install</span><span class="p">(</span><span class="n">new</span> <span class="n">BeadledomConfigurationModule</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>BeadledomConfigurationModule</cite> automatically gets installed with <cite>BeadledomModule</cite>. So, if
+<a class="reference external" href="https://github.com/cerner/beadledom/blob/master/core/src/main/java/com/cerner/beadledom/core/BeadledomModule.java">BeadledomModule</a> or <a class="reference external" href="https://github.com/cerner/beadledom/blob/master/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyModule.java">ResteasyModule</a> are installed then it is not required to install <a class="reference external" href="https://github.com/cerner/beadledom/blob/2c208f895bdad7f50fad250df235cfae683bb94c/configuration/src/main/java/com/cerner/beadledom/configuration/BeadledomConfigurationModule.java">BeadledomConfigurationModule</a> explicitly.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="core.html" class="btn btn-neutral float-right" title="beadledom-core" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="common.html" class="btn btn-neutral" title="beadledom-common" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.3-SNAPSHOT',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
