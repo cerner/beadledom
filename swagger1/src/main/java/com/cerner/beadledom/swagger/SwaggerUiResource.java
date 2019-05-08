@@ -80,16 +80,16 @@ public class SwaggerUiResource {
    */
   private boolean isRequestSecure(SecurityContext securityContext, HttpHeaders httpHeaders) {
     return securityContext.isSecure()
-        || secureForwardedHeader(httpHeaders)
-        || secureXForwardedProtoHeader(httpHeaders);
+        || hasSecureForwardedHeader(httpHeaders)
+        || hasSecureXForwardedProtoHeader(httpHeaders);
   }
 
   /**
    * Checks the Forwarded header for a protocol value of https.
    * @param httpHeaders The {@link HttpHeaders} object containing the request headers.
-   * @return true if the `Forwarded` is present and contains https and false otherwise.
+   * @return true if the `Forwarded` header is present and contains https; false otherwise.
    */
-  private boolean secureForwardedHeader(HttpHeaders httpHeaders) {
+  private boolean hasSecureForwardedHeader(HttpHeaders httpHeaders) {
     String forwardedHeader = httpHeaders.getRequestHeaders().getFirst("Forwarded");
     Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
 
@@ -100,11 +100,10 @@ public class SwaggerUiResource {
   /**
    * Checks the X-Forwarded-Proto header for a value of https.
    * @param httpHeaders The {@link HttpHeaders} object containing the request headers.
-   * @return true if the `X-Forwarded-Proto` header exists and false otherwise.
+   * @return true if the `X-Forwarded-Proto` header is present and contains https; false otherwise.
    */
-  private boolean secureXForwardedProtoHeader(HttpHeaders httpHeaders) {
-    return httpHeaders.getRequestHeaders().getFirst("X-Forwarded-Proto") != null
-        && httpHeaders.getRequestHeaders().getFirst("X-Forwarded-Proto").equals("https");
+  private boolean hasSecureXForwardedProtoHeader(HttpHeaders httpHeaders) {
+    return "https".equals(httpHeaders.getRequestHeaders().getFirst("X-Forwarded-Proto"));
   }
 
 }
