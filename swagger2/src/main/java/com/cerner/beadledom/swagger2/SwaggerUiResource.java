@@ -33,21 +33,38 @@ public class SwaggerUiResource {
     );
   }
 
+  /**
+   * Checks if the request was made from a secure context or not.
+   * @param securityContext The {@link SecurityContext} object that could validate security of the request.
+   * @param httpHeaders The {@link HttpHeaders} object containing the request headers.
+   * @return true if the request was made from a secure context, false otherwise.
+   */
   private boolean isRequestSecure(SecurityContext securityContext, HttpHeaders httpHeaders) {
     return securityContext.isSecure()
-        || secureForwardedHeader(httpHeaders.getRequestHeaders().getFirst("Forwarded"))
-        || secureXForwardedProtoHeader(httpHeaders.getRequestHeaders().getFirst("X-Forwarded-Proto"));
+        || secureForwardedHeader(httpHeaders)
+        || secureXForwardedProtoHeader(httpHeaders);
   }
 
-  private boolean secureForwardedHeader(String forwardedHeader) {
+  /**
+   * Checks the Forwarded header for a protocol value of https.
+   * @param httpHeaders The {@link HttpHeaders} object containing the request headers.
+   * @return true if the `Forwarded` is present and contains https and false otherwise.
+   */
+  private boolean secureForwardedHeader(HttpHeaders httpHeaders) {
+    String forwardedHeader = httpHeaders.getRequestHeaders().getFirst("Forwarded");
     Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
 
     return forwardedHeader != null
         && forwardedPairs.matcher(forwardedHeader).group("protocolValue").contains("https");
   }
 
-  private boolean secureXForwardedProtoHeader(String xForwardedProtoHeader) {
-    return xForwardedProtoHeader != null && xForwardedProtoHeader.equals("https");
+  /**
+   * Checks the X-Forwarded-Proto header for a value of https.
+   * @param httpHeaders The {@link HttpHeaders} object containing the request headers.
+   * @return true if the `X-Forwarded-Proto` header exists and false otherwise.
+   */
+  private boolean secureXForwardedProtoHeader(HttpHeaders httpHeaders) {
+    return httpHeaders.getRequestHeaders().getFirst("X-Forwarded-Proto") != null
+        && httpHeaders.getRequestHeaders().getFirst("X-Forwarded-Proto").equals("https");
   }
 }
-
