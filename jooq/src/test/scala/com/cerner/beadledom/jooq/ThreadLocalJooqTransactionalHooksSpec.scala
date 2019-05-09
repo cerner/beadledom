@@ -12,6 +12,14 @@ class ThreadLocalJooqTransactionalHooksSpec
     extends FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
   describe("ThreadLocalJooqTransactionalHooks") {
     describe("#whenCommitted") {
+      it("throws a NullPointerException if action is null") {
+        val hooks = new ThreadLocalJooqTransactionalHooks()
+
+        intercept[NullPointerException] {
+          hooks.whenCommitted(null)
+        }
+      }
+
       describe("when a transaction is not active") {
         it("executes the action immediately") {
           val hooks = new ThreadLocalJooqTransactionalHooks()

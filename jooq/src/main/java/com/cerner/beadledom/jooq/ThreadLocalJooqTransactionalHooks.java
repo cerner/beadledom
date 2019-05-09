@@ -1,5 +1,7 @@
 package com.cerner.beadledom.jooq;
 
+import java.util.Objects;
+
 /**
  * An implementation of {@link JooqTransactionalHooks} that uses {@link ThreadLocal} to track the
  * current transaction nesting.
@@ -12,7 +14,8 @@ class ThreadLocalJooqTransactionalHooks extends JooqTransactionalHooks {
 
   @Override
   public void whenCommitted(Runnable action) {
-    // TODO: NPE if action is null?
+    Objects.requireNonNull(action);
+
     JooqTransaction transaction = transactions.get();
 
     if (transaction == null) {
