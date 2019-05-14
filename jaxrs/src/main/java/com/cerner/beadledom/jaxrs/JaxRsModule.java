@@ -1,6 +1,7 @@
 package com.cerner.beadledom.jaxrs;
 
 import com.cerner.beadledom.jaxrs.provider.CorrelationIdFilter;
+import com.cerner.beadledom.jaxrs.provider.ForwardedHeaderFilter;
 import com.google.inject.AbstractModule;
 import javax.inject.Singleton;
 
@@ -10,6 +11,7 @@ import javax.inject.Singleton;
  * <p>Provides:
  * <ul>
  *     <li>{@link CorrelationIdFilter}</li>
+ *     <li>{@link ForwardedHeaderFilter}</li>
  * </ul>
  *
  * @author John Leacox
@@ -19,5 +21,6 @@ public class JaxRsModule extends AbstractModule {
   protected void configure() {
     bind(CorrelationIdFilter.class).toProvider(CorrelationIdFilterProvider.class)
         .in(Singleton.class);
+    bind(ForwardedHeaderFilter.class).in(Singleton.class);
   }
 }
