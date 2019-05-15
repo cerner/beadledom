@@ -7,17 +7,21 @@ import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
 @Provider
 @Priority(Priorities.HEADER_DECORATOR)
+@PreMatching
 public class ForwardedHeaderFilter implements ContainerRequestFilter {
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
     String httpScheme = requestIsSecure(requestContext) ? "https" : "http";
-    requestContext.setRequestUri(requestContext.getUriInfo().getBaseUriBuilder().scheme(httpScheme).build());
+    requestContext.setRequestUri(
+        requestContext.getUriInfo().getBaseUriBuilder().scheme(httpScheme).build(),
+        requestContext.getUriInfo().getRequestUri());
   }
 
   /**
@@ -37,8 +41,10 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
    * @return true if the `Forwarded` header is present and contains https; false otherwise.
    */
   private boolean hasSecureForwardedHeader(ContainerRequestContext requestContext) {
-    MultivaluedMap<String, String> headerMap = requestContext.getHeaders();
-    String forwardedHeader = headerMap.getFirst("Forwarded");
+    String forwardedHeader = requestContext.getHeaderString("Forwarded");
+    if (forwardedHeader == null) {
+      return false;
+    }
     Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
 
     Matcher matcher = forwardedPairs.matcher(forwardedHeader);
@@ -53,6 +59,6 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
    * @return true if the `X-Forwarded-Proto` header is present and contains https; false otherwise.
    */
   private boolean hasSecureXForwardedProtoHeader(ContainerRequestContext requestContext) {
-    return "https".equals(requestContext.getHeaders().getFirst("X-Forwarded-Proto"));
+    return "https".equals(requestContext.getHeaderString("X-Forwarded-Proto"));
   }
 }

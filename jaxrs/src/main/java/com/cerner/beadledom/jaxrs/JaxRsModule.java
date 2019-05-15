@@ -8,10 +8,15 @@ import javax.inject.Singleton;
 /**
  * A guice module for providing jax-rs specific bindings.
  *
+ * <p>Binds:
+ * <ul>
+ *   <li>{@link ForwardedHeaderFilter}</li>
+ * </ul>
+ * </p>
+ *
  * <p>Provides:
  * <ul>
  *     <li>{@link CorrelationIdFilter}</li>
- *     <li>{@link ForwardedHeaderFilter}</li>
  * </ul>
  *
  * @author John Leacox
