@@ -9,7 +9,7 @@
   <parent>
     <artifactId>beadledom-parent</artifactId>
     <groupId>com.cerner.beadledom</groupId>
-    <version>3.3-beta2</version>
+    <version>3.3-SNAPSHOT</version>
   </parent>
 
   <modules>
