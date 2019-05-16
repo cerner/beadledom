@@ -20,7 +20,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
   }
 
   describe("For a request with just the X-Forwarded-Proto header"){
-    describe("for a X-Forwarded-Proto header with https"){
+    describe("when the header has a value of https"){
       it("changes the request to https"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
@@ -35,7 +35,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       }
     }
 
-    describe("for a X-Forwarded-Proto header with a proto other than https"){
+    describe("when the header has a value other than https"){
       it("keeps the request http"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
@@ -50,7 +50,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       }
     }
 
-    describe("for a X-Forwarded-Proto header thats an empty string"){
+    describe("when the header is an empty string"){
       it("keeps the request http"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
@@ -67,7 +67,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
   }
 
   describe("For a request with just the Forwarded header"){
-    describe("for a Forwarded header with mulitple values"){
+    describe("with multiple values"){
       val forwardedHeaderMultiValuedString = "for=192.0.2.60;by=203.0.113.43"
       describe("if the protocol is set to https"){
         it("changes the request to https"){
@@ -124,7 +124,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       }
     }
 
-    describe("for a Forwarded header with just a protocol value"){
+    describe("with just a protocol value"){
       describe("if the protocol is set to https"){
         it("changes the request to https"){
           val request = createContainerRequestContext
@@ -160,7 +160,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       }
     }
 
-    describe("for a Forwarded header with no protocol value"){
+    describe("with no protocol value"){
       it("keeps the request http"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
@@ -177,7 +177,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       }
     }
 
-    describe("for a Forwarded header with an empty string"){
+    describe("that is empty"){
       it("keeps the request http"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
