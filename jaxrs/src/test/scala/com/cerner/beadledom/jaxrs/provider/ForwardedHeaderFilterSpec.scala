@@ -5,7 +5,6 @@ import java.net.URI
 import javax.ws.rs.container.ContainerRequestContext
 import javax.ws.rs.core._
 import org.mockito.Mockito
-import org.mockito.Mockito.reset
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterEach, FunSpec, Matchers}
 import org.scalatest.mockito.MockitoSugar
 
