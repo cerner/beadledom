@@ -180,6 +180,13 @@ Exception Handling
 
 If an action registered with :code:`whenCommitted` for a given transactions throws an exception, then no later registered actions in the same transaction will be called. Since the callback actions are executed *after* a successful commit, an exception in a callback will not cause the transaction to roll back.
 
+Why no rollback hooks?
+""""""""""""""""""""""
+
+Rollback hooks are more difficult to implement robustly. A variety of things can cause an implicit rollback. For instance, if your process is killed, in the middle of a transaction, without a graceful shutdown, your rollback hooks would not run.
+
+Instead of using a rollback hook, try to invert what you are trying to do. Instead of trying to undo something when a transaction fails, instead use a commit hook to delay doing something until after the transaction succeeds.
+
 .. _DataSource: https://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html
 .. _DSLContext: https://www.jooq.org/javadoc/latest/org/jooq/DSLContext.html
 .. _DSLContextProvider: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/DSLContextProvider.java
