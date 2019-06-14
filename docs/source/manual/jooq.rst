@@ -145,7 +145,7 @@ Nested transactions (savepoints) are handled correctly. Actions registered via :
 
   @JooqTransactional {
   public void inner {
-    hooks.WhenCommitted(() -> bar());
+    hooks.whenCommitted(() -> bar());
   }
 
   // foo() and then bar() will be called when the outer transaction is committed.
@@ -164,7 +164,7 @@ Nested transactions (savepoints) are handled correctly. Actions registered via :
 
   @JooqTransactional {
   public void inner {
-    hooks.WhenCommitted(() -> bar());
+    hooks.whenCommitted(() -> bar());
     throw new RuntimeException();  // Raising an exception will cause this inner transaction to rollback.
   }
 
