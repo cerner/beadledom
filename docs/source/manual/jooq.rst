@@ -133,7 +133,7 @@ If the current transaction is rolled back instead of committed, then your action
 Nested Transactions
 """""""""""""""""""
 
-Nested transactions (savepoints) are handled correctly. Actions registered via :code:`whenCommitted` in a nested transaction will only be called after the outermost transaction is committed, and will not be called if a rollback to any outer savepoint occurs during the transaction.
+Actions registered via :code:`whenCommitted` in a nested transaction will only be called after the outermost transaction is committed, and will not be called if a rollback to any outer savepoint occurs during the transaction.
 
 .. code-block:: java
 
