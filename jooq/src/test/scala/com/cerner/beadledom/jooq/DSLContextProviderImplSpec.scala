@@ -13,7 +13,11 @@ import scala.collection.mutable
  */
 class DSLContextProviderImplSpec extends
     FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
-  val transactionalHooks = mock[JooqTransactionalHooks]
+  val transactionalHooks = new ThreadLocalJooqTransactionalHooks()
+
+  before {
+    transactionalHooks.clearTransaction()
+  }
 
   describe("DSLContextProviderImpl") {
     describe("#isActive") {

@@ -23,7 +23,8 @@ class DSLContextProviderImpl implements DSLContextProvider, UnitOfWork {
 
   @Inject
   DSLContextProviderImpl(
-      DataSource dataSource, SQLDialect sqlDialect, JooqTransactionalHooks transactionalHooks) {
+      DataSource dataSource, SQLDialect sqlDialect,
+      ThreadLocalJooqTransactionalHooks transactionalHooks) {
     // ThreadLocalTransactionProvider and ThreadLocalCommitHookExecutingTransactionListener handle
     // all of the ThreadLocal semantics of Jooq and Transaction hooks for us.
     this.configuration = new DefaultConfiguration()

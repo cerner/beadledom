@@ -16,4 +16,12 @@
     <gav regex="true">^org\.tukaani:xz:.*$</gav>
     <cve>CVE-2015-4035</cve>
   </suppress>
+  <!-- TODO: Remove after Jackson 2.9.9.1 is released and we have updated -->
+  <suppress>
+    <notes><![CDATA[
+   file name: jackson-databind-2.9.9.jar
+   ]]></notes>
+    <gav regex="true">^com\.fasterxml\.jackson\.core:jackson-databind:.*$</gav>
+    <cve>CVE-2019-12814</cve>
+  </suppress>
 </suppressions>

@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author John Leacox
  * @since 3.3
  */
-class ThreadLocalJooqTransactionalHooks extends JooqTransactionalHooks {
+class ThreadLocalJooqTransactionalHooks implements JooqTransactionalHooks {
   private ThreadLocal<JooqTransaction> transactions = new ThreadLocal<>();
 
   @Override

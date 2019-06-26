@@ -17,11 +17,10 @@ import org.jooq.impl.DefaultTransactionListener;
 class ThreadLocalCommitHookExecutingTransactionListener extends DefaultTransactionListener {
   private final ThreadLocal<Deque<JooqTransaction>> transactionDeques = new ThreadLocal<>();
 
-  // This assumes that the hooks implementation is using ThreadLocal or some other means to have
-  // the same lifecycle as this listener.
-  private final JooqTransactionalHooks transactionalHooks;
+  private final ThreadLocalJooqTransactionalHooks transactionalHooks;
 
-  ThreadLocalCommitHookExecutingTransactionListener(JooqTransactionalHooks transactionalHooks) {
+  ThreadLocalCommitHookExecutingTransactionListener(
+      ThreadLocalJooqTransactionalHooks transactionalHooks) {
     this.transactionalHooks = transactionalHooks;
   }
 

@@ -6,7 +6,7 @@ package com.cerner.beadledom.jooq;
  * @author John Leacox
  * @since 3.3
  */
-public abstract class JooqTransactionalHooks {
+public interface JooqTransactionalHooks {
   /**
    * Registers an action to be executed when the current Jooq transaction is successfully committed.
    *
@@ -45,11 +45,5 @@ public abstract class JooqTransactionalHooks {
    * @param action the action to be executed upon the successful commit of the current Jooq
    *     transaction
    */
-  public abstract void whenCommitted(Runnable action);
-
-  void setTransaction(JooqTransaction transaction) {
-  }
-
-  void clearTransaction() {
-  }
+  void whenCommitted(Runnable action);
 }
