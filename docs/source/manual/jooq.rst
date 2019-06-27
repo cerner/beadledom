@@ -193,4 +193,4 @@ Instead of using a rollback hook, try to invert what you are trying to do. Inste
 .. _JooqTransactional: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactional.java
 .. _SQLDialect: https://www.jooq.org/javadoc/latest/org/jooq/SQLDialect.html
 .. _ThreadLocalJooqModule: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/ThreadLocalJooqModule.java
-.. _JooqTransactionalHooks:https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactionalHooqs.java
+.. _JooqTransactionalHooks: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactionalHooqs.java
