@@ -112,9 +112,85 @@ Below is an example of configuring the required binding uses a C3P0 pooling data
     }
   }
 
+Post commit actions
+~~~~~~~~~~~~~~~~~~~~
+
+Sometimes you need to perform an action only after the current transaction successfully commits. For example,
+updating or invalidating a cache.
+
+The JooqTransactionalHooks_ class provides the :code:`whenCommitted` method for registering callback actions that should be executed after a transaction is successfully committed. Any no-arguments lambda expression or :code:`Runnable` implementation can be passed as the action.
+
+.. code-block:: java
+
+  hooks.whenCommitted(() -> cache.invalidate())
+
+The action you register will be called immediately after the current transaction is successfully committed.
+
+If you call :code:`whenCommitted` while there isn't an active transaction, the action will be executed immediately.
+
+If the current transaction is rolled back instead of committed, then your action will be discarded and never called.
+
+Nested Transactions
+"""""""""""""""""""
+
+Actions registered via :code:`whenCommitted` in a nested transaction will only be called after the outermost transaction is committed, and will not be called if a rollback to any outer savepoint occurs during the transaction.
+
+.. code-block:: java
+
+  @JooqTransactional
+  public void outer() {
+    hooks.whenCommitted(() -> foo());
+    inner();
+  }
+
+  @JooqTransactional {
+  public void inner {
+    hooks.whenCommitted(() -> bar());
+  }
+
+  // foo() and then bar() will be called when the outer transaction is committed.
+
+.. code-block:: java
+
+  @JooqTransactional
+  public void outer() {
+    hooks.whenCommitted(() -> foo());
+    try {
+      inner();
+    } catch(Exception e) {
+      // Log or handle exception, but since we caught the inner exception the outer transaction will not be rolled back.
+    }
+  }
+
+  @JooqTransactional {
+  public void inner {
+    hooks.whenCommitted(() -> bar());
+    throw new RuntimeException();  // Raising an exception will cause this inner transaction to rollback.
+  }
+
+  // foo() will be called, but not bar()
+
+Order of Execution
+""""""""""""""""""
+
+Actions registered with :code:`whenCommitted` for a given transaction are executed in the ordered they were registered.
+
+Exception Handling
+""""""""""""""""""
+
+If an action registered with :code:`whenCommitted` for a given transactions throws an exception, then no later registered actions in the same transaction will be called. Since the callback actions are executed *after* a successful commit, an exception in a callback will not cause the transaction to roll back.
+
+Why no rollback hooks?
+""""""""""""""""""""""
+
+Rollback hooks are more difficult to implement robustly. A variety of things can cause an implicit rollback. For instance, if your process is killed, in the middle of a transaction, without a graceful shutdown, your rollback hooks would not run.
+
+Instead of using a rollback hook, try to invert what you are trying to do. Instead of trying to undo something when a transaction fails, instead use a commit hook to delay doing something until after the transaction succeeds.
+
 .. _DataSource: https://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html
 .. _DSLContext: https://www.jooq.org/javadoc/latest/org/jooq/DSLContext.html
 .. _DSLContextProvider: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/DSLContextProvider.java
 .. _JooqTransactional: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactional.java
 .. _SQLDialect: https://www.jooq.org/javadoc/latest/org/jooq/SQLDialect.html
 .. _ThreadLocalJooqModule: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/ThreadLocalJooqModule.java
+.. _JooqTransactionalHooks: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactionalHooqs.java

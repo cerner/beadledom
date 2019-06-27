@@ -87,6 +87,22 @@ class ThreadLocalJooqModuleSpec
           .map(c => c.toString)
           .find(s => s.contains("cglib")) mustBe defined
     }
+
+    it("binds JooqTransactionalHooks") {
+      val dataSource = mock[DataSource]
+
+      val module = new AbstractModule {
+        override def configure(): Unit = {
+          bind(classOf[DataSource]).toInstance(dataSource)
+          bind(classOf[SQLDialect]).toInstance(SQLDialect.MYSQL)
+
+          install(new ThreadLocalJooqModule)
+        }
+      }
+
+      val injector = Guice.createInjector(module)
+      injector.getInstance(classOf[JooqTransactionalHooks])
+    }
   }
 }
 
