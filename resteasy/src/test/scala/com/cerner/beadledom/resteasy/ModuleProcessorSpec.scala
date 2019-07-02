@@ -67,5 +67,3 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
   }
 }
 
-
-
