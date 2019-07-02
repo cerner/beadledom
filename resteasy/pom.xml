@@ -99,6 +99,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-guice-dynamicbindings</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.cerner.beadledom.avro</groupId>
       <artifactId>beadledom-avro-jackson</artifactId>
       <scope>test</scope>
