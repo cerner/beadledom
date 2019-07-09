@@ -25,7 +25,7 @@ import org.jboss.resteasy.util.GetRestful;
  *
  * @author Charan Panchagnula
  */
-public class ModuleProcessor {
+class ModuleProcessor {
 
   private final Registry registry;
   private final ResteasyProviderFactory providerFactory;
@@ -57,7 +57,6 @@ public class ModuleProcessor {
       final Type type = binding.getKey().getTypeLiteral().getRawType();
       final Class<?> beanClass = (Class) type;
       if (GetRestful.isRootResource(beanClass)) {
-        // deferred registration
         rootResourceBindings.add(binding);
       }
       if (beanClass.isAnnotationPresent(Provider.class)) {

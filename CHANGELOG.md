@@ -11,8 +11,8 @@
 * Update maven archetype for project generation with new client recommendations.
 * Update client documentation to recommend using an abstracted resource pattern.
 
-### Defects Corrected
-* Exclude JAX-RS providers with binding annotations to be registered in the resteasy provider factory for the server.
+### Fixed
+* JAX-RS providers with binding annotations will no longer be registered in the resteasy provider factory for the server.
 
 ## 3.2.5 - 25 March 2019
 

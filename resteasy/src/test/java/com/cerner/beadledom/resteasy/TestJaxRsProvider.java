@@ -4,13 +4,12 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * JAX-RS provider for testing.
+ *
+ * @author Charan Panchagnula
  */
 @Provider
 public class TestJaxRsProvider {
 
-  /**
-   * Constructor for TestJaxRsProvider.
-   */
   public TestJaxRsProvider() {
   }
 }

@@ -5,7 +5,6 @@ import com.cerner.beadledom.lifecycle.LifecycleContainer;
 import com.cerner.beadledom.lifecycle.LifecycleInjector;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -41,7 +40,7 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
 
     final List<? extends Module> appModules = getModules(context);
 
-    final List<Module> modules = new ArrayList<>();
+    List<Module> modules = new ArrayList<>();
     modules.addAll(appModules);
 
     injector = GuiceLifecycleContainers.initialize(this, modules);
