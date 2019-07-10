@@ -27,7 +27,7 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
       }
     }
 
-    describe("ModuleProcessor#processInjector") {
+    describe("processInjector") {
       it("throws a NullPointerException for null injector") {
         intercept[NullPointerException] {
           new ModuleProcessor(registry, providerFactory).processInjector(null)
@@ -37,8 +37,8 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
       it("excludes providers that have a binding annotation") {
         val injector = Guice.createInjector(new AbstractModule {
           override def configure(): Unit = {
-            bind(classOf[TestJaxRsProvider]).annotatedWith(classOf[TestBindingAnnotation]).toProvider(
-              new TestProviderWithBindingAnnotation(classOf[TestBindingAnnotation])
+            bind(classOf[TestJaxRsProvider]).annotatedWith(classOf[TestBindingAnnotation]).to(
+              classOf[TestJaxRsProvider]
             )
           }
         })
@@ -51,8 +51,8 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
       it("excludes provider with binding annotation when two providers of the same type are bound with the injector") {
         val injector = Guice.createInjector(new AbstractModule {
           override def configure(): Unit = {
-            bind(classOf[TestJaxRsProvider]).annotatedWith(classOf[TestBindingAnnotation]).toProvider(
-              new TestProviderWithBindingAnnotation(classOf[TestBindingAnnotation])
+            bind(classOf[TestJaxRsProvider]).annotatedWith(classOf[TestBindingAnnotation]).to(
+              classOf[TestJaxRsProvider]
             )
 
             bind(classOf[TestJaxRsProvider]).toProvider(new TestProvider())
@@ -67,8 +67,8 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
       it("excludes providers that have a binding annotation and registers providers without a binding annotation") {
         val injector = Guice.createInjector(new AbstractModule {
           override def configure(): Unit = {
-            bind(classOf[TestJaxRsProvider]).annotatedWith(classOf[TestBindingAnnotation]).toProvider(
-              new TestProviderWithBindingAnnotation(classOf[TestBindingAnnotation])
+            bind(classOf[TestJaxRsProvider]).annotatedWith(classOf[TestBindingAnnotation]).to(
+              classOf[TestJaxRsProvider]
             )
 
             bind(classOf[TestingExceptionMapper])
