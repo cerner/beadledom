@@ -1,28 +1,27 @@
 package com.cerner.beadledom.resteasy
 
-import com.cerner.beadledom.resteasy.fauxservice.FauxModule
 import org.jboss.resteasy.spi.{Registry, ResteasyProviderFactory}
 import org.scalatest.{FunSpec, MustMatchers}
 import org.scalatest.mockito.MockitoSugar
 import com.google.inject.{AbstractModule, Guice}
 
-class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
+class InjectorProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
 
   val registry: Registry = mock[Registry]
   val providerFactory: ResteasyProviderFactory = mock[ResteasyProviderFactory]
 
-  describe("ModuleProcessor") {
+  describe("InjectorProcessor") {
 
     describe("constructor") {
       it("throws a NullPointerException for null registry") {
         intercept[NullPointerException] {
-          new ModuleProcessor(null, providerFactory)
+          new InjectorProcessor(null, providerFactory)
         }
       }
 
       it("throws a NullPointerException for null provider factory") {
         intercept[NullPointerException] {
-          new ModuleProcessor(registry, null)
+          new InjectorProcessor(registry, null)
         }
       }
     }
@@ -30,7 +29,7 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
     describe("processInjector") {
       it("throws a NullPointerException for null injector") {
         intercept[NullPointerException] {
-          new ModuleProcessor(registry, providerFactory).processInjector(null)
+          new InjectorProcessor(registry, providerFactory).process(null)
         }
       }
 
@@ -43,7 +42,7 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
           }
         })
         val providerFactory = new ResteasyProviderFactory()
-        new ModuleProcessor(registry, providerFactory).processInjector(injector)
+        new InjectorProcessor(registry, providerFactory).process(injector)
 
         providerFactory.getProviderInstances mustBe empty
       }
@@ -59,7 +58,7 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
           }
         })
         val providerFactory = new ResteasyProviderFactory()
-        new ModuleProcessor(registry, providerFactory).processInjector(injector)
+        new InjectorProcessor(registry, providerFactory).process(injector)
 
         providerFactory.getProviderInstances must have size 1
       }
@@ -75,7 +74,7 @@ class ModuleProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
           }
         })
         val providerFactory = new ResteasyProviderFactory()
-        new ModuleProcessor(registry, providerFactory).processInjector(injector)
+        new InjectorProcessor(registry, providerFactory).process(injector)
 
         providerFactory.getProviderInstances must have size 1
       }

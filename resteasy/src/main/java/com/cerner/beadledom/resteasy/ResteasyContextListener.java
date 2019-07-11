@@ -36,7 +36,7 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
         (ResteasyDeployment) context.getAttribute(ResteasyDeployment.class.getName());
     final Registry registry = deployment.getRegistry();
     final ResteasyProviderFactory providerFactory = deployment.getProviderFactory();
-    final ModuleProcessor processor = new ModuleProcessor(registry, providerFactory);
+    final InjectorProcessor processor = new InjectorProcessor(registry, providerFactory);
 
     final List<? extends Module> appModules = getModules(context);
 
@@ -47,7 +47,7 @@ public abstract class ResteasyContextListener extends ResteasyBootstrap implemen
 
     withInjector(injector);
 
-    processor.processInjector(injector);
+    processor.process(injector);
   }
 
   @Override
