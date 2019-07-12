@@ -54,7 +54,7 @@ class InjectorProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
               classOf[TestJaxRsProvider]
             )
 
-            bind(classOf[TestJaxRsProvider]).toProvider(new TestProvider())
+            bind(classOf[TestJaxRsProvider])
           }
         })
         val providerFactory = new ResteasyProviderFactory()

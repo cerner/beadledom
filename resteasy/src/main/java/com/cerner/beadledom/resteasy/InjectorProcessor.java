@@ -29,7 +29,7 @@ class InjectorProcessor {
   private final ResteasyProviderFactory providerFactory;
 
   /**
-   * Creates a new instance for InjectorProcessor with thw given Resteasy resource registry
+   * Creates a new instance for InjectorProcessor with the given Resteasy resource registry
    * and provider factory that the processor will register the Guice bindings with.
    *
    * @param registry Resteasy resource {@link Registry}
