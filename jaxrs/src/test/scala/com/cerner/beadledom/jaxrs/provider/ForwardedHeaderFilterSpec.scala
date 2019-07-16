@@ -14,7 +14,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
   def createContainerRequestContext: ContainerRequestContext = {
     val request = mock[ContainerRequestContext]
     val uriInfo = mock[UriInfo]
-    Mockito.when(uriInfo.getBaseUriBuilder).thenReturn(UriBuilder.fromUri(new URI("http://hello.there")))
+    Mockito.when(uriInfo.getRequestUriBuilder).thenReturn(UriBuilder.fromUri(new URI("http://hello.there")))
     Mockito.when(request.getUriInfo).thenReturn(uriInfo)
     request
   }
@@ -31,7 +31,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("https://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
       }
     }
 
@@ -46,7 +46,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
 
@@ -61,7 +61,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
   }
@@ -83,7 +83,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("https://hello.there"), null)
+          Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
         }
       }
 
@@ -101,7 +101,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+          Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
         }
       }
 
@@ -119,7 +119,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+          Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
         }
       }
     }
@@ -138,7 +138,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("https://hello.there"), null)
+          Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
         }
       }
 
@@ -155,7 +155,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+          Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
         }
       }
     }
@@ -173,7 +173,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
 
@@ -190,7 +190,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
   }
@@ -208,7 +208,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("https://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
       }
     }
 
@@ -224,7 +224,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
   }
@@ -242,7 +242,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
 
@@ -259,7 +259,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("https://hello.there"), null)
+        Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
       }
     }
   }
