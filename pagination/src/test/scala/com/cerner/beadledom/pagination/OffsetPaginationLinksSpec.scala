@@ -121,7 +121,7 @@ class OffsetPaginationLinksSpec extends FunSpec with MustMatchers with MockitoSu
       describe("with total results more than page limit") {
         val totalResultsList = OffsetPaginatedList.builder()
             .items(List("a", "b", "c", "d", "e", "f", "g", "h").asJava)
-            .metadata("limit", null, "offset", null, 500L, null)
+            .totalResults(500L)
             .build()
 
         describe("when on first page") {

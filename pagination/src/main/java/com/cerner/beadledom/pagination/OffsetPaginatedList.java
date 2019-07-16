@@ -32,10 +32,9 @@ public abstract class OffsetPaginatedList<T> {
    * @return instance of {@link OffsetPaginatedList.Builder}
    */
   public static <T> OffsetPaginatedList.Builder<T> builder() {
-    return new AutoValue_OffsetPaginatedList.Builder<T>().items(new ArrayList<>())
-        .metadata(
-            LimitParameter.getDefaultLimitFieldName(), null,
-            OffsetParameter.getDefaultOffsetFieldName(), null, null, null);
+    return new AutoValue_OffsetPaginatedList.Builder<T>()
+        .items(new ArrayList<>())
+        .metadata(OffsetPaginatedListMetadata.builder().build());
   }
 
   @AutoValue.Builder
@@ -49,14 +48,17 @@ public abstract class OffsetPaginatedList<T> {
      * Convenience method that allows metadata to be set without having to manually build a
      * {@link OffsetPaginatedListMetadata} object.
      *
-     * @param limitFieldName the limit field name used to create the page.
-     * @param limit the limit used to create the page.
-     * @param offsetFieldName the offset field name used to create the page.
-     * @param offset the offset used to create the page.
-     * @param totalResults the total results available.
-     * @param hasMore indicates if there are more results available.
-     * @return The {@link Builder} being used for the {@link OffsetPaginatedList}.
+     * @param limitFieldName the limit field name used to create the page
+     * @param limit the limit used to create the page
+     * @param offsetFieldName the offset field name used to create the page
+     * @param offset the offset used to create the page
+     * @param totalResults the total results available
+     * @param hasMore indicates if there are more results available
+     * @return The {@link Builder} being used for the {@link OffsetPaginatedList}
+     * @deprecated use {@link #metadata(OffsetPaginatedListMetadata)}, possibly with a builder
+     *     instead
      */
+    @Deprecated
     public OffsetPaginatedList.Builder<T> metadata(
         @Nullable String limitFieldName, @Nullable Integer limit, @Nullable String offsetFieldName,
         @Nullable Long offset, @Nullable Long totalResults, @Nullable Boolean hasMore) {
@@ -75,12 +77,15 @@ public abstract class OffsetPaginatedList<T> {
      * Convenience method that allows metadata to be set using configured field names
      * without having to manually build a {@link OffsetPaginatedListMetadata} object.
      *
-     * @param limit the limit used to create the page.
-     * @param offset the offset used to create the page.
-     * @param totalResults the total results available.
-     * @param hasMore indicates if there are more results available.
-     * @return The {@link Builder} being used for the {@link OffsetPaginatedList}.
+     * @param limit the limit used to create the page
+     * @param offset the offset used to create the page
+     * @param totalResults the total results available
+     * @param hasMore indicates if there are more results available
+     * @return The {@link Builder} being used for the {@link OffsetPaginatedList}
+     * @deprecated use {@link #metadata(OffsetPaginatedListMetadata)}, possibly with a builder
+     *     instead
      */
+    @Deprecated
     public OffsetPaginatedList.Builder<T> metadata(
         @Nullable Integer limit, @Nullable Long offset, @Nullable Long totalResults,
         @Nullable Boolean hasMore) {
@@ -93,14 +98,27 @@ public abstract class OffsetPaginatedList<T> {
      * Convenience method that creates metadata with total results and default field names
      * without having to manually build a {@link OffsetPaginatedListMetadata} object.
      *
-     * @param totalResults the total results available.
-     * @return The {@link Builder} being used for the {@link OffsetPaginatedList}.
+     * @param totalResults the total results available
+     * @return the {@link Builder} being used for the {@link OffsetPaginatedList}
+     * @deprecated use {@link #totalResults(Long)} instead
      */
+    @Deprecated
     public OffsetPaginatedList.Builder<T> metadata(@Nullable Long totalResults) {
+      return totalResults(totalResults);
+    }
+
+    /**
+     * Convenience method that adds a metadata instance with total results and default field names
+     * without having to manually build an {@link OffsetPaginatedListMetadata} object.
+     *
+     * @param totalResults the total results available
+     * @return the {@link Builder} being used for the {@link OffsetPaginatedList}
+     */
+    public OffsetPaginatedList.Builder<T> totalResults(@Nullable Long totalResults) {
       return metadata(
-          LimitParameter.getDefaultLimitFieldName(), null,
-          OffsetParameter.getDefaultOffsetFieldName(), null,
-          totalResults, null);
+          OffsetPaginatedListMetadata.builder()
+              .totalResults(totalResults)
+              .build());
     }
 
     public abstract OffsetPaginatedList<T> build();
