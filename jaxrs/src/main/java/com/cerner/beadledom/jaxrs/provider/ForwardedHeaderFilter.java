@@ -8,7 +8,6 @@ import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
 @Provider
@@ -20,8 +19,7 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
   public void filter(ContainerRequestContext requestContext) throws IOException {
     String httpScheme = requestIsSecure(requestContext) ? "https" : "http";
     requestContext.setRequestUri(
-        requestContext.getUriInfo().getBaseUriBuilder().scheme(httpScheme).build(),
-        requestContext.getUriInfo().getRequestUri());
+        requestContext.getUriInfo().getRequestUriBuilder().scheme(httpScheme).build());
   }
 
   /**
