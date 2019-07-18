@@ -70,6 +70,8 @@ class BeadledomClientModuleSpec extends FunSpec with MustMatchers with BeforeAnd
               .builder()
               .connectionPoolSize(1)
               .connectionTimeoutMillis(2)
+              .socketTimeoutMillis(2)
+              .ttlMillis(2)
               .correlationIdName(correlationIdName)
               .build()
 
@@ -87,7 +89,9 @@ class BeadledomClientModuleSpec extends FunSpec with MustMatchers with BeforeAnd
       val config = clientBuilder.getBeadledomClientConfiguration
 
       config.connectionPoolSize mustBe 1
-      config.connectionTimeoutMillis mustBe 2 * 1000
+      config.connectionTimeoutMillis mustBe 2
+      config.socketTimeoutMillis mustBe 2
+      config.ttlMillis() mustBe 2
       config.correlationIdName mustBe correlationIdName
 
       classOf[BeadledomClient].isAssignableFrom(clientBuilder.build.getClass) mustBe true

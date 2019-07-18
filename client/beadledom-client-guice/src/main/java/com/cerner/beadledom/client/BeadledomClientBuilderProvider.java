@@ -72,9 +72,9 @@ class BeadledomClientBuilderProvider implements Provider<BeadledomClientBuilder>
 
       clientBuilder.setConnectionPoolSize(config.connectionPoolSize());
       clientBuilder.setMaxPooledPerRouteSize(config.maxPooledPerRouteSize());
-      clientBuilder.setSocketTimeout(config.socketTimeoutMillis(), TimeUnit.SECONDS);
-      clientBuilder.setConnectionTimeout(config.connectionTimeoutMillis(), TimeUnit.SECONDS);
-      clientBuilder.setTtl(config.ttlMillis(), TimeUnit.SECONDS);
+      clientBuilder.setSocketTimeout(config.socketTimeoutMillis(), TimeUnit.MILLISECONDS);
+      clientBuilder.setConnectionTimeout(config.connectionTimeoutMillis(), TimeUnit.MILLISECONDS);
+      clientBuilder.setTtl(config.ttlMillis(), TimeUnit.MILLISECONDS);
 
       if (config.sslContext() != null) {
         clientBuilder.sslContext(config.sslContext());

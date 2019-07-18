@@ -13,6 +13,7 @@
 
 ### Fixed
 * JAX-RS providers with binding annotations will no longer be registered in the resteasy provider factory for the server.
+* Guice-based Beadledom clients will now use the correct time unit for time-outs.
 
 ## 3.2.5 - 25 March 2019
 
