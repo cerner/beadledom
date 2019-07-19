@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>beadledom-integration-test</artifactId>
+
+  <parent>
+    <artifactId>beadledom-integration</artifactId>
+    <groupId>com.cerner.beadledom</groupId>
+    <version>3.3-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-integration-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-integration-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-integration-service</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-testing</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+      <version>4.12</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.4.2</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
+          <images>
+            <image>
+              <name>reverse-proxy</name>
+              <alias>reverse-proxy</alias>
+              <build>
+                <contextDir>${project.basedir}/src/docker</contextDir>
+              </build>
+              <run>
+                <network>
+                  <mode>custom</mode>
+                  <name>beadledom-integration-network</name>
+                </network>
+                <namingStrategy>alias</namingStrategy>
+                <ports>
+                  <port>443:443</port>
+                </ports>
+              </run>
+            </image>
+
+            <image>
+              <alias>beadledom-integration-service</alias>
+              <name>${project.groupId}/beadledom-integration-service:${project.version}</name>
+
+              <run>
+                <network>
+                  <mode>custom</mode>
+                  <name>beadledom-integration-network</name>
+                </network>
+                <namingStrategy>alias</namingStrategy>
+                <ports>
+                  <port>8080:8080</port>
+                </ports>
+
+                <wait>
+                  <log>Started</log>
+                  <time>60000</time>
+                </wait>
+                <dependsOn>
+                  <container>reverse-proxy</container>
+                </dependsOn>
+              </run>
+            </image>
+          </images>
+        </configuration>
+
+        <dependencies>
+          <dependency>
+            <groupId>com.cerner.beadledom</groupId>
+            <artifactId>beadledom-integration-service</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+          </dependency>
+        </dependencies>
+
+        <executions>
+          <execution>
+            <id>build</id>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <phase>compile</phase>
+          </execution>
+
+          <execution>
+            <id>pre-integration-test</id>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <phase>pre-integration-test</phase>
+          </execution>
+
+          <execution>
+            <id>post-integration-test</id>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+            <phase>post-integration-test</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.scalatest</groupId>
+        <artifactId>scalatest-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>test</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <argLine>-Xmx1024m</argLine>
+          <runOrder>random</runOrder>
+          <trimStackTrace>false</trimStackTrace>
+          <systemPropertyVariables>
+            <java.awt.headless>true</java.awt.headless>
+            <jetty.http.port>8080</jetty.http.port>
+          </systemPropertyVariables>
+          <useSystemClassLoader>false</useSystemClassLoader>
+          <includes>
+            <include>ForwardedHeaderFilterSpec</include>
+          </includes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
