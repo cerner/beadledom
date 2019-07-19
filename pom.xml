@@ -50,6 +50,7 @@
     <module>guice</module>
     <module>guice-dynamicbindings</module>
     <module>health</module>
+    <module>integration</module>
     <module>jackson</module>
     <module>jaxrs</module>
     <module>jaxrs-genericresponse</module>
