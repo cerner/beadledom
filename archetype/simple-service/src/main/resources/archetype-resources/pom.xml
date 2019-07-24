@@ -11,8 +11,8 @@
     <properties>
         <java.jdk.version>1.8</java.jdk.version>
         <beadledom.version>\${beadledomVersion}</beadledom.version>
-        <guice.version>4.2.0</guice.version>
-        <jackson.version>2.9.7</jackson.version>
+        <guice.version>4.2.2</guice.version>
+        <jackson.version>2.9.9</jackson.version>
         <scala.version>2.11.8</scala.version>
         <scala.binary.version>2.11</scala.binary.version>
         <slf4j.version>1.7.25</slf4j.version>
@@ -40,11 +40,16 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>15.0</version>
+                <version>28.0-jre</version>
             </dependency>
             <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-multibindings</artifactId>
                 <version>${guice.version}</version>
             </dependency>
             <dependency>
