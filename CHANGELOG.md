@@ -7,6 +7,7 @@
 * Jooq transaction hooks for executing actions after a successful commit.
 
 ### Changed
+* Update archetype dependencies to match beadledom library
 * Switch to Keep a Changelog style for Changelog moving forward - https://keepachangelog.com/en/1.0.0/
 * Update maven archetype for project generation with new client recommendations.
 * Update client documentation to recommend using an abstracted resource pattern.
@@ -24,7 +25,7 @@
 
 ### Defects Corrected
 * Fixed exclusion of `jersey-media-multipart` from `swagger-jersey2-jaxrs`.
-* Jackson version uplift from 2.9.6 -> 2.9.8 because of vulnerabilities: 
+* Jackson version uplift from 2.9.6 -> 2.9.8 because of vulnerabilities:
   - CVE-2018-19360
   - CVE-2018-19362
   - CVE-2018-14720
@@ -41,7 +42,7 @@
 ## 3.2.2 - 4 December 2018
 
 ### Defects Corrected
-* [internal] Use the `-B` option on our `mvn site` command to reduce log length by eliminating progress dialogs from downloads. [More Info](https://stackoverflow.com/questions/21638697/disable-maven-download-progress-indication) 
+* [internal] Use the `-B` option on our `mvn site` command to reduce log length by eliminating progress dialogs from downloads. [More Info](https://stackoverflow.com/questions/21638697/disable-maven-download-progress-indication)
 
 ## 3.2.1 - 3 December 2018
 
@@ -70,13 +71,13 @@
 ## 3.0 - 3 August 2018
 
 ### Breaking Changes
-* Remove StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, AvroSwaggerGuiceModule, and 
-HealthModule modules from being installed by BeadledomModule. If the removed functionality is 
+* Remove StagemonitorModule, SwaggerModule, AvroJacksonGuiceModule, AvroSwaggerGuiceModule, and
+HealthModule modules from being installed by BeadledomModule. If the removed functionality is
 desired, install the removed modules in the consuming guice module.
 * Bump minimum Java version to 1.8 for all modules.
 * Upgrade to JAX-RS 2.1 with Resteasy 3.6.x
 * Change the HttpClient `ServiceUnavailableRetryStrategy` to only retry on 503 response codes.
-* The beadledom-swagger module was renamed to beadledom-swagger1 in preparation for support of 
+* The beadledom-swagger module was renamed to beadledom-swagger1 in preparation for support of
 swagger 2 and OpenAPI 3.
 
 ### Enhancements
