@@ -30,6 +30,10 @@
       <artifactId>beadledom-testing</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-swagger2</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
     </dependency>
@@ -56,6 +60,22 @@
           <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
           <images>
             <image>
+              <alias>beadledom-integration-service</alias>
+              <name>${project.groupId}/beadledom-integration-service:${project.version}</name>
+
+              <run>
+                <network>
+                  <mode>custom</mode>
+                  <name>beadledom-integration-network</name>
+                </network>
+                <namingStrategy>alias</namingStrategy>
+                <ports>
+                  <port>8080:8080</port>
+                </ports>
+              </run>
+            </image>
+
+            <image>
               <name>reverse-proxy</name>
               <alias>reverse-proxy</alias>
               <build>
@@ -70,29 +90,13 @@
                 <ports>
                   <port>443:443</port>
                 </ports>
-              </run>
-            </image>
-
-            <image>
-              <alias>beadledom-integration-service</alias>
-              <name>${project.groupId}/beadledom-integration-service:${project.version}</name>
-
-              <run>
-                <network>
-                  <mode>custom</mode>
-                  <name>beadledom-integration-network</name>
-                </network>
-                <namingStrategy>alias</namingStrategy>
-                <ports>
-                  <port>8080:8080</port>
-                </ports>
 
                 <wait>
-                  <log>Started</log>
-                  <time>60000</time>
+                  <time>20000</time>
                 </wait>
+
                 <dependsOn>
-                  <container>reverse-proxy</container>
+                  <container>beadledom-integration-service</container>
                 </dependsOn>
               </run>
             </image>
@@ -168,6 +172,35 @@
               <goal>integration-test</goal>
               <goal>verify</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>exec-maven-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <id>Grab certificate</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.basedir}/scripts/get_cert.sh</executable>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>Clean up certificate</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.basedir}/scripts/remove_cert.sh</executable>
+            </configuration>
           </execution>
         </executions>
       </plugin>
