@@ -196,11 +196,11 @@
 
         <executions>
           <execution>
-            <id>start</id>
-            <phase>install</phase>
+            <id>build</id>
             <goals>
               <goal>build</goal>
             </goals>
+            <phase>compile</phase>
           </execution>
         </executions>
       </plugin>
