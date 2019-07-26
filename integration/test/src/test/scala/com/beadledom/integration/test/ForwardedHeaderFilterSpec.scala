@@ -3,6 +3,7 @@ package com.beadledom.integration.test
 import com.cerner.beadledom.integration.api.HelloWorldResource
 import com.cerner.beadledom.integration.api.model.HelloWorldDto
 import com.cerner.beadledom.integration.client.{BeadledomIntegrationClientConfig, BeadledomIntegrationClientModule}
+import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
 import com.google.inject.{AbstractModule, Guice, Injector, Module}
 import java.io.{BufferedReader, InputStream, InputStreamReader}
 import java.net.URL
@@ -41,18 +42,19 @@ class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSu
     Guice.createInjector(module)
   }
 
-  it("gets the correct response from a resource") {
+  it("converts the links for a paginated resource to https") {
     val injector = getInjector(List(new BeadledomIntegrationClientModule))
 
     val helloWorldResource = injector.getInstance(classOf[HelloWorldResource])
 
-    val result : HelloWorldDto = helloWorldResource.getHelloWorld.body()
+    val result : OffsetPaginatedListDto[HelloWorldDto] = helloWorldResource.getHelloWorld.body()
 
-    result.getHelloWorldMessage mustBe "Hello World!"
-    result.getName mustBe "Beadledom"
+    result.items().get(0).getHelloWorldMessage mustBe "Hello World!"
+    result.items().get(0).getName mustBe "Beadledom"
+    result.firstLink() contains "https"
   }
 
-  it("the swagger ui page hits the https api-docs link") {
+  it("converts the api-docs link on the swagger-ui page to https") {
     val apiDocsUrl = new URL(baseUri + "/meta/swagger/ui")
     val stream: InputStream = apiDocsUrl.openStream()
 

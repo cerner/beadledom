@@ -1,6 +1,7 @@
 package com.cerner.beadledom.integration.api;
 
 import com.cerner.beadledom.integration.api.model.HelloWorldDto;
+import com.cerner.beadledom.integration.api.model.OffsetPaginatedListHelloWorldDto;
 import com.cerner.beadledom.jaxrs.GenericResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,5 +21,5 @@ public interface HelloWorldResource {
   @ApiResponse(code = 200, message = "Success")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  GenericResponse<HelloWorldDto> getHelloWorld();
+  GenericResponse<OffsetPaginatedListHelloWorldDto> getHelloWorld();
 }
