@@ -2,7 +2,7 @@ package com.beadledom.integration.test
 
 import com.cerner.beadledom.integration.api.HelloWorldResource
 import com.cerner.beadledom.integration.api.model.HelloWorldDto
-import com.cerner.beadledom.integration.client.{BeadledomIntegrationClient, BeadledomIntegrationClientConfig, BeadledomIntegrationClientModule}
+import com.cerner.beadledom.integration.client.{IntegrationClient, IntegrationClientConfig, IntegrationClientModule}
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
 import com.google.inject.{AbstractModule, Guice, Injector, Module}
 import java.io.{BufferedReader, InputStream, InputStreamReader}
@@ -44,9 +44,9 @@ class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSu
   def getBeadledomIntegrationClientInjector(): Injector = {
     val module = new AbstractModule() {
       override def configure(): Unit = {
-        install(new BeadledomIntegrationClientModule)
+        install(new IntegrationClientModule)
 
-        bind(classOf[BeadledomIntegrationClientConfig]).toInstance(new BeadledomIntegrationClientConfig(baseUri))
+        bind(classOf[IntegrationClientConfig]).toInstance(new IntegrationClientConfig(baseUri))
       }
     }
     Guice.createInjector(module)
@@ -55,7 +55,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSu
   it("converts the links for a paginated resource to https") {
     val injector = getBeadledomIntegrationClientInjector()
 
-    val client = injector.getInstance(classOf[BeadledomIntegrationClient])
+    val client = injector.getInstance(classOf[IntegrationClient])
 
     val result : OffsetPaginatedListDto[HelloWorldDto] = client.helloWorldResource().getHelloWorld.body()
 

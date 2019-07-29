@@ -14,5 +14,5 @@ import java.lang.annotation.Target;
 @BindingAnnotation
 @Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface BeadledomIntegrationClientFeature {
+public @interface IntegrationClientFeature {
 }

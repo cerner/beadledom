@@ -5,10 +5,10 @@ package com.cerner.beadledom.integration.client;
  *
  * @author Nick Behrens
  */
-public class BeadledomIntegrationClientConfig {
+public class IntegrationClientConfig {
   private final String baseUrl;
 
-  public BeadledomIntegrationClientConfig(String baseUrl) {
+  public IntegrationClientConfig(String baseUrl) {
     this.baseUrl = baseUrl;
   }
 

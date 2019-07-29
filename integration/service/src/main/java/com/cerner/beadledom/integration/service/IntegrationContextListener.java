@@ -11,9 +11,9 @@ import javax.servlet.ServletContext;
  *
  * @author Nick Behrens
  */
-public class BeadledomIntegrationContextListener extends ResteasyContextListener {
+public class IntegrationContextListener extends ResteasyContextListener {
   @Override
   protected List<? extends Module> getModules(ServletContext context) {
-    return Lists.newArrayList(new BeadledomIntegrationModule(), new ResteasyBootstrapModule());
+    return Lists.newArrayList(new IntegrationModule(), new ResteasyBootstrapModule());
   }
 }

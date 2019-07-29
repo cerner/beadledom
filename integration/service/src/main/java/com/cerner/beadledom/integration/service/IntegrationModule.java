@@ -8,7 +8,7 @@ import com.google.inject.PrivateModule;
  *
  * @author Nick Behrens
  */
-public class BeadledomIntegrationModule extends PrivateModule {
+public class IntegrationModule extends PrivateModule {
 
   protected void configure() {
     bind(HelloWorldResource.class);

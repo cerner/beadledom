@@ -10,10 +10,10 @@ import com.cerner.beadledom.integration.api.HelloWorldResource;
  *
  * @author Nick Behrens
  */
-public class BeadledomIntegrationClient {
+public class IntegrationClient {
   private final HelloWorldResource helloWorldResource;
 
-  BeadledomIntegrationClient(BeadledomClient client, BeadledomIntegrationClientConfig config) {
+  IntegrationClient(BeadledomClient client, IntegrationClientConfig config) {
     BeadledomWebTarget target = client.target(config.getBaseUrl());
 
     helloWorldResource = target.proxy(HelloWorldResource.class);

@@ -3,7 +3,7 @@
 
   <listener>
     <listener-class>
-      com.cerner.beadledom.integration.service.BeadledomIntegrationContextListener
+      com.cerner.beadledom.integration.service.IntegrationContextListener
     </listener-class>
   </listener>
 
