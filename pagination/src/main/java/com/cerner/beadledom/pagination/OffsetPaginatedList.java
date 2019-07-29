@@ -121,6 +121,20 @@ public abstract class OffsetPaginatedList<T> {
               .build());
     }
 
-    public abstract OffsetPaginatedList<T> build();
+    abstract OffsetPaginatedList<T> autoBuild();
+
+    /**
+     * Builds a new instance of {@link OffsetPaginatedList}.
+     */
+    public OffsetPaginatedList<T> build() {
+      OffsetPaginatedList<T> paginatedList = autoBuild();
+
+      Long totalResults = paginatedList.metadata().totalResults();
+      if (totalResults != null && totalResults < 0) {
+        throw new IllegalStateException("totalResults is negative");
+      }
+
+      return paginatedList;
+    }
   }
 }
