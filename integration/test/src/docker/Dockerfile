@@ -14,11 +14,6 @@ RUN openssl pkcs12 -export -passout pass:123456 -out trust.pkcs12 -inkey key.pem
 RUN mkdir -p /etc/keystore
 RUN mv trust.pkcs12 /etc/keystore/trust.pkcs12
 
-ENV docker_host beadledom-integration-service
-COPY start_nginx.sh /opt/start_nginx.sh
-RUN chmod 750 /opt/start_nginx.sh
 COPY nginx.conf /etc/nginx/nginx.conf
 RUN mv key.pem /etc/nginx/key.pem
 RUN mv cert.pem /etc/nginx/cert.pem
-
-CMD ["/opt/start_nginx.sh"]

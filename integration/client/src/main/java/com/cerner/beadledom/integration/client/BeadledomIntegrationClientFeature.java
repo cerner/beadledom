@@ -7,6 +7,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * A default client feature annotation.
+ *
  * @author Nick Behrens
  */
 @BindingAnnotation

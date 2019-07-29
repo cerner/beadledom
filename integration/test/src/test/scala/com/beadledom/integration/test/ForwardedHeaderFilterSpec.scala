@@ -44,7 +44,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSu
   def getBeadledomIntegrationClientInjector(): Injector = {
     val module = new AbstractModule() {
       override def configure(): Unit = {
-        install(BeadledomIntegrationClientModule)
+        install(new BeadledomIntegrationClientModule)
 
         bind(classOf[BeadledomIntegrationClientConfig]).toInstance(new BeadledomIntegrationClientConfig(baseUri))
       }

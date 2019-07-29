@@ -25,7 +25,7 @@ public class HelloWorldResource {
   /**
    * An endpoint that returns a paginated list of {@link HelloWorldDto}.
    *
-   * @return an {@link OffsetPaginatedList<HelloWorldDto>}.
+   * @return an {@link OffsetPaginatedList} containing {@link HelloWorldDto}'s.
    */
   @ApiOperation(
       value = "Retrieves hello world data.",

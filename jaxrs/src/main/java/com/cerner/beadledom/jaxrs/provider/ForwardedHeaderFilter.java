@@ -34,8 +34,7 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
 
   /**
    * Checks if the request was made from a secure context or not.
-   * @param requestContext The {@link ContainerRequestContext} object containing the container
-   * request headers.
+   * @param requestContext The {@link ContainerRequestContext} object containing the container request headers.
    * @return true if the request was made from a secure context, false otherwise.
    */
   private boolean requestIsSecure(ContainerRequestContext requestContext) {
@@ -46,8 +45,7 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
 
   /**
    * Checks the Forwarded header for a protocol value of https.
-   * @param requestContext The {@link ContainerRequestContext} object containing the container
-   * request headers.
+   * @param requestContext The {@link ContainerRequestContext} object containing the container request headers.
    * @return true if the `Forwarded` header is present and contains https; false otherwise.
    */
   private boolean hasSecureForwardedHeader(ContainerRequestContext requestContext) {
@@ -65,8 +63,7 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
 
   /**
    * Checks the X-Forwarded-Proto header for a value of https.
-   * @param requestContext The {@link ContainerRequestContext} object containing the container
-   * request headers.
+   * @param requestContext The {@link ContainerRequestContext} object containing the container request headers.
    * @return true if the `X-Forwarded-Proto` header is present and contains https; false otherwise.
    */
   private boolean hasSecureXForwardedProtoHeader(ContainerRequestContext requestContext) {

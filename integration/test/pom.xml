@@ -86,8 +86,9 @@
                   <port>443:443</port>
                 </ports>
 
+                <!--Waiting for nginx to start up-->
                 <wait>
-                  <time>20000</time>
+                  <time>6000</time>
                 </wait>
 
                 <dependsOn>
