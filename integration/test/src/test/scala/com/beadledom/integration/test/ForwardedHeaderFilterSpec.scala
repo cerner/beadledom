@@ -13,14 +13,24 @@ import org.junit.runner.RunWith
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfterAll, FunSpec, MustMatchers}
 
+/**
+ * Integration Tests that make service requests through a self-signed reverse proxy to test the behavior
+ * of the `ForwardedHeaderFilter`
+ *
+ * @author Nick Behrens
+ */
 @RunWith(classOf[JUnitRunner])
 class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSugar with BeforeAndAfterAll {
 
   val baseUri = s"https://localhost/beadledom-integration-service"
 
+  // Store the default values for the trust store and password
+  // so we can set them back to defaults after the test
   private val defaultTrustStore = System.getProperty("javax.net.ssl.trustStore")
   private val defaultTrustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword")
 
+  // Set the trust store to point to the generated pkcs12 file from the reverse-proxy so the
+  // self-signed certificate can be trusted by the JVM.
   override def beforeAll(): Unit = {
     System.setProperty("javax.net.ssl.trustStore", System.getProperty("user.dir") + "/trust.pkcs12")
     System.setProperty("javax.net.ssl.trustStorePassword", "123456")
@@ -31,10 +41,10 @@ class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSu
     System.setProperty("javax.net.ssl.trustStorePassword", defaultTrustStorePassword)
   }
 
-  def getInjector(modules: List[Module]): Injector = {
+  def getBeadledomIntegrationClientInjector(): Injector = {
     val module = new AbstractModule() {
       override def configure(): Unit = {
-        modules.foreach(m => install(m))
+        install(BeadledomIntegrationClientModule)
 
         bind(classOf[BeadledomIntegrationClientConfig]).toInstance(new BeadledomIntegrationClientConfig(baseUri))
       }
@@ -43,7 +53,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSu
   }
 
   it("converts the links for a paginated resource to https") {
-    val injector = getInjector(List(new BeadledomIntegrationClientModule))
+    val injector = getBeadledomIntegrationClientInjector()
 
     val helloWorldResource = injector.getInstance(classOf[HelloWorldResource])
 

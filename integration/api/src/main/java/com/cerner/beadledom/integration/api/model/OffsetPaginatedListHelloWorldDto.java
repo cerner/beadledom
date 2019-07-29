@@ -13,8 +13,7 @@ import java.util.List;
 /**
  * Client implementation of an offset based pagination list of {@link HelloWorldDto}.
  *
- * <p>Represents an offset based paginated list in a rest response.
- *
+ * @author Nick Behrens
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AutoValue

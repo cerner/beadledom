@@ -1,13 +1,18 @@
 package com.cerner.beadledom.integration.service;
 
-import com.cerner.beadledom.integration.service.resource.HelloWorldResourceImpl;
+import com.cerner.beadledom.integration.service.resource.HelloWorldResource;
 import com.google.inject.PrivateModule;
 
+/**
+ * A Guice module that binds and exposes the {@link HelloWorldResource}
+ *
+ * @author Nick Behrens
+ */
 public class BeadledomIntegrationModule extends PrivateModule {
 
   protected void configure() {
-    bind(HelloWorldResourceImpl.class);
+    bind(HelloWorldResource.class);
 
-    expose(HelloWorldResourceImpl.class);
+    expose(HelloWorldResource.class);
   }
 }

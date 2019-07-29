@@ -10,6 +10,11 @@ import com.google.inject.PrivateModule;
 import com.google.inject.Provides;
 import javax.inject.Singleton;
 
+/**
+ * An example Client Module.
+ *
+ * @author Nick Behrens
+ */
 public class BeadledomIntegrationClientModule extends PrivateModule {
 
   @Override

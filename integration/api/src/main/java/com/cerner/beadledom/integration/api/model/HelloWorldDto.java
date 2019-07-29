@@ -6,6 +6,11 @@ import com.google.common.base.Preconditions;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * A Hello World Dto.
+ *
+ * @author Nick Behrens
+ */
 @ApiModel(value = "HelloWorldDto")
 public class HelloWorldDto {
 

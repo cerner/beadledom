@@ -1,9 +1,13 @@
 package com.cerner.beadledom.integration.client;
 
+/**
+ * Client Configuration for the example service.
+ *
+ * @author Nick Behrens
+ */
 public class BeadledomIntegrationClientConfig {
   private final String baseUrl;
 
-  // If OAuth is being used this is a natural place to encapsulate the values
   public BeadledomIntegrationClientConfig(String baseUrl) {
     this.baseUrl = baseUrl;
   }

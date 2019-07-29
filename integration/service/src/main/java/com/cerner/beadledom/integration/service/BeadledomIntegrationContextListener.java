@@ -6,6 +6,11 @@ import com.google.inject.Module;
 import java.util.List;
 import javax.servlet.ServletContext;
 
+/**
+ * A Resteasy Context Listener that provides the Guice modules for the service.
+ *
+ * @author Nick Behrens
+ */
 public class BeadledomIntegrationContextListener extends ResteasyContextListener {
   @Override
   protected List<? extends Module> getModules(ServletContext context) {

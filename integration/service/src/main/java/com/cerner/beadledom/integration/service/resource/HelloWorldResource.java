@@ -13,10 +13,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * Server implementation of an offset based paginated list endpoint.
+ *
+ * @author Nick Behrens
+ */
 @Api(value = "/hello", description = "Retrieve hello world data")
 @Path("/hello")
-public class HelloWorldResourceImpl {
+public class HelloWorldResource {
 
+  /**
+   * An endpoint that returns a paginated list of {@link HelloWorldDto}.
+   *
+   * @return an {@link OffsetPaginatedList<HelloWorldDto>}.
+   */
   @ApiOperation(
       value = "Retrieves hello world data.",
       response = HelloWorldDto.class)

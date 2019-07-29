@@ -13,6 +13,12 @@ import com.google.inject.multibindings.OptionalBinder;
 import io.swagger.models.Info;
 import javax.inject.Singleton;
 
+/**
+ * A Guice Module that installs the {@link ResteasyModule}, {@link Swagger2Module}
+ * and {@link HealthModule} for the service.
+ *
+ * @author Nick Behrens
+ */
 public class ResteasyBootstrapModule extends AbstractModule {
 
   protected void configure() {
