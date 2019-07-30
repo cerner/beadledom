@@ -14,8 +14,13 @@ import io.swagger.models.Info;
 import javax.inject.Singleton;
 
 /**
- * A Guice Module that installs the {@link ResteasyModule}, {@link Swagger2Module},
- * {@link HealthModule} and {@link OffsetPaginationModule} for the service.
+ * A Guice Module that installs:
+ * <ul>
+ *   <li>{@link ResteasyModule}</li>
+ *   <li>{@link Swagger2Module}</li>
+ *   <li>{@link HealthModule}</li>
+ *   <li>{@link OffsetPaginationModule}</li>
+ * </ul>
  *
  * @author Nick Behrens
  */
