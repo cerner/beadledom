@@ -4,7 +4,7 @@ import java.net.URI
 
 import javax.ws.rs.container.ContainerRequestContext
 import javax.ws.rs.core._
-import org.mockito.Mockito
+import org.mockito.Mockito.{when,verify}
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterEach, FunSpec, Matchers}
 import org.scalatest.mockito.MockitoSugar
 
@@ -14,8 +14,8 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
   def createContainerRequestContext: ContainerRequestContext = {
     val request = mock[ContainerRequestContext]
     val uriInfo = mock[UriInfo]
-    Mockito.when(uriInfo.getRequestUriBuilder).thenReturn(UriBuilder.fromUri(new URI("http://hello.there")))
-    Mockito.when(request.getUriInfo).thenReturn(uriInfo)
+    when(uriInfo.getRequestUriBuilder).thenReturn(UriBuilder.fromUri(new URI("http://hello.there")))
+    when(request.getUriInfo).thenReturn(uriInfo)
     request
   }
 
@@ -24,14 +24,14 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       it("changes the request to https") {
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn(null)
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("https")
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
+        when(request.getHeaderString("Forwarded")).thenReturn(null)
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("https")
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
+        verify(request).setRequestUri(new URI("https://hello.there"))
       }
     }
 
@@ -39,14 +39,14 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       it("keeps the request http") {
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn(null)
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("other")
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
+        when(request.getHeaderString("Forwarded")).thenReturn(null)
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("other")
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+        verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
 
@@ -54,14 +54,14 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       it("keeps the request http") {
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn(null)
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("")
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
+        when(request.getHeaderString("Forwarded")).thenReturn(null)
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("")
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+        verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
   }
@@ -73,17 +73,17 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         it("changes the request to https"){
           val request = createContainerRequestContext
           val securityContext = mock[SecurityContext]
-          Mockito.when(securityContext.isSecure).thenReturn(false)
-          Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-          Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+          when(securityContext.isSecure).thenReturn(false)
+          when(request.getSecurityContext).thenReturn(securityContext)
+          when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
 
-          Mockito.when(request.getHeaderString("Forwarded"))
+          when(request.getHeaderString("Forwarded"))
             .thenReturn(forwardedHeaderMultiValuedString.concat(";proto=https"))
 
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
+          verify(request).setRequestUri(new URI("https://hello.there"))
         }
       }
 
@@ -91,17 +91,17 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         it("keeps the request http"){
           val request = createContainerRequestContext
           val securityContext = mock[SecurityContext]
-          Mockito.when(securityContext.isSecure).thenReturn(false)
-          Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-          Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+          when(securityContext.isSecure).thenReturn(false)
+          when(request.getSecurityContext).thenReturn(securityContext)
+          when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
 
-          Mockito.when(request.getHeaderString("Forwarded"))
+          when(request.getHeaderString("Forwarded"))
             .thenReturn(forwardedHeaderMultiValuedString.concat(";proto=other"))
 
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+          verify(request).setRequestUri(new URI("http://hello.there"))
         }
       }
 
@@ -109,17 +109,17 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         it("keeps the request http"){
           val request = createContainerRequestContext
           val securityContext = mock[SecurityContext]
-          Mockito.when(securityContext.isSecure).thenReturn(false)
-          Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-          Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+          when(securityContext.isSecure).thenReturn(false)
+          when(request.getSecurityContext).thenReturn(securityContext)
+          when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
 
-          Mockito.when(request.getHeaderString("Forwarded"))
+          when(request.getHeaderString("Forwarded"))
             .thenReturn(forwardedHeaderMultiValuedString)
 
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+          verify(request).setRequestUri(new URI("http://hello.there"))
         }
       }
     }
@@ -129,16 +129,16 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         it("changes the request to https"){
           val request = createContainerRequestContext
           val securityContext = mock[SecurityContext]
-          Mockito.when(securityContext.isSecure).thenReturn(false)
-          Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-          Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
-          Mockito.when(request.getHeaderString("Forwarded")).thenReturn("proto=https")
+          when(securityContext.isSecure).thenReturn(false)
+          when(request.getSecurityContext).thenReturn(securityContext)
+          when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+          when(request.getHeaderString("Forwarded")).thenReturn("proto=https")
 
 
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
+          verify(request).setRequestUri(new URI("https://hello.there"))
         }
       }
 
@@ -146,16 +146,16 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
         it("keeps the request http"){
           val request = createContainerRequestContext
           val securityContext = mock[SecurityContext]
-          Mockito.when(securityContext.isSecure).thenReturn(false)
-          Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-          Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
-          Mockito.when(request.getHeaderString("Forwarded")).thenReturn("proto=other")
+          when(securityContext.isSecure).thenReturn(false)
+          when(request.getSecurityContext).thenReturn(securityContext)
+          when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+          when(request.getHeaderString("Forwarded")).thenReturn("proto=other")
 
 
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 
-          Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+          verify(request).setRequestUri(new URI("http://hello.there"))
         }
       }
     }
@@ -164,16 +164,16 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       it("keeps the request http"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
 
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn("for=192.0.2.60;by=203.0.113.43")
+        when(request.getHeaderString("Forwarded")).thenReturn("for=192.0.2.60;by=203.0.113.43")
 
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+        verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
 
@@ -181,16 +181,16 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       it("keeps the request http"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
 
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn("")
+        when(request.getHeaderString("Forwarded")).thenReturn("")
 
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+        verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
   }
@@ -200,15 +200,15 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       it("changes the request to https"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn("proto=https")
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("https")
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
+        when(request.getHeaderString("Forwarded")).thenReturn("proto=https")
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("https")
 
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
+        verify(request).setRequestUri(new URI("https://hello.there"))
       }
     }
 
@@ -216,15 +216,15 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       it("keeps the request as http"){
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn("proto=http")
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("http")
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
+        when(request.getHeaderString("Forwarded")).thenReturn("proto=http")
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn("http")
 
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+        verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
   }
@@ -233,33 +233,33 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
     describe("for a security context that returns false"){
       it("keeps the request as http"){
         val request = createContainerRequestContext
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn(null)
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+        when(request.getHeaderString("Forwarded")).thenReturn(null)
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(false)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
+        when(securityContext.isSecure).thenReturn(false)
+        when(request.getSecurityContext).thenReturn(securityContext)
 
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("http://hello.there"))
+        verify(request).setRequestUri(new URI("http://hello.there"))
       }
     }
 
     describe("for a security context that returns true"){
       it("changes the request to https"){
         val request = createContainerRequestContext
-        Mockito.when(request.getHeaderString("Forwarded")).thenReturn(null)
-        Mockito.when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
+        when(request.getHeaderString("Forwarded")).thenReturn(null)
+        when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
 
         val securityContext = mock[SecurityContext]
-        Mockito.when(securityContext.isSecure).thenReturn(true)
-        Mockito.when(request.getSecurityContext).thenReturn(securityContext)
+        when(securityContext.isSecure).thenReturn(true)
+        when(request.getSecurityContext).thenReturn(securityContext)
 
         val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
         forwardedHeaderFilter.filter(request)
 
-        Mockito.verify(request).setRequestUri(new URI("https://hello.there"))
+        verify(request).setRequestUri(new URI("https://hello.there"))
       }
     }
   }
