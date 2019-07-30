@@ -13,11 +13,11 @@
   <dependencies>
     <dependency>
       <groupId>com.cerner.beadledom</groupId>
-      <artifactId>beadledom-integration-client</artifactId>
+      <artifactId>beadledom-integration-api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.cerner.beadledom</groupId>
-      <artifactId>beadledom-integration-api</artifactId>
+      <artifactId>beadledom-integration-client</artifactId>
     </dependency>
     <dependency>
       <groupId>com.cerner.beadledom</groupId>
