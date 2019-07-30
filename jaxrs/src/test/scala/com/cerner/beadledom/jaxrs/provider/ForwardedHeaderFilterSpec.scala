@@ -19,9 +19,9 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
     request
   }
 
-  describe("For a request with just the X-Forwarded-Proto header"){
-    describe("when the header has a value of https"){
-      it("changes the request to https"){
+  describe("For a request with just the X-Forwarded-Proto header") {
+    describe("when the header has a value of https") {
+      it("changes the request to https") {
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
         Mockito.when(securityContext.isSecure).thenReturn(false)
@@ -35,8 +35,8 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       }
     }
 
-    describe("when the header has a value other than https"){
-      it("keeps the request http"){
+    describe("when the header has a value other than https") {
+      it("keeps the request http") {
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
         Mockito.when(securityContext.isSecure).thenReturn(false)
@@ -50,8 +50,8 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
       }
     }
 
-    describe("when the header is an empty string"){
-      it("keeps the request http"){
+    describe("when the header is an empty string") {
+      it("keeps the request http") {
         val request = createContainerRequestContext
         val securityContext = mock[SecurityContext]
         Mockito.when(securityContext.isSecure).thenReturn(false)
