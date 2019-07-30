@@ -150,7 +150,7 @@ class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matcher
           when(request.getSecurityContext).thenReturn(securityContext)
           when(request.getHeaderString("X-Forwarded-Proto")).thenReturn(null)
           when(request.getHeaderString("Forwarded")).thenReturn("proto=other")
-          
+
           val forwardedHeaderFilter: ForwardedHeaderFilter = new ForwardedHeaderFilter
           forwardedHeaderFilter.filter(request)
 

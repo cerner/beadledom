@@ -14,7 +14,7 @@ import io.swagger.models.Info;
 import javax.inject.Singleton;
 
 /**
- * A Guice Module that installs:
+ * A Guice Module that installs the following modules.
  * <ul>
  *   <li>{@link ResteasyModule}</li>
  *   <li>{@link Swagger2Module}</li>

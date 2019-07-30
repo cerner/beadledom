@@ -32,7 +32,9 @@ public class HelloWorldDto {
    * @return {@link HelloWorldDto} encapsulating a name and message
    */
   @JsonCreator
-  public static HelloWorldDto create(@JsonProperty("name") String name, @JsonProperty("hello_world_message") String message) {
+  public static HelloWorldDto create(
+      @JsonProperty("name") String name,
+      @JsonProperty("hello_world_message") String message) {
     return new HelloWorldDto(name, message);
   }
 
