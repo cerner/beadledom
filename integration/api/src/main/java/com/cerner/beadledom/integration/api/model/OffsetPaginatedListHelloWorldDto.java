@@ -3,12 +3,10 @@ package com.cerner.beadledom.integration.api.model;
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Client implementation of an offset based pagination list of {@link HelloWorldDto}.
