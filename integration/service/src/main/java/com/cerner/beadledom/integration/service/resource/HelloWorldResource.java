@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Nick Behrens
  */
-@Api(value = "/hello", description = "Retrieve hello world data")
+@Api(value = "/hello")
 @Path("/hello")
 public class HelloWorldResource {
 
