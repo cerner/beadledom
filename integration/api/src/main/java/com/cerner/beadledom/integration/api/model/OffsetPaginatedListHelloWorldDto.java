@@ -20,9 +20,6 @@ import java.util.List;
 @JsonDeserialize(builder = OffsetPaginatedListHelloWorldDto.Builder.class)
 public abstract class OffsetPaginatedListHelloWorldDto implements OffsetPaginatedListDto<HelloWorldDto> {
 
-  @JsonProperty("items")
-  public abstract List<HelloWorldDto> items();
-
   /**
    * Creates a builder for {@link OffsetPaginatedListHelloWorldDto}.
    *
@@ -40,9 +37,6 @@ public abstract class OffsetPaginatedListHelloWorldDto implements OffsetPaginate
     public static OffsetPaginatedListHelloWorldDto.Builder create() {
       return OffsetPaginatedListHelloWorldDto.builder();
     }
-
-    @JsonProperty("items")
-    public abstract Builder items(List<HelloWorldDto> items);
 
     public abstract OffsetPaginatedListHelloWorldDto build();
   }
