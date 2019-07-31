@@ -24,6 +24,12 @@ import javax.ws.rs.ext.Provider;
 @Priority(Priorities.HEADER_DECORATOR)
 @PreMatching
 public class ForwardedHeaderFilter implements ContainerRequestFilter {
+  // This regex takes the value of the 'proto=' field and sets it to a group. The 'proto=' field can
+  // be followed by either another key=value pair separated by a ; or it could be the end of the header
+  // Examples:
+  // proto=https => 'protocolValue' group is set to "https"
+  // proto=http;host=localhost => 'protocolValue' group is set to "http"
+  Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
@@ -53,7 +59,6 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
     if (forwardedHeader == null) {
       return false;
     }
-    Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
 
     Matcher matcher = forwardedPairs.matcher(forwardedHeader);
 
