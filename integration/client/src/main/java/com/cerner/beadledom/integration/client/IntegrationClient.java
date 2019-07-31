@@ -2,7 +2,6 @@ package com.cerner.beadledom.integration.client;
 
 import com.cerner.beadledom.client.BeadledomClient;
 import com.cerner.beadledom.client.BeadledomWebTarget;
-import com.cerner.beadledom.integration.api.HelloWorldResource;
 
 /**
  * A client class that provides access to the {@link HelloWorldResource} instead of exposing the
