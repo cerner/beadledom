@@ -34,7 +34,7 @@ public class HelloWorldDto {
   @JsonCreator
   public static HelloWorldDto create(
       @JsonProperty("name") String name,
-      @JsonProperty("hello_world_message") String message) {
+      @JsonProperty("helloWorldMessage") String message) {
     return new HelloWorldDto(name, message);
   }
 
