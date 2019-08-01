@@ -8,12 +8,6 @@ import javax.inject.Singleton;
 /**
  * A guice module for providing jax-rs specific bindings.
  *
- * <p>Binds:
- * <ul>
- *   <li>{@link ForwardedHeaderFilter}</li>
- * </ul>
- * </p>
- *
  * <p>Provides:
  * <ul>
  *     <li>{@link CorrelationIdFilter}</li>
@@ -26,6 +20,5 @@ public class JaxRsModule extends AbstractModule {
   protected void configure() {
     bind(CorrelationIdFilter.class).toProvider(CorrelationIdFilterProvider.class)
         .in(Singleton.class);
-    bind(ForwardedHeaderFilter.class).in(Singleton.class);
   }
 }
