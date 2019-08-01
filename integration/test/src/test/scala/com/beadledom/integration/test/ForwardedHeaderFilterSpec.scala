@@ -1,9 +1,9 @@
 package com.beadledom.integration.test
 
 import com.cerner.beadledom.integration.api.model.HelloWorldDto
-import com.cerner.beadledom.integration.client.{HelloWorldResource, IntegrationClient, IntegrationClientConfig, IntegrationClientModule}
+import com.cerner.beadledom.integration.client.{IntegrationClient, IntegrationClientConfig, IntegrationClientModule}
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
-import com.google.inject.{AbstractModule, Guice, Injector, Module}
+import com.google.inject.{AbstractModule, Guice, Injector}
 import java.io.{BufferedReader, InputStream, InputStreamReader}
 import java.net.URL
 import java.util.stream.Collectors
