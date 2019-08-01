@@ -35,7 +35,7 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
-    String httpScheme = requestIsSecure(requestContext) ? "https" : "http";
+    String httpScheme = isRequestSecure(requestContext) ? "https" : "http";
     requestContext.setRequestUri(
         requestContext.getUriInfo().getRequestUriBuilder().scheme(httpScheme).build());
   }
@@ -45,7 +45,7 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
    * @param requestContext The {@link ContainerRequestContext} object containing the container request headers.
    * @return true if the request was made from a secure context, false otherwise.
    */
-  private boolean requestIsSecure(ContainerRequestContext requestContext) {
+  private boolean isRequestSecure(ContainerRequestContext requestContext) {
     return requestContext.getSecurityContext().isSecure()
         || hasSecureForwardedHeader(requestContext)
         || hasSecureXForwardedProtoHeader(requestContext);
