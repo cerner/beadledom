@@ -16,7 +16,9 @@ import javax.ws.rs.ext.Provider;
  * request to reflect the original protocol.
  *
  * <p>To determine if the client request made in a secure context was forwarded by a load balancer
- * or proxy, the "Forwarded" and "X-Forwarded-Proto" values are extracted and checked.</p>
+ * or proxy, the "Forwarded" and "X-Forwarded-Proto" header values are extracted. If either of them
+ * show the request was made from a secure context, the internal request object is updated to reflect
+ * the original secure protocol.</p>
  *
  * @author Nick Behrens
  */
