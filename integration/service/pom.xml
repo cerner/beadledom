@@ -14,6 +14,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
       <groupId>com.cerner.beadledom</groupId>
       <artifactId>beadledom-integration-api</artifactId>
     </dependency>
@@ -62,7 +67,32 @@
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>jul-to-slf4j</artifactId>
+    <version>${slf4j.version}</version>
+  </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-access</artifactId>
+        <version>1.2.3</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>1.2.3</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <resources>
@@ -119,6 +149,14 @@
             <systemProperty>
               <name>jetty.base</name>
               <value>${project.build.directory}</value>
+            </systemProperty>
+            <systemProperty>
+              <name>logback.debug</name>
+              <value>true</value>
+            </systemProperty>
+            <systemProperty>
+              <name>logback.configurationFile</name>
+              <value>${project.basedir}/local/logback.xml</value>
             </systemProperty>
           </systemProperties>
         </configuration>
