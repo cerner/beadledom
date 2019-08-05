@@ -5,12 +5,16 @@
 ### Added
 
 * Jooq transaction hooks for executing actions after a successful commit.
+* New `totalResults` convenience method on `OffsetPaginatedList.Builder` for when only a total results value needs to be set.
 
 ### Changed
 * Update archetype dependencies to match beadledom library
 * Switch to Keep a Changelog style for Changelog moving forward - https://keepachangelog.com/en/1.0.0/
 * Update maven archetype for project generation with new client recommendations.
 * Update client documentation to recommend using an abstracted resource pattern.
+
+### Deprecated
+* The convenience overloads of the `metadata` method on `OffsetPaginatedList.Builder` have been deprecated.
 
 ### Fixed
 * JAX-RS providers with binding annotations will no longer be registered in the resteasy provider factory for the server.
