@@ -25,7 +25,7 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
   tomcat.setBaseDir(s"$examplePath/target/tomcat")
   tomcat.enableNaming()
   val connector = tomcat.getConnector
-  connector.setProperty("connectionTimeout", String.valueOf(60000))
+  connector.setProperty("connectionTimeout", String.valueOf(-1))
 
   tomcat.setConnector(connector)
 
