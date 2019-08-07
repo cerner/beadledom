@@ -36,6 +36,9 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
 
   tomcat.start()
 
+  // Wait 10 seconds for tomcat
+  Thread.sleep(10000)
+
   override protected def afterAll(): Unit = {
     tomcat.stop()
   }
