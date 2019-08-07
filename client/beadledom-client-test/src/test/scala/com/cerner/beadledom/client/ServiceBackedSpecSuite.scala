@@ -24,6 +24,10 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
   tomcat.setPort(tomcatPort)
   tomcat.setBaseDir(s"$examplePath/target/tomcat")
   tomcat.enableNaming()
+  val connector = tomcat.getConnector
+  connector.setProperty("connectionTimeout", String.valueOf(60000))
+
+  tomcat.setConnector(connector)
 
   FileUtils.forceMkdir(new File(s"$examplePath/target/tomcat/webapps/faux-service"))
   val context = tomcat.addWebapp(contextRoot, "faux-service")
@@ -35,9 +39,6 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
       .setAttribute(Globals.ALT_DD_ATTR, s"$examplePath/src/main/webapp/WEB-INF/web.xml")
 
   tomcat.start()
-
-  // Wait 10 seconds for tomcat
-  Thread.sleep(10000)
 
   override protected def afterAll(): Unit = {
     tomcat.stop()
