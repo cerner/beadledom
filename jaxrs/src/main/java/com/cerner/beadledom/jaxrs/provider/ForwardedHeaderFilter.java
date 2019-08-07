@@ -31,7 +31,7 @@ public class ForwardedHeaderFilter implements ContainerRequestFilter {
   // Examples:
   // proto=https => 'protocolValue' group is set to "https"
   // proto=http;host=localhost => 'protocolValue' group is set to "http"
-  Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
+  private Pattern forwardedPairs = Pattern.compile("proto=(?<protocolValue>[^;]*)(;|\\z)");
 
   @Override
   public void filter(ContainerRequestContext requestContext) throws IOException {
