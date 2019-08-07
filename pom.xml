@@ -93,7 +93,7 @@
     <scala.version>2.11.12</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
     <governator.version>1.17.5</governator.version>
-    <jackson.version>2.9.9</jackson.version>
+    <jackson.version>2.9.9.20190806</jackson.version>
     <resteasy.version>3.6.3.Final</resteasy.version>
     <spotbugs.version>3.1.8</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
