@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## [3.3] - In Development
+## 3.3 - 8 August 2019
 
 ### Added
 
