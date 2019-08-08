@@ -4,7 +4,7 @@
 
   <groupId>com.cerner.beadledom</groupId>
   <artifactId>beadledom-parent</artifactId>
-  <version>3.3-SNAPSHOT</version>
+  <version>3.3</version>
   <packaging>pom</packaging>
   <name>Beadledom (Parent)</name>
   <description>A simple, composable framework for building RESTFul services</description>
@@ -72,7 +72,7 @@
     <url>https://github.com/cerner/beadledom</url>
     <connection>scm:git:https://github.com/cerner/beadledom.git</connection>
     <developerConnection>scm:git:https://github.com/cerner/beadledom.git</developerConnection>
-    <tag>3.2.4</tag>
+    <tag>3.3</tag>
   </scm>
 
   <issueManagement>
@@ -990,7 +990,7 @@
         <version>${maven-project-info-reports-plugin.version}</version>
         <reportSets>
           <reportSet>
-            <reports/>
+            <reports />
           </reportSet>
         </reportSets>
       </plugin>
