@@ -24,14 +24,6 @@ class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
   tomcat.setPort(tomcatPort)
   tomcat.setBaseDir(s"$examplePath/target/tomcat")
   tomcat.enableNaming()
-  val connector = tomcat.getConnector
-
-  // Set Async timeout to 60 seconds
-  connector.setAsyncTimeout(60000)
-  // Set connection timeout to 70 seconds
-  connector.setProperty("connectionTimeout", String.valueOf(70000))
-
-  tomcat.setConnector(connector)
 
   FileUtils.forceMkdir(new File(s"$examplePath/target/tomcat/webapps/faux-service"))
   val context = tomcat.addWebapp(contextRoot, "faux-service")
