@@ -53,6 +53,26 @@ interface for a resource.
    PatchObject patchObject);
 
 .. _RFC: https://tools.ietf.org/html/rfc5789
+
+Forwarded Header Filter
+-----------------------
+
+The purpose of the ``ForwardedHeaderFilter`` is to determine if the client request was made from a secure protocol (HTTPS). If the request object picked up by Beadledom is http, but either the "Forwarded" or "X-Forwarded-Proto" headers are set to indicate that the request originated from a secure context (https), the internal request is changed to use https.
+This is primarily done so that when we build URL's to send back to the consuming service or application, they will have the same http scheme as the original request.
+
+This Header Filter is available to install for any consuming application.
+
+.. code-block:: java
+  public class MyModule extends AbstractModule {
+
+    @Override
+    public void configure() {
+      install(new JaxRsModule());
+
+      bind(ForwardedHeaderFilter.class).in(Singleton.class);
+    }
+  }
+
 Download
 --------
 

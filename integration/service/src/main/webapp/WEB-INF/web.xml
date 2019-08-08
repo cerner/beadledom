@@ -1,0 +1,21 @@
+<web-app metadata-complete="false">
+  <display-name>Beadledom Integration Service</display-name>
+
+  <listener>
+    <listener-class>
+      com.cerner.beadledom.integration.service.IntegrationContextListener
+    </listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>Resteasy</servlet-name>
+    <servlet-class>
+      org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+    </servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Resteasy</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+</web-app>

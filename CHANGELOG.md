@@ -6,6 +6,8 @@
 
 * Jooq transaction hooks for executing actions after a successful commit.
 * New `totalResults` convenience method on `OffsetPaginatedList.Builder` for when only a total results value needs to be set.
+* `ForwardedHeaderFilter` to determine the correct HTTP protocol of the origin request and apply it to the internal request object.
+* The `beadledom-integration` module to test features of Beadledom using a service behind a reverse-proxy.
 
 ### Changed
 * Update archetype dependencies to match beadledom library
