@@ -94,7 +94,7 @@
     <scala.version>2.11.12</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
     <governator.version>1.17.5</governator.version>
-    <jackson.version>2.9.9</jackson.version>
+    <jackson.version>2.9.10</jackson.version>
     <resteasy.version>3.6.3.Final</resteasy.version>
     <spotbugs.version>3.1.8</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
@@ -253,7 +253,7 @@
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>2.9.9.3</version>
+        <version>${jackson.version}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.datatype</groupId>
@@ -351,7 +351,7 @@
       <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
-        <version>1.9.3</version>
+        <version>1.9.4</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
