@@ -42,18 +42,13 @@ public class JacksonModule extends AbstractModule {
   protected void configure() {
 
     // Empty multibindings for dependencies
-    Multibinder<Module> jacksonModuleBinder = Multibinder.newSetBinder(binder(), Module.class);
+    Multibinder.newSetBinder(binder(), Module.class);
 
-    Multibinder<SerializationFeatureFlag> serializationFeatureBinder = Multibinder
-        .newSetBinder(binder(), SerializationFeatureFlag.class);
-    Multibinder<DeserializationFeatureFlag> deserializationFeatureBinder = Multibinder
-        .newSetBinder(binder(), DeserializationFeatureFlag.class);
-    Multibinder<JsonGeneratorFeatureFlag> jsonGeneratorFeatureBinder = Multibinder
-        .newSetBinder(binder(), JsonGeneratorFeatureFlag.class);
-    Multibinder<JsonParserFeatureFlag> jsonParserFeatureBinder = Multibinder
-        .newSetBinder(binder(), JsonParserFeatureFlag.class);
-    Multibinder<MapperFeatureFlag> mapperFeatureBinder = Multibinder
-        .newSetBinder(binder(), MapperFeatureFlag.class);
+    Multibinder.newSetBinder(binder(), SerializationFeatureFlag.class);
+    Multibinder.newSetBinder(binder(), DeserializationFeatureFlag.class);
+    Multibinder.newSetBinder(binder(), JsonGeneratorFeatureFlag.class);
+    Multibinder.newSetBinder(binder(), JsonParserFeatureFlag.class);
+    Multibinder.newSetBinder(binder(), MapperFeatureFlag.class);
 
     /**
      * MultibindingsScanner will scan all modules for methods with the annotations @ProvidesIntoMap,

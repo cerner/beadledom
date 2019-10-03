@@ -3,7 +3,6 @@ package com.cerner.beadledom.client.jackson;
 import com.cerner.beadledom.guice.BindingAnnotations;
 
 import com.cerner.beadledom.jackson.JacksonModule;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.AbstractModule;
 
 import java.lang.annotation.Annotation;
