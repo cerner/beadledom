@@ -784,8 +784,7 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <configuration>
           <targetJdk>${java.version}</targetJdk>
-          <!-- TODO: Flip this to true once violations are evaluated or fixed -->
-          <failOnViolation>false</failOnViolation>
+          <failOnViolation>true</failOnViolation>
         </configuration>
         <dependencies>
           <dependency>

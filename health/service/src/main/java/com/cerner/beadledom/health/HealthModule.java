@@ -110,8 +110,7 @@ public class HealthModule extends AbstractModule {
 
     //This is to provide a default binding for HealthDependency,
     // so that services with no HealthDependency bindings can start
-    Multibinder<HealthDependency> healthDependencyModuleBinder = Multibinder.newSetBinder(binder(),
-        HealthDependency.class);
+    Multibinder.newSetBinder(binder(), HealthDependency.class);
 
     Multibinder<Module> jacksonModuleBinder = Multibinder.newSetBinder(binder(), Module.class);
     jacksonModuleBinder.addBinding().to(Jdk8Module.class);

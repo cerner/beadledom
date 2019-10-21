@@ -2,7 +2,6 @@ package com.cerner.beadledom.configuration;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Properties;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.XMLConfiguration;

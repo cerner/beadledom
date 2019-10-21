@@ -1,7 +1,6 @@
 package com.cerner.beadledom.jaxrs;
 
 import com.cerner.beadledom.jaxrs.provider.CorrelationIdFilter;
-import com.cerner.beadledom.jaxrs.provider.ForwardedHeaderFilter;
 import com.google.inject.AbstractModule;
 import javax.inject.Singleton;
 

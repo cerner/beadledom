@@ -120,7 +120,7 @@ class OffsetPaginationLinks {
       return false;
     }
 
-    boolean moreResults = totalResults != null && (currentOffset + currentLimit < totalResults);
+    boolean moreResults = totalResults != null && currentOffset + currentLimit < totalResults;
 
     if (totalResults == null) {
       return hasMore != null && hasMore;
