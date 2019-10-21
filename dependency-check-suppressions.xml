@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.1.xsd">
-  <!-- This CVE is regarding the javascript not the Java implementation -->
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+
+  <!-- Remove all suppressions with 4.0 release; stagemonitor and swagger1 modules are being deleted -->
   <suppress>
     <notes><![CDATA[
-   file name: compiler-0.9.5.jar
+   file name: jquery-1.8.0.min.js
    ]]></notes>
-    <gav regex="true">^com\.github\.spullara\.mustache\.java:compiler:.*$</gav>
-    <cve>CVE-2015-8862</cve>
+    <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+    <cve>CVE-2012-6708</cve>
+    <cve>CVE-2015-9251</cve>
+    <cve>CVE-2019-11358</cve>
   </suppress>
-  <!-- This CVE is regarding xzgrep not the Java implementation -->
+
   <suppress>
     <notes><![CDATA[
-   file name: xz-1.8.jar
+   file name: handlebars-1.0.0.js
    ]]></notes>
-    <gav regex="true">^org\.tukaani:xz:.*$</gav>
-    <cve>CVE-2015-4035</cve>
+    <packageUrl regex="true">^pkg:javascript/handlebars\.js@.*$</packageUrl>
+    <vulnerabilityName>Quoteless attributes in templates can lead to XSS</vulnerabilityName>
+    <vulnerabilityName>poorly sanitized input passed to eval()</vulnerabilityName>
   </suppress>
-  <!-- TODO: Remove after Jackson 2.9.9.1 is released and we have updated -->
+
   <suppress>
     <notes><![CDATA[
-   file name: jackson-databind-2.9.9.jar
+   file name: stagemonitor-web-0.22.0.jar: bootstrap.min.js
    ]]></notes>
-    <gav regex="true">^com\.fasterxml\.jackson\.core:jackson-databind:.*$</gav>
-    <cve>CVE-2019-12814</cve>
+    <packageUrl regex="true">^pkg:javascript/bootstrap@.*$</packageUrl>
+    <cve>CVE-2018-14040</cve>
+    <cve>CVE-2018-14041</cve>
+    <cve>CVE-2018-14042</cve>
+    <cve>CVE-2019-8331</cve>
   </suppress>
+
+  <suppress>
+    <notes><![CDATA[
+   file name: stagemonitor-web-0.22.0.jar: handlebars.min.js
+   ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/handlebars\.js@.*$</packageUrl>
+    <vulnerabilityName>Quoteless attributes in templates can lead to XSS</vulnerabilityName>
+  </suppress>
+
+  <suppress>
+    <notes><![CDATA[
+   file name: stagemonitor-web-0.22.0.jar: jquery.1.11.1.min.js
+   ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/jquery@.*$</packageUrl>
+    <cve>CVE-2015-9251</cve>
+    <cve>CVE-2019-11358</cve>
+  </suppress>
+
 </suppressions>
