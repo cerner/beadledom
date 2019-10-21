@@ -25,7 +25,7 @@ class ThreadLocalCommitHookExecutingTransactionListener extends DefaultTransacti
   }
 
   @Override
-  public void beginEnd(TransactionContext ctx) {
+  public void beginStart(TransactionContext ctx) {
     JooqTransaction transaction = new JooqTransaction();
 
     Deque<JooqTransaction> transactions = transactions();

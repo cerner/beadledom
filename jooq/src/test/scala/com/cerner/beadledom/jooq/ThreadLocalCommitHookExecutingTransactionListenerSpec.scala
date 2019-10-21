@@ -68,12 +68,12 @@ class ThreadLocalCommitHookExecutingTransactionListenerSpec
         it("executes commit hooks in the order registered") {
           val listener = new ThreadLocalCommitHookExecutingTransactionListener(transactionalHooks)
 
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(rootActionOne)
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(nestedLevelOneActionOne)
 
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(nestedLevelTwoActionOne)
           listener.commitEnd(context)
 
@@ -98,12 +98,12 @@ class ThreadLocalCommitHookExecutingTransactionListenerSpec
           it("only executes commit hooks for the non-rolled back connections") {
             val listener = new ThreadLocalCommitHookExecutingTransactionListener(transactionalHooks)
 
-            listener.beginEnd(context)
+            listener.beginStart(context)
             transactionalHooks.whenCommitted(rootActionOne)
-            listener.beginEnd(context)
+            listener.beginStart(context)
             transactionalHooks.whenCommitted(nestedLevelOneActionOne)
             transactionalHooks.whenCommitted(nestedLevelOneActionTwo)
-            listener.beginEnd(context)
+            listener.beginStart(context)
             transactionalHooks.whenCommitted(nestedLevelTwoActionOne)
 
             listener.rollbackEnd(context)
@@ -128,12 +128,12 @@ class ThreadLocalCommitHookExecutingTransactionListenerSpec
         it("does not execute commit hooks") {
           val listener = new ThreadLocalCommitHookExecutingTransactionListener(transactionalHooks)
 
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(rootActionOne)
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(nestedLevelOneActionOne)
           transactionalHooks.whenCommitted(nestedLevelOneActionTwo)
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(nestedLevelTwoActionOne)
 
           listener.commitEnd(context)
@@ -152,12 +152,12 @@ class ThreadLocalCommitHookExecutingTransactionListenerSpec
         it("does not execute commit hooks") {
           val listener = new ThreadLocalCommitHookExecutingTransactionListener(transactionalHooks)
 
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(rootActionOne)
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(nestedLevelOneActionOne)
           transactionalHooks.whenCommitted(nestedLevelOneActionTwo)
-          listener.beginEnd(context)
+          listener.beginStart(context)
           transactionalHooks.whenCommitted(nestedLevelTwoActionOne)
 
           listener.rollbackEnd(context)
