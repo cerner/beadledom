@@ -6,7 +6,7 @@ This file contains the list of developers who contributed to this repository
 * John Leacox [@johnlcox][john-leacox]
 * Jacob Williams [@brokensandals][jacob-williams]
 * Jonathan Wright [@jonnywri][jonathan-wright]
-* Nathan Schile [@shiftyeyes][nathan-schile]
+* Nathan Schile [@nathanschile][nathan-schile]
 * Alec Sears [@alecxvs][alec-sears]
 * Mayank Singh
 * Nimesh Subramanian [@nemo][nimesh-subramanian]

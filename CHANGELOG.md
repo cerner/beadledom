@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## [Unreleased]
+
+### Fixed
+* Update `ThreadLocalCommitHookExecutingTransactionListener` to override `TransactionListener#beginStart` instead of `TransactionListener#beginEnd`
+
 ## 3.3 - 8 August 2019
 
 ### Added
