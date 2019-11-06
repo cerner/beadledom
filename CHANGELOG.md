@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Deprecated
+* com.cerner.beadledom.jaxrs.PATCH has been deprecated. Use PATCH annotation from JAX-RS 2.1, https://jax-rs.github.io/apidocs/2.1/javax/ws/rs/PATCH.html instead.
+
 ### Fixed
 * Update `ThreadLocalCommitHookExecutingTransactionListener` to override `TransactionListener#beginStart` instead of `TransactionListener#beginEnd`
 
