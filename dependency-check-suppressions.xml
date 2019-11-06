@@ -49,4 +49,22 @@
     <cve>CVE-2019-11358</cve>
   </suppress>
 
+  <suppress>
+    <notes><![CDATA[
+   file name: jackson-mapper-asl-1.9.13.jar
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.codehaus\.jackson/jackson\-mapper\-asl@.*$</packageUrl>
+    <vulnerabilityName>CVE-2017-15095</vulnerabilityName>
+    <vulnerabilityName>CVE-2017-17485</vulnerabilityName>
+    <vulnerabilityName>CVE-2017-7525</vulnerabilityName>
+    <vulnerabilityName>CVE-2018-1000873</vulnerabilityName>
+    <vulnerabilityName>CVE-2018-14718</vulnerabilityName>
+    <vulnerabilityName>CVE-2018-5968</vulnerabilityName>
+    <vulnerabilityName>CVE-2018-7489</vulnerabilityName>
+    <vulnerabilityName>CVE-2019-14540</vulnerabilityName>
+    <vulnerabilityName>CVE-2019-16335</vulnerabilityName>
+    <vulnerabilityName>CVE-2019-17267</vulnerabilityName>
+  </suppress>
+
+
 </suppressions>
