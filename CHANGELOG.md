@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## 3.4 - 8 November 2019
+
+### Changed
+* Nested transactions via `@JooqTransactional` no longer use SavePoints. Technically this a non-passive behavioral change, but seems like the safer option and likely what is more in line with what is expected by users of `@JooqTransactional`.
+
 ### Deprecated
 * com.cerner.beadledom.jaxrs.PATCH has been deprecated. Use PATCH annotation from JAX-RS 2.1, https://jax-rs.github.io/apidocs/2.1/javax/ws/rs/PATCH.html instead.
 
