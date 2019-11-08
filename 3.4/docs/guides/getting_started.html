@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started &mdash; Beadledom 3.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Beadledom 3.4 documentation" href="../index.html"/>
+        <link rel="next" title="Error Handling" href="error_handling.html"/>
+        <link rel="prev" title="Beadledom" href="../about/introduction.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-we-start">Before we Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-installer">Installing the Installer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-our-first-project">Creating Our First Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-our-service">Running Our Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-breakdown">The Breakdown</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api-sub-module">API sub-module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#helloworldresource">HelloWorldResource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#helloworlddto">HelloWorldDto</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#service-sub-module">Service sub-module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#webapp-meta-inf">webapp/META-INF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resources">resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#awesomethingcontextlistener">AwesomeThingContextListener</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resteasybootstrapmodule">ResteasyBootstrapModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#awesomethingmodule">AwesomeThingModule</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">HelloWorldResource</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#client-sub-module">Client sub-module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">HelloWorldResource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#where-to-go-now">Where to go now</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="error_handling.html">Error Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/3.4/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Beadledom</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Getting Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="getting-started"></span><div class="toctree-wrapper compound" id="getting-started-toc-includehidden">
+</div>
+<div class="section" id="id1">
+<h1>Getting Started<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Here we will go through the basic steps on setting up a Beadledom project. We will go over
+the key components needed to make sure your new service is bootstrapped and running correctly;
+additionally, we will highlight the major pieces of the service so that you can extend it to
+fit your needs. Finally we will point to some additional resources that will show some of the
+additional functionality that you can get with the Beadledom framework.</p>
+<div class="section" id="before-we-start">
+<h2>Before we Start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<p>We know there are a lot of different build tools available for Java, and we think that is great.
+However for Beadledom we currently use <a class="reference external" href="https://maven.apache.org/">maven</a> as our build tool and
+dependency manager. The script we will install to help us create our first Beadledom project is
+really just a wrapper around <a class="reference external" href="https://maven.apache.org/archetype/index.html">maven archetypes</a> that let us
+remove a lot of the boilerplate around project creation.</p>
+</div>
+<div class="section" id="installing-the-installer">
+<h2>Installing the Installer<a class="headerlink" href="#installing-the-installer" title="Permalink to this headline">¶</a></h2>
+<p>Before we create our first Beadledom project we need to download the
+<a class="reference external" href="https://github.com/cerner/beadledom/blob/master/archetype/bootstrap/">beadledom installer</a> utility.
+If you would like to take a look at the installer source code before running it you can find it
+<a class="reference external" href="https://github.com/cerner/beadledom/blob/master/archetype/bootstrap/bin/">here install.sh script</a>.</p>
+<p>Then to install execute in your shell</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>curl -L http://cerner.github.io/beadledom/3.4/beadledom-archetype/downloads/install.sh <span class="p">|</span> sh
+</pre></div>
+</div>
+<p>Once the download has completed you should be greeted by some sort of success message and now be
+able to run</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>beadledom --help
+</pre></div>
+</div>
+<p>which should print the usage details to the screen.</p>
+</div>
+<div class="section" id="creating-our-first-project">
+<h2>Creating Our First Project<a class="headerlink" href="#creating-our-first-project" title="Permalink to this headline">¶</a></h2>
+<p>We are going to use the default archetype <a class="reference external" href="https://github.com/cerner/beadledom/blob/master/archetype/simple-service/">simple-service</a>
+in our example because it is fairly basic while
+doing a good job at showing off a fair amount of the base feature set that Beadledom offers. In order to
+kick off our project creation we just need to run</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>beadledom new
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>beadledom new simple-service
+</pre></div>
+</div>
+<p>You will be prompted for several things many of which will have some relatively sane defaults. For
+our example we are going to choose the following values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Package Name:</th><td class="field-body">com.example</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Project Name:</th><td class="field-body">AwesomeThing</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Artifact Id:</th><td class="field-body">awesome-thing</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Group Id:</th><td class="field-body">com.example</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Beadledom Version:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">(whatever the default)</td>
+</tr>
+</tbody>
+</table>
+<p>Feel free to choose whatever you like, we are just calling it out here to make it easier to references
+pieces of the service later.</p>
+</div>
+<div class="section" id="running-our-service">
+<h2>Running Our Service<a class="headerlink" href="#running-our-service" title="Permalink to this headline">¶</a></h2>
+<p>After a successful project creation we can go ahead and build our project and start the service</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt; <span class="nb">cd</span> awesome-thing
+awesome-thing&gt; mvn clean install
+. . .
+<span class="o">[</span>INFO<span class="o">]</span> BUILD SUCCESS
+. . .
+awesome-thing&gt; <span class="nb">cd</span> service
+awesome-thing/service&gt; mvn tomcat7:run-war
+</pre></div>
+</div>
+<p>Once the service has started we can navigate to our swagger resource to retrieve the swagger
+specification of the default <code class="docutils literal"><span class="pre">api</span></code>.</p>
+<div class="highlight-html"><div class="highlight"><pre><span></span>http://localhost:8080/awesome-thing-service/api-docs
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-breakdown">
+<h2>The Breakdown<a class="headerlink" href="#the-breakdown" title="Permalink to this headline">¶</a></h2>
+<p>Our project has three maven sub-modules: <code class="docutils literal"><span class="pre">api</span></code>, <code class="docutils literal"><span class="pre">client</span></code> and <code class="docutils literal"><span class="pre">service</span></code>. We will go through each
+of these and talk about the classes they contain.</p>
+<div class="section" id="api-sub-module">
+<h3>API sub-module<a class="headerlink" href="#api-sub-module" title="Permalink to this headline">¶</a></h3>
+<p>This module contains the the models defining your <code class="docutils literal"><span class="pre">requests</span></code> and <code class="docutils literal"><span class="pre">responses</span></code>. The code living
+here ends up being used by both the <code class="docutils literal"><span class="pre">client</span></code> and the <code class="docutils literal"><span class="pre">service</span></code>.</p>
+<div class="section" id="helloworldresource">
+<h4>HelloWorldResource<a class="headerlink" href="#helloworldresource" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Api</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/hello&quot;</span><span class="o">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;Retrieve hello world data&quot;</span><span class="o">)</span>
+<span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/hello&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+
+  <span class="nd">@ApiOperation</span><span class="o">(</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;Retrieves hello world data.&quot;</span><span class="o">,</span>
+      <span class="n">response</span> <span class="o">=</span> <span class="n">HelloWorldDto</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+  <span class="nd">@ApiResponse</span><span class="o">(</span><span class="n">code</span> <span class="o">=</span> <span class="mi">200</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Success&quot;</span><span class="o">)</span>
+  <span class="nd">@GET</span>
+  <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">GenericResponse</span><span class="o">&lt;</span><span class="n">HelloWorldDto</span><span class="o">&gt;</span> <span class="nf">getHelloWorld</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This is the definition for the <code class="docutils literal"><span class="pre">/hello</span></code> resource (and by resource we are talking about an api
+resource). There is a lot going on here so we will add some comments to explain what each of these
+lines are doing.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * Swagger annotation defining the base resource for the generated swagger documentation.</span>
+<span class="cm"> */</span>
+<span class="nd">@Api</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/hello&quot;</span><span class="o">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;Retrieve hello world data&quot;</span><span class="o">)</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * JAX-RS annotation defining the base URI path for the resource.</span>
+<span class="cm"> */</span>
+<span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/hello&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Swagger annotation defining the documentation for the HTTP verb this method provides. It</span>
+<span class="cm"> * also includes the Dto class that is used for the response.</span>
+<span class="cm"> */</span>
+  <span class="nd">@ApiOperation</span><span class="o">(</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;Retrieves hello world data.&quot;</span><span class="o">,</span>
+      <span class="n">response</span> <span class="o">=</span> <span class="n">HelloWorldDto</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Swagger annotation for the different status codes our resource can</span>
+<span class="cm">   * return (500 is often omitted).</span>
+<span class="cm">   */</span>
+  <span class="nd">@ApiResponse</span><span class="o">(</span><span class="n">code</span> <span class="o">=</span> <span class="mi">200</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Success&quot;</span><span class="o">)</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * JAX-RS annotation for the HTTP verb this method is providing functionality for.</span>
+<span class="cm">   */</span>
+  <span class="nd">@GET</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * JAX-RS annotation for the media type our service returns.</span>
+<span class="cm">   */</span>
+  <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Method definition for the resource. The GenericResponse is an implementation provided</span>
+<span class="cm">   * by Beadledom. It allows consumers (mostly of the client) to get a type safe response</span>
+<span class="cm">   * from the server instead of having to do the casting or deserialization of the Json</span>
+<span class="cm">   * payload themselves.</span>
+<span class="cm">   */</span>
+  <span class="kd">public</span> <span class="n">GenericResponse</span><span class="o">&lt;</span><span class="n">HelloWorldDto</span><span class="o">&gt;</span> <span class="nf">getHelloWorld</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And that’s pretty much all that is needed to define an end-point. To learn more about how to
+extend your path and about additional annotations that can be used in defining a resource we
+suggest taking a look at <a class="reference external" href="http://resteasy.jboss.org/docs.html">RESTEasy’s documentation</a> to
+get started (RESTEasy is the current implementation of the JAX-RS standard that Beadledom is using).</p>
+</div>
+<div class="section" id="helloworlddto">
+<h4>HelloWorldDto<a class="headerlink" href="#helloworlddto" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ApiModel</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;HelloWorldDto&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldDto</span> <span class="o">{</span>
+
+  <span class="nd">@ApiModelProperty</span><span class="o">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;name of the message author&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="nd">@ApiModelProperty</span><span class="o">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;message content&quot;</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">helloWorldMessage</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nf">HelloWorldDto</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">helloWorldMessage</span> <span class="o">=</span> <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkNotNull</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Creates a new {@link HelloWorldDto} instance.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param name author to be associated with the message</span>
+<span class="cm">   * @param message the message to be returned</span>
+<span class="cm">   * @return {@link HelloWorldDto} encapsulating a name and message</span>
+<span class="cm">   */</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">HelloWorldDto</span> <span class="nf">create</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">HelloWorldDto</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="cm">/** Returns name. */</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="cm">/** Returns hello world message. */</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getHelloWorldMessage</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">helloWorldMessage</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This class defines the JSON response from the service. The few things to note here are the
+Swagger annotations. <code class="code java docutils literal"><span class="name decorator"><span class="pre">&#64;ApiModel</span></span><span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">value</span></span> <span class="operator"><span class="pre">=</span></span> <span class="literal string"><span class="pre">“HelloWordDto”</span></span><span class="operator"><span class="pre">)</span></span></code> defines the high level API model,
+and as we are sure you have already guessed <code class="code java docutils literal"><span class="name decorator"><span class="pre">&#64;ApiModelProperty</span></span></code> allows us to add some documentation
+around the various fields that are going to be a part of our response.</p>
+</div>
+</div>
+<div class="section" id="service-sub-module">
+<h3>Service sub-module<a class="headerlink" href="#service-sub-module" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have defined our <code class="docutils literal"><span class="pre">api</span></code> lets dive into the implementation and how this all gets
+wired together. You’ll notice that within our <code class="docutils literal"><span class="pre">service</span></code> sub-module we have not only our source
+code directory we also have a resources and webapp directory. Lets spend just a short amount of
+time going over what is in our non source code directories.</p>
+<div class="section" id="webapp-meta-inf">
+<h4>webapp/META-INF<a class="headerlink" href="#webapp-meta-inf" title="Permalink to this headline">¶</a></h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Files:</th><td class="field-body"><ul class="first last simple">
+<li><strong>web.xml</strong> - deployment descriptor that loads our context listener class as our servlets entry point</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="resources">
+<h4>resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h4>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Files:</th><td class="field-body"><ul class="first last simple">
+<li><strong>log4j.properties</strong> - configuration for our logger</li>
+<li><strong>stagemonitor.properties</strong> - configuration for <a class="reference external" href="http://www.stagemonitor.org/">stagemonitor</a></li>
+<li><strong>build-info.properties</strong> - properties from the current build used in health checks</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>All of the above mentioned configuration files are pretty standard. There are lots of other options
+that can be tinkered with but we suggest you head to the developers pages for the various libraries
+to learn more.</p>
+</div>
+<div class="section" id="awesomethingcontextlistener">
+<h4>AwesomeThingContextListener<a class="headerlink" href="#awesomethingcontextlistener" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Your class names might be slightly different depending on what you choose for your
+<code class="docutils literal"><span class="pre">Project</span> <span class="pre">Name</span></code>.</p>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AwesomeThingContextListener</span> <span class="kd">extends</span> <span class="n">ResteasyContextListener</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Module</span><span class="o">&gt;</span> <span class="nf">getModules</span><span class="o">(</span><span class="n">ServletContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Lists</span><span class="o">.</span><span class="na">newArrayList</span><span class="o">(</span><span class="k">new</span> <span class="n">AwesomeThingModule</span><span class="o">(),</span> <span class="k">new</span> <span class="n">ResteasyBootstrapModule</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>There isn’t a lot going on in this file, but it is very important. This is the entry point to
+our service and where we define our base Guice modules and configuration. We won’t dive much
+into the configuration component if you want to learn more about it (and we recommend you do)
+you can find more documentation <a class="reference external" href="https://github.com/cerner/beadledom/tree/master/configuration">here</a>.</p>
+<p>The method we are overriding here is providing our <code class="docutils literal"><span class="pre">AwesomeThingModule</span></code>, which is our service module and <code class="docutils literal"><span class="pre">ResteasyBootstrapModule</span></code>, which bootstraps <code class="docutils literal"><span class="pre">ResteasyModule</span></code> for our service.</p>
+<p>so Let’s take a look at the <code class="docutils literal"><span class="pre">ResteasyBootstrapModule</span></code> next.</p>
+</div>
+<div class="section" id="resteasybootstrapmodule">
+<h4>ResteasyBootstrapModule<a class="headerlink" href="#resteasybootstrapmodule" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ResteasyBootstrapModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">install</span><span class="o">(</span><span class="k">new</span> <span class="n">ResteasyModule</span><span class="o">());</span>
+    <span class="n">install</span><span class="o">(</span><span class="k">new</span> <span class="n">Swagger2Module</span><span class="o">());</span>
+
+    <span class="n">BuildInfo</span> <span class="n">buildInfo</span> <span class="o">=</span> <span class="n">BuildInfo</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;build-info.properties&quot;</span><span class="o">));</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">BuildInfo</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">buildInfo</span><span class="o">);</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">ServiceMetadata</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">ServiceMetadata</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">buildInfo</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Provides</span>
+  <span class="nd">@Singleton</span>
+  <span class="n">Info</span> <span class="nf">provideSwagger2Info</span><span class="o">(</span><span class="n">ServiceMetadata</span> <span class="n">serviceMetadata</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">return</span> <span class="k">new</span> <span class="n">Info</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">&quot;Your Service Name&quot;</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">version</span><span class="o">(</span><span class="n">serviceMetadata</span><span class="o">.</span><span class="na">getBuildInfo</span><span class="o">().</span><span class="na">getVersion</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This is where we install the main Beadledom module <code class="code java docutils literal"><span class="name"><span class="pre">install</span></span><span class="operator"><span class="pre">(</span></span><span class="keyword"><span class="pre">new</span></span> <span class="name"><span class="pre">ResteasyModule</span></span><span class="operator"><span class="pre">());</span></span></code>. Inside
+this module is where Beadledom is going to install and bootstrap the various features it needs
+in order to make our service tick. Below are some of the many awesome features that we get just by installing <cite>ResteasyModule</cite> without any extra efforts</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/cerner/beadledom/tree/master/configuration#beadledom-configuration">Configuration</a> - lets us access all the configuration through a consistent API.</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/tree/master/health#beadledom-health">Health</a> - Health checks for the services</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/tree/master/jackson#beadledom-jackson">Jackson</a> - Serialization-DeSerialization for the payload</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/tree/master/swagger2#beadledom-swagger2">Swagger</a> - Enables the <a class="reference external" href="https://openapis.org/specification">Open API</a> documentation and <a class="reference external" href="http://swagger.io/swagger-ui/">Swagger UI</a></li>
+</ul>
+<p>The next chunk of code</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">BuildInfo</span> <span class="n">buildInfo</span> <span class="o">=</span> <span class="n">BuildInfo</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;build-info.properties&quot;</span><span class="o">));</span>
+<span class="n">bind</span><span class="o">(</span><span class="n">BuildInfo</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">buildInfo</span><span class="o">);</span>
+<span class="n">bind</span><span class="o">(</span><span class="n">ServiceMetadata</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toInstance</span><span class="o">(</span><span class="n">ServiceMetadata</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">buildInfo</span><span class="o">));</span>
+</pre></div>
+</div>
+<p>We pull in the properties from the <code class="docutils literal"><span class="pre">build-info.properties</span></code> and make them available to the service
+and more importantly the healthcheck.</p>
+</div>
+<div class="section" id="awesomethingmodule">
+<h4>AwesomeThingModule<a class="headerlink" href="#awesomethingmodule" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AwesomeThingModule</span> <span class="kd">extends</span> <span class="n">PrivateModule</span> <span class="o">{</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">HelloWorldResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="c1">// Note: All clients that will be used should be installed in this module to avoid registering</span>
+    <span class="c1">// client JAX-RS resources with the server. The Correlation ID header name for clients could</span>
+    <span class="c1">// also be configured/overridden here if this is the only PrivateModule that is used.</span>
+
+    <span class="n">expose</span><span class="o">(</span><span class="n">HelloWorldResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">AwesomeThingModule</span></code> is a private module, which contains configuration information for our service.
+The PrivateModule encapsulates the service’s environment and only exposes objects needed for
+JAX-RS/Resteasy(ex: resource classes, providers and features). It also prevents dependency issues
+with any configuration bound to Guice globally.</p>
+<p>As noted by the comment in the generated code, all bindings necessary to setup your JAX-RS resource
+class should be bound here, but only expose the JAX-RS resources and filters that you want to run
+as part of the server. By doing this, you can use Beadledom client modules here to have them injected
+into your classes, but prevent them from being picked up and scanned by Beadledom/JAX-RS as part
+of the service.</p>
+<p>By binding <code class="code java docutils literal"><span class="name"><span class="pre">bind</span></span><span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">HelloWorldResource</span></span><span class="operator"><span class="pre">.</span></span><span class="name attribute"><span class="pre">class</span></span><span class="operator"><span class="pre">);</span></span></code> we are making this available to Beadledom and
+JAX-RS which will scan it to fine the JAX-RS annotations and make it available for the proper URL
+path. And the next line <code class="code java docutils literal"><span class="name"><span class="pre">expose</span></span><span class="operator"><span class="pre">(</span></span><span class="name"><span class="pre">HelloWorldResource</span></span><span class="operator"><span class="pre">.</span></span><span class="name attribute"><span class="pre">class</span></span><span class="operator"><span class="pre">);</span></span></code>, exposes <a href="#id4"><span class="problematic" id="id5">`HelloWorldResource`_</span></a> to modules that install <a class="reference internal" href="#awesomethingmodule">AwesomeThingModule</a>.</p>
+<p>That’s it! There are additional Beadledom modules that we can install for other functionality, and
+we could even create our own modules or bindings to provide additional classes our service will need
+to operate. We recommend that you take some time and become familiar with <a class="reference external" href="https://github.com/google/guice/wiki/GettingStarted">Guice</a>
+so that you will know all it enables you to do.</p>
+</div>
+<div class="section" id="id2">
+<h4>HelloWorldResource<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>Last but not least, we have our <code class="docutils literal"><span class="pre">/hello</span></code> endpoint implementation.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Api</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/hello&quot;</span><span class="o">,</span> <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;Retrieve hello world data&quot;</span><span class="o">)</span>
+<span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/hello&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+
+  <span class="nd">@ApiOperation</span><span class="o">(</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;Retrieves hello world data.&quot;</span><span class="o">,</span>
+      <span class="n">response</span> <span class="o">=</span> <span class="n">HelloWorldDto</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+  <span class="nd">@ApiResponse</span><span class="o">(</span><span class="n">code</span> <span class="o">=</span> <span class="mi">200</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Success&quot;</span><span class="o">)</span>
+  <span class="nd">@GET</span>
+  <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">GenericResponse</span><span class="o">&lt;</span><span class="n">HelloWorldDto</span><span class="o">&gt;</span> <span class="nf">getHelloWorld</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">GenericResponses</span>
+        <span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">HelloWorldDto</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="s">&quot;Beadledom&quot;</span><span class="o">,</span> <span class="s">&quot;Hello World!&quot;</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>That’s it. Not very impressive we know, but it is just a starter service after all! More realistic
+services will implement whatever sort of business logic, parameter validation, reading and writing
+from databases here that they need to back their apis.</p>
+</div>
+</div>
+<div class="section" id="client-sub-module">
+<h3>Client sub-module<a class="headerlink" href="#client-sub-module" title="Permalink to this headline">¶</a></h3>
+<p>There is a lot going on in the client sub-module, and none of it really has anything to do with
+the implementation of your service. What we are able to do is build a client whose api is based
+on the same JAX-RS annotations you use for your server. That makes it really easy to make clients
+for your Java consumers; however, it won’t help you much with consumers of other languages. Instead
+of trying to explain all the concepts that are going on within the client we recommend you take a
+look at our <a class="reference external" href="https://github.com/cerner/beadledom/tree/master/client">client documentation</a>..</p>
+<div class="section" id="id3">
+<h4>HelloWorldResource<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/hello&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+
+  <span class="nd">@GET</span>
+  <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+  <span class="n">GenericResponse</span><span class="o">&lt;</span><span class="n">HelloWorldDto</span><span class="o">&gt;</span> <span class="nf">getHelloWorld</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This is the definition for the <code class="docutils literal"><span class="pre">/hello</span></code> resource from a client-side perspective. This interface
+allows automatically generating a client implementation via a Java proxy object.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * JAX-RS annotation defining the path for the resource.</span>
+<span class="cm"> */</span>
+<span class="nd">@Path</span><span class="o">(</span><span class="s">&quot;/hello&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * JAX-RS annotation for the HTTP verb this method is providing functionality for.</span>
+<span class="cm">   */</span>
+  <span class="nd">@GET</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * JAX-RS annotation for the media type our service returns.</span>
+<span class="cm">   */</span>
+  <span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Method definition for the resource. The GenericResponse is an implementation provided</span>
+<span class="cm">   * by Beadledom. It allows consumers (mostly of the client) to get a type safe response</span>
+<span class="cm">   * from the server instead of having to do the casting or deserialization of the Json</span>
+<span class="cm">   * payload themselves.</span>
+<span class="cm">   *</span>
+<span class="cm">   * For responses that will not include a body in the response (ie. DELETE) it&#39;s best to</span>
+<span class="cm">   * continue using the regular JAX-RS Response class.</span>
+<span class="cm">   */</span>
+  <span class="kd">public</span> <span class="n">GenericResponse</span><span class="o">&lt;</span><span class="n">HelloWorldDto</span><span class="o">&gt;</span> <span class="nf">getHelloWorld</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="where-to-go-now">
+<h2>Where to go now<a class="headerlink" href="#where-to-go-now" title="Permalink to this headline">¶</a></h2>
+<p>The service we just created and went through is just using a subset of features that Beadledom
+can provide. If you would like to learn more about what Beadledom has to offer take a look at our
+<a class="reference external" href="https://github.com/cerner/beadledom/tree/master">table of contents</a> and the related
+documentation and code. If you find a bug or have an idea of a feature Beadledom is lacking open
+an issue or pull request we are always happy to collaborate to help everyone get to a better place.</p>
+<p>Now go build something awesome!</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="error_handling.html" class="btn btn-neutral float-right" title="Error Handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../about/introduction.html" class="btn btn-neutral" title="Beadledom" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.4',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
