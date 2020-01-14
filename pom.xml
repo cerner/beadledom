@@ -62,7 +62,6 @@
     <module>newrelic-jaxrs</module>
     <module>resteasy</module>
     <module>resteasy-genericresponse</module>
-    <module>stagemonitor</module>
     <module>swagger1</module>
     <module>swagger2</module>
     <module>testing</module>
