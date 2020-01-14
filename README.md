@@ -22,7 +22,7 @@ Beadledom is made up of the following components:
 * [pagination](pagination#beadledom-pagination) - Parameters and hypermedia for paginated endpoints.
 * [resteasy](resteasy#beadledom-resteasy) - RESTEasy implementation and integration of Beadledom components.
 * [stagemonitor](stagemonitor#beadledom-stagemonitor) - Performance monitoring and troubleshooting.
-* [swagger1](swagger1#beadledom-swagger1) - API documentation.
+* [swagger2](swagger2#beadledom-swagger2) - API documentation.
 * [testing](testing#beadledom-testing) - Testing utilities for the services.
 
 ### Additional Documentation:
