@@ -19,6 +19,8 @@
     <packageUrl regex="true">^pkg:javascript/handlebars\.js@.*$</packageUrl>
     <vulnerabilityName>Quoteless attributes in templates can lead to XSS</vulnerabilityName>
     <vulnerabilityName>poorly sanitized input passed to eval()</vulnerabilityName>
+    <vulnerabilityName>Disallow calling helperMissing and blockHelperMissing directly</vulnerabilityName>
+    <vulnerabilityName>Prototype pollution</vulnerabilityName>
   </suppress>
 
   <suppress>
@@ -64,6 +66,7 @@
     <vulnerabilityName>CVE-2019-14540</vulnerabilityName>
     <vulnerabilityName>CVE-2019-16335</vulnerabilityName>
     <vulnerabilityName>CVE-2019-17267</vulnerabilityName>
+    <vulnerabilityName>CVE-2019-10172</vulnerabilityName>
   </suppress>
 
 
