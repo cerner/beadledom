@@ -11,7 +11,6 @@ import com.cerner.beadledom.resteasy.fauxservice.dao.HelloDao;
 import com.cerner.beadledom.resteasy.fauxservice.health.ImportantHealthDependency2;
 import com.cerner.beadledom.resteasy.fauxservice.health.ImportantThingHealthDependency;
 import com.cerner.beadledom.resteasy.fauxservice.resource.HelloResource;
-import com.cerner.beadledom.swagger.SwaggerModule;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -28,7 +27,6 @@ public class FauxModule extends AbstractModule {
   @Override
   protected void configure() {
     install(new ResteasyModule());
-    install(new SwaggerModule());
     install(new AvroJacksonGuiceModule());
     install(new AvroSwaggerGuiceModule());
     install(new HealthModule());

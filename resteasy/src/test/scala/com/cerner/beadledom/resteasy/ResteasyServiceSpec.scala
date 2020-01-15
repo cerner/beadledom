@@ -1,17 +1,16 @@
 package com.cerner.beadledom.resteasy
 
+import java.io.File
+
 import com.cerner.beadledom.resteasy.fauxservice.health.ImportantThingHealthDependency
 import com.cerner.beadledom.testing.JsonErrorMatchers.beBadRequestError
 import com.cerner.beadledom.testing.JsonMatchers.equalJson
-import com.google.common.base.Charsets
-import java.io.File
 import javax.ws.rs.client.Entity
 import javax.ws.rs.core.MediaType
-import org.apache.commons.io.{FileUtils, IOUtils}
+import org.apache.commons.io.FileUtils
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
-import org.skyscreamer.jsonassert.{JSONCompare, JSONCompareMode}
 import play.api.libs.json.Json
 
 /**
@@ -416,64 +415,6 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
             "buildDateTime" -> "2016-07-29T06:12:33-05:00"
           )
           response.readEntity(classOf[String]) must equalJson(expected)
-        }
-      }
-    }
-
-    describe("Swagger") {
-      describe("/api-docs") {
-        it("returns the expected resource listing") {
-          val response = client.target(s"$rootUrl/api-docs").request()
-              .accept(MediaType.APPLICATION_JSON).get()
-          response.getStatus must be(200)
-          response.readEntity(classOf[String]) must equalJson(
-            IOUtils.toString(getClass.getResource("expected/api-docs.json")))
-        }
-      }
-
-      describe("/api-docs/health") {
-        it("returns accurate documentation") {
-          val response = client.target(s"$rootUrl/api-docs/health")
-              .request().accept(MediaType.APPLICATION_JSON).get()
-          response.getStatus must be(200)
-          val responseJson: String = response.readEntity(classOf[String])
-          val expectedJson: String = IOUtils
-              .toString(getClass.getResource("expected/api-docs-health.json"), Charsets.UTF_8)
-              .replace("TOMCAT_PORT", tomcatPort.toString)
-          // Use NON_EXTENSIBLE mode because the resource method order isn't guaranteed
-          val result = JSONCompare
-              .compareJSON(expectedJson, responseJson, JSONCompareMode.NON_EXTENSIBLE)
-
-          assert(!result.failed(), result.getMessage)
-        }
-      }
-
-      describe("/api-docs/hello") {
-        it("returns accurate documentation") {
-          val response = client.target(s"$rootUrl/api-docs/hello")
-              .request().accept(MediaType.APPLICATION_JSON).get()
-          response.getStatus must be(200)
-          response.readEntity(classOf[String]) must equalJson(
-            IOUtils.toString(getClass.getResource("expected/api-docs-hello.json"))
-                .replace("TOMCAT_PORT", tomcatPort.toString))
-        }
-      }
-
-      describe("/meta/swagger/ui") {
-        it("returns HTML") {
-          val response = client.target(s"$rootUrl/meta/swagger/ui").request()
-              .accept(MediaType.TEXT_HTML).get()
-          response.getStatus must be(200)
-          response.close()
-        }
-      }
-
-      describe("/meta/swagger/{asset}") {
-        it("returns needed assets") {
-          val response = client.target(s"$rootUrl/meta/swagger/images/explorer_icons.png").request()
-              .get()
-          response.getStatus must be(200)
-          response.close()
         }
       }
     }
