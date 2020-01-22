@@ -45,7 +45,6 @@
       <groupId>com.cerner.beadledom</groupId>
       <artifactId>beadledom-swagger2</artifactId>
       <scope>test</scope>
-      <version>3.5-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
