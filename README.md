@@ -1,7 +1,7 @@
 # Beadledom
 
 Beadledom is a bundle of common components required for building JAX-RS web services. It is the starting point
-for new services. The core of Beadledom provides health checks, monitoring via Stagemonitor,
+for new services. The core of Beadledom provides health checks,
 API docs via Swagger, JSON serialization via Jackson, and integration of these components with
 Guice. For more information on creating a service check out our [documentation](http://cerner.github.io/beadledom/).
 
@@ -31,7 +31,6 @@ Below is the list of documentations that are helpful to get started but outside 
 * [Governator](https://github.com/Netflix/governator) for lifecycle management.
 * [Resteasy](http://docs.jboss.org/resteasy/docs/3.0.13.Final/userguide/html/index.html) for JAX-RS implementation.
 * [Swagger](http://swagger.io/getting-started/) for API documentation.
-* [StageMonitor](https://github.com/stagemonitor/stagemonitor/wiki/Installation) for metering the API.
 * [Jackson](http://wiki.fasterxml.com/JacksonDocumentation) for JSON serialization.
 * [Avro](http://avro.apache.org/docs/1.7.7/) for avro serialization.
 * [Configuration](https://commons.apache.org/proper/commons-configuration/userguide/quick_start.html) for Apache Commons Configuration2.
