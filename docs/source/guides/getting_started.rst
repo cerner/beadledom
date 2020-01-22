@@ -229,7 +229,7 @@ HelloWorldDto
 This class defines the JSON response from the service. The few things to note here are the
 Swagger annotations. :java:`@ApiModel(value = "HelloWordDto")` defines the high level API model,
 and as we are sure you have already guessed :java:`@ApiModelProperty` allows us to add some documentation
-around the various fields that are ˙going to be a part of our response.
+around the various fields that are going to be a part of our response.
 
 Service sub-module
 ~~~~~~~~~~~~~~~~~~
