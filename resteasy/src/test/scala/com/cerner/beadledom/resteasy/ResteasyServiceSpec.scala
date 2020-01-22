@@ -7,7 +7,7 @@ import com.cerner.beadledom.testing.JsonErrorMatchers.beBadRequestError
 import com.cerner.beadledom.testing.JsonMatchers.equalJson
 import javax.ws.rs.client.Entity
 import javax.ws.rs.core.MediaType
-import org.apache.commons.io.FileUtils
+import org.apache.commons.io.{FileUtils, IOUtils}
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
@@ -415,6 +415,27 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
             "buildDateTime" -> "2016-07-29T06:12:33-05:00"
           )
           response.readEntity(classOf[String]) must equalJson(expected)
+        }
+      }
+    }
+
+    describe("Swagger") {
+      describe("/api-docs") {
+        it("returns the expected resource listing") {
+          val response = client.target(s"$rootUrl/api-docs").request()
+            .accept(MediaType.APPLICATION_JSON).get()
+          response.getStatus must be(200)
+          response.readEntity(classOf[String]) must equalJson(
+            IOUtils.toString(getClass.getResource("expected/api-docs.json")))
+        }
+      }
+
+      describe("/meta/swagger/ui") {
+        it("returns HTML") {
+          val response = client.target(s"$rootUrl/meta/swagger/ui").request()
+            .accept(MediaType.TEXT_HTML).get()
+          response.getStatus must be(200)
+          response.close()
         }
       }
     }
