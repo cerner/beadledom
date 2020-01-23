@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 import java.util.List;
 
 /**
@@ -17,7 +15,6 @@ import java.util.List;
  */
 @AutoValue
 @JsonDeserialize(builder = HealthDependenciesDto.Builder.class)
-@ApiModel(description = "Indicates the list of dependencies of this service.")
 @io.swagger.annotations.ApiModel(
     description = "Indicates the list of dependencies of this service.")
 public abstract class HealthDependenciesDto {
@@ -28,8 +25,6 @@ public abstract class HealthDependenciesDto {
     return new AutoValue_HealthDependenciesDto.Builder();
   }
 
-  @ApiModelProperty(
-      "the results of any dependency health checks invoked as part of this health check")
   @io.swagger.annotations.ApiModelProperty(
       "the results of any dependency health checks invoked as part of this health check")
   @JsonProperty("dependencies")

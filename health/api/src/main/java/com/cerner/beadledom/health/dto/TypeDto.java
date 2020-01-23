@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 
 import java.util.Optional;
 
@@ -19,7 +17,6 @@ import java.util.Optional;
  */
 @AutoValue
 @JsonDeserialize(builder = TypeDto.Builder.class)
-@ApiModel(description = "Indicates the type of dependency, which may have additional properties")
 public abstract class TypeDto {
   /**
    * Creates a new builder for {@code TypeDto}.
@@ -29,7 +26,6 @@ public abstract class TypeDto {
         .setHttpService(Optional.empty());
   }
 
-  @ApiModelProperty("Properties of the HTTP service dependency")
   @JsonProperty("httpService")
   public abstract Optional<HttpServiceDto> getHttpService();
 

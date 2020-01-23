@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import javax.annotation.Nullable;
 
@@ -24,25 +22,21 @@ import javax.annotation.Nullable;
     "code",
     "message"})
 @AutoValue
-@ApiModel(value = "Standard error body")
 @io.swagger.annotations.ApiModel(value = "Standard error body")
 @JsonDeserialize(builder = JsonError.Builder.class)
 public abstract class JsonError {
 
   @JsonProperty("message")
-  @ApiModelProperty(value = "Human readable description of an error")
   @io.swagger.annotations.ApiModelProperty(value = "Human readable description of an error")
   public abstract String message();
 
   @JsonProperty("code")
-  @ApiModelProperty(value = "HTTP response status code representing the error")
   @io.swagger.annotations.ApiModelProperty(
       value = "HTTP response status code representing the error")
   public abstract int code();
 
   @Nullable
   @JsonProperty("errors")
-  @ApiModelProperty(value = "List of additional error details")
   @io.swagger.annotations.ApiModelProperty(value = "List of additional error details")
   public abstract List<ErrorDetail> errors();
 
