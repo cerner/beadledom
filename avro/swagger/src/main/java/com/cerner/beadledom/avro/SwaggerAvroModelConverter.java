@@ -2,6 +2,7 @@ package com.cerner.beadledom.avro;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.collect.Lists;
+import com.wordnik.swagger.converter.ModelConverter;
 import com.wordnik.swagger.converter.SwaggerSchemaConverter;
 import com.wordnik.swagger.core.SwaggerSpec;
 import com.wordnik.swagger.core.SwaggerTypes;
@@ -11,16 +12,27 @@ import com.wordnik.swagger.model.Model;
 import com.wordnik.swagger.model.ModelProperty;
 import com.wordnik.swagger.model.ModelRef;
 import java.lang.reflect.Field;
-import java.util.Collections;
+import java.lang.reflect.Type;
+import java.util.Iterator;
 import javax.annotation.Nullable;
+
+import io.swagger.converter.ModelConverter;
+import io.swagger.converter.ModelConverterContext;
+import io.swagger.models.Model;
+import io.swagger.models.ModelImpl;
+import io.swagger.models.properties.BooleanProperty;
+import io.swagger.models.properties.DoubleProperty;
+import io.swagger.models.properties.FloatProperty;
+import io.swagger.models.properties.IntegerProperty;
+import io.swagger.models.properties.LongProperty;
+import io.swagger.models.properties.Property;
+import io.swagger.models.properties.StringProperty;
 import org.apache.avro.Schema;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.Option;
 import scala.collection.JavaConversions;
-import scala.collection.immutable.Map;
-import scala.collection.mutable.LinkedHashMap;
 
 /**
  * This produces Swagger model schemas for Avro generated classes, by looking at the Avro schema
@@ -54,58 +66,50 @@ import scala.collection.mutable.LinkedHashMap;
  * subsequent whitespace character) will be removed. You can override the
  * {@link #adjustDescription(String)} method to change this.
  */
-public class SwaggerAvroModelConverter extends SwaggerSchemaConverter {
+public class SwaggerAvroModelConverter implements ModelConverter {
   private static final Logger LOGGER = LoggerFactory.getLogger(SwaggerAvroModelConverter.class);
 
   @Override
-  public Option<Model> read(Class<?> cls, Map<String, String> typeMap) {
-    Schema schema = getSchema(cls);
-    if (schema == null) {
-      return Option.empty();
+  public Model resolve(Type type, ModelConverterContext context, Iterator<ModelConverter> chain) {
+    if (!(type instanceof Class<?>)) {
+      return null;
     }
 
-    LinkedHashMap<String, ModelProperty> properties = new LinkedHashMap<>();
+    Class<?> clazz = (Class<?>) type;
+
+    Schema schema = getSchema(clazz);
+    if (schema == null) return null;
+
+    ModelImpl model = new ModelImpl()
+            .name("")
+            .description("");
+
     for (Schema.Field field : schema.getFields()) {
-      ModelProperty property = parseField(field);
+      Property property = parseField(field);
       if (property == null) {
         LOGGER.debug(
-            "Omitted field {} of schema {} from swagger docs", field.name(), schema.getName());
-      } else {
-        properties.update(getFieldName(field), property);
+                "Omitted field {} of schema {} from swagger docs", field.name(), schema.getName());
+        continue;
       }
+      model.addProperty(getFieldName(field), property);
     }
 
-    return Option.apply(
-        new Model(
-            toName(cls),
-            toName(cls),
-            cls.getName(),
-            properties,
-            toDescriptionOpt(cls),
-            Option.<String>empty(),
-            Option.<String>empty(),
-            JavaConversions.asScalaBuffer(Collections.<String>emptyList()).toList()));
+    return model;
   }
 
-  @Override
-  public String toName(Class<?> cls) {
-    Schema schema = getSchema(cls);
-    if (schema == null) {
-      return super.toName(cls);
-    }
-
-    return getName(schema);
-  }
-
-  @Override
-  public Option<String> toDescriptionOpt(Class<?> cls) {
-    Schema schema = getSchema(cls);
-    if (schema == null) {
-      return Option.empty();
-    }
-
-    return Option.apply(adjustDescription(schema.getDoc()));
-  }
+//  @Override
+//  public Option<Model> read(Class<?> cls, Map<String, String> typeMap) {
+//    return Option.apply(
+//        new Model(
+//            toName(cls),
+//            toName(cls),
+//            cls.getName(),
+//            properties,
+//            toDescriptionOpt(cls),
+//            Option.<String>empty(),
+//            Option.<String>empty(),
+//            JavaConversions.asScalaBuffer(Collections.<String>emptyList()).toList()));
+//  }
 
   protected String getName(Schema schema) {
     return schema.getName();
@@ -123,7 +127,7 @@ public class SwaggerAvroModelConverter extends SwaggerSchemaConverter {
    *     model
    */
   @Nullable
-  protected ModelProperty parseSchema(Schema schema) {
+  protected Property parseSchema(Schema schema) {
     switch (schema.getType()) {
       case RECORD:
         return simpleProperty(getName(schema), schema.getFullName());
@@ -161,7 +165,7 @@ public class SwaggerAvroModelConverter extends SwaggerSchemaConverter {
             Option.apply(modelRef(elementsProperty))
         );
       case BOOLEAN:
-        return simpleProperty("boolean", "boolean");
+        return new BooleanProperty();
       case UNION:
         // We can't represent unions, except for the special case of a union with null, which can
         // can be treated as a non-required field.
@@ -201,34 +205,22 @@ public class SwaggerAvroModelConverter extends SwaggerSchemaConverter {
             memberProperty.items()
         );
       case STRING:
-        return simpleProperty("string", "string");
+        return new StringProperty();
       case BYTES:
         return simpleProperty("byte", "byte");
       case INT:
-        return simpleProperty("int", "int");
+        return new IntegerProperty();
       case LONG:
-        return simpleProperty("long", "long");
+        return new LongProperty();
       case FLOAT:
-        return simpleProperty("float", "float");
+        return new FloatProperty();
       case DOUBLE:
-        return simpleProperty("double", "double");
+        return new DoubleProperty();
       default:
         // TODO support Schema.Type.FIXED
         // Schema.Type.MAP is ignored because Swagger does not support maps
         return null;
     }
-  }
-
-  private ModelProperty simpleProperty(String type, String qualifiedType) {
-    return new ModelProperty(
-        type,
-        qualifiedType,
-        0,
-        true,
-        Option.<String>empty(),
-        AnyAllowableValues$.MODULE$,
-        Option.<ModelRef>empty()
-    );
   }
 
   private ModelRef modelRef(ModelProperty target) {
@@ -253,21 +245,16 @@ public class SwaggerAvroModelConverter extends SwaggerSchemaConverter {
    * @return the parsed property, or null if the property should be excluded from the Swagger model
    */
   @Nullable
-  protected ModelProperty parseField(Schema.Field field) {
-    ModelProperty property = parseSchema(field.schema());
+  protected Property parseField(Schema.Field field) {
+    Property property = parseSchema(field.schema());
     if (property == null) {
       return null;
     }
 
-    return new ModelProperty(
-        property.type(),
-        property.qualifiedType(),
-        field.pos(),
-        property.required(),
-        Option.apply(adjustDescription(field.doc())),
-        property.allowableValues(),
-        property.items()
-    );
+    property.setDescription(adjustDescription(field.doc()));
+    property.setPosition(field.pos());
+
+    return property;
   }
 
   /**
