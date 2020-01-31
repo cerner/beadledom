@@ -63,7 +63,6 @@
     <module>newrelic-jaxrs</module>
     <module>resteasy</module>
     <module>resteasy-genericresponse</module>
-    <module>stagemonitor</module>
     <module>swagger1</module>
     <module>swagger2</module>
     <module>testing</module>
@@ -99,7 +98,6 @@
     <junit.jupiter.version>5.5.2</junit.jupiter.version>
     <resteasy.version>3.6.3.Final</resteasy.version>
     <spotbugs.version>3.1.8</spotbugs.version>
-    <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
     <swagger2-core.version>1.5.22</swagger2-core.version>
     <tomcat-embed.version>7.0.103</tomcat-embed.version>
@@ -227,11 +225,6 @@
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
         <artifactId>beadledom-resteasy-genericresponse</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.cerner.beadledom</groupId>
-        <artifactId>beadledom-stagemonitor</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -472,21 +465,6 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>1.7.25</version>
-      </dependency>
-      <dependency>
-        <groupId>org.stagemonitor</groupId>
-        <artifactId>stagemonitor-core</artifactId>
-        <version>${stagemonitor.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.stagemonitor</groupId>
-        <artifactId>stagemonitor-requestmonitor</artifactId>
-        <version>${stagemonitor.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.stagemonitor</groupId>
-        <artifactId>stagemonitor-web</artifactId>
-        <version>${stagemonitor.version}</version>
       </dependency>
       <dependency>
         <groupId>org.tukaani</groupId>
