@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.annotation.Nullable;
 
 /**
@@ -23,34 +26,34 @@ import javax.annotation.Nullable;
     "locationType",
     "location"})
 @AutoValue
-@io.swagger.annotations.ApiModel(value = "Standard error details")
+@ApiModel(value = "Standard error details")
 @JsonDeserialize(builder = ErrorDetail.Builder.class)
 public abstract class ErrorDetail {
 
   @Nullable
   @JsonProperty("domain")
-  @io.swagger.annotations.ApiModelProperty(value = "A subsystem or context where an error occurred")
+  @ApiModelProperty(value = "A subsystem or context where an error occurred")
   public abstract String domain();
 
   @Nullable
   @JsonProperty("reason")
-  @io.swagger.annotations.ApiModelProperty(value = "short name or key for an error")
+  @ApiModelProperty(value = "short name or key for an error")
   public abstract String reason();
 
   @Nullable
   @JsonProperty("message")
-  @io.swagger.annotations.ApiModelProperty(value = "Human readable description of an error")
+  @ApiModelProperty(value = "Human readable description of an error")
   public abstract String message();
 
   @Nullable
   @JsonProperty("locationType")
-  @io.swagger.annotations.ApiModelProperty(
+  @ApiModelProperty(
       value = "Location or type of the value that caused an error")
   public abstract String locationType();
 
   @Nullable
   @JsonProperty("location")
-  @io.swagger.annotations.ApiModelProperty(value = "Name of the value that caused an error")
+  @ApiModelProperty(value = "Name of the value that caused an error")
   public abstract String location();
 
   public static Builder builder() {

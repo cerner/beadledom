@@ -3,6 +3,7 @@ package com.cerner.beadledom.pagination.parameters;
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
 import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration;
 import com.google.inject.Inject;
+import io.swagger.annotations.ApiParam;
 
 /**
  * Represent the limit parameter used for pagination.
@@ -18,7 +19,7 @@ import com.google.inject.Inject;
  */
 public class LimitParameter extends AbstractParameter<Integer> {
 
-  @io.swagger.annotations.ApiParam(value = "Total number of items to return in the response.")
+  @ApiParam(value = "Total number of items to return in the response.")
   private final String limit;
 
   @Inject

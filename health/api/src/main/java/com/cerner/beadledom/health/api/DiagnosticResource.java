@@ -3,6 +3,7 @@ package com.cerner.beadledom.health.api;
 import com.cerner.beadledom.health.dto.HealthDto;
 import com.cerner.beadledom.health.dto.HealthJsonViews;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -13,7 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@io.swagger.annotations.Api(value = "/health",
+@Api(value = "/health",
     description = "Diagnostic health check")
 @Path("meta/health/diagnostic")
 public interface DiagnosticResource {

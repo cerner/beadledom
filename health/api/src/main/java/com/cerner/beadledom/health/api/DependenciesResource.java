@@ -3,6 +3,11 @@ package com.cerner.beadledom.health.api;
 import com.cerner.beadledom.health.dto.HealthDependencyDto;
 import com.cerner.beadledom.health.dto.HealthJsonViews;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 
-@io.swagger.annotations.Api(value = "/health",
+@Api(value = "/health",
     description = "Lists health check dependencies")
 @Path("meta/health/diagnostic/dependencies")
 public interface DependenciesResource {
@@ -20,15 +25,15 @@ public interface DependenciesResource {
   @Produces(MediaType.TEXT_HTML)
   StreamingOutput getDependencyListingHtml();
 
-  @io.swagger.annotations.ApiOperation(value = "Dependency Listing",
+  @ApiOperation(value = "Dependency Listing",
       notes = "Returns the name, internal URL and external URL (if applicable) of all "
           + "dependencies.",
       response = HealthDependencyDto.class,
       responseContainer = "List")
-  @io.swagger.annotations.ApiResponses(value = {
-      @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy",
+  @ApiResponses(value = {
+      @ApiResponse(code = 503, message = "unhealthy",
           response = HealthDependencyDto.class),
-      @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
+      @ApiResponse(code = 200, message = "healthy",
           response = HealthDependencyDto.class)})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -40,16 +45,16 @@ public interface DependenciesResource {
   @Path("/{name}")
   Response getDependencyAvailabilityCheckHtml(@PathParam("name") String name);
 
-  @io.swagger.annotations.ApiOperation(value = "Availability Check for Dependency",
+  @ApiOperation(value = "Availability Check for Dependency",
       notes =
           "Invokes the basic availability check on the given dependency. "
               + "The response code will match the code returned by the dependency, and will be "
               + "omitted from the JSON.",
       response = HealthDependencyDto.class)
-  @io.swagger.annotations.ApiResponses(value = {
-      @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy",
+  @ApiResponses(value = {
+      @ApiResponse(code = 503, message = "unhealthy",
           response = HealthDependencyDto.class),
-      @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
+      @ApiResponse(code = 200, message = "healthy",
           response = HealthDependencyDto.class)})
   @GET
   @Produces(MediaType.APPLICATION_JSON)
