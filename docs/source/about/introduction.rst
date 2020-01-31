@@ -31,9 +31,6 @@ JAX-RS:
 RESTEasy:
   JAX-RS implementation used
 
-Stagemonitor:
-  Monitoring and metrics
-
 Swagger:
   API Documentation
 
@@ -46,7 +43,6 @@ Additional Reading
 * `JAX-RS 2.0 Spec <https://java.net/projects/jax-rs-spec/pages/Jaxrs20>`_
 * `JBoss RESTEasy <http://resteasy.jboss.org/>`_
 * `Netflix Governator <https://github.com/Netflix/governator/wiki>`_
-* `Stagemonitor <http://www.stagemonitor.org/>`_
 * `Swagger <https://github.com/swagger-api/swagger-core/wiki/Annotations>`_
 
 Java Requirements

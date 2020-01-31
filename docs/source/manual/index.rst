@@ -24,7 +24,6 @@ User Manual
     Beadledom Pagination <pagination>
     Beadledom Resteasy <resteasy>
     Beadledom Resteasy - Generic Response <resteasy_generic_response>
-    Beadledom Stagemonitor <stagemonitor>
     Beadledom Swagger 2 <swagger2>
     Beadledom Lifecycle <lifecycle>
     Beadledom Lifecycle - Governator <lifecycle_governator>

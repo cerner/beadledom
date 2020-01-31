@@ -126,11 +126,6 @@
       </dependency>
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
-        <artifactId>beadledom-stagemonitor</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.cerner.beadledom</groupId>
         <artifactId>beadledom-swagger2</artifactId>
         <version>${project.version}</version>
       </dependency>

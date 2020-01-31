@@ -250,7 +250,6 @@ resources
 
 :Files:
   - **log4j.properties** - configuration for our logger
-  - **stagemonitor.properties** - configuration for `stagemonitor <http://www.stagemonitor.org/>`_
   - **build-info.properties** - properties from the current build used in health checks
 
 All of the above mentioned configuration files are pretty standard. There are lots of other options
