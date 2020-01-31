@@ -3,6 +3,7 @@ package com.cerner.beadledom.avro;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.multibindings.MultibindingsScanner;
+import io.swagger.converter.ModelConverter;
 
 /**
  * A Guice module that provides Jackson Avro serialization support for Swagger.
@@ -23,10 +24,10 @@ import com.google.inject.multibindings.MultibindingsScanner;
 public class AvroSwaggerGuiceModule extends AbstractModule {
   @Override
   protected void configure() {
-//    Multibinder<ModelConverter> swaggerModelConverterBinder = Multibinder.newSetBinder(binder(),
-//        ModelConverter.class);
-//
-//    swaggerModelConverterBinder.addBinding().to(SwaggerAvroModelConverter.class);
+    Multibinder<ModelConverter> swaggerModelConverterBinder = Multibinder.newSetBinder(binder(),
+        ModelConverter.class);
+
+    swaggerModelConverterBinder.addBinding().to(SwaggerAvroModelConverter.class);
 
     install(MultibindingsScanner.asModule());
   }

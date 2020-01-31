@@ -15,17 +15,16 @@ import io.swagger.models.properties.LongProperty;
 import io.swagger.models.properties.Property;
 import io.swagger.models.properties.PropertyBuilder;
 import io.swagger.models.properties.StringProperty;
-import org.apache.avro.Schema;
-import org.apache.avro.specific.SpecificRecordBase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Iterator;
 import javax.annotation.Nullable;
+import org.apache.avro.Schema;
+import org.apache.avro.specific.SpecificRecordBase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This produces Swagger model schemas for Avro generated classes, by looking at the Avro schema
@@ -71,7 +70,9 @@ public class SwaggerAvroModelConverter implements ModelConverter {
     Class<?> clazz = (Class<?>) type;
 
     Schema schema = getSchema(clazz);
-    if (schema == null) return null;
+    if (schema == null) {
+      return null;
+    }
 
     ModelImpl model = new ModelImpl()
             .name("")
@@ -96,18 +97,18 @@ public class SwaggerAvroModelConverter implements ModelConverter {
   }
 
   //  @Override
-//  public Option<Model> read(Class<?> cls, Map<String, String> typeMap) {
-//    return Option.apply(
-//        new Model(
-//            toName(cls),
-//            toName(cls),
-//            cls.getName(),
-//            properties,
-//            toDescriptionOpt(cls),
-//            Option.<String>empty(),
-//            Option.<String>empty(),
-//            JavaConversions.asScalaBuffer(Collections.<String>emptyList()).toList()));
-//  }
+  //  public Option<Model> read(Class<?> cls, Map<String, String> typeMap) {
+  //    return Option.apply(
+  //        new Model(
+  //            toName(cls),
+  //            toName(cls),
+  //            cls.getName(),
+  //            properties,
+  //            toDescriptionOpt(cls),
+  //            Option.<String>empty(),
+  //            Option.<String>empty(),
+  //            JavaConversions.asScalaBuffer(Collections.<String>emptyList()).toList()));
+  //  }
 
   protected String getName(Schema schema) {
     return schema.getName();
@@ -121,8 +122,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
    * determined merely by looking at the schema. It may also be used recursively to build collection
    * and union types.
    *
-   * @return the parsed property, or null if it cannot/should not be represented in the Swagger
-   * model
+   * @return the parsed property, or null if it cannot/should not be represented in the Swagger model
    */
   @Nullable
   protected Property parseSchema(Schema schema) {

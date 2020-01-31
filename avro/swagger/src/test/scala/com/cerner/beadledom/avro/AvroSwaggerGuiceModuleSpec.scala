@@ -1,10 +1,15 @@
 package com.cerner.beadledom.avro
 
+import java.lang.annotation.Annotation
+import java.lang.reflect.Type
+import java.util
+
 import com.cerner.beadledom.testing.UnitSpec
 import com.google.inject.multibindings.ProvidesIntoSet
 import com.google.inject.{AbstractModule, Guice, Key, TypeLiteral}
-import com.wordnik.swagger.converter.ModelConverter
-import com.wordnik.swagger.model.Model
+import io.swagger.converter.{ModelConverter, ModelConverterContext}
+import io.swagger.models.Model
+import io.swagger.models.properties.Property
 
 /**
   * Spec tests for {@link AvroSwaggerGuiceModule}
@@ -33,7 +38,7 @@ class AvroSwaggerGuiceModuleSpec extends UnitSpec {
 }
 
 class Dependency1 extends ModelConverter {
-  override def toDescriptionOpt(cls: Class[_]): Option[String] = None
-  override def toName(cls: Class[_]): String = "dep1"
-  override def read(cls: Class[_], typeMap: Map[String, String]): Option[Model] = None
+  override def resolve(`type`: Type, context: ModelConverterContext, chain: util.Iterator[ModelConverter]): Model = null
+
+  override def resolveProperty(`type`: Type, context: ModelConverterContext, annotations: Array[Annotation], chain: util.Iterator[ModelConverter]): Property = null
 }
