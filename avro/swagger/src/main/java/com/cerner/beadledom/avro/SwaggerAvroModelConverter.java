@@ -2,37 +2,30 @@ package com.cerner.beadledom.avro;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.collect.Lists;
-import com.wordnik.swagger.converter.ModelConverter;
-import com.wordnik.swagger.converter.SwaggerSchemaConverter;
-import com.wordnik.swagger.core.SwaggerSpec;
-import com.wordnik.swagger.core.SwaggerTypes;
-import com.wordnik.swagger.model.AllowableListValues;
-import com.wordnik.swagger.model.AnyAllowableValues$;
-import com.wordnik.swagger.model.Model;
-import com.wordnik.swagger.model.ModelProperty;
-import com.wordnik.swagger.model.ModelRef;
-import java.lang.reflect.Field;
-import java.lang.reflect.Type;
-import java.util.Iterator;
-import javax.annotation.Nullable;
-
 import io.swagger.converter.ModelConverter;
 import io.swagger.converter.ModelConverterContext;
 import io.swagger.models.Model;
 import io.swagger.models.ModelImpl;
+import io.swagger.models.properties.ArrayProperty;
 import io.swagger.models.properties.BooleanProperty;
 import io.swagger.models.properties.DoubleProperty;
 import io.swagger.models.properties.FloatProperty;
 import io.swagger.models.properties.IntegerProperty;
 import io.swagger.models.properties.LongProperty;
 import io.swagger.models.properties.Property;
+import io.swagger.models.properties.PropertyBuilder;
 import io.swagger.models.properties.StringProperty;
 import org.apache.avro.Schema;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import scala.Option;
-import scala.collection.JavaConversions;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
+import java.util.Collections;
+import java.util.Iterator;
+import javax.annotation.Nullable;
 
 /**
  * This produces Swagger model schemas for Avro generated classes, by looking at the Avro schema
@@ -97,7 +90,12 @@ public class SwaggerAvroModelConverter implements ModelConverter {
     return model;
   }
 
-//  @Override
+  @Override
+  public Property resolveProperty(Type type, ModelConverterContext context, Annotation[] annotations, Iterator<ModelConverter> chain) {
+    return null;
+  }
+
+  //  @Override
 //  public Option<Model> read(Class<?> cls, Map<String, String> typeMap) {
 //    return Option.apply(
 //        new Model(
@@ -124,46 +122,33 @@ public class SwaggerAvroModelConverter implements ModelConverter {
    * and union types.
    *
    * @return the parsed property, or null if it cannot/should not be represented in the Swagger
-   *     model
+   * model
    */
   @Nullable
   protected Property parseSchema(Schema schema) {
     switch (schema.getType()) {
       case RECORD:
-        return simpleProperty(getName(schema), schema.getFullName());
+        return PropertyBuilder.build(getName(schema), schema.getFullName(), Collections.emptyMap());
       case ENUM:
         // TODO may wish to include the enum's documentation in the field documentation, since it
         // won't appear anywhere else
-        return new ModelProperty(
-            "string",
-            "string",
-            0,
-            true,
-            Option.<String>empty(),
-            new AllowableListValues(
-                JavaConversions.asScalaBuffer(schema.getEnumSymbols()).toList(),
-                "LIST"),
-            Option.<ModelRef>empty()
-        );
+        StringProperty property = new StringProperty();
+        property.required(true);
+        property.setPosition(0);
+        property.setEnum(schema.getEnumSymbols());
+
+        return property;
       case ARRAY:
-        ModelProperty elementsProperty = parseSchema(schema.getElementType());
+        Property elementsProperty = parseSchema(schema.getElementType());
         if (elementsProperty == null) {
           return null;
         }
 
-        if (SwaggerSpec.containerTypes().contains(elementsProperty.type())) {
-          LOGGER.debug("Cannot include nested collection schema in swagger docs: {}", schema);
-          return null;
-        }
-        return new ModelProperty(
-            "List",
-            "List",
-            elementsProperty.position(),
-            true,
-            elementsProperty.description(),
-            elementsProperty.allowableValues(),
-            Option.apply(modelRef(elementsProperty))
-        );
+        ArrayProperty arrayProperty = new ArrayProperty();
+        arrayProperty.setPosition(elementsProperty.getPosition());
+        arrayProperty.setDefault(elementsProperty.getDescription());
+
+        return arrayProperty;
       case BOOLEAN:
         return new BooleanProperty();
       case UNION:
@@ -182,32 +167,29 @@ public class SwaggerAvroModelConverter implements ModelConverter {
         }
         if (memberSchemas.size() > 1) {
           LOGGER.debug(
-              "Cannot include schema with union (containing multiple non-null types) in swagger "
-                  + "docs: {}", schema);
+                  "Cannot include schema with union (containing multiple non-null types) in swagger "
+                          + "docs: {}", schema);
           return null;
         } else if (memberSchemas.size() < 1) {
           LOGGER.warn("Union has no non-null types, this should be impossible: {}", schema);
           return null;
         }
 
-        ModelProperty memberProperty = parseSchema(memberSchemas.get(0));
+        Property memberProperty = parseSchema(memberSchemas.get(0));
         if (memberProperty == null) {
           return null;
         }
 
-        return new ModelProperty(
-            memberProperty.type(),
-            memberProperty.qualifiedType(),
-            memberProperty.position(),
-            false,
-            memberProperty.description(),
-            memberProperty.allowableValues(),
-            memberProperty.items()
-        );
+        Property p = PropertyBuilder.build(memberProperty.getType(), memberProperty.getFormat(), Collections.emptyMap());
+        p.setPosition(memberProperty.getPosition());
+        p.setRequired(false);
+        p.setDescription(memberProperty.getDescription());
+
+        return p;
       case STRING:
         return new StringProperty();
       case BYTES:
-        return simpleProperty("byte", "byte");
+        return new StringProperty("byte");
       case INT:
         return new IntegerProperty();
       case LONG:
@@ -221,22 +203,6 @@ public class SwaggerAvroModelConverter implements ModelConverter {
         // Schema.Type.MAP is ignored because Swagger does not support maps
         return null;
     }
-  }
-
-  private ModelRef modelRef(ModelProperty target) {
-    if (SwaggerTypes.primitives().contains(target.type())) {
-      return new ModelRef(
-          target.type(),
-          Option.<String>empty(),
-          Option.apply(target.qualifiedType())
-      );
-    }
-
-    return new ModelRef(
-        null,
-        Option.apply(target.type()),
-        Option.apply(target.qualifiedType())
-    );
   }
 
   /**
@@ -293,8 +259,8 @@ public class SwaggerAvroModelConverter implements ModelConverter {
    */
   protected String getFieldName(Schema.Field field) {
     return ((PropertyNamingStrategy.SnakeCaseStrategy)
-        PropertyNamingStrategy.SNAKE_CASE)
-        .translate(field.name());
+            PropertyNamingStrategy.SNAKE_CASE)
+            .translate(field.name());
   }
 
   /**
