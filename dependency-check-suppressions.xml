@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
 
-  <!-- Remove all suppressions with 4.0 release; stagemonitor and swagger1 modules are being deleted -->
-
   <suppress>
     <notes><![CDATA[
    file name: jackson-mapper-asl-1.9.13.jar
@@ -20,6 +18,5 @@
     <vulnerabilityName>CVE-2019-17267</vulnerabilityName>
     <vulnerabilityName>CVE-2019-10172</vulnerabilityName>
   </suppress>
-
 
 </suppressions>
