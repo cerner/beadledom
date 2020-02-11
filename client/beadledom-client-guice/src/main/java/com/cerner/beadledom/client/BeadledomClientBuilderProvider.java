@@ -1,19 +1,16 @@
 package com.cerner.beadledom.client;
 
 import com.cerner.beadledom.guice.dynamicbindings.DynamicBindingProvider;
-
 import com.google.common.base.Optional;
 import com.google.inject.Binding;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Key;
-
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import javax.inject.Provider;
 import javax.ws.rs.core.Feature;
 

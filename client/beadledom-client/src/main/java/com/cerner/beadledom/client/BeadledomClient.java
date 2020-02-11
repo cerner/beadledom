@@ -1,7 +1,6 @@
 package com.cerner.beadledom.client;
 
 import java.net.URI;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Link;
@@ -16,7 +15,8 @@ import javax.ws.rs.core.UriBuilder;
  */
 public abstract class BeadledomClient implements Client {
 
-  protected BeadledomClient() {}
+  protected BeadledomClient() {
+  }
 
   /**
    * A boolean indicator to check if the Client is still alive.

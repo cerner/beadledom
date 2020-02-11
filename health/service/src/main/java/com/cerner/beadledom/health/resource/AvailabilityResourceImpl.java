@@ -6,7 +6,6 @@ import com.cerner.beadledom.health.internal.HealthTemplateFactory;
 import com.cerner.beadledom.jaxrs.StreamingWriterOutput;
 import com.cerner.beadledom.metadata.ServiceMetadata;
 import com.github.mustachejava.MustacheFactory;
-
 import javax.inject.Inject;
 import javax.ws.rs.core.StreamingOutput;
 

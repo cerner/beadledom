@@ -1,9 +1,7 @@
 package com.cerner.beadledom.client;
 
 import com.cerner.beadledom.guice.dynamicbindings.DynamicBindingProvider;
-
 import java.lang.annotation.Annotation;
-
 import javax.inject.Inject;
 import javax.inject.Provider;
 

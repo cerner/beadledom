@@ -8,7 +8,6 @@ import com.cerner.beadledom.health.internal.presenter.HealthPresenter;
 import com.cerner.beadledom.jaxrs.StreamingWriterOutput;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
-
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 

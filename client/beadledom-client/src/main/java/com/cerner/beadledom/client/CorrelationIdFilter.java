@@ -2,7 +2,6 @@ package com.cerner.beadledom.client;
 
 import java.io.IOException;
 import java.util.UUID;
-
 import javax.annotation.Nullable;
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;

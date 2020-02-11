@@ -17,6 +17,12 @@ public class SwaggerUiResource {
   private static final MustacheFactory MUSTACHE_FACTORY = new DefaultMustacheFactory(
       "com/cerner/beadledom/swagger2");
 
+  /**
+   * Returns the Swagger UI.
+   *
+   * @param uriInfo The UriInfo
+   * @return the Swagger UI
+   */
   @GET
   @Path("/ui")
   @Produces(MediaType.TEXT_HTML)

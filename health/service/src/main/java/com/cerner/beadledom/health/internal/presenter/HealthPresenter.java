@@ -5,7 +5,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.cerner.beadledom.health.dto.HealthDependencyDto;
 import com.cerner.beadledom.health.dto.HealthDto;
 import com.google.common.collect.Lists;
-
 import java.util.List;
 import java.util.Optional;
 

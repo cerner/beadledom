@@ -28,6 +28,12 @@ public class ResourceOneImpl {
     return json;
   }
 
+  /**
+   * Patch Resource.
+   *
+   * @param json JSON patch
+   * @return The updated representation
+   */
   @PATCH
   @Produces("application/json")
   @Consumes("application/json")

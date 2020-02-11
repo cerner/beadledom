@@ -11,7 +11,6 @@ import com.cerner.beadledom.jaxrs.StreamingWriterOutput;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.google.inject.Inject;
-
 import java.util.List;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;

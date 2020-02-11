@@ -1,7 +1,6 @@
 package com.cerner.beadledom.client.proxy;
 
 import com.cerner.beadledom.jaxrs.GenericResponse;
-
 import javassist.CannotCompileException;
 import javassist.ClassClassPath;
 import javassist.ClassPool;
@@ -13,7 +12,6 @@ import javassist.bytecode.AttributeInfo;
 import javassist.bytecode.BadBytecode;
 import javassist.bytecode.MethodInfo;
 import javassist.bytecode.SignatureAttribute;
-
 import javax.ws.rs.core.Response;
 
 /**

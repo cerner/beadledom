@@ -4,7 +4,6 @@ import com.cerner.beadledom.client.example.model.JsonOne;
 import com.cerner.beadledom.jaxrs.GenericResponse;
 import com.cerner.beadledom.pagination.OffsetPaginatedList;
 import com.cerner.beadledom.pagination.parameters.OffsetPaginationParameters;
-
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

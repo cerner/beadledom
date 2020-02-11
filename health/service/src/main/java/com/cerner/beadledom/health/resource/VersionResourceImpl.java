@@ -7,10 +7,8 @@ import com.cerner.beadledom.health.internal.presenter.BuildPresenter;
 import com.cerner.beadledom.jaxrs.StreamingWriterOutput;
 import com.cerner.beadledom.metadata.BuildInfo;
 import com.cerner.beadledom.metadata.ServiceMetadata;
-
 import com.github.mustachejava.MustacheFactory;
 import com.google.inject.Inject;
-
 import javax.ws.rs.core.StreamingOutput;
 
 /**
