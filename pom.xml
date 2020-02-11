@@ -983,12 +983,12 @@
     <repository>
       <id>typesafe-release</id>
       <name>Typesafe Release Repository</name>
-      <url>http://repo.typesafe.com/typesafe/releases</url>
+      <url>https://repo.typesafe.com/typesafe/releases</url>
     </repository>
     <repository>
       <id>oauth-httpclient4-repo</id>
       <name>oauth-httpclient4 Repository</name>
-      <url>http://oauth.googlecode.com/svn/code/maven/</url>
+      <url>https://oauth.googlecode.com/svn/code/maven/</url>
     </repository>
   </repositories>
 
