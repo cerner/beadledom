@@ -1,7 +1,6 @@
 package com.cerner.beadledom.client.resteasy;
 
 import com.cerner.beadledom.client.proxy.ResourceProxyFactory;
-
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 /**

@@ -1,11 +1,9 @@
 package com.cerner.beadledom.client;
 
 import com.cerner.beadledom.guice.BindingAnnotations;
-
 import com.google.inject.AbstractModule;
 import com.google.inject.Key;
 import com.google.inject.multibindings.OptionalBinder;
-
 import java.lang.annotation.Annotation;
 
 /**

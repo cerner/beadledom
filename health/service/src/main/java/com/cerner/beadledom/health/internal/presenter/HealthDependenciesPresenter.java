@@ -3,7 +3,6 @@ package com.cerner.beadledom.health.internal.presenter;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.cerner.beadledom.health.dto.HealthDependenciesDto;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -3,7 +3,6 @@ package com.cerner.beadledom.health.internal.presenter;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.cerner.beadledom.health.dto.ServerDto;
-
 import java.time.Instant;
 import java.util.Optional;
 

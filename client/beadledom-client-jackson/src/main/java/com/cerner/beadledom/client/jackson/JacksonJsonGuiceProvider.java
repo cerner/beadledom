@@ -4,7 +4,6 @@ import com.cerner.beadledom.guice.BindingAnnotations;
 import com.cerner.beadledom.guice.dynamicbindings.DynamicBindingProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-
 import java.lang.annotation.Annotation;
 import javax.inject.Inject;
 import javax.inject.Provider;

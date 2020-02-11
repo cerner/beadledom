@@ -41,6 +41,12 @@ public class SwaggerUiResource {
       "swagger-ui.js"
   );
 
+  /**
+   * Returns the Swagger UI.
+   *
+   * @param uriInfo The UriInfo
+   * @return the Swagger UI
+   */
   @GET
   @Path("/ui")
   @Produces(MediaType.TEXT_HTML)
@@ -56,6 +62,13 @@ public class SwaggerUiResource {
   //
   // This is served at /meta/swagger, one level above the UI HTML page /meta/swagger/ui, so that the hard-coded
   // relative link to "images/throbber.gif" in swagger-ui.json will work.
+
+  /**
+   * Serves the assets required by the Swagger UI.
+   *
+   * @param assetPath The asset path
+   * @return The asset
+   */
   @GET
   @Path("/{asset: .+}")
   public Response getSwaggerUiAsset(@PathParam("asset") String assetPath) {

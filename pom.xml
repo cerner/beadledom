@@ -94,15 +94,15 @@
     <scala.version>2.11.12</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
     <governator.version>1.17.5</governator.version>
-    <jackson.version>2.10.0</jackson.version>
+    <jackson.version>2.10.2</jackson.version>
     <resteasy.version>3.6.3.Final</resteasy.version>
     <spotbugs.version>3.1.8</spotbugs.version>
     <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
     <swagger2-core.version>1.5.22</swagger2-core.version>
-    <tomcat-embed.version>7.0.94</tomcat-embed.version>
+    <tomcat-embed.version>7.0.99</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
-    <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
@@ -623,7 +623,7 @@
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>8.11</version>
+            <version>8.29</version>
           </dependency>
         </dependencies>
         <configuration>
@@ -983,12 +983,7 @@
     <repository>
       <id>typesafe-release</id>
       <name>Typesafe Release Repository</name>
-      <url>http://repo.typesafe.com/typesafe/releases</url>
-    </repository>
-    <repository>
-      <id>oauth-httpclient4-repo</id>
-      <name>oauth-httpclient4 Repository</name>
-      <url>http://oauth.googlecode.com/svn/code/maven/</url>
+      <url>https://repo.typesafe.com/typesafe/releases</url>
     </repository>
   </repositories>
 

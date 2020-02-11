@@ -2,12 +2,10 @@ package com.cerner.beadledom.client;
 
 import com.cerner.beadledom.client.resteasy.ResteasyClientBuilderFactory;
 import com.cerner.beadledom.guice.dynamicbindings.AnnotatedModule;
-
 import com.google.common.base.Optional;
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
 import com.google.inject.multibindings.OptionalBinder;
-
 import java.lang.annotation.Annotation;
 
 /**

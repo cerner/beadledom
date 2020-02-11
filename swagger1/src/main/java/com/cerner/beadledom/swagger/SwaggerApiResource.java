@@ -22,6 +22,17 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("/api-docs")
 public class SwaggerApiResource extends ApiListingResourceJSON {
+
+  /**
+   * Serves the Swagger API.
+   *
+   * @param route the route
+   * @param app the app
+   * @param sc the service config
+   * @param headers the headers
+   * @param uriInfo the uri info
+   * @return The Swagger API document.
+   */
   @Override
   public Response apiDeclaration(
       @PathParam("route") String route,

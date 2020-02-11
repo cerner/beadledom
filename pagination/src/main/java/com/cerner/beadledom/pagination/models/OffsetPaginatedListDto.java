@@ -1,7 +1,6 @@
 package com.cerner.beadledom.pagination.models;
 
 import com.cerner.beadledom.pagination.OffsetPaginatedList;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import javax.annotation.Nullable;

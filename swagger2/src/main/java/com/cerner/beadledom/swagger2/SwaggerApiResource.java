@@ -22,6 +22,16 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("/api-docs")
 public class SwaggerApiResource extends BaseApiListingResource {
+
+  /**
+   * Serves the Swagger API.
+   *
+   * @param app the app
+   * @param context the servlet context
+   * @param headers the headers
+   * @param uriInfo the uri info
+   * @return The Swagger API document.
+   */
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @ApiOperation(value = "The swagger definition in JSON", hidden = true)

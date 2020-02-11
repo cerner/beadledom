@@ -28,6 +28,14 @@
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
     </module>
+    <!-- Ignore package, imports, URLs, and fully qualified class names. -->
+    <!-- See: http://stackoverflow.com/questions/5205339/regular-expression-matching-fully-qualified-java-classes -->
+    <module name="LineLength">
+        <property name="fileExtensions" value="java"/>
+        <property name="max" value="100"/>
+        <property name="ignorePattern"
+            value="^package.*|^import.*|a href|href|http://|https://|ftp://|([\p{L}_$][\p{L}\p{N}_$]*\.)*[\p{L}_$][\p{L}\p{N}_$]*"/>
+    </module>
 
     <module name="TreeWalker">
         <module name="OuterTypeFilename"/>
@@ -42,13 +50,6 @@
             <property name="allowByTailComment" value="true"/>
             <property name="allowNonPrintableEscapes" value="true"/>
         </module>
-        <!-- Ignore package, imports, URLs, and fully qualified class names. -->
-        <!-- See: http://stackoverflow.com/questions/5205339/regular-expression-matching-fully-qualified-java-classes -->
-        <module name="LineLength">
-            <property name="max" value="100"/>
-            <property name="ignorePattern"
-                      value="^package.*|^import.*|a href|href|http://|https://|ftp://|([\p{L}_$][\p{L}\p{N}_$]*\.)*[\p{L}_$][\p{L}\p{N}_$]*"/>
-        </module>
         <module name="AvoidStarImport"/>
         <module name="OneTopLevelClass"/>
         <module name="NoLineWrap"/>
@@ -59,7 +60,6 @@
         </module>
         <module name="NeedBraces"/>
         <module name="LeftCurly"/>
-        <module name="RightCurly"/>
         <module name="RightCurly">
             <property name="option" value="alone"/>
             <property name="tokens"
@@ -198,12 +198,12 @@
         <module name="JavadocMethod">
             <property name="scope" value="public"/>
             <property name="allowMissingParamTags" value="true"/>
-            <property name="allowMissingThrowsTags" value="true"/>
             <property name="allowMissingReturnTag" value="true"/>
-            <property name="minLineCount" value="2"/>
             <property name="allowedAnnotations" value="Override, Test, GET, POST, PUT, PATCH, DELETE, HEAD"/>
-            <property name="allowThrowsTagsForSubclasses" value="true"/>
-            <property name="suppressLoadErrors" value="true"/>
+        </module>
+        <module name="MissingJavadocMethod">
+            <property name="scope" value="public"/>
+            <property name="minLineCount" value="2"/>
         </module>
         <module name="MethodName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>

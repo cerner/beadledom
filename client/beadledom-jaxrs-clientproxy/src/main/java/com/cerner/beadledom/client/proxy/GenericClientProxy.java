@@ -2,13 +2,11 @@ package com.cerner.beadledom.client.proxy;
 
 import com.cerner.beadledom.jaxrs.DelegatingGenericResponse;
 import com.cerner.beadledom.jaxrs.GenericResponse;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
