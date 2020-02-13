@@ -22,6 +22,8 @@ class ExponentialBackoffHttpRequestRetryHandler extends StandardHttpRequestRetry
 
   @Override
   public boolean retryRequest(IOException exception, int executionCount, HttpContext context) {
+    boolean shouldRetry = super.retryRequest(exception, executionCount, context);
+
     // Adding the delay here is not ideal, but there doesn't appear to be a better place in Apache
     // httpclient similar to ServiceUnavailableRetryStrategy#getRetryInterval.
     try {
@@ -30,12 +32,12 @@ class ExponentialBackoffHttpRequestRetryHandler extends StandardHttpRequestRetry
       // ignore
     }
 
-    return super.retryRequest(exception, executionCount, context);
+    return shouldRetry;
   }
 
   // VisibleForTesting
   int calculateRetryDelay(int executionCount) {
-    double backoffMultiplier = Math.pow(BACKOFF_FACTOR, (executionCount - 1));
+    double backoffMultiplier = Math.pow(BACKOFF_FACTOR, executionCount - 1);
     return (int) (INITIAL_DELAY * backoffMultiplier + jitter());
   }
 
