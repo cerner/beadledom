@@ -25,7 +25,7 @@ class ExponentialBackoffHttpRequestRetryHandler extends StandardHttpRequestRetry
     if (!super.retryRequest(exception, executionCount, context)) {
       return false;
     }
-    
+
     // Adding the delay here is not ideal, but there doesn't appear to be a better place in Apache
     // httpclient similar to ServiceUnavailableRetryStrategy#getRetryInterval.
     try {
