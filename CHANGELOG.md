@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Changed
+* Retryable IOExceptions in HTTP clients will now use a simple exponential backoff delay instead of retrying immediately.
+
 ## 3.4 - 8 November 2019
 
 ### Changed

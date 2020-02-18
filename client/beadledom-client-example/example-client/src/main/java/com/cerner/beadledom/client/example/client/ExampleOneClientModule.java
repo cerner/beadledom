@@ -53,9 +53,9 @@ public class ExampleOneClientModule extends AbstractModule {
   BeadledomClientConfiguration provideClientConfig() {
     return BeadledomClientConfiguration.builder()
         .maxPooledPerRouteSize(60)
-        .socketTimeoutMillis(200)
-        .connectionTimeoutMillis(200)
-        .ttlMillis(200)
+        .socketTimeoutMillis(400)
+        .connectionTimeoutMillis(400)
+        .ttlMillis(400)
         .connectionPoolSize(60).build();
   }
 }

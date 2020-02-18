@@ -26,7 +26,6 @@ import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultRedirectStrategy;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
@@ -343,7 +342,7 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
             .setDefaultSocketConfig(socketConfig)
             .setRedirectStrategy(redirectStrategy)
             .setRetryHandler(
-                new StandardHttpRequestRetryHandler(3, true))
+                new ExponentialBackoffHttpRequestRetryHandler(3, false))
             .setServiceUnavailableRetryStrategy(
                 new DefaultServiceUnavailableRetryStrategy(DEFAULT_RETRY_INTERVAL_MILLIS));
 

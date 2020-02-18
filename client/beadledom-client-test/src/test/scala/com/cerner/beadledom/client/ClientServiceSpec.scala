@@ -1,8 +1,8 @@
 package com.cerner.beadledom.client
 
+import com.cerner.beadledom.client.example.PaginatedClientResource
 import com.cerner.beadledom.client.example.client._
 import com.cerner.beadledom.client.example.model.{JsonOne, JsonOneOffsetPaginatedListDto, JsonTwo}
-import com.cerner.beadledom.client.example.PaginatedClientResource
 import com.cerner.beadledom.jaxrs.GenericResponse
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.google.inject._
@@ -73,7 +73,7 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : JsonOneOffsetPaginatedListDto = paginatedResource.index(0L, 10).body()
+        val results: JsonOneOffsetPaginatedListDto = paginatedResource.index(0L, 10).body()
 
         results mustNot be(null)
         results.totalResults() mustBe 1000
@@ -89,7 +89,7 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : JsonOneOffsetPaginatedListDto = paginatedResource.index(1L, 10).body()
+        val results: JsonOneOffsetPaginatedListDto = paginatedResource.index(1L, 10).body()
 
         results mustNot be(null)
         results.totalResults() mustBe 1000
@@ -116,7 +116,8 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(-1L, 1)
+        val results: GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource
+            .index(-1L, 1)
 
         results mustNot be(null)
         results.getStatus mustBe 400
@@ -127,7 +128,8 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, -10)
+        val results: GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource
+            .index(1L, -10)
 
         results mustNot be(null)
         results.getStatus mustBe 400
@@ -138,7 +140,8 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
         val paginatedResource = injector.getInstance(classOf[PaginatedClientResource])
 
-        val results : GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource.index(1L, 20)
+        val results: GenericResponse[JsonOneOffsetPaginatedListDto] = paginatedResource
+            .index(1L, 20)
 
         results mustNot be(null)
         results.getStatus mustBe 400
@@ -152,9 +155,9 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
       beadledomClientConfiguration.connectionPoolSize() must be(60)
       beadledomClientConfiguration.maxPooledPerRouteSize() must be(60)
-      beadledomClientConfiguration.socketTimeoutMillis() must be(200)
-      beadledomClientConfiguration.connectionTimeoutMillis() must be(200)
-      beadledomClientConfiguration.ttlMillis() must be(200)
+      beadledomClientConfiguration.socketTimeoutMillis() must be(400)
+      beadledomClientConfiguration.connectionTimeoutMillis() must be(400)
+      beadledomClientConfiguration.ttlMillis() must be(400)
     }
   }
 }
