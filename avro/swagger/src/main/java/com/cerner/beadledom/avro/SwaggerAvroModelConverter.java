@@ -93,7 +93,13 @@ public class SwaggerAvroModelConverter implements ModelConverter {
 
   @Override
   public Property resolveProperty(Type type, ModelConverterContext context, Annotation[] annotations, Iterator<ModelConverter> chain) {
-    return null;
+    if (!(type instanceof Schema.Field)) {
+      return null;
+    }
+
+    Schema.Field field = (Schema.Field) type;
+
+    return parseField(field);
   }
 
   //  @Override
@@ -189,7 +195,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
       case STRING:
         return new StringProperty();
       case BYTES:
-        return new StringProperty("byte");
+        return new StringProperty("byte"); // todo
       case INT:
         return new IntegerProperty();
       case LONG:
