@@ -46,6 +46,7 @@
     <module>common</module>
     <module>configuration</module>
     <module>core</module>
+    <module>correlation</module>
     <module>docs</module>
     <module>guice</module>
     <module>guice-dynamicbindings</module>
@@ -150,6 +151,11 @@
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
         <artifactId>beadledom-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.cerner.beadledom</groupId>
+        <artifactId>beadledom-correlation</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

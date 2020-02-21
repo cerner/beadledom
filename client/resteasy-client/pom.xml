@@ -17,6 +17,10 @@
     </dependency>
     <dependency>
       <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-correlation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
       <artifactId>beadledom-jaxrs-clientproxy</artifactId>
     </dependency>
     <dependency>
