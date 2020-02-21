@@ -152,8 +152,8 @@ class ClientServiceSpec(contextRoot: String, servicePort: Int)
 
       beadledomClientConfiguration.connectionPoolSize() must be(60)
       beadledomClientConfiguration.maxPooledPerRouteSize() must be(60)
-      beadledomClientConfiguration.socketTimeoutMillis() must be(200)
-      beadledomClientConfiguration.connectionTimeoutMillis() must be(200)
+      beadledomClientConfiguration.socketTimeoutMillis() must be(1000)
+      beadledomClientConfiguration.connectionTimeoutMillis() must be(1000)
       beadledomClientConfiguration.ttlMillis() must be(200)
     }
   }
