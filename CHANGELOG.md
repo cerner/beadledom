@@ -1,9 +1,10 @@
 # Beadledom Changelog
 
-## [Unreleased]
+## 3.5 - 21 February 2020
 
 ### Changed
 * Retryable IOExceptions in HTTP clients will now use a simple exponential backoff delay instead of retrying immediately.
+* Update Jackson to 2.10.2 and Tomcat to 7.0.99
 
 ## 3.4 - 8 November 2019
 
