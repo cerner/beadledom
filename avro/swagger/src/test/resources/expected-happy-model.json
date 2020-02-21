@@ -6,13 +6,11 @@
       "properties" : {
         "enum_field" : {
           "type" : "string",
-          "position" : 0,
           "description" : "Comments work on enum fields.",
           "enum" : [ "EBULLIENT", "BUOYANT", "PEPPY", "FULL_OF_BEANS" ]
         },
         "optional_enum_field" : {
-          "type" : "string",
-          "position" : 0
+          "type" : "string"
         },
         "primitive_array_field" : {
           "type" : "array"

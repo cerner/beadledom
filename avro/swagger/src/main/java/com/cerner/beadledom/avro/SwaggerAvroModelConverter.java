@@ -127,7 +127,6 @@ public class SwaggerAvroModelConverter implements ModelConverter {
         // won't appear anywhere else
         StringProperty property = new StringProperty();
         property.required(true);
-        property.setPosition(0);
         property.setEnum(schema.getEnumSymbols());
 
         return property;
@@ -138,7 +137,6 @@ public class SwaggerAvroModelConverter implements ModelConverter {
         }
 
         ArrayProperty arrayProperty = new ArrayProperty();
-        arrayProperty.setPosition(elementsProperty.getPosition());
         arrayProperty.setDefault(elementsProperty.getDescription());
 
         return arrayProperty;
@@ -174,7 +172,6 @@ public class SwaggerAvroModelConverter implements ModelConverter {
         }
 
         Property p = PropertyBuilder.build(memberProperty.getType(), memberProperty.getFormat(), Collections.emptyMap());
-        p.setPosition(memberProperty.getPosition());
         p.setRequired(false);
         p.setDescription(memberProperty.getDescription());
 
