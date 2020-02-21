@@ -5,7 +5,7 @@
   <parent>
     <artifactId>beadledom-parent</artifactId>
     <groupId>com.cerner.beadledom</groupId>
-    <version>3.5-SNAPSHOT</version>
+    <version>3.5</version>
   </parent>
 
   <artifactId>beadledom-common</artifactId>
