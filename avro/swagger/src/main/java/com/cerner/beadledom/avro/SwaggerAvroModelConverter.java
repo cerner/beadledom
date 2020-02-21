@@ -182,7 +182,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
       case STRING:
         return new StringProperty();
       case BYTES:
-        return new StringProperty("byte"); // todo
+        return new StringProperty("byte");
       case INT:
         return new IntegerProperty();
       case LONG:
