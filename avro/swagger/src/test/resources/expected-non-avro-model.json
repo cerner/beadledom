@@ -4,8 +4,8 @@
     "NonAvroModel" : {
       "type" : "object",
       "properties" : {
-        "foo" : {
-          "type" : "string"
+        "foo": {
+          "type": "string"
         }
       },
       "description" : "Sooo boring."

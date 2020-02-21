@@ -64,19 +64,20 @@ public class SwaggerAvroModelConverter implements ModelConverter {
   @Override
   public Model resolve(Type type, ModelConverterContext context, Iterator<ModelConverter> chain) {
     if (!(type instanceof Class<?>)) {
-      return null;
+      return chain.next().resolve(type, context, chain);
     }
 
     Class<?> clazz = (Class<?>) type;
 
     Schema schema = getSchema(clazz);
     if (schema == null) {
-      return null;
+      return chain.next().resolve(type, context, chain);
     }
 
+    // definition
     ModelImpl model = new ModelImpl()
-            .name("")
-            .description("");
+            .name(getName(schema))
+            .description(adjustDescription(schema.getDoc()));
 
     for (Schema.Field field : schema.getFields()) {
       Property property = parseField(field);
@@ -94,27 +95,13 @@ public class SwaggerAvroModelConverter implements ModelConverter {
   @Override
   public Property resolveProperty(Type type, ModelConverterContext context, Annotation[] annotations, Iterator<ModelConverter> chain) {
     if (!(type instanceof Schema.Field)) {
-      return null;
+      return chain.next().resolveProperty(type, context, annotations, chain);
     }
 
     Schema.Field field = (Schema.Field) type;
 
     return parseField(field);
   }
-
-  //  @Override
-  //  public Option<Model> read(Class<?> cls, Map<String, String> typeMap) {
-  //    return Option.apply(
-  //        new Model(
-  //            toName(cls),
-  //            toName(cls),
-  //            cls.getName(),
-  //            properties,
-  //            toDescriptionOpt(cls),
-  //            Option.<String>empty(),
-  //            Option.<String>empty(),
-  //            JavaConversions.asScalaBuffer(Collections.<String>emptyList()).toList()));
-  //  }
 
   protected String getName(Schema schema) {
     return schema.getName();
@@ -224,7 +211,6 @@ public class SwaggerAvroModelConverter implements ModelConverter {
     }
 
     property.setDescription(adjustDescription(field.doc()));
-    property.setPosition(field.pos());
 
     return property;
   }
