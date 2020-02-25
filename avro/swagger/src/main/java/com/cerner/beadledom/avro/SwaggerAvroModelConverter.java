@@ -6,6 +6,8 @@ import io.swagger.converter.ModelConverter;
 import io.swagger.converter.ModelConverterContext;
 import io.swagger.models.Model;
 import io.swagger.models.ModelImpl;
+import io.swagger.models.RefModel;
+import io.swagger.models.Swagger;
 import io.swagger.models.properties.ArrayProperty;
 import io.swagger.models.properties.BooleanProperty;
 import io.swagger.models.properties.DoubleProperty;
@@ -15,16 +17,18 @@ import io.swagger.models.properties.LongProperty;
 import io.swagger.models.properties.Property;
 import io.swagger.models.properties.PropertyBuilder;
 import io.swagger.models.properties.StringProperty;
+import org.apache.avro.Schema;
+import org.apache.avro.specific.SpecificRecordBase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import scala.annotation.meta.field;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Iterator;
 import javax.annotation.Nullable;
-import org.apache.avro.Schema;
-import org.apache.avro.specific.SpecificRecordBase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This produces Swagger model schemas for Avro generated classes, by looking at the Avro schema
@@ -121,7 +125,15 @@ public class SwaggerAvroModelConverter implements ModelConverter {
   protected Property parseSchema(Schema schema) {
     switch (schema.getType()) {
       case RECORD:
-        return PropertyBuilder.build(getName(schema), schema.getFullName(), Collections.emptyMap());
+        System.out.println(schema);
+        return null;
+//        Property record = PropertyBuilder.build(getName(schema), schema.getFullName(), Collections.emptyMap());
+//        if (record == null) {
+//          return null;
+//        }
+//
+//        record.setRequired(true);
+//        return record;
       case ENUM:
         // TODO may wish to include the enum's documentation in the field documentation, since it
         // won't appear anywhere else
@@ -136,9 +148,14 @@ public class SwaggerAvroModelConverter implements ModelConverter {
           return null;
         }
 
-        return new ArrayProperty(elementsProperty);
+        Property arrayProperty = new ArrayProperty(elementsProperty);
+        arrayProperty.setRequired(true);
+
+        return arrayProperty;
       case BOOLEAN:
-        return new BooleanProperty();
+        Property booleanProperty = new BooleanProperty();
+        booleanProperty.setRequired(true);
+        return booleanProperty;
       case UNION:
         // We can't represent unions, except for the special case of a union with null, which can
         // can be treated as a non-required field.
@@ -174,17 +191,29 @@ public class SwaggerAvroModelConverter implements ModelConverter {
 
         return p;
       case STRING:
-        return new StringProperty();
+        Property stringProperty = new StringProperty();
+        stringProperty.setRequired(true);
+        return stringProperty;
       case BYTES:
-        return new StringProperty("byte");
+        Property bytesProperty = new StringProperty("byte");
+        bytesProperty.setRequired(true);
+        return bytesProperty;
       case INT:
-        return new IntegerProperty();
+        Property intProperty = new IntegerProperty();
+        intProperty.setRequired(true);
+        return intProperty;
       case LONG:
-        return new LongProperty();
+        Property longProperty = new LongProperty();
+        longProperty.setRequired(true);
+        return longProperty;
       case FLOAT:
-        return new FloatProperty();
+        Property floatProperty = new FloatProperty();
+        floatProperty.setRequired(true);
+        return floatProperty;
       case DOUBLE:
-        return new DoubleProperty();
+        Property doubleProperty = new DoubleProperty();
+        doubleProperty.setRequired(true);
+        return doubleProperty;
       default:
         // TODO support Schema.Type.FIXED
         // Schema.Type.MAP is ignored because Swagger does not support maps
