@@ -125,13 +125,9 @@ public class SwaggerAvroModelConverter implements ModelConverter {
   protected Property parseSchema(Schema schema) {
     switch (schema.getType()) {
       case RECORD:
-        System.out.println(schema);
+        // todo PropertyBuilder.build() returning null
         return null;
 //        Property record = PropertyBuilder.build(getName(schema), schema.getFullName(), Collections.emptyMap());
-//        if (record == null) {
-//          return null;
-//        }
-//
 //        record.setRequired(true);
 //        return record;
       case ENUM:
