@@ -13,14 +13,23 @@
           "type" : "string"
         },
         "primitive_array_field" : {
-          "type" : "array"
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
         },
         "optional_primitive_array_field" : {
           "type" : "array"
         },
         "nested_array_field" : {
           "type" : "array",
-          "description" : "This field will be ignored because nested collections are unsupported."
+          "description" : "This field will be ignored because nested collections are unsupported.",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
         },
         "string_field" : {
           "type" : "string",

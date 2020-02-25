@@ -136,10 +136,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
           return null;
         }
 
-        ArrayProperty arrayProperty = new ArrayProperty();
-        arrayProperty.setDefault(elementsProperty.getDescription());
-
-        return arrayProperty;
+        return new ArrayProperty(elementsProperty);
       case BOOLEAN:
         return new BooleanProperty();
       case UNION:
