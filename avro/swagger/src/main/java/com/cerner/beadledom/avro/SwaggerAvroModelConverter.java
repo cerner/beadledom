@@ -6,8 +6,6 @@ import io.swagger.converter.ModelConverter;
 import io.swagger.converter.ModelConverterContext;
 import io.swagger.models.Model;
 import io.swagger.models.ModelImpl;
-import io.swagger.models.RefModel;
-import io.swagger.models.Swagger;
 import io.swagger.models.properties.ArrayProperty;
 import io.swagger.models.properties.BooleanProperty;
 import io.swagger.models.properties.DoubleProperty;
@@ -21,7 +19,6 @@ import org.apache.avro.Schema;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import scala.annotation.meta.field;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

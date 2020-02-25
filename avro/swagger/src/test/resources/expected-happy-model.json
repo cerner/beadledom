@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "definitions" : {
     "HappyModel" : {
-      "required" : [ "enum_field" ],
+      "required" : [ "boolean_field", "bytes_field", "double_field", "enum_field", "float_field", "int_field", "long_field", "nested_array_field", "primitive_array_field", "string_field" ],
       "properties" : {
         "enum_field" : {
           "type" : "string",
