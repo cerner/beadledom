@@ -122,8 +122,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
   protected Property parseSchema(Schema schema) {
     switch (schema.getType()) {
       case RECORD:
-        // todo PropertyBuilder.build() returning null
-        Property record = PropertyBuilder.build(getName(schema), "string", Collections.emptyMap());
+        Property record = PropertyBuilder.build("object", getName(schema), Collections.emptyMap());
         record.setRequired(true);
         return record;
       case ENUM:
@@ -140,8 +139,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
           return null;
         }
 
-        if (elementsProperty instanceof ArrayProperty) { // not sure if I can use this or need to use elementsProperty.getType() == x
-          // todo make sure elements property is not also an array
+        if (elementsProperty instanceof ArrayProperty) {
           LOGGER.debug("Cannot include nested collection schema in swagger docs: {}", schema);
           return null;
         }

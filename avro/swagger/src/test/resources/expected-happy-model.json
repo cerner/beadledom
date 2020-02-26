@@ -2,8 +2,18 @@
   "swagger" : "2.0",
   "definitions" : {
     "HappyModel" : {
-      "required" : [ "boolean_field", "bytes_field", "double_field", "enum_field", "float_field", "int_field", "long_field", "nested_array_field", "primitive_array_field", "string_field" ],
+      "required" : [ "boolean_field", "bytes_field", "directly_nested_model", "double_field", "enum_field", "float_field", "int_field", "long_field", "model_array_field", "primitive_array_field", "string_field" ],
       "properties" : {
+        "directly_nested_model" : {
+          "type" : "object",
+          "format" : "NestedHappyModel",
+          "description" : "Make sure the field comment, not the record comment, is used for the field.\nAnd make sure multiline field comments work right, too."
+        },
+        "optional_nested_model" : {
+          "type" : "object",
+          "format" : "NestedHappyModel",
+          "description" : "Comments work on optional fields."
+        },
         "enum_field" : {
           "type" : "string",
           "description" : "Comments work on enum fields.",
@@ -11,6 +21,16 @@
         },
         "optional_enum_field" : {
           "type" : "string"
+        },
+        "model_array_field" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "format" : "NestedHappyModel"
+          }
+        },
+        "optional_model_array_field" : {
+          "type" : "array"
         },
         "primitive_array_field" : {
           "type" : "array",
@@ -20,16 +40,6 @@
         },
         "optional_primitive_array_field" : {
           "type" : "array"
-        },
-        "nested_array_field" : {
-          "type" : "array",
-          "description" : "This field will be ignored because nested collections are unsupported.",
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
         },
         "string_field" : {
           "type" : "string",
