@@ -123,10 +123,9 @@ public class SwaggerAvroModelConverter implements ModelConverter {
     switch (schema.getType()) {
       case RECORD:
         // todo PropertyBuilder.build() returning null
-        return null;
-//        Property record = PropertyBuilder.build(getName(schema), schema.getFullName(), Collections.emptyMap());
-//        record.setRequired(true);
-//        return record;
+        Property record = PropertyBuilder.build(getName(schema), "string", Collections.emptyMap());
+        record.setRequired(true);
+        return record;
       case ENUM:
         // TODO may wish to include the enum's documentation in the field documentation, since it
         // won't appear anywhere else
@@ -138,6 +137,12 @@ public class SwaggerAvroModelConverter implements ModelConverter {
       case ARRAY:
         Property elementsProperty = parseSchema(schema.getElementType());
         if (elementsProperty == null) {
+          return null;
+        }
+
+        if (elementsProperty instanceof ArrayProperty) { // not sure if I can use this or need to use elementsProperty.getType() == x
+          // todo make sure elements property is not also an array
+          LOGGER.debug("Cannot include nested collection schema in swagger docs: {}", schema);
           return null;
         }
 
