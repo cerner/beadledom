@@ -97,6 +97,15 @@
         }
       },
       "description" : "This model can be used to test most test cases.\nThis comment can be used to test multiline descriptions\nbecause it's a multiline comment."
+    },
+    "NestedHappyModel" : {
+      "required" : [ "content" ],
+      "properties" : {
+        "content" : {
+          "type" : "string"
+        }
+      },
+      "description" : "A model to test nested records."
     }
   }
 }

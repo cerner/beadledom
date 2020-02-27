@@ -74,7 +74,6 @@ public class SwaggerAvroModelConverter implements ModelConverter {
       return chain.next().resolve(type, context, chain);
     }
 
-    // definition
     ModelImpl model = new ModelImpl()
             .name(getName(schema))
             .description(adjustDescription(schema.getDoc()));
@@ -82,8 +81,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
     for (Schema.Field field : schema.getFields()) {
       Property property = parseField(field);
       if (property == null) {
-        LOGGER.debug(
-                "Omitted field {} of schema {} from swagger docs", field.name(), schema.getName());
+        LOGGER.debug("Omitted field {} of schema {} from swagger docs", field.name(), schema.getName());
         continue;
       }
       model.addProperty(getFieldName(field), property);
