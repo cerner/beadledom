@@ -15,21 +15,26 @@ import javax.annotation.Nullable;
 public interface CorrelationContext {
 
   /**
-   * Returns the correlationId from the context; null if a correlationId is not found.
+   * Returns the correlationId from the context; null if a correlation id is not found.
    */
   @Nullable
   String getId();
 
   /**
-   * Set the correlation id
+   * Sets the correlation id.
    *
-   * @param correlationId
+   * @param correlationId The correlation Id to set in the context. If {@code null} is set, a
+   *                      correlation id will be generated and set.
    */
-  @Nullable
-  void setId(String correlationId);
+  void setId(@Nullable String correlationId);
 
   /**
    * Returns the value to use as a key for the correlation id when used in a key-value store.
    */
   String getKey();
+
+  /**
+   * Removes the correlation id from context.
+   */
+  void removeId();
 }

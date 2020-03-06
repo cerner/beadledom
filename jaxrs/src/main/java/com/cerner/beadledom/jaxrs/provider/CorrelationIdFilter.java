@@ -2,7 +2,6 @@ package com.cerner.beadledom.jaxrs.provider;
 
 import com.cerner.beadledom.correlation.CorrelationContext;
 import com.cerner.beadledom.correlation.TheadLocalCorrelationContext;
-import java.io.IOException;
 import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Nullable;
@@ -46,7 +45,7 @@ public class CorrelationIdFilter implements ContainerRequestFilter, ContainerRes
    *     will be used
    */
   public CorrelationIdFilter(@Nullable String headerName, @Nullable String mdcName) {
-    this(headerName, mdcName, new TheadLocalCorrelationContext(headerName));
+    this(headerName, mdcName, TheadLocalCorrelationContext.create(headerName));
   }
 
   /**
@@ -88,6 +87,7 @@ public class CorrelationIdFilter implements ContainerRequestFilter, ContainerRes
   public void filter(
       ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
     MDC.remove(mdcName);
+    correlationContext.removeId();
     String correlationId = (String) requestContext.getProperty(mdcName);
     if (correlationId == null) { // Can happen if there are oauth issues.
       correlationId = UUID.randomUUID().toString();
