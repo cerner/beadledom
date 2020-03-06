@@ -155,7 +155,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
           return null;
         }
 
-        if (elementsProperty instanceof ArrayProperty) {
+        if (elementsProperty instanceof ArrayProperty || elementsProperty.getType().equals("array")) {
           LOGGER.debug("Cannot include nested collection schema in swagger docs: {}", schema);
           return null;
         }
