@@ -13,13 +13,15 @@ import io.swagger.models.properties.FloatProperty;
 import io.swagger.models.properties.IntegerProperty;
 import io.swagger.models.properties.LongProperty;
 import io.swagger.models.properties.Property;
-import io.swagger.models.properties.PropertyBuilder;
+import io.swagger.models.properties.RefProperty;
 import io.swagger.models.properties.StringProperty;
+import io.swagger.models.refs.RefFormat;
+import io.swagger.models.refs.RefType;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
-import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import javax.annotation.Nullable;
 import org.apache.avro.Schema;
 import org.apache.avro.specific.SpecificRecordBase;
@@ -75,11 +77,12 @@ public class SwaggerAvroModelConverter implements ModelConverter {
     }
 
     ModelImpl model = new ModelImpl()
+            .type(ModelImpl.OBJECT)
             .name(getName(schema))
             .description(adjustDescription(schema.getDoc()));
 
     for (Schema.Field field : schema.getFields()) {
-      Property property = parseField(field);
+      Property property = parseField(field, context, type);
       if (property == null) {
         LOGGER.debug("Omitted field {} of schema {} from swagger docs", field.name(), schema.getName());
         continue;
@@ -98,7 +101,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
 
     Schema.Field field = (Schema.Field) type;
 
-    return parseField(field);
+    return parseField(field, context, type);
   }
 
   protected String getName(Schema schema) {
@@ -108,7 +111,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
   /**
    * Generate a ModelProperty for the given schema.
    *
-   * <p>This is used by {@link #parseField(Schema.Field)}, which is responsible for
+   * <p>This is used by {@link #parseField(Schema.Field, ModelConverterContext, Type)}, which is responsible for
    * overriding the parts of the ModelProperty (such as position and description) that cannot be
    * determined merely by looking at the schema. It may also be used recursively to build collection
    * and union types.
@@ -116,22 +119,38 @@ public class SwaggerAvroModelConverter implements ModelConverter {
    * @return the parsed property, or null if it cannot/should not be represented in the Swagger model
    */
   @Nullable
-  protected Property parseSchema(Schema schema) {
+  protected Property parseSchema(Schema schema, ModelConverterContext context, Type type) {
     switch (schema.getType()) {
       case RECORD:
-        Property record = PropertyBuilder.build("object", getName(schema), Collections.emptyMap());
-        record.setRequired(true);
-        return record;
+        String name = getName(schema);
+
+        ModelImpl model = new ModelImpl()
+                .type(ModelImpl.OBJECT)
+                .name(name)
+                .description(adjustDescription(schema.getDoc()));
+
+        for (Schema.Field field : schema.getFields()) {
+          Property property = parseField(field, context, type);
+          if (property == null) {
+            LOGGER.debug("Omitted field {} of schema {} from swagger docs", field.name(), schema.getName());
+            continue;
+          }
+          model.addProperty(getFieldName(field), property);
+        }
+
+        context.defineModel(name, model);
+
+        String ref = RefType.DEFINITION.getInternalPrefix() + name;
+        return new RefProperty(ref, RefFormat.INTERNAL);
       case ENUM:
         // TODO may wish to include the enum's documentation in the field documentation, since it
         // won't appear anywhere else
         StringProperty property = new StringProperty();
-        property.required(true);
         property.setEnum(schema.getEnumSymbols());
 
         return property;
       case ARRAY:
-        Property elementsProperty = parseSchema(schema.getElementType());
+        Property elementsProperty = parseSchema(schema.getElementType(), context, type);
         if (elementsProperty == null) {
           return null;
         }
@@ -146,9 +165,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
 
         return arrayProperty;
       case BOOLEAN:
-        Property booleanProperty = new BooleanProperty();
-        booleanProperty.setRequired(true);
-        return booleanProperty;
+        return new BooleanProperty();
       case UNION:
         // We can't represent unions, except for the special case of a union with null, which can
         // can be treated as a non-required field.
@@ -157,7 +174,7 @@ public class SwaggerAvroModelConverter implements ModelConverter {
         // is the intended meaning in swagger or not. But the behavior of this code should be
         // acceptable on either interpretation.
 
-        java.util.List<Schema> memberSchemas = Lists.newArrayList();
+        List<Schema> memberSchemas = Lists.newArrayList();
         for (Schema memberSchema : schema.getTypes()) {
           if (memberSchema.getType() != Schema.Type.NULL) {
             memberSchemas.add(memberSchema);
@@ -173,40 +190,19 @@ public class SwaggerAvroModelConverter implements ModelConverter {
           return null;
         }
 
-        Property memberProperty = parseSchema(memberSchemas.get(0));
-        if (memberProperty == null) {
-          return null;
-        }
-
-        Property p = PropertyBuilder.build(memberProperty.getType(), memberProperty.getFormat(), Collections.emptyMap());
-        p.setRequired(false);
-        p.setDescription(memberProperty.getDescription());
-
-        return p;
+        return parseSchema(memberSchemas.get(0), context, type);
       case STRING:
-        Property stringProperty = new StringProperty();
-        stringProperty.setRequired(true);
-        return stringProperty;
+        return new StringProperty();
       case BYTES:
-        Property bytesProperty = new StringProperty("byte");
-        bytesProperty.setRequired(true);
-        return bytesProperty;
+        return new StringProperty("byte");
       case INT:
-        Property intProperty = new IntegerProperty();
-        intProperty.setRequired(true);
-        return intProperty;
+        return new IntegerProperty();
       case LONG:
-        Property longProperty = new LongProperty();
-        longProperty.setRequired(true);
-        return longProperty;
+        return new LongProperty();
       case FLOAT:
-        Property floatProperty = new FloatProperty();
-        floatProperty.setRequired(true);
-        return floatProperty;
+        return new FloatProperty();
       case DOUBLE:
-        Property doubleProperty = new DoubleProperty();
-        doubleProperty.setRequired(true);
-        return doubleProperty;
+        return new DoubleProperty();
       default:
         // TODO support Schema.Type.FIXED
         // Schema.Type.MAP is ignored because Swagger does not support maps
@@ -220,13 +216,16 @@ public class SwaggerAvroModelConverter implements ModelConverter {
    * @return the parsed property, or null if the property should be excluded from the Swagger model
    */
   @Nullable
-  protected Property parseField(Schema.Field field) {
-    Property property = parseSchema(field.schema());
+  protected Property parseField(Schema.Field field, ModelConverterContext context, Type type) {
+    Property property = parseSchema(field.schema(), context, type);
     if (property == null) {
       return null;
     }
 
     property.setDescription(adjustDescription(field.doc()));
+    if (field.schema().getType() != Schema.Type.UNION) {
+      property.setRequired(true);
+    }
 
     return property;
   }

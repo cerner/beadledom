@@ -2,17 +2,16 @@
   "swagger" : "2.0",
   "definitions" : {
     "HappyModel" : {
-      "required" : [ "boolean_field", "bytes_field", "directly_nested_model", "double_field", "enum_field", "float_field", "int_field", "long_field", "model_array_field", "primitive_array_field", "string_field" ],
+      "type" : "object",
+      "required" : [ "boolean_field", "bytes_field", "directly_nested_model", "double_field", "enum_field", "float_field", "int_field", "long_field", "model_array_field", "optional_model_array_field", "optional_primitive_array_field", "primitive_array_field", "string_field" ],
       "properties" : {
         "directly_nested_model" : {
-          "type" : "object",
-          "format" : "NestedHappyModel",
-          "description" : "Make sure the field comment, not the record comment, is used for the field.\nAnd make sure multiline field comments work right, too."
+          "description" : "Make sure the field comment, not the record comment, is used for the field.\nAnd make sure multiline field comments work right, too.",
+          "$ref" : "#/definitions/NestedHappyModel"
         },
         "optional_nested_model" : {
-          "type" : "object",
-          "format" : "NestedHappyModel",
-          "description" : "Comments work on optional fields."
+          "description" : "Comments work on optional fields.",
+          "$ref" : "#/definitions/NestedHappyModel"
         },
         "enum_field" : {
           "type" : "string",
@@ -20,17 +19,20 @@
           "enum" : [ "EBULLIENT", "BUOYANT", "PEPPY", "FULL_OF_BEANS" ]
         },
         "optional_enum_field" : {
-          "type" : "string"
+          "type" : "string",
+          "enum" : [ "EBULLIENT", "BUOYANT", "PEPPY", "FULL_OF_BEANS" ]
         },
         "model_array_field" : {
           "type" : "array",
           "items" : {
-            "type" : "object",
-            "format" : "NestedHappyModel"
+            "$ref" : "#/definitions/NestedHappyModel"
           }
         },
         "optional_model_array_field" : {
-          "type" : "array"
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/NestedHappyModel"
+          }
         },
         "primitive_array_field" : {
           "type" : "array",
@@ -39,7 +41,10 @@
           }
         },
         "optional_primitive_array_field" : {
-          "type" : "array"
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
         },
         "string_field" : {
           "type" : "string",
@@ -54,8 +59,7 @@
         },
         "optional_bytes_field" : {
           "type" : "string",
-          "format" : "byte",
-          "pattern" : "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          "format" : "byte"
         },
         "int_field" : {
           "type" : "integer",
@@ -99,6 +103,7 @@
       "description" : "This model can be used to test most test cases.\nThis comment can be used to test multiline descriptions\nbecause it's a multiline comment."
     },
     "NestedHappyModel" : {
+      "type" : "object",
       "required" : [ "content" ],
       "properties" : {
         "content" : {

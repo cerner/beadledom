@@ -31,17 +31,14 @@ class SwaggerAvroModelConverterSpec
   private def serialize[T](clazz: Class[T]): String = {
     val os = new ByteArrayOutputStream()
 
-    val models = ModelConverters.getInstance().read(clazz)
+    val models = ModelConverters.getInstance().readAll(clazz)
 
     val swagger = new Swagger()
     for ((key, value) <- JavaConverters.mapAsScalaMapConverter(models).asScala) {
-      println(key)
       swagger.addDefinition(key, value)
     }
 
-    println(swagger.getDefinitions)
-
-    new SwaggerSerializers().writeTo(swagger, clazz, null, clazz.getAnnotations, MediaType.APPLICATION_JSON_TYPE, null, os)
+    new SwaggerSerializers().writeTo(swagger, null, null, null, MediaType.APPLICATION_JSON_TYPE, null, os)
 
     os.toString("UTF-8")
   }
@@ -51,7 +48,7 @@ class SwaggerAvroModelConverterSpec
       val expected = Resources.toString(
         getClass.getClassLoader.getResource("expected-happy-model.json"), Charsets.UTF_8)
 
-      serialize(classOf[NestedHappyModel]) should equalJson(expected)
+      serialize(classOf[HappyModel]) should equalJson(expected)
     }
 
     it("allows other converters to handle non-Avro models") {
