@@ -3,7 +3,7 @@ package com.cerner.beadledom.avro;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
 import com.google.inject.multibindings.MultibindingsScanner;
-import com.wordnik.swagger.converter.ModelConverter;
+import io.swagger.converter.ModelConverter;
 
 /**
  * A Guice module that provides Jackson Avro serialization support for Swagger.

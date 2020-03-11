@@ -1,0 +1,14 @@
+{
+  "swagger" : "2.0",
+  "definitions" : {
+    "NonAvroModel" : {
+      "type" : "object",
+      "properties" : {
+        "foo": {
+          "type": "string"
+        }
+      },
+      "description" : "Sooo boring."
+    }
+  }
+}

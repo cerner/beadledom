@@ -63,7 +63,6 @@
     <module>newrelic-jaxrs</module>
     <module>resteasy</module>
     <module>resteasy-genericresponse</module>
-    <module>swagger1</module>
     <module>swagger2</module>
     <module>testing</module>
   </modules>
@@ -98,8 +97,7 @@
     <junit.jupiter.version>5.5.2</junit.jupiter.version>
     <resteasy.version>3.6.3.Final</resteasy.version>
     <spotbugs.version>3.1.8</spotbugs.version>
-    <swagger-core.version>1.3.12</swagger-core.version>
-    <swagger2-core.version>1.5.22</swagger2-core.version>
+    <swagger2-core.version>1.6.0</swagger2-core.version>
     <tomcat-embed.version>7.0.103</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
@@ -229,7 +227,7 @@
       </dependency>
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
-        <artifactId>beadledom-swagger1</artifactId>
+        <artifactId>beadledom-swagger2</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -300,27 +298,6 @@
         <version>2.7.4</version>
       </dependency>
       <dependency>
-        <groupId>com.wordnik</groupId>
-        <artifactId>swagger-annotations</artifactId>
-        <version>${swagger-core.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.wordnik</groupId>
-        <artifactId>swagger-core_${scala.binary.version}</artifactId>
-        <version>${swagger-core.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.wordnik</groupId>
-        <artifactId>swagger-jaxrs_${scala.binary.version}</artifactId>
-        <version>${swagger-core.version}</version>
-        <exclusions>
-          <exclusion>
-            <artifactId>jsr311-api</artifactId>
-            <groupId>javax.ws.rs</groupId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
         <version>1.9.4</version>
@@ -346,6 +323,16 @@
       <dependency>
         <groupId>io.swagger</groupId>
         <artifactId>swagger-annotations</artifactId>
+        <version>${swagger2-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-core</artifactId>
+        <version>${swagger2-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jaxrs</artifactId>
         <version>${swagger2-core.version}</version>
       </dependency>
       <dependency>

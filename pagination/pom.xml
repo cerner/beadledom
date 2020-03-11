@@ -34,11 +34,6 @@
       <artifactId>jackson-databind</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.wordnik</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
       <groupId>com.cerner.beadledom</groupId>
       <artifactId>beadledom-json-common</artifactId>
     </dependency>

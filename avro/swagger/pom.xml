@@ -37,16 +37,6 @@
       <artifactId>guice-multibindings</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.wordnik</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.wordnik</groupId>
-      <artifactId>swagger-core_${scala.binary.version}</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
     </dependency>
@@ -59,11 +49,22 @@
       <artifactId>slf4j-api</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-core</artifactId>
+    </dependency>
+
     <!--Test Dependencies-->
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
       <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-jaxrs</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

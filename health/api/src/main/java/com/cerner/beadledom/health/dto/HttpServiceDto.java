@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Optional;
 
 /**
@@ -17,7 +18,6 @@ import java.util.Optional;
 @AutoValue
 @JsonDeserialize(builder = HttpServiceDto.Builder.class)
 @ApiModel(description = "Properties of the HTTP service dependency")
-@io.swagger.annotations.ApiModel(description = "Properties of the HTTP service dependency")
 public abstract class HttpServiceDto {
   /**
    * Creates a new builder for {@code HttpServiceDto}.
@@ -27,12 +27,10 @@ public abstract class HttpServiceDto {
   }
 
   @ApiModelProperty("Availability check URL of the remote dependency")
-  @io.swagger.annotations.ApiModelProperty("Availability check URL of the remote dependency")
   @JsonProperty("url")
   public abstract String getUrl();
 
   @ApiModelProperty("HTTP status code returned by the service")
-  @io.swagger.annotations.ApiModelProperty("HTTP status code returned by the service")
   @JsonProperty("status")
   public abstract Optional<Integer> getStatus();
 

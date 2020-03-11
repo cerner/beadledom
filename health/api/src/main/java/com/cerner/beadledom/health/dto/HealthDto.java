@@ -13,8 +13,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -28,7 +29,6 @@ import javax.annotation.Nullable;
 @AutoValue
 @JsonDeserialize(builder = HealthDto.Builder.class)
 @ApiModel(description = "Indicates the health of this service.")
-@io.swagger.annotations.ApiModel(description = "Indicates the health of this service.")
 public abstract class HealthDto {
   /**
    * Creates a new builder for {@code HealthDto}.
@@ -77,8 +77,6 @@ public abstract class HealthDto {
    * information.
    */
   @ApiModelProperty(value = "a human-readable status description", required = true)
-  @io.swagger.annotations.ApiModelProperty(value = "a human-readable status description",
-      required = true)
   @JsonProperty("message")
   @JsonView(Availability.class)
   public abstract Optional<String> getMessage();
@@ -94,22 +92,17 @@ public abstract class HealthDto {
 
   @ApiModelProperty(
       "the results of any dependency health checks invoked as part of this health check")
-  @io.swagger.annotations.ApiModelProperty(
-      "the results of any dependency health checks invoked as part of this health check")
   @JsonProperty("dependencies")
   @JsonView({Primary.class, Diagnostic.class, HealthJsonViews.Dependency.class})
   public abstract Optional<List<HealthDependencyDto>> getDependencies();
 
   @ApiModelProperty(
       "Build and version information of the service serving the health check response")
-  @io.swagger.annotations.ApiModelProperty(
-      "Build and version information of the service serving the health check response")
   @JsonProperty("build")
   @JsonView(Diagnostic.class)
   public abstract Optional<BuildDto> getBuild();
 
   @ApiModelProperty("Runtime and environment information of the server")
-  @io.swagger.annotations.ApiModelProperty("Runtime and environment information of the server")
   @JsonProperty("server")
   @JsonView(Diagnostic.class)
   public abstract Optional<ServerDto> getServer();

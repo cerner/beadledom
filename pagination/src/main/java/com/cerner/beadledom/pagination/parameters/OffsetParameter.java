@@ -3,7 +3,7 @@ package com.cerner.beadledom.pagination.parameters;
 import com.cerner.beadledom.pagination.OffsetPaginationModule;
 import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration;
 import com.google.inject.Inject;
-import com.wordnik.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiParam;
 
 /**
  * Represent the offset parameter used for pagination.
@@ -19,8 +19,6 @@ import com.wordnik.swagger.annotations.ApiParam;
 public class OffsetParameter extends AbstractParameter<Long> {
 
   @ApiParam(value = "Number of items to offset the response by.",
-      allowableValues = "range[0, " + Long.MAX_VALUE + "]")
-  @io.swagger.annotations.ApiParam(value = "Number of items to offset the response by.",
       allowableValues = "range[0, " + Long.MAX_VALUE + "]")
   private final String offset;
 
