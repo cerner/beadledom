@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author John Leacox
  * @since 2.0
- * @deprecated
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
 @Deprecated
 class BeadledomClientLifecycleHook {
