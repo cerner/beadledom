@@ -26,7 +26,9 @@ import java.util.Set;
  *
  * @author Sundeep Paruvu
  * @since 2.2
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class AnnotatedObjectMapperProvider implements Provider<ObjectMapper> {
 
   private final Class<? extends Annotation> clientBindingAnnotation;
