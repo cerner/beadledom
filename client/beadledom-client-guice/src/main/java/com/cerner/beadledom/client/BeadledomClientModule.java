@@ -42,7 +42,9 @@ import java.lang.annotation.Annotation;
  * @author John Leacox
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public class BeadledomClientModule extends AbstractModule {
   private final Class<? extends Annotation> clientBindingAnnotation;
 

@@ -52,7 +52,9 @@ import java.lang.annotation.Annotation;
  *
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class BeadledomClientPrivateModule extends AnnotatedModule {
 
   BeadledomClientPrivateModule(Class<? extends Annotation> clientBindingAnnotation) {

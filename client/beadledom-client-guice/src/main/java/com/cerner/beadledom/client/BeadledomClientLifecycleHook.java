@@ -14,7 +14,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author John Leacox
  * @since 2.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class BeadledomClientLifecycleHook {
   private static final Logger logger = LoggerFactory.getLogger(BeadledomClientLifecycleHook.class);
 

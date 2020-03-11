@@ -14,7 +14,9 @@ import org.apache.http.conn.ssl.X509HostnameVerifier;
  *
  * @author John Leacox
  * @since 1.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public class X509HostnameVerifierAdapter implements X509HostnameVerifier {
   private final HostnameVerifier verifier;
 

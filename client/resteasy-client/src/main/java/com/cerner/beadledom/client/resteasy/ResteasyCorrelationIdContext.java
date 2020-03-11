@@ -13,7 +13,9 @@ import org.slf4j.MDC;
  *
  * @author John Leacox
  * @since 1.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class ResteasyCorrelationIdContext implements CorrelationIdContext {
   private final String headerName;
   private final String mdcName;
