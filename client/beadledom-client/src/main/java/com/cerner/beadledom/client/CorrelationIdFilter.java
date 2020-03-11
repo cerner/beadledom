@@ -19,7 +19,9 @@ import javax.ws.rs.ext.Provider;
  *
  * @author John Leacox
  * @since 1.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 @Provider
 @Priority(Priorities.HEADER_DECORATOR)
 public class CorrelationIdFilter implements ClientRequestFilter {
