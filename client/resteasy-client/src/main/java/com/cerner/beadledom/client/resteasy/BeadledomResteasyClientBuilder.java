@@ -43,6 +43,7 @@ import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient43Engine;
  * @author John Leacox
  * @author Sundeep Paruvu
  * @since 1.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
 public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
   private static final int DEFAULT_RETRY_INTERVAL_MILLIS = 1000;
