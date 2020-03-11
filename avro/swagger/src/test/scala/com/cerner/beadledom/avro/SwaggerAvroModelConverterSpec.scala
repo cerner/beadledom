@@ -1,55 +1,61 @@
 package com.cerner.beadledom.avro
 
+import java.io.ByteArrayOutputStream
+
 import com.cerner.beadledom.testing.JsonMatchers
 import com.google.common.base.Charsets
 import com.google.common.io.Resources
-import com.wordnik.swagger.annotations.ApiModel
-import com.wordnik.swagger.converter.ModelConverters
-import com.wordnik.swagger.core.util.JsonSerializer
+import io.swagger.converter.ModelConverters
+import io.swagger.jaxrs.listing.SwaggerSerializers
+import io.swagger.models.Swagger
+import javax.ws.rs.core.MediaType
 import org.scalatest.{BeforeAndAfterAll, FunSpec, Matchers}
+
+import scala.collection.JavaConverters
 
 /**
  * Spec tests for {@link SwaggerAvroModelConverter}.
  */
 class SwaggerAvroModelConverterSpec
-    extends FunSpec with Matchers with JsonMatchers with BeforeAndAfterAll {
+  extends FunSpec with Matchers with JsonMatchers with BeforeAndAfterAll {
   val converter = new SwaggerAvroModelConverter
 
   override def beforeAll = {
-    ModelConverters.addConverter(converter, true)
+    ModelConverters.getInstance().addConverter(converter)
   }
 
   override def afterAll = {
-    ModelConverters.removeConverter(converter)
+    ModelConverters.getInstance().removeConverter(converter)
+  }
+
+  private def serialize[T](clazz: Class[T]): String = {
+    val os = new ByteArrayOutputStream()
+
+    val models = ModelConverters.getInstance().readAll(clazz)
+
+    val swagger = new Swagger()
+    for ((key, value) <- JavaConverters.mapAsScalaMapConverter(models).asScala) {
+      swagger.addDefinition(key, value)
+    }
+
+    new SwaggerSerializers().writeTo(swagger, null, null, null, MediaType.APPLICATION_JSON_TYPE, null, os)
+
+    os.toString("UTF-8")
   }
 
   describe("SwaggerAvroModelConverter") {
     it("reads models correctly") {
       val expected = Resources.toString(
         getClass.getClassLoader.getResource("expected-happy-model.json"), Charsets.UTF_8)
-      JsonSerializer.asJson(ModelConverters.readAll(classOf[HappyModel])) should equalJson(expected)
+
+      serialize(classOf[HappyModel]) should equalJson(expected)
     }
 
     it("allows other converters to handle non-Avro models") {
-      val expected =
-        """
-          |[ {
-          |  "id" : "NonAvroModel",
-          |  "description" : "Sooo boring.",
-          |  "properties" : {
-          |    "foo" : {
-          |      "type" : "string"
-          |    }
-          |  }
-          |} ]
-        """.stripMargin
-      JsonSerializer.asJson(ModelConverters.readAll(classOf[NonAvroModel])) should
-          equalJson(expected)
+      val expected = Resources.toString(
+        getClass.getClassLoader.getResource("expected-non-avro-model.json"), Charsets.UTF_8)
+
+      serialize(classOf[NonAvroModel]) should equalJson(expected)
     }
   }
-}
-
-@ApiModel(description = "Sooo boring.")
-class NonAvroModel {
-  val foo = "bar"
 }

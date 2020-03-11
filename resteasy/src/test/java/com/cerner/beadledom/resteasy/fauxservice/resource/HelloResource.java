@@ -2,9 +2,10 @@ package com.cerner.beadledom.resteasy.fauxservice.resource;
 
 import com.cerner.beadledom.resteasy.fauxservice.dao.HelloDao;
 import com.cerner.beadledom.resteasy.fauxservice.fauxmodels.PointlessThing;
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

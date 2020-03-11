@@ -7,8 +7,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.annotation.Nullable;
 
 /**
@@ -26,39 +27,33 @@ import javax.annotation.Nullable;
     "location"})
 @AutoValue
 @ApiModel(value = "Standard error details")
-@io.swagger.annotations.ApiModel(value = "Standard error details")
 @JsonDeserialize(builder = ErrorDetail.Builder.class)
 public abstract class ErrorDetail {
 
   @Nullable
   @JsonProperty("domain")
   @ApiModelProperty(value = "A subsystem or context where an error occurred")
-  @io.swagger.annotations.ApiModelProperty(value = "A subsystem or context where an error occurred")
   public abstract String domain();
 
   @Nullable
   @JsonProperty("reason")
   @ApiModelProperty(value = "short name or key for an error")
-  @io.swagger.annotations.ApiModelProperty(value = "short name or key for an error")
   public abstract String reason();
 
   @Nullable
   @JsonProperty("message")
   @ApiModelProperty(value = "Human readable description of an error")
-  @io.swagger.annotations.ApiModelProperty(value = "Human readable description of an error")
   public abstract String message();
 
   @Nullable
   @JsonProperty("locationType")
-  @ApiModelProperty(value = "Location or type of the value that caused an error")
-  @io.swagger.annotations.ApiModelProperty(
+  @ApiModelProperty(
       value = "Location or type of the value that caused an error")
   public abstract String locationType();
 
   @Nullable
   @JsonProperty("location")
   @ApiModelProperty(value = "Name of the value that caused an error")
-  @io.swagger.annotations.ApiModelProperty(value = "Name of the value that caused an error")
   public abstract String location();
 
   public static Builder builder() {

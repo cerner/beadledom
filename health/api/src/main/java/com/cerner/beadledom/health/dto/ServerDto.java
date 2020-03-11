@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.google.auto.value.AutoValue;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -20,7 +19,6 @@ import java.util.Optional;
  */
 @AutoValue
 @JsonDeserialize(builder = ServerDto.Builder.class)
-@ApiModel(description = "Runtime and environment information of the server.")
 public abstract class ServerDto {
   /**
    * Creates a new builder for {@code ServerDto}.
