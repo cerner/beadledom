@@ -20,7 +20,9 @@ import javax.ws.rs.core.UriBuilder;
  * @author John Leacox
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public abstract class BeadledomClientBuilder extends ClientBuilder {
   /**
    * Allows custom implementations to extend the {@code BeadledomJaxrsClientBuilder} class.

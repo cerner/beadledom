@@ -9,7 +9,9 @@ package com.cerner.beadledom.client;
  *
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public interface BeadledomClientBuilderFactory {
 
   /**
