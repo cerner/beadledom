@@ -15,7 +15,9 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
  *
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class BeadledomResteasyWebTarget extends BeadledomWebTarget {
   private final ResteasyWebTarget webTarget;
 
