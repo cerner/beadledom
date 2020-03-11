@@ -13,7 +13,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author John Leacox
  * @since 1.0
+ * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public class DefaultServiceUnavailableRetryStrategy
     implements ServiceUnavailableRetryStrategy {
   private static final Logger logger =
