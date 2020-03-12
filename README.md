@@ -8,7 +8,7 @@ Guice. For more information on creating a service check out our [documentation](
 Beadledom is made up of the following components:
 
 * [avro](avro#beadledom-avro) - Additional Avro functionality required for services.
-* [client](client#beadledom-client) - HTTP client for communicating with the JAX-RS web services.
+* [client](client#beadledom-client) - *Deprecated.* HTTP client for communicating with the JAX-RS web services.
 * [common](common#beadledom-common) - Common utilities.
 * [Configuration](configuration#beadledom-configuration) - Centralized API to access the aggregated configurations from different sources.
 * [core](core#beadledom-core) - Core Guice module that pulls in all the other recommended Beadledom modules.
