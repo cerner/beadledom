@@ -28,3 +28,5 @@ on beadledom-swagger1 to beadledom-swagger2. The user guide for beadledom-swagge
 
 The beadledom-stagemonitor module was removed. This will require updating your poms that have a dependency
 on beadledom-stagemonitor.
+
+The beadledom-client module has been deprecated. Use Square's `Retrofit <https://github.com/square/retrofit>`_ instead.
