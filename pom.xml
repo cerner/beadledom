@@ -498,7 +498,25 @@
       <dependency>
         <groupId>org.scalatest</groupId>
         <artifactId>scalatest_${scala.binary.version}</artifactId>
-        <version>3.0.8</version>
+        <version>3.1.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scalatestplus</groupId>
+        <artifactId>junit-4-12_${scala.binary.version}</artifactId>
+        <version>3.1.1.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scalatestplus</groupId>
+        <artifactId>mockito-3-2_${scala.binary.version}</artifactId>
+        <version>3.1.1.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scalatestplus</groupId>
+        <artifactId>scalacheck-1-14_${scala.binary.version}</artifactId>
+        <version>3.1.1.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -527,6 +545,21 @@
     <dependency>
       <groupId>org.scalatest</groupId>
       <artifactId>scalatest_${scala.binary.version}</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatestplus</groupId>
+      <artifactId>junit-4-12_${scala.binary.version}</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatestplus</groupId>
+      <artifactId>mockito-3-2_${scala.binary.version}</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatestplus</groupId>
+      <artifactId>scalacheck-1-14_${scala.binary.version}</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -705,7 +738,7 @@
           <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>autofix_${scala.binary.version}</artifactId>
-            <version>3.0.8-0</version>
+            <version>3.1.0.0</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -725,7 +758,7 @@
           <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.binary.version}</artifactId>
-            <version>3.0.8</version>
+            <version>3.1.1</version>
           </dependency>
         </dependencies>
         <configuration>
