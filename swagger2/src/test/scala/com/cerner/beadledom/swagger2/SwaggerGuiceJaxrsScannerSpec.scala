@@ -6,8 +6,8 @@ import javax.servlet.ServletConfig
 import javax.ws.rs.core.Application
 import org.mockito.Mockito.{reset, when}
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec tests for [SwaggerGuiceJaxrsScanner].

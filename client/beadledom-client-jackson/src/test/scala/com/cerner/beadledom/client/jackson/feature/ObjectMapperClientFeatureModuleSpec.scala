@@ -8,7 +8,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 import com.google.inject.multibindings.ProvidesIntoSet
 import com.google.inject.{AbstractModule, Guice, Key, Module}
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Unit tests for ObjectMapperClientFeatureModule.

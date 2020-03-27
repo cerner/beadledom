@@ -11,8 +11,8 @@ import org.jboss.resteasy.specimpl.MultivaluedMapImpl
 import org.mockito
 import org.mockito.{ArgumentCaptor, Mockito}
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec tests for {@link FilteringJacksonJsonProvider}.

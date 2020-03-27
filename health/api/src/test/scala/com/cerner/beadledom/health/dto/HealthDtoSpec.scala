@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 class HealthDtoSpec extends FunSpec with MustMatchers with MockitoSugar {
   describe("HealthDto") {

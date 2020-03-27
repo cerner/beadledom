@@ -3,9 +3,9 @@ package com.cerner.beadledom.health
 import com.cerner.beadledom.metadata.ServiceMetadata
 import com.google.inject._
 import com.google.inject.multibindings.{Multibinder, ProvidesIntoSet}
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import javax.ws.rs.core.UriInfo
+import org.scalatestplus.mockito.MockitoSugar
 
 class HealthModuleSpec extends FunSpec with MustMatchers with MockitoSugar {
   val mockModule = new AbstractModule {

@@ -2,9 +2,9 @@ package com.cerner.beadledom.jooq
 
 import javax.sql.DataSource
 import org.jooq.{DSLContext, SQLDialect}
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
 import scala.collection.mutable
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec for DSLContextProviderImpl.

@@ -6,7 +6,7 @@ import javax.ws.rs.container.ContainerRequestContext
 import javax.ws.rs.core._
 import org.mockito.Mockito.{when,verify}
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterEach, FunSpec, Matchers}
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 
 class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matchers with BeforeAndAfterEach
   with MockitoSugar {

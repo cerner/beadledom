@@ -5,8 +5,8 @@ import javax.sql.DataSource
 import org.jooq.SQLDialect
 import org.jooq.tools.jdbc.MockConnection
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec for ThreadLocalJooqModule.

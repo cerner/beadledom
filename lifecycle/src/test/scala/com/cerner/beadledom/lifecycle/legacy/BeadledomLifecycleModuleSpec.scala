@@ -2,8 +2,8 @@ package com.cerner.beadledom.lifecycle.legacy
 
 import com.google.inject.{AbstractModule, Guice}
 import javax.annotation.PostConstruct
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Unit tests for [[BeadledomLifecycleModule]].

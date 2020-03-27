@@ -3,7 +3,7 @@ package com.cerner.beadledom.health.internal
 import com.cerner.beadledom.health.dto.{HealthDependencyDto, LinksDto}
 import com.cerner.beadledom.health.internal.presenter.HealthDependencyPresenter
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec tests for HealthDependencyPresenter.

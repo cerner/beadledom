@@ -8,8 +8,8 @@ import com.fasterxml.jackson.databind.util.TokenBuffer
 import com.google.common.collect.Lists
 import java.io.ByteArrayOutputStream
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Field filter spec for testing different serialization cases.

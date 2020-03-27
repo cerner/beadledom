@@ -7,8 +7,8 @@ import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration
 import com.google.inject.multibindings.OptionalBinder
 import com.google.inject.{AbstractModule, Guice, Injector}
 import org.jboss.resteasy.spi.ResteasyUriInfo
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Spec for OffsetPaginatedListLinksWriterInterceptor.

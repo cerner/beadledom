@@ -3,9 +3,9 @@ package com.cerner.beadledom.lifecycle
 import com.cerner.beadledom.lifecycle.legacy.BeadledomLifecycleInjectorBuilder
 import com.google.inject.{AbstractModule, Module}
 import java.util.Collections
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Unit tests for [[LifecycleInjectorBuilder]].

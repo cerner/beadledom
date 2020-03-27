@@ -9,12 +9,12 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 import org.jboss.resteasy.mock._
 import org.mockito.Mockito
 import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
 
 import javax.ws.rs.core.HttpHeaders.CONTENT_TYPE
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response.Status._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Unit tests for [[ThrowableExceptionMapper]].

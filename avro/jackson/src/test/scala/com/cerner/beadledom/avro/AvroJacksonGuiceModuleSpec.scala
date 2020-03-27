@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.{Module, ObjectMapper}
 import com.google.inject._
 import com.google.inject.multibindings.ProvidesIntoSet
 import java.util.Properties
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, Matchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec tests for {@link AvroJacksonGuiceModule}.

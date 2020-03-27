@@ -4,12 +4,12 @@ import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.invocation.InvocationOnMock
 import org.mockito.stubbing.Answer
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 
 import javax.ws.rs.core.Response
 
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * @author John Leacox

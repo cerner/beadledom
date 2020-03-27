@@ -4,8 +4,8 @@ import org.apache.http.client.ServiceUnavailableRetryStrategy
 import org.apache.http.client.protocol.HttpClientContext
 import org.apache.http.{HttpRequest, HttpResponse, RequestLine, StatusLine}
 import org.mockito.Mockito
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, Matchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * @author John Leacox

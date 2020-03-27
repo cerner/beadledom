@@ -11,10 +11,10 @@ import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import javax.ws.rs.WebApplicationException
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 class HealthCheckerSpec extends FunSpec with MustMatchers with MockitoSugar {
   val buildInfo = mock[BuildInfo]

@@ -9,12 +9,12 @@ import org.jboss.resteasy.core.Dispatcher
 import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttpResponse}
 import org.jboss.resteasy.plugins.server.resourcefactory.POJOResourceFactory
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
 
 import java.io._
 
 import scala.collection.JavaConverters._
 import javax.ws.rs.core.MediaType
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Spec tests for {@link PATCH}.

@@ -2,8 +2,8 @@ package com.cerner.beadledom.resteasy
 
 import org.jboss.resteasy.spi.{Registry, ResteasyProviderFactory}
 import org.scalatest.{FunSpec, MustMatchers}
-import org.scalatest.mockito.MockitoSugar
 import com.google.inject.{AbstractModule, Guice}
+import org.scalatestplus.mockito.MockitoSugar
 
 class InjectorProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
 

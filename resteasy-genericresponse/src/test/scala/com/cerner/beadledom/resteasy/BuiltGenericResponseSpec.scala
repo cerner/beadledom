@@ -10,8 +10,8 @@ import javax.ws.rs.core._
 
 import org.mockito.Mockito._
 import org.scalacheck.Gen
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
 /**
   * Specs tests for [[BuiltGenericResponse]]
@@ -19,7 +19,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
   * @author John Leacox
   */
 class BuiltGenericResponseSpec
-    extends UnitSpec with MockitoSugar with GeneratorDrivenPropertyChecks {
+    extends UnitSpec with MockitoSugar with ScalaCheckDrivenPropertyChecks {
   describe("BuiltGenericResponse") {
     describe("#create") {
       it("creates a new instance of BuiltGenericResponse") {

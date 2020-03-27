@@ -4,9 +4,9 @@ import com.google.inject.Guice
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.UriInfo
 import org.jboss.resteasy.spi.ResteasyUriInfo
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec for OffsetPaginationLinks.

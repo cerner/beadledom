@@ -4,9 +4,9 @@ import com.cerner.beadledom.client.jackson.test.annotations.TestBindingAnnotatio
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.{DeserializationFeature, MapperFeature, ObjectMapper, SerializationFeature}
 import com.google.inject.{Guice, Injector, Key}
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Specs for [[AnnotatedJacksonModule]].

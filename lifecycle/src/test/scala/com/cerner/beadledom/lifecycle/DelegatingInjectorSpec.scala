@@ -3,7 +3,7 @@ package com.cerner.beadledom.lifecycle
 import com.google.inject.{Injector, Key, Module, TypeLiteral}
 import org.mockito.Mockito
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Unit tests for [[DelegatingInjector]].

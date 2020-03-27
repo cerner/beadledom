@@ -4,8 +4,8 @@ import java.security.cert.X509Certificate
 import javax.net.ssl.{HostnameVerifier, SSLException, SSLSession, SSLSocket}
 import org.apache.http.conn.ssl.X509HostnameVerifier
 import org.mockito.Mockito
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * @author John Leacox

@@ -9,8 +9,8 @@ import com.github.mustachejava.DefaultMustacheFactory
 import javax.ws.rs.core.{UriBuilder, UriInfo}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Base Spec for resource tests that provides a create dependency method

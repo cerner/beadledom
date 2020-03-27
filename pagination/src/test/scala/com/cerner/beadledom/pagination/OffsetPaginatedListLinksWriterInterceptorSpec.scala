@@ -7,9 +7,9 @@ import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec for OffsetPaginatedListLinksWriterInterceptor.

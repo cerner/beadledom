@@ -7,10 +7,9 @@ import com.google.inject.{AbstractModule, Guice, Injector}
 import java.io.{BufferedReader, InputStream, InputStreamReader}
 import java.net.URL
 import java.util.stream.Collectors
-import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Integration Tests that make service requests through a self-signed reverse proxy to test the behavior

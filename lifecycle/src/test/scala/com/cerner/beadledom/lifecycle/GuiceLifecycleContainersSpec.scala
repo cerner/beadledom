@@ -3,9 +3,9 @@ package com.cerner.beadledom.lifecycle
 import com.google.inject.{AbstractModule, Inject, Module}
 import java.util.Collections
 import javax.annotation.{PostConstruct, PreDestroy}
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Unit tests for [[GuiceLifecycleContainers]].

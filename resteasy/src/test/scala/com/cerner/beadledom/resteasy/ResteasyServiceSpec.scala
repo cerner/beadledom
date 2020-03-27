@@ -9,9 +9,9 @@ import javax.ws.rs.client.Entity
 import javax.ws.rs.core.MediaType
 import org.apache.commons.io.FileUtils
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
 import play.api.libs.json.Json
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  *

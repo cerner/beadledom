@@ -2,8 +2,8 @@ package com.cerner.beadledom.metadata
 
 import java.net.InetAddress
 import java.time.Instant
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, Matchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec tests for {@link ServiceMetadata}.

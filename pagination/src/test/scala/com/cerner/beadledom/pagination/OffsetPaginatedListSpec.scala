@@ -1,7 +1,7 @@
 package com.cerner.beadledom.pagination
 
 import org.scalatest.{FunSpec, MustMatchers}
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec for OffsetPaginationList.

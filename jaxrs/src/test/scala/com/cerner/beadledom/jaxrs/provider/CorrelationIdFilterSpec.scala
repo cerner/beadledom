@@ -1,8 +1,8 @@
 package com.cerner.beadledom.jaxrs.provider
 
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
 import org.slf4j.MDC
+import org.scalatestplus.mockito.MockitoSugar
 
 class CorrelationIdFilterSpec extends FunSpec with BeforeAndAfter with Matchers
 with MockitoSugar with CorrelationIdFilterBehaviors {

@@ -2,7 +2,7 @@ package com.cerner.beadledom.client.jaxrs
 
 import com.cerner.beadledom.client.CorrelationIdFilter
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Spec for the {@link CorrelationIdFilter}

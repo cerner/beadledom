@@ -1,7 +1,7 @@
 package com.cerner.beadledom.jooq
 
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
  * Spec for ThreadLocalJooqTransactionalHooks.

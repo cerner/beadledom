@@ -1,9 +1,9 @@
 package com.cerner.beadledom.lifecycle.legacy
 
 import org.mockito.Mockito
-import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Unit tests for [[LifecycleShutdownManagerImpl]].
