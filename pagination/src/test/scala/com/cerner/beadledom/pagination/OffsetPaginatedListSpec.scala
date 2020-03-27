@@ -1,14 +1,15 @@
 package com.cerner.beadledom.pagination
 
-import org.scalatest.{FunSpec, MustMatchers}
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for OffsetPaginationList.
  *
  * @author John Leacox
  */
-class OffsetPaginatedListSpec extends FunSpec with MustMatchers with MockitoSugar {
+class OffsetPaginatedListSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("OffsetPaginatedList") {
     describe("Builder") {
       describe("#build") {

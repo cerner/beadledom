@@ -1,11 +1,12 @@
 package com.cerner.beadledom.resteasy
 
 import org.jboss.resteasy.spi.{Registry, ResteasyProviderFactory}
-import org.scalatest.{FunSpec, MustMatchers}
-import org.scalatest.mockito.MockitoSugar
 import com.google.inject.{AbstractModule, Guice}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
-class InjectorProcessorSpec extends FunSpec with MockitoSugar with MustMatchers{
+class InjectorProcessorSpec extends AnyFunSpec with MockitoSugar with Matchers{
 
   val registry: Registry = mock[Registry]
   val providerFactory: ResteasyProviderFactory = mock[ResteasyProviderFactory]

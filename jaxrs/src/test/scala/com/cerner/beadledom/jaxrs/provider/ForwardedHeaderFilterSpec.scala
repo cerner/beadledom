@@ -5,10 +5,12 @@ import java.net.URI
 import javax.ws.rs.container.ContainerRequestContext
 import javax.ws.rs.core._
 import org.mockito.Mockito.{when,verify}
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterEach, FunSpec, Matchers}
-import org.scalatest.mockito.MockitoSugar
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterEach}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
-class ForwardedHeaderFilterSpec extends FunSpec with BeforeAndAfter with Matchers with BeforeAndAfterEach
+class ForwardedHeaderFilterSpec extends AnyFunSpec with BeforeAndAfter with Matchers with BeforeAndAfterEach
   with MockitoSugar {
 
   def createContainerRequestContext: ContainerRequestContext = {

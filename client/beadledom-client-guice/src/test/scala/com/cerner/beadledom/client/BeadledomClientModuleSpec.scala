@@ -2,12 +2,14 @@ package com.cerner.beadledom.client
 
 import com.google.inject._
 import javax.ws.rs.ext
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * @author John Leacox
   */
-class BeadledomClientModuleSpec extends FunSpec with MustMatchers with BeforeAndAfter {
+class BeadledomClientModuleSpec extends AnyFunSpec with Matchers with BeforeAndAfter {
 
   def getTestBindingInjector(modules: List[Module]): Injector = {
     val module = new AbstractModule {

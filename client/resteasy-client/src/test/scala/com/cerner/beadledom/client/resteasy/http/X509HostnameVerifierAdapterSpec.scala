@@ -4,14 +4,16 @@ import java.security.cert.X509Certificate
 import javax.net.ssl.{HostnameVerifier, SSLException, SSLSession, SSLSocket}
 import org.apache.http.conn.ssl.X509HostnameVerifier
 import org.mockito.Mockito
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
 /**
  * @author John Leacox
  */
 class X509HostnameVerifierAdapterSpec
-    extends FunSpec with Matchers with BeforeAndAfter with MockitoSugar {
+    extends AnyFunSpec with Matchers with BeforeAndAfter with MockitoSugar {
   describe("X509HostnameVerifierAdapter") {
     describe("#adapt") {
       it("throws a NullPointerException if the adaptee is null") {

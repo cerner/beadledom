@@ -9,8 +9,9 @@ import com.github.mustachejava.DefaultMustacheFactory
 import javax.ws.rs.core.{UriBuilder, UriInfo}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Base Spec for resource tests that provides a create dependency method
@@ -18,7 +19,7 @@ import org.scalatest.{FunSpec, MustMatchers}
   *
   * @author Nick Behrens
   */
-class BaseSpec extends FunSpec with MustMatchers with MockitoSugar {
+class BaseSpec extends AnyFunSpec with Matchers with MockitoSugar {
 
   protected val mockUriInfo: UriInfo = mock[UriInfo]
   private val mockUriBuilder = mock[UriBuilder]

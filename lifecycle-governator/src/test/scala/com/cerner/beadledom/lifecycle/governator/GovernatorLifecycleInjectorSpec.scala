@@ -3,16 +3,17 @@ package com.cerner.beadledom.lifecycle.governator
 import com.google.inject.{AbstractModule, Module}
 import com.netflix.governator.InjectorBuilder
 import javax.annotation.PreDestroy
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[GovernatorLifecycleInjector]]
   *
   * @author John Leacox
   */
-class GovernatorLifecycleInjectorSpec extends FunSpec with MustMatchers with MockitoSugar {
+class GovernatorLifecycleInjectorSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("GovernatorLifecycleInjector") {
     describe("#shutdown") {
       it("executes shutdown on the governator injector") {

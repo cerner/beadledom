@@ -1,14 +1,15 @@
 package com.cerner.beadledom.guice.dynamicbindings
 
 import com.google.inject.{AbstractModule, Guice, Key, TypeLiteral}
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[DynamicBindingProviderImpl]].
   *
   * @author John Leacox
   */
-class DynamicBindingProviderImplSpec extends FunSpec with MustMatchers {
+class DynamicBindingProviderImplSpec extends AnyFunSpec with Matchers {
   describe("DynamicBindingProvider") {
     describe("#get") {
       it("returns the same instance for a singleton binding across multiple calls") {

@@ -6,13 +6,15 @@ import java.util.Properties
 import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import com.github.mustachejava.DefaultMustacheFactory
 import org.scalatest._
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Spec tests for VersionResourceImpl.
   *
   * @author Nimesh Subramanian
   */
-class VersionResourceImplSpec extends FunSpec with MustMatchers {
+class VersionResourceImplSpec extends AnyFunSpec with Matchers {
   describe("VersionResourceImpl") {
     describe("#getVersionInfo") {
       it("returns a dto with status 200") {

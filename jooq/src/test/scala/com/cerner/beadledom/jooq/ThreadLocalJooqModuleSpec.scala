@@ -5,8 +5,10 @@ import javax.sql.DataSource
 import org.jooq.SQLDialect
 import org.jooq.tools.jdbc.MockConnection
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for ThreadLocalJooqModule.
@@ -14,7 +16,7 @@ import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
  * @author John Leacox
  */
 class ThreadLocalJooqModuleSpec
-    extends FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
+    extends AnyFunSpec with MockitoSugar with BeforeAndAfter with Matchers {
   describe("ThreadLocalJooqModule") {
     it("throws an IllegalStateException if a DataSource binding is missing") {
       val module = new AbstractModule {

@@ -2,15 +2,16 @@ package com.cerner.beadledom.lifecycle.legacy
 
 import com.google.inject.{AbstractModule, Guice}
 import javax.annotation.PostConstruct
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[BeadledomLifecycleModule]].
   *
   * @author John Leacox
   */
-class BeadledomLifecycleModuleSpec extends FunSpec with MustMatchers with MockitoSugar {
+class BeadledomLifecycleModuleSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("BeadledomLifecycleModule") {
     it("provides a binding for LifecycleProvisionListener") {
       val shutdownManager = mock[LifecycleShutdownManager]

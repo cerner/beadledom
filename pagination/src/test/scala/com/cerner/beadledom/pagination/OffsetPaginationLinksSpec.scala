@@ -4,9 +4,10 @@ import com.google.inject.Guice
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.UriInfo
 import org.jboss.resteasy.spi.ResteasyUriInfo
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for OffsetPaginationLinks.
@@ -14,7 +15,7 @@ import scala.collection.JavaConverters._
  * @author John Leacox
  * @author Ian Kottman
  */
-class OffsetPaginationLinksSpec extends FunSpec with MustMatchers with MockitoSugar {
+class OffsetPaginationLinksSpec extends AnyFunSpec with Matchers with MockitoSugar {
 
   // Allow static injection for pagination parameters
   Guice.createInjector(new OffsetPaginationModule())

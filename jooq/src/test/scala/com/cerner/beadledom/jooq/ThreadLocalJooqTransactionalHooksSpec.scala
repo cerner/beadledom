@@ -1,7 +1,9 @@
 package com.cerner.beadledom.jooq
 
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for ThreadLocalJooqTransactionalHooks.
@@ -9,7 +11,7 @@ import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
  * @author John Leacox
  */
 class ThreadLocalJooqTransactionalHooksSpec
-    extends FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
+    extends AnyFunSpec with MockitoSugar with BeforeAndAfter with Matchers {
   describe("ThreadLocalJooqTransactionalHooks") {
     describe("#whenCommitted") {
       it("throws a NullPointerException if action is null") {

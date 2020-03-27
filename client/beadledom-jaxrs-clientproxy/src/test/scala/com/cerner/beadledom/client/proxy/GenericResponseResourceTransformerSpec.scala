@@ -1,13 +1,14 @@
 package com.cerner.beadledom.client.proxy
 
-import org.scalatest.{FunSpec, MustMatchers}
 
 import javax.ws.rs.core.Response
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * @author John Leacox
   */
-class GenericResponseResourceTransformerSpec extends FunSpec with MustMatchers {
+class GenericResponseResourceTransformerSpec extends AnyFunSpec with Matchers {
   describe("GenericResponseResourceTransformer") {
     describe("#transform") {
       it ("transformers methods returning GenericResponse to Response") {

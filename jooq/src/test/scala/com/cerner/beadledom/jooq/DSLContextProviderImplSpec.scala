@@ -2,9 +2,11 @@ package com.cerner.beadledom.jooq
 
 import javax.sql.DataSource
 import org.jooq.{DSLContext, SQLDialect}
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
 import scala.collection.mutable
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for DSLContextProviderImpl.
@@ -12,7 +14,7 @@ import scala.collection.mutable
  * @author John Leacox
  */
 class DSLContextProviderImplSpec extends
-    FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
+    AnyFunSpec with MockitoSugar with BeforeAndAfter with Matchers {
   val transactionalHooks = new ThreadLocalJooqTransactionalHooks()
 
   before {

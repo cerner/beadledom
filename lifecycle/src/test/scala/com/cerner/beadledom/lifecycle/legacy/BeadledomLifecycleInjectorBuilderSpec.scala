@@ -2,16 +2,17 @@ package com.cerner.beadledom.lifecycle.legacy
 
 import com.cerner.beadledom.lifecycle.legacy.ShutdownHookModule.SystemShutdownHook
 import com.google.inject.{AbstractModule, Module}
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[BeadledomLifecycleInjectorBuilder]].
   *
   * @author John Leacox
   */
-class BeadledomLifecycleInjectorBuilderSpec extends FunSpec with MustMatchers with MockitoSugar {
+class BeadledomLifecycleInjectorBuilderSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("BeadledomLifecycleInjectorBuilder") {
     describe("#modules") {
       it("throws a NullPointerException if the modules param is null") {

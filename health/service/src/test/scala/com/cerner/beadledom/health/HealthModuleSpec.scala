@@ -3,11 +3,12 @@ package com.cerner.beadledom.health
 import com.cerner.beadledom.metadata.ServiceMetadata
 import com.google.inject._
 import com.google.inject.multibindings.{Multibinder, ProvidesIntoSet}
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import javax.ws.rs.core.UriInfo
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
-class HealthModuleSpec extends FunSpec with MustMatchers with MockitoSugar {
+class HealthModuleSpec extends AnyFunSpec with Matchers with MockitoSugar {
   val mockModule = new AbstractModule {
     override def configure(): Unit = {
       bind(classOf[ServiceMetadata]).toInstance(mock[ServiceMetadata])

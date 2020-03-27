@@ -11,8 +11,10 @@ import javax.ws.rs.core.Response.Status._
 import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttpResponse}
 import org.mockito.Mockito
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Unit tests for [[JsonMappingExceptionMapper]].
@@ -20,7 +22,7 @@ import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
  * @author John Leacox
  */
 class JsonMappingExceptionMapperSpec
-    extends FunSpec with MustMatchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
+    extends AnyFunSpec with Matchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
 
   val jsonMappingExceptionMapper = new JsonMappingExceptionMapper
   val fakeRepository = mock[FakeRepository]

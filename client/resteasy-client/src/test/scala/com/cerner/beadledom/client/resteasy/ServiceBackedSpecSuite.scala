@@ -6,13 +6,14 @@ import org.apache.catalina.Globals
 import org.apache.catalina.startup.Tomcat
 import org.apache.commons.io.FileUtils
 import org.apache.naming.resources.VirtualDirContext
-import org.scalatest.{BeforeAndAfterAll, FunSpec, Suite}
+import org.scalatest.{BeforeAndAfterAll, Suite}
 import scala.collection.immutable.IndexedSeq
+import org.scalatest.funspec.AnyFunSpec
 
 /**
  * @author John Leacox
  */
-class ServiceBackedSpecSuite extends FunSpec with BeforeAndAfterAll {
+class ServiceBackedSpecSuite extends AnyFunSpec with BeforeAndAfterAll {
   val tomcat = new Tomcat
   val tomcatPort = Integer.parseInt(System.getProperty("tomcat.http.port", "9091"))
   val contextRoot = "/faux-service"

@@ -2,7 +2,8 @@ package com.cerner.beadledom.jaxrs
 
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.MediaType
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec tests for {@link JaxRsParamConditions}.
@@ -10,7 +11,7 @@ import org.scalatest.{FunSpec, MustMatchers}
  * @author John Leacox
  * @author Nimesh Subramanian
  */
-class JaxRsParamConditionsSpec extends FunSpec with MustMatchers {
+class JaxRsParamConditionsSpec extends AnyFunSpec with Matchers {
   describe("JaxRsParamConditions") {
     describe("checkParam") {
       it("must throw WebApplicationException with 400 status when expression is false") {

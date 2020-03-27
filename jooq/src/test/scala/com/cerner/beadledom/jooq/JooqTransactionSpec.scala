@@ -1,14 +1,16 @@
 package com.cerner.beadledom.jooq
 
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for JooqTransaction.
  *
  * @author John Leacox
  */
-class JooqTransactionSpec extends FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
+class JooqTransactionSpec extends AnyFunSpec with MockitoSugar with BeforeAndAfter with Matchers {
   describe("JooqTransaction") {
     describe("#addCommitHooks") {
       it("adds the actions to the transactions commit hooks") {

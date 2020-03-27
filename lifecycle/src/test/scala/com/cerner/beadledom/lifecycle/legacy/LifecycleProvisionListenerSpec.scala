@@ -6,16 +6,17 @@ import javax.annotation.{PostConstruct, PreDestroy}
 import org.hamcrest.Matchers.contains
 import org.mockito.Mockito
 import org.mockito.hamcrest.MockitoHamcrest
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.reflect.Manifest
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Unit tests for [[LifecycleProvisionListener]].
  *
  * @author John Leacox
  */
-class LifecycleProvisionListenerSpec extends FunSpec with MustMatchers with MockitoSugar {
+class LifecycleProvisionListenerSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("LifecycleProvisionListener") {
     describe("#onProvision") {
       it("executes PostConstruct methods on the injectee") {

@@ -3,16 +3,17 @@ package com.cerner.beadledom.lifecycle
 import com.google.inject.{AbstractModule, Inject, Module}
 import java.util.Collections
 import javax.annotation.{PostConstruct, PreDestroy}
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[GuiceLifecycleContainers]].
   *
   * @author John Leacox
   */
-class GuiceLifecycleContainersSpec extends FunSpec with MustMatchers with MockitoSugar {
+class GuiceLifecycleContainersSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("GuiceLifecycleContainers") {
     describe("#initialize") {
       it("throws a NullPointerException for a null container") {

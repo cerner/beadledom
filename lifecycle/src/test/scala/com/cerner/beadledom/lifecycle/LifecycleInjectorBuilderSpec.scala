@@ -3,16 +3,17 @@ package com.cerner.beadledom.lifecycle
 import com.cerner.beadledom.lifecycle.legacy.BeadledomLifecycleInjectorBuilder
 import com.google.inject.{AbstractModule, Module}
 import java.util.Collections
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[LifecycleInjectorBuilder]].
   *
   * @author John Leacox
   */
-class LifecycleInjectorBuilderSpec extends FunSpec with MustMatchers with MockitoSugar {
+class LifecycleInjectorBuilderSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("Beadledom LifecycleInjectorBuilder") {
     describe("#fromModules") {
       it("Creates an instance of BeadledomLifecycleInjectorBuilder if governator is not found") {

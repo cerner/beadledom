@@ -8,12 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
-class HealthDtoSpec extends FunSpec with MustMatchers with MockitoSugar {
+class HealthDtoSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("HealthDto") {
     describe(".builder(ServiceMetadata)") {
       it("initializes fields based on the metadata") {

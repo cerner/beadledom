@@ -1,11 +1,12 @@
 package com.cerner.beadledom.client.resteasy
 
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Specs for ResteasyClientBuilderFactory.
   */
-class ResteasyClientBuilderFactorySpec extends FunSpec with MustMatchers {
+class ResteasyClientBuilderFactorySpec extends AnyFunSpec with Matchers {
 
   val factory = new ResteasyClientBuilderFactory()
 

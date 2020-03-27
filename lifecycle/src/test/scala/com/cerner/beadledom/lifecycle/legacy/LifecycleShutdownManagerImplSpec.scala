@@ -1,16 +1,17 @@
 package com.cerner.beadledom.lifecycle.legacy
 
 import org.mockito.Mockito
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[LifecycleShutdownManagerImpl]].
   *
   * @author John Leacox
   */
-class LifecycleShutdownManagerImplSpec extends FunSpec with MustMatchers with MockitoSugar {
+class LifecycleShutdownManagerImplSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("LifecycleShutdownManagerImpl") {
     describe("#addPreDestroyMethods") {
       it("adds to the full set of predestroy methods when called multiple times") {

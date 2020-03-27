@@ -7,16 +7,17 @@ import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for OffsetPaginatedListLinksWriterInterceptor.
  *
  * @author John Leacox
  */
-class OffsetPaginatedListLinksWriterInterceptorSpec extends FunSpec with MustMatchers with MockitoSugar {
+class OffsetPaginatedListLinksWriterInterceptorSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("OffsetPaginatedListLinksWriterInterceptor") {
     describe("#aroundWriteTo") {
       it("replaces an OffsetPaginatedList entity with an OffsetPaginatedListDto entity") {
