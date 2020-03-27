@@ -2,12 +2,14 @@ package com.cerner.beadledom.configuration
 
 import java.io._
 import org.apache.commons.configuration2.Configuration
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Specs for [[PropertiesConfigurationSource]].
  */
-class PropertiesConfigurationSourceSpec extends FunSpec with BeforeAndAfter with MustMatchers {
+class PropertiesConfigurationSourceSpec extends AnyFunSpec with BeforeAndAfter with Matchers {
 
   var reader: Reader = _
 

@@ -6,14 +6,16 @@ import com.cerner.beadledom.client.example.PaginatedClientResource
 import com.cerner.beadledom.jaxrs.GenericResponse
 import com.fasterxml.jackson.databind.{ObjectMapper, SerializationFeature}
 import com.google.inject._
-import org.scalatest.{BeforeAndAfter, DoNotDiscover, FunSpec, MustMatchers}
+import org.scalatest.{BeforeAndAfter, DoNotDiscover}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Specs to test the Clients of a service.
  */
 @DoNotDiscover
 class ClientServiceSpec(contextRoot: String, servicePort: Int)
-    extends FunSpec with MustMatchers with BeforeAndAfter {
+    extends AnyFunSpec with Matchers with BeforeAndAfter {
   val baseUri = s"http://localhost:$servicePort$contextRoot"
 
   def getInjector(modules: List[Module]): Injector = {

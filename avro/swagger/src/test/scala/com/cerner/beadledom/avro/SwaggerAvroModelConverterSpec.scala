@@ -9,15 +9,17 @@ import io.swagger.converter.ModelConverters
 import io.swagger.jaxrs.listing.SwaggerSerializers
 import io.swagger.models.Swagger
 import javax.ws.rs.core.MediaType
-import org.scalatest.{BeforeAndAfterAll, FunSpec, Matchers}
+import org.scalatest.BeforeAndAfterAll
 
 import scala.collection.JavaConverters
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
 /**
  * Spec tests for {@link SwaggerAvroModelConverter}.
  */
 class SwaggerAvroModelConverterSpec
-  extends FunSpec with Matchers with JsonMatchers with BeforeAndAfterAll {
+  extends AnyFunSpec with Matchers with JsonMatchers with BeforeAndAfterAll {
   val converter = new SwaggerAvroModelConverter
 
   override def beforeAll = {

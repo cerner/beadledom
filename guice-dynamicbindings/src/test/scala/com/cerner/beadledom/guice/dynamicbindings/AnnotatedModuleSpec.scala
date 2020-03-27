@@ -1,14 +1,15 @@
 package com.cerner.beadledom.guice.dynamicbindings
 
 import com.google.inject._
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[AnnotatedModule]].
   *
   * @author John Leacox
   */
-class AnnotatedModuleSpec extends FunSpec with MustMatchers {
+class AnnotatedModuleSpec extends AnyFunSpec with Matchers {
   describe("AnnotatedModule") {
     describe("constructor") {
       it("throws an IllegalArgumentException for a non-binding annotation") {

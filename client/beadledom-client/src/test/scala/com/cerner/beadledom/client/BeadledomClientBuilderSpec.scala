@@ -4,12 +4,12 @@ import javax.ws.rs.core.Configuration
 
 import com.cerner.beadledom.client.BeadledomClientBuilder
 import org.mockito.Mockito
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 /**
  * @author John Leacox
  */
-class BeadledomClientBuilderSpec extends FunSpec {
+class BeadledomClientBuilderSpec extends AnyFunSpec {
   describe("BeadledomClientBuilder") {
     describe("#create") {
       it("throws an IllegalStateException if an implementation is not found through SPI") {

@@ -1,13 +1,15 @@
 package com.cerner.beadledom.configuration
 
 import org.apache.commons.configuration2.{Configuration, EnvironmentConfiguration}
-import org.scalatest.{BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfterAll
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Specs for [[EnvironmentConfigurationSource]].
   */
 class EnvironmentConfigurationSourceSpec
-    extends FunSpec with BeforeAndAfterAll with MustMatchers {
+    extends AnyFunSpec with BeforeAndAfterAll with Matchers {
 
   describe("EnvironmentConfigurationSource") {
 

@@ -1,8 +1,9 @@
 package com.cerner.beadledom.testing
 
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Abstract base class for Unit tests.
   */
-abstract class UnitSpec extends FunSpec with MustMatchers { }
+abstract class UnitSpec extends AnyFunSpec with Matchers { }

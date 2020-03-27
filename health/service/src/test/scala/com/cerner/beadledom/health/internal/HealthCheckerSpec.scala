@@ -11,12 +11,13 @@ import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import javax.ws.rs.WebApplicationException
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.Mockito.when
-import org.scalatest.{FunSpec, MustMatchers}
 
 import scala.collection.JavaConverters._
 import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
-class HealthCheckerSpec extends FunSpec with MustMatchers with MockitoSugar {
+class HealthCheckerSpec extends AnyFunSpec with Matchers with MockitoSugar {
   val buildInfo = mock[BuildInfo]
   val dateTime: Optional[String] = Optional.of("2016-02-03T04:05:06Z")
   when(buildInfo.getBuildDateTime).thenReturn(dateTime)

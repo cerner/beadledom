@@ -8,8 +8,11 @@ import java.io.{BufferedReader, InputStream, InputStreamReader}
 import java.net.URL
 import java.util.stream.Collectors
 import org.junit.runner.RunWith
-import org.scalatest.{BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfterAll
+import org.scalatestplus.junit.JUnitRunner
 import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Integration Tests that make service requests through a self-signed reverse proxy to test the behavior
@@ -18,7 +21,7 @@ import org.scalatestplus.mockito.MockitoSugar
  * @author Nick Behrens
  */
 @RunWith(classOf[JUnitRunner])
-class ForwardedHeaderFilterSpec extends FunSpec with MustMatchers with MockitoSugar with BeforeAndAfterAll {
+class ForwardedHeaderFilterSpec extends AnyFunSpec with Matchers with MockitoSugar with BeforeAndAfterAll {
 
   val baseUri = s"https://localhost/beadledom-integration-service"
 

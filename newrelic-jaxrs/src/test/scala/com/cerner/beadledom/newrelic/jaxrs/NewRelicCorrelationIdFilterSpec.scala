@@ -4,10 +4,12 @@ import com.cerner.beadledom.newrelic.NewRelicApi
 import javax.ws.rs.container.ContainerRequestContext
 import org.mockito.Mockito.{reset, verify, verifyZeroInteractions, when}
 import org.scalatest._
-import org.scalatest.mock.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 class NewRelicCorrelationIdFilterSpec
-  extends FunSpec with BeforeAndAfter with MustMatchers with MockitoSugar {
+  extends AnyFunSpec with BeforeAndAfter with Matchers with MockitoSugar {
 
   val headerName = "Correlation-Id"
   val id = java.util.UUID.randomUUID.toString

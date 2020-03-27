@@ -15,12 +15,14 @@ import org.mockito.Mockito._
 import org.scalatest._
 import scala.collection.JavaConverters._
 import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec to test the BaseContextListener.
  */
 class BaseContextListenerSpec
-    extends FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
+    extends AnyFunSpec with MockitoSugar with BeforeAndAfter with Matchers {
 
   val context = mock[ServletContext]
   val deployment: ResteasyDeployment = mock[ResteasyDeployment]

@@ -1,8 +1,9 @@
 package com.cerner.beadledom.health.dto
 
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
-class BuildDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBehaviors {
+class BuildDtoSpec extends AnyFunSpec with Matchers with JacksonSerializationBehaviors {
 
   val buildDto = BuildDto.builder()
                  .setArtifactName("some name")

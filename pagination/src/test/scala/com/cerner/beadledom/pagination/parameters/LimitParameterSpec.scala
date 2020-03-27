@@ -5,14 +5,15 @@ import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration
 import com.google.inject.multibindings.OptionalBinder
 import com.google.inject.{AbstractModule, Guice}
 import javax.ws.rs.WebApplicationException
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for LimitParameter.
  *
  * @author John Leacox
  */
-class LimitParameterSpec extends FunSpec with MustMatchers {
+class LimitParameterSpec extends AnyFunSpec with Matchers {
   describe("LimitParameter") {
     describe("#getValue") {
       it("throws an WebApplicationException if param is 0") {

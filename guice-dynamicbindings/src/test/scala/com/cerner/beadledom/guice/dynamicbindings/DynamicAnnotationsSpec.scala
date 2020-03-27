@@ -1,14 +1,15 @@
 package com.cerner.beadledom.guice.dynamicbindings
 
 import com.google.inject._
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[DynamicAnnotations]].
   *
   * @author John Leacox
   */
-class DynamicAnnotationsSpec extends FunSpec with MustMatchers {
+class DynamicAnnotationsSpec extends AnyFunSpec with Matchers {
   describe("DynamicAnnotations") {
     describe("#bindDynamicProvider") {
       describe("with a class") {

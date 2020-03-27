@@ -1,10 +1,11 @@
 package com.cerner.beadledom.health.dto
 
-import org.scalatest.{FunSpec, MustMatchers}
 
 import scala.collection.JavaConverters._
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
-class HealthDependenciesDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBehaviors {
+class HealthDependenciesDtoSpec extends AnyFunSpec with Matchers with JacksonSerializationBehaviors {
 
   val healthDependency = HealthDependencyDto.builder()
                          .setHealthy(true)

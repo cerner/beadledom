@@ -4,14 +4,15 @@ import java.net.URI
 import java.util.Locale
 import javax.ws.rs.core.Response.StatusType
 import javax.ws.rs.core.{EntityTag, MediaType, Response, Variant}
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Spec tests for [[GenericResponses]].
   *
   * @author John Leacox
   */
-class GenericResponsesSpec extends FunSpec with MustMatchers {
+class GenericResponsesSpec extends AnyFunSpec with Matchers {
   describe("GenericResponses") {
     describe("#fromResponse") {
       it("creates a new response with the same values (shallow copy) of the existing response") {

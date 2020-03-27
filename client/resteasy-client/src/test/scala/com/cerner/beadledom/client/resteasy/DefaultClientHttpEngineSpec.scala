@@ -4,15 +4,17 @@ import com.cerner.beadledom.client.TestResource
 import java.util.concurrent.atomic.AtomicLong
 import javax.ws.rs.NotFoundException
 import javax.ws.rs.client.{Client, Entity}
-import org.scalatest.{BeforeAndAfter, DoNotDiscover, FunSpec, Matchers}
+import org.scalatest.{BeforeAndAfter, DoNotDiscover}
 import org.slf4j.{Logger, LoggerFactory}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
 /**
  * @author John Leacox
  */
 @DoNotDiscover
 class DefaultClientHttpEngineSpec(contextRoot: String, servicePort: Int)
-    extends FunSpec with Matchers with BeforeAndAfter {
+    extends AnyFunSpec with Matchers with BeforeAndAfter {
   val logger: Logger = LoggerFactory.getLogger(classOf[DefaultClientHttpEngineSpec])
 
   val threadCount = 7
