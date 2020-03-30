@@ -1,21 +1,19 @@
 package com.cerner.beadledom.health.internal
 
+import com.cerner.beadledom.health.dto.{HealthDependencyDto, HealthDto, LinksDto}
+import com.cerner.beadledom.health.{HealthDependency, HealthStatus}
+import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import java.lang
 import java.net.URI
 import java.time.Instant
 import java.util.Optional
-
-import com.cerner.beadledom.health.dto.{HealthDependencyDto, HealthDto, LinksDto}
-import com.cerner.beadledom.health.{HealthDependency, HealthStatus}
-import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import javax.ws.rs.WebApplicationException
 import org.jboss.resteasy.spi.ResteasyUriInfo
 import org.mockito.Mockito.when
-
-import scala.collection.JavaConverters._
-import org.scalatestplus.mockito.MockitoSugar
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.must.Matchers
+import org.scalatestplus.mockito.MockitoSugar
+import scala.jdk.CollectionConverters._
 
 class HealthCheckerSpec extends AnyFunSpec with Matchers with MockitoSugar {
   val buildInfo = mock[BuildInfo]
@@ -34,7 +32,7 @@ class HealthCheckerSpec extends AnyFunSpec with Matchers with MockitoSugar {
   def newChecker(requestUri: String, dependencies: List[HealthDependency]) = new HealthChecker(
     new ResteasyUriInfo(new URI(requestUri)),
     metadata,
-    dependencies.groupBy(d => d.getName).mapValues(ds => ds.head).asJava
+    dependencies.groupBy(d => d.getName).view.mapValues(ds => ds.head).toMap.asJava
   )
 
   def newDependency(name: String, desc: String,

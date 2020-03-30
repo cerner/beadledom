@@ -89,8 +89,8 @@
     <beadledom.url>http://cerner.github.io/beadledom/${project.version}</beadledom.url>
     <autovalue.version>1.6.5</autovalue.version>
     <java.version>1.8</java.version>
-    <scala.version>2.12.11</scala.version>
-    <scala.binary.version>2.12</scala.binary.version>
+    <scala.version>2.13.1</scala.version>
+    <scala.binary.version>2.13</scala.binary.version>
     <governator.version>1.17.5</governator.version>
     <jackson.version>2.10.0</jackson.version>
     <resteasy.version>3.6.3.Final</resteasy.version>
@@ -580,13 +580,6 @@
           <args>
             <arg>-nobootcp</arg>
           </args>
-          <compilerPlugins>
-            <compilerPlugin>
-              <groupId>org.scalameta</groupId>
-              <artifactId>semanticdb-scalac_${scala.version}</artifactId>
-              <version>4.3.7</version>
-            </compilerPlugin>
-          </compilerPlugins>
         </configuration>
         <executions>
           <execution>
@@ -727,18 +720,6 @@
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
             <version>6.2</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>io.github.evis</groupId>
-        <artifactId>scalafix-maven-plugin</artifactId>
-        <version>0.1.2_0.9.5</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>autofix_${scala.binary.version}</artifactId>
-            <version>3.1.0.0</version>
           </dependency>
         </dependencies>
       </plugin>
