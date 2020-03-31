@@ -1,12 +1,11 @@
 package com.cerner.beadledom.pagination.parameters
 
 import javax.ws.rs.core.UriInfo
-
 import com.cerner.beadledom.pagination.OffsetPaginationModule
 import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration
 import com.google.inject.multibindings.OptionalBinder
 import com.google.inject.{AbstractModule, Guice, Injector}
-import org.jboss.resteasy.spi.ResteasyUriInfo
+import org.jboss.resteasy.specimpl.ResteasyUriInfo
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
 
@@ -98,7 +97,7 @@ class OffsetPaginationParametersSpec extends FunSpec with MustMatchers with Mock
     val queryString = queryParams
         .filter({ case (_, v) => v != null })
         .map({ case (k, v) => s"$k=$v" }).mkString("&")
-    val uriInfo = new ResteasyUriInfo("example.com", queryString, "")
+    val uriInfo = new ResteasyUriInfo(s"example.com?$queryString", "", null)
 
     uriInfo
   }

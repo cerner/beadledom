@@ -33,6 +33,7 @@ import org.apache.http.protocol.HttpContext;
 import org.jboss.resteasy.client.jaxrs.ClientHttpEngine;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient43Engine;
+import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientBuilderImpl;
 
 /**
  * Abstraction for creating Clients.
@@ -60,12 +61,12 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
    * constructor.
    */
   public BeadledomResteasyClientBuilder() {
-    this.resteasyClientBuilder = new ResteasyClientBuilder();
+    this.resteasyClientBuilder = new ResteasyClientBuilderImpl();
     this.clientConfigBuilder = BeadledomClientConfiguration.builder();
   }
 
   public BeadledomResteasyClientBuilder(BeadledomClientConfiguration clientConfiguration) {
-    this.resteasyClientBuilder = new ResteasyClientBuilder();
+    this.resteasyClientBuilder = new ResteasyClientBuilderImpl();
     this.clientConfigBuilder = BeadledomClientConfiguration.builder(clientConfiguration);
   }
 
@@ -388,7 +389,7 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
     HttpContext context = new BasicHttpContext();
     context.setAttribute(HttpClientContext.REQUEST_CONFIG, requestConfig);
 
-    return new ApacheHttpClient43Engine(closeableHttpClient, context);
+    return new ApacheHttpClient43Engine(closeableHttpClient, () -> context);
   }
 
   @Override

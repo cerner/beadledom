@@ -1,19 +1,17 @@
 package com.cerner.beadledom.health.internal
 
+import com.cerner.beadledom.health.dto.{HealthDependencyDto, HealthDto, LinksDto}
+import com.cerner.beadledom.health.{HealthDependency, HealthStatus}
+import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import java.lang
 import java.net.URI
 import java.time.Instant
 import java.util.Optional
-
-import com.cerner.beadledom.health.dto.{HealthDependencyDto, HealthDto, LinksDto}
-import com.cerner.beadledom.health.{HealthDependency, HealthStatus}
-import com.cerner.beadledom.metadata.{BuildInfo, ServiceMetadata}
 import javax.ws.rs.WebApplicationException
-import org.jboss.resteasy.spi.ResteasyUriInfo
+import org.jboss.resteasy.specimpl.ResteasyUriInfo
 import org.mockito.Mockito.when
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, MustMatchers}
-
 import scala.collection.JavaConverters._
 
 class HealthCheckerSpec extends FunSpec with MustMatchers with MockitoSugar {

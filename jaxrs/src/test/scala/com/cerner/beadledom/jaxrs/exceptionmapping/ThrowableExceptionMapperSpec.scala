@@ -54,7 +54,7 @@ class ThrowableExceptionMapperSpec
           dispatcher.invoke(request, response)
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
           response.getContentAsString must beInternalServerError()
         }
       }
@@ -68,7 +68,7 @@ class ThrowableExceptionMapperSpec
           dispatcher.invoke(request, response)
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
           response.getContentAsString must beInternalServerError()
         }
       }
@@ -82,7 +82,7 @@ class ThrowableExceptionMapperSpec
           dispatcher.invoke(request, response)
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
           response.getContentAsString must beInternalServerError()
         }
       }

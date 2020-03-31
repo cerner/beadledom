@@ -9,6 +9,7 @@ import javax.ws.rs.client.Entity
 import javax.ws.rs.core.MediaType
 import org.apache.commons.io.{FileUtils, IOUtils}
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
+import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientBuilderImpl
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
 import org.skyscreamer.jsonassert.{JSONCompare, JSONCompareMode}
@@ -25,7 +26,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
     extends FunSpec with MockitoSugar with BeforeAndAfterAll with BeforeAndAfter with
         MustMatchers {
 
-  val client = new ResteasyClientBuilder().connectionPoolSize(5).register().build()
+  val client = new ResteasyClientBuilderImpl().connectionPoolSize(5).register().build()
 
   before {
     ImportantThingHealthDependency.healthy = true
