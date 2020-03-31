@@ -5,6 +5,7 @@ import com.google.inject.{AbstractModule, Guice}
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.must.Matchers
+import org.jboss.resteasy.core.providerfactory.ResteasyProviderFactoryImpl
 
 class InjectorProcessorSpec extends AnyFunSpec with MockitoSugar with Matchers{
 
@@ -42,7 +43,7 @@ class InjectorProcessorSpec extends AnyFunSpec with MockitoSugar with Matchers{
             )
           }
         })
-        val providerFactory = new ResteasyProviderFactory()
+        val providerFactory = new ResteasyProviderFactoryImpl()
         new InjectorProcessor(registry, providerFactory).process(injector)
 
         providerFactory.getProviderInstances mustBe empty
@@ -58,7 +59,7 @@ class InjectorProcessorSpec extends AnyFunSpec with MockitoSugar with Matchers{
             bind(classOf[TestJaxRsProvider])
           }
         })
-        val providerFactory = new ResteasyProviderFactory()
+        val providerFactory = new ResteasyProviderFactoryImpl()
         new InjectorProcessor(registry, providerFactory).process(injector)
 
         providerFactory.getProviderInstances must have size 1
@@ -74,7 +75,7 @@ class InjectorProcessorSpec extends AnyFunSpec with MockitoSugar with Matchers{
             bind(classOf[TestingExceptionMapper])
           }
         })
-        val providerFactory = new ResteasyProviderFactory()
+        val providerFactory = new ResteasyProviderFactoryImpl()
         new InjectorProcessor(registry, providerFactory).process(injector)
 
         providerFactory.getProviderInstances must have size 1

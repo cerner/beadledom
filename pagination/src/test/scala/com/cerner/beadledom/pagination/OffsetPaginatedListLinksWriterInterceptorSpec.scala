@@ -3,8 +3,8 @@ package com.cerner.beadledom.pagination
 import com.cerner.beadledom.pagination.models.OffsetPaginatedListDto
 import com.google.inject.Guice
 import javax.ws.rs.core.UriInfo
-import org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext
-import org.jboss.resteasy.spi.ResteasyUriInfo
+import org.jboss.resteasy.core.interception.jaxrs.AbstractWriterInterceptorContext
+import org.jboss.resteasy.specimpl.ResteasyUriInfo
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.when
 import scala.collection.JavaConverters._
@@ -71,7 +71,7 @@ class OffsetPaginatedListLinksWriterInterceptorSpec extends AnyFunSpec with Matc
     val queryString = queryParams
         .filter({ case (_, v) => v != null })
         .map({ case (k, v) => s"$k=$v" }).mkString("&")
-    val uriInfo = new ResteasyUriInfo("example.com", queryString, "")
+    val uriInfo = new ResteasyUriInfo("example.com", queryString, null)
 
     uriInfo
   }
