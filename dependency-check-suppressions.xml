@@ -16,7 +16,7 @@
     <notes><![CDATA[
    file name: handlebars-1.0.0.js
    ]]></notes>
-    <packageUrl regex="true">^pkg:javascript/handlebars\.js@.*$</packageUrl>
+    <packageUrl regex="true">^pkg:javascript/handlebars@.*$</packageUrl>
     <vulnerabilityName>Quoteless attributes in templates can lead to XSS</vulnerabilityName>
     <vulnerabilityName>poorly sanitized input passed to eval()</vulnerabilityName>
     <vulnerabilityName>Disallow calling helperMissing and blockHelperMissing directly</vulnerabilityName>
