@@ -41,7 +41,7 @@ import java.util.Set;
  *
  * @author Sundeep Paruvu
  * @since 2.2
- * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
 @Deprecated
 class AnnotatedJacksonPrivateModule extends AnnotatedModule {

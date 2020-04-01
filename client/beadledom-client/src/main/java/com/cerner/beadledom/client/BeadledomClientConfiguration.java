@@ -8,7 +8,7 @@ import javax.net.ssl.SSLContext;
 
 /**
  * Resteasy client builder to use with guice.
- * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
 @AutoValue
 @Deprecated

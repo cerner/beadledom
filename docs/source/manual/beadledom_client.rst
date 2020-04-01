@@ -3,7 +3,7 @@
 beadledom-client
 ================
 
-Deprecated since 4.0, use `Retrofit <https://github.com/square/retrofit>`_ instead.
+Deprecated since 3.6, use `Retrofit <https://github.com/square/retrofit>`_ instead.
 
 Beadledom Client is a JAX-RS 2.0 based HTTP Client for Java. It provides a wrapper around the JAX-RS 2.0 client API along with some additional functionality including a `CorrelationIdFilter <https://github.com/cerner/beadledom/blob/master/client/beadledom-client/src/main/java/com/cerner/beadledom/client/CorrelationIdFilter.java>`_ that will set a correlation id header on all client calls.
 

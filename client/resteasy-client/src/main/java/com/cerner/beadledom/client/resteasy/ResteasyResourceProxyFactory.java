@@ -8,7 +8,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
  *
  * @author John Leacox
  * @since 2.0
- * @deprecated As of 4.0, use Retrofit (https://github.com/square/retrofit) instead.
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
 @Deprecated
 class ResteasyResourceProxyFactory implements ResourceProxyFactory {
