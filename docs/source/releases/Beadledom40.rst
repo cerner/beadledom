@@ -28,3 +28,47 @@ on beadledom-swagger1 to beadledom-swagger2. The user guide for beadledom-swagge
 
 The beadledom-stagemonitor module was removed. This will require updating your poms that have a dependency
 on beadledom-stagemonitor.
+
+Upgrading to Scala 2.12 and Scalatest 3.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Beadledom upgraded to Scala 2.12 and Scalatest 3.1. If your project depends on any of the Scala functionality provided by Beadledom (naming beadledom-testing), then you will also need to upgrade these dependencies. It's best to make these upgrades even if you don't depend on the Scala functionality from Beadledom.
+
+Scalatest provides autofix mechanisms for this upgrade, but requires multiples steps.
+
+1. Upgrade to the latest Scala 2.12 version and scalatest 3.0.8 to use the scalatest autofixes for 3.0.8
+  * Scala binary version: 2.12
+  * Scala version: 2.12.11+
+  * scala-maven-plugin version: 4.3.1+
+  * scalacheck version: 1.14.3+
+  * scalatest version: 3.0.8
+  * Add semanticdb compiler plugin to the scala-maven-plugin configuration
+    .. code-block:: xml
+      <compilerPlugins>
+        <compilerPlugin>
+          <groupId>org.scalameta</groupId>
+          <artifactId>semanticdb-scalac_${scala.version}</artifactId>
+          <version>4.3.7</version>
+        </compilerPlugin>
+      </compilerPlugins>
+  * Add scalafix-maven-plugin with the scalatest autofix version 3.0.8-0 dependency to your pom file
+    .. code-block:: xml
+      <plugin>
+        <groupId>io.github.evis</groupId>
+        <artifactId>scalafix-maven-plugin</artifactId>
+        <version>0.1.2_0.9.5</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>autofix_${scala.binary.version}</artifactId>
+            <version>3.0.8-0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+  * Add a new file to the root of your project called .scalafix.conf with the following contents
+    ..code-block::
+      rules = [
+        RenameDeprecatedPackage
+      ]
+  * Run `mvn clean install scalafix:scalafix` and fix any errors until you get a fully successful build.
+2. Upgrade scalatest to 3.1.1+ with the updated autofix
+
