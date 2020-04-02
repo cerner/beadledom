@@ -69,6 +69,9 @@
     <vulnerabilityName>CVE-2019-16335</vulnerabilityName>
     <vulnerabilityName>CVE-2019-17267</vulnerabilityName>
     <vulnerabilityName>CVE-2019-10172</vulnerabilityName>
+    <vulnerabilityName>CVE-2019-14893</vulnerabilityName>
+    <vulnerabilityName>CVE-2020-10672</vulnerabilityName>
+    <vulnerabilityName>CVE-2020-10673</vulnerabilityName>
   </suppress>
 
 </suppressions>
