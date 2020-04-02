@@ -10,7 +10,9 @@ import org.apache.http.protocol.HttpContext;
  *
  * @author John Leacox
  * @since 3.5
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class ExponentialBackoffHttpRequestRetryHandler extends StandardHttpRequestRetryHandler {
   private static final int INITIAL_DELAY = 100;
   private static final int BACKOFF_FACTOR = 2;
