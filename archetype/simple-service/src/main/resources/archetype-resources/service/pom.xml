@@ -34,9 +34,6 @@
         </dependency>
         <dependency>
             <groupId>com.cerner.beadledom</groupId>
-            <artifactId>beadledom-jaxrs-genericresponse</artifactId>
-        </dependency>
-        <dependency>
           <artifactId>beadledom-resteasy</artifactId>
         </dependency>
         <dependency>
@@ -74,6 +71,10 @@
         <dependency>
             <groupId>com.netflix.governator</groupId>
             <artifactId>governator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
