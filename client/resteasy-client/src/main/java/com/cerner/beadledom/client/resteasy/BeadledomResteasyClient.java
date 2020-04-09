@@ -16,7 +16,9 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClient;
  *
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public class BeadledomResteasyClient extends BeadledomClient {
   private final ResteasyClient client;
 

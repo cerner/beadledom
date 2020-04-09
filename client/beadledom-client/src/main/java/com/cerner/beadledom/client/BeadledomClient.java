@@ -12,7 +12,9 @@ import javax.ws.rs.core.UriBuilder;
  *
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public abstract class BeadledomClient implements Client {
 
   protected BeadledomClient() {

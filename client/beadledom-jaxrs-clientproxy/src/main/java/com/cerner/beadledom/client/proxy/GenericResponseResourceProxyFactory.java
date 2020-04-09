@@ -9,7 +9,9 @@ import java.lang.reflect.Proxy;
  *
  * @author John Leacox
  * @since 2.0
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public class GenericResponseResourceProxyFactory implements ResourceProxyFactory {
   private final GenericResponseResourceTransformer transformer =
       new GenericResponseResourceTransformer();

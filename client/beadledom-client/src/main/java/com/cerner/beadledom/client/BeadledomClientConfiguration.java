@@ -8,8 +8,10 @@ import javax.net.ssl.SSLContext;
 
 /**
  * Resteasy client builder to use with guice.
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
 @AutoValue
+@Deprecated
 public abstract class BeadledomClientConfiguration {
   private static final int DEFAULT_CONNECTION_POOL_SIZE = 200;
   private static final int DEFAULT_MAX_POOLED_PER_ROUTE = 100;

@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.6 - In Development
+
+### Deprecated
+* All beadledom-client modules and classes have been deprecated. Use [Retrofit](https://github.com/square/retrofit) instead.
+
 ## 3.5 - 21 February 2020
 
 ### Changed

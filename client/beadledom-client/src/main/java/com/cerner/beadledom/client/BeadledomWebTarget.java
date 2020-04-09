@@ -8,7 +8,9 @@ import javax.ws.rs.client.WebTarget;
  *
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public abstract class BeadledomWebTarget implements WebTarget {
   protected BeadledomWebTarget() {
   }

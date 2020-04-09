@@ -14,7 +14,9 @@ import java.lang.annotation.Target;
  *
  * @author John Leacox
  * @since 1.0
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 @BindingAnnotation
 @Target({FIELD, PARAMETER, METHOD})
 @Retention(RUNTIME)

@@ -10,7 +10,9 @@ import javax.inject.Provider;
  *
  * @author Sundeep Paruvu
  * @since 2.0
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class BeadledomClientProvider implements Provider<BeadledomClient> {
   private final Class<? extends Annotation> clientBindingAnnotation;
   private DynamicBindingProvider<BeadledomClientBuilder> clientBuilderProvider;

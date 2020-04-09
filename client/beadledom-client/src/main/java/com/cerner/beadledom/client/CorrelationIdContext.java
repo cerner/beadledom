@@ -10,7 +10,9 @@ import javax.annotation.Nullable;
  *
  * @author John Leacox
  * @since 1.0
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public interface CorrelationIdContext {
   /**
    * The default header name for the correlationId.

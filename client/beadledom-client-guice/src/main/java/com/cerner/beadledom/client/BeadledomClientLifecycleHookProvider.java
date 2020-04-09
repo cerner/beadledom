@@ -9,7 +9,9 @@ import javax.inject.Provider;
  * A Guice provider for {@link ResteasyClientLifecycleHook}.
  *
  * @author John Leacox
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 class BeadledomClientLifecycleHookProvider implements Provider<BeadledomClientLifecycleHook> {
   private final Class<? extends Annotation> annotation;
 

@@ -88,7 +88,9 @@ import java.lang.annotation.Annotation;
  * @author Sundeep Paruvu
  * @since 2.2
  * @see JacksonModule
+ * @deprecated As of 3.6, use Retrofit (https://github.com/square/retrofit) instead.
  */
+@Deprecated
 public class AnnotatedJacksonModule extends AbstractModule {
 
   private final Class<? extends Annotation> clientBindingAnnotation;
