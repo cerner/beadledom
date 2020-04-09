@@ -2,13 +2,15 @@ package com.cerner.beadledom.configuration
 
 import java.io.{File, FileReader, Reader}
 import org.apache.commons.configuration2.Configuration
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
 import scala.xml.XML
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Specs for [[XmlConfigurationSource]].
  */
-class XmlConfigurationSourceSpec extends FunSpec with BeforeAndAfter with MustMatchers {
+class XmlConfigurationSourceSpec extends AnyFunSpec with BeforeAndAfter with Matchers {
   var reader: Reader = _
 
   before {

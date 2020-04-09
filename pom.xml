@@ -90,8 +90,8 @@
     <beadledom.url>http://cerner.github.io/beadledom/${project.version}</beadledom.url>
     <autovalue.version>1.6.5</autovalue.version>
     <java.version>1.8</java.version>
-    <scala.version>2.11.12</scala.version>
-    <scala.binary.version>2.11</scala.binary.version>
+    <scala.version>2.12.11</scala.version>
+    <scala.binary.version>2.12</scala.binary.version>
     <governator.version>1.17.5</governator.version>
     <jackson.version>2.10.2</jackson.version>
     <junit.jupiter.version>5.5.2</junit.jupiter.version>
@@ -105,7 +105,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
     <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
-    <scala-maven-plugin.version>3.4.1</scala-maven-plugin.version>
+    <scala-maven-plugin.version>4.3.1</scala-maven-plugin.version>
     <spotbugs.plugin.version>3.1.5</spotbugs.plugin.version>
     <pmd.version>6.8.0</pmd.version>
     <pmd.plugin.version>3.10.0</pmd.plugin.version>
@@ -511,13 +511,31 @@
       <dependency>
         <groupId>org.scalacheck</groupId>
         <artifactId>scalacheck_${scala.binary.version}</artifactId>
-        <version>1.14.0</version>
+        <version>1.14.3</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.scalatest</groupId>
         <artifactId>scalatest_${scala.binary.version}</artifactId>
-        <version>3.0.5</version>
+        <version>3.1.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scalatestplus</groupId>
+        <artifactId>junit-4-12_${scala.binary.version}</artifactId>
+        <version>3.1.1.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scalatestplus</groupId>
+        <artifactId>mockito-3-2_${scala.binary.version}</artifactId>
+        <version>3.1.1.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scalatestplus</groupId>
+        <artifactId>scalacheck-1-14_${scala.binary.version}</artifactId>
+        <version>3.1.1.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -546,6 +564,21 @@
     <dependency>
       <groupId>org.scalatest</groupId>
       <artifactId>scalatest_${scala.binary.version}</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatestplus</groupId>
+      <artifactId>junit-4-12_${scala.binary.version}</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatestplus</groupId>
+      <artifactId>mockito-3-2_${scala.binary.version}</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.scalatestplus</groupId>
+      <artifactId>scalacheck-1-14_${scala.binary.version}</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -725,7 +758,7 @@
           <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.binary.version}</artifactId>
-            <version>3.0.5</version>
+            <version>3.1.1</version>
           </dependency>
         </dependencies>
         <configuration>

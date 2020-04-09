@@ -9,12 +9,14 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 import org.jboss.resteasy.mock._
 import org.mockito.Mockito
 import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll}
 
 import javax.ws.rs.core.HttpHeaders.CONTENT_TYPE
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response.Status._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[ThrowableExceptionMapper]].
@@ -22,7 +24,7 @@ import javax.ws.rs.core.Response.Status._
   * @author Cal Fisher
   */
 class ThrowableExceptionMapperSpec
-    extends FunSpec with MustMatchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
+    extends AnyFunSpec with Matchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
 
   val throwableExceptionMapper = new ThrowableExceptionMapper
   val fakeRepository = mock[FakeRepository]

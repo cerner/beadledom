@@ -2,17 +2,18 @@ package com.cerner.beadledom.lifecycle.legacy
 
 import java.lang.reflect.Method
 import javax.annotation.PreDestroy
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[InvokableLifecycleMethodImpl]].
   *
   * @author John Leacox
   */
-class InvokableLifecycleMethodImplSpec extends FunSpec with MustMatchers with MockitoSugar {
+class InvokableLifecycleMethodImplSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("InvokableLifecycleMethodImpl") {
     describe("#invoke") {
       it("invokes the wrapped lifecycle method") {

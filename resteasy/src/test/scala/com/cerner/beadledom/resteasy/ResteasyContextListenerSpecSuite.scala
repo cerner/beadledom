@@ -8,11 +8,12 @@ import org.apache.commons.io.FileUtils
 import org.apache.naming.resources.VirtualDirContext
 import org.scalatest._
 import scala.collection.immutable.IndexedSeq
+import org.scalatest.funspec.AnyFunSpec
 
 /**
  * Suite of tests for Beadledom RestEasy based services.
  */
-class ResteasyContextListenerSpecSuite extends FunSpec with BeforeAndAfterAll {
+class ResteasyContextListenerSpecSuite extends AnyFunSpec with BeforeAndAfterAll {
 
   val tomcat = new Tomcat
   val tomcatPort = Integer.parseInt(System.getProperty("tomcat.http.port", "9091"))

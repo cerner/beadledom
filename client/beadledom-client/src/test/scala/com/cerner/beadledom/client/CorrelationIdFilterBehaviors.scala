@@ -3,13 +3,12 @@ package com.cerner.beadledom.client.jaxrs
 import java.util.UUID
 import javax.ws.rs.client.ClientRequestContext
 import javax.ws.rs.core.MultivaluedHashMap
-
 import com.cerner.beadledom.client.CorrelationIdFilter
 import org.mockito.Mockito
+import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.{BeMatcher, MatchResult}
-import org.scalatest.{FunSpec, Matchers}
-
 import scala.util.Try
+import org.scalatest.matchers.should.Matchers
 
 /**
   * Testing Behaviors for the {@link CorrelationIdFilter}
@@ -17,7 +16,7 @@ import scala.util.Try
   * @author John Leacox
   */
 trait CorrelationIdFilterBehaviors extends Matchers {
-  this: FunSpec =>
+  this: AnyFunSpec =>
 
   val aUUID =
     BeMatcher { (left: Any) =>

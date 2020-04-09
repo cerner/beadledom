@@ -2,16 +2,17 @@ package com.cerner.beadledom.client.proxy
 
 import com.cerner.beadledom.jaxrs.GenericResponse
 
-import org.scalatest.{FunSpec, MustMatchers}
-import org.scalatest.mockito.MockitoSugar
 import org.mockito.Mockito._
 
 import javax.ws.rs.core.{GenericType, Response}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * @author John Leacox
   */
-class GenericClientProxySpec extends FunSpec with MustMatchers with MockitoSugar {
+class GenericClientProxySpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("GenericClientProxy") {
     describe("#invoke") {
       it("delegates to underlying transformed resource and wraps the result in a GenericResponse") {

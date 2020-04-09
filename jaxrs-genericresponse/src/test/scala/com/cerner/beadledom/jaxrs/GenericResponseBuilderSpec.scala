@@ -8,8 +8,8 @@ import javax.ws.rs.core.Response.StatusType
 import javax.ws.rs.core._
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl
 import org.mockito.Mockito.{verify, when}
-import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Spec tests for [[GenericResponseBuilder]].

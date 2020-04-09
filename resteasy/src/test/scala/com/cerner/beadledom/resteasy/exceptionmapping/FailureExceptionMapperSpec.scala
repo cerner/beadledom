@@ -13,8 +13,10 @@ import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttp
 import org.jboss.resteasy.spi.{Failure, LoggableFailure, ReaderException, WriterException}
 import org.mockito.Mockito
 import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[FailureExceptionMapper]].
@@ -22,7 +24,7 @@ import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
   * @author Cal Fisher
   */
 class FailureExceptionMapperSpec
-    extends FunSpec with MustMatchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
+    extends AnyFunSpec with Matchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
 
   val failureExceptionMapper = new FailureExceptionMapper
   val helloDao = mock[HelloDao]

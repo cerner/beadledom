@@ -9,13 +9,15 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 import org.jboss.resteasy.mock.{MockDispatcherFactory, MockHttpRequest, MockHttpResponse}
 import org.mockito.Mockito
 import org.mockito.Mockito._
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll}
 
 import javax.ws.rs._
 import javax.ws.rs.core.HttpHeaders._
 import javax.ws.rs.core.Response.Status._
 import javax.ws.rs.core.{MediaType, Response}
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[WebApplicationExceptionMapper]].
@@ -23,7 +25,7 @@ import javax.ws.rs.core.{MediaType, Response}
   * @author Cal Fisher
   */
 class WebApplicationExceptionMapperSpec
-    extends FunSpec with MustMatchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
+    extends AnyFunSpec with Matchers with BeforeAndAfter with BeforeAndAfterAll with MockitoSugar {
 
   val webApplicationExceptionMapper = new WebApplicationExceptionMapper
   val fakeRepository = mock[FakeRepository]

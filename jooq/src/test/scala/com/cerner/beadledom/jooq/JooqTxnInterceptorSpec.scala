@@ -6,8 +6,10 @@ import org.jooq.tools.jdbc._
 import org.jooq.{ConnectionProvider, ContextTransactionalCallable, DSLContext}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.{spy, times, verify, when}
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec for JooqTxnInterceptor.
@@ -15,7 +17,7 @@ import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
  * @author John Leacox
  */
 class JooqTxnInterceptorSpec
-    extends FunSpec with MockitoSugar with BeforeAndAfter with MustMatchers {
+    extends AnyFunSpec with MockitoSugar with BeforeAndAfter with Matchers {
   describe("JooqTxnInterceptor") {
     describe("#invoke") {
       it("does not end the unit of work if it did not start it") {

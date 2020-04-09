@@ -3,14 +3,16 @@ package com.cerner.beadledom.health.internal
 import com.cerner.beadledom.health.dto.{HealthDependencyDto, LinksDto}
 import com.cerner.beadledom.health.internal.presenter.HealthDependencyPresenter
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec tests for HealthDependencyPresenter.
  *
  * @author John Leacox
  */
-class HealthDependencyPresenterSpec extends FunSpec with MustMatchers with MockitoSugar {
+class HealthDependencyPresenterSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("HealthDependencyPresenter") {
     val healthDependencyDto = HealthDependencyDto.builder()
         .setName("abra")

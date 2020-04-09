@@ -6,8 +6,10 @@ import javax.servlet.ServletConfig
 import javax.ws.rs.core.Application
 import org.mockito.Mockito.{reset, when}
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec tests for [SwaggerGuiceJaxrsScanner].
@@ -15,7 +17,7 @@ import scala.collection.JavaConverters._
  * @author John Leacox
  */
 class SwaggerGuiceJaxrsScannerSpec
-    extends FunSpec with BeforeAndAfter with MustMatchers with MockitoSugar {
+    extends AnyFunSpec with BeforeAndAfter with Matchers with MockitoSugar {
   val swaggerInfo: Info = mock[Info]
 
   before {

@@ -3,14 +3,16 @@ package com.cerner.beadledom.lifecycle
 import com.google.inject.{Injector, Key, Module, TypeLiteral}
 import org.mockito.Mockito
 import org.scalatest._
-import org.scalatest.mockito.MockitoSugar
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[DelegatingInjector]].
   *
   * @author John Leacox
   */
-class DelegatingInjectorSpec extends FunSpec with MustMatchers with MockitoSugar {
+class DelegatingInjectorSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("DelegatingInjector") {
     describe("constructor") {
       it("throws a NullPointerException for a null injector parameter") {

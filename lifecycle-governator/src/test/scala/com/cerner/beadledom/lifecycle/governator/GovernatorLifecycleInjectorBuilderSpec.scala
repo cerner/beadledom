@@ -3,16 +3,17 @@ package com.cerner.beadledom.lifecycle.governator
 import com.google.inject.{AbstractModule, Module}
 import com.netflix.governator.LifecycleManager
 import com.netflix.governator.ShutdownHookModule.SystemShutdownHook
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * Unit tests for [[GovernatorLifecycleInjectorBuilder]].
   *
   * @author John Leacox
   */
-class GovernatorLifecycleInjectorBuilderSpec extends FunSpec with MustMatchers with MockitoSugar {
+class GovernatorLifecycleInjectorBuilderSpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("GovernatorLifecycleInjectorBuilder") {
     describe("#modules") {
       it("throws a NullPointerException if the modules param is null") {

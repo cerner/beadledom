@@ -4,13 +4,15 @@ import com.google.inject._
 import java.io.FileReader
 import javax.naming.{Context, InitialContext}
 import org.apache.commons.configuration2.CombinedConfiguration
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
 import scala.collection.JavaConverters._
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Specs for [[ConfigurationSourcesModuleBuilder]].
  */
-class ConfigurationSourceModuleBuilderSpec extends FunSpec with BeforeAndAfter with MustMatchers {
+class ConfigurationSourceModuleBuilderSpec extends AnyFunSpec with BeforeAndAfter with Matchers {
   System.setProperty(Context.INITIAL_CONTEXT_FACTORY,
     "org.apache.naming.java.javaURLContextFactory")
   System.setProperty(Context.URL_PKG_PREFIXES, "org.apache.naming")

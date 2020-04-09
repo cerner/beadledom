@@ -7,15 +7,17 @@ import javax.naming.{Context, InitialContext}
 import org.apache.commons.configuration2.ex.ConfigurationException
 import org.apache.commons.configuration2.{CombinedConfiguration, Configuration, ImmutableHierarchicalConfiguration}
 import org.mockito.Mockito.{mock => _}
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
 import scala.collection.JavaConverters._
 import uk.org.lidalia.slf4jext.Level
 import uk.org.lidalia.slf4jtest.TestLoggerFactory
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Specs for [[BeadledomConfigurationModule]].
  */
-class BeadledomConfigurationModuleSpec extends FunSpec with BeforeAndAfter with MustMatchers {
+class BeadledomConfigurationModuleSpec extends AnyFunSpec with BeforeAndAfter with Matchers {
 
   System.setProperty(Context.INITIAL_CONTEXT_FACTORY,
     "org.apache.naming.java.javaURLContextFactory")

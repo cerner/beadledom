@@ -2,12 +2,14 @@ package com.cerner.beadledom.configuration
 
 import javax.naming.{Context, InitialContext}
 import org.apache.commons.configuration2.Configuration
-import org.scalatest.{BeforeAndAfter, FunSpec, MustMatchers}
+import org.scalatest.BeforeAndAfter
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Specs for [[JndiConfigurationSource]].
  */
-class JndiConfigurationSourceSpec extends FunSpec with BeforeAndAfter with MustMatchers {
+class JndiConfigurationSourceSpec extends AnyFunSpec with BeforeAndAfter with Matchers {
 
   System.setProperty(Context.INITIAL_CONTEXT_FACTORY,
     "org.apache.naming.java.javaURLContextFactory")

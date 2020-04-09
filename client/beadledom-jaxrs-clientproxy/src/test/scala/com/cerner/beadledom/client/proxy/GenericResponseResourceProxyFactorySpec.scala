@@ -4,17 +4,18 @@ import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.invocation.InvocationOnMock
 import org.mockito.stubbing.Answer
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{FunSpec, MustMatchers}
 
 import javax.ws.rs.core.Response
 
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * @author John Leacox
   */
-class GenericResponseResourceProxyFactorySpec extends FunSpec with MustMatchers with MockitoSugar {
+class GenericResponseResourceProxyFactorySpec extends AnyFunSpec with Matchers with MockitoSugar {
   describe("GenericResponseResourceProxyFactory") {
     describe("#proxy") {
       it("it creates a delegate proxy with GenericResponse returns type replaced with Response") {

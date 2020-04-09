@@ -2,9 +2,10 @@ package com.cerner.beadledom.health.dto
 
 import java.time.Instant
 
-import org.scalatest.{FunSpec, MustMatchers}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
-class ServerDtoSpec extends FunSpec with MustMatchers with JacksonSerializationBehaviors {
+class ServerDtoSpec extends AnyFunSpec with Matchers with JacksonSerializationBehaviors {
 
   val dto = ServerDto.builder()
     .setHostName("host")

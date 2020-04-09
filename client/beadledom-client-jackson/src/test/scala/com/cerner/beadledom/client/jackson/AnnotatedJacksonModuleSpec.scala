@@ -4,15 +4,17 @@ import com.cerner.beadledom.client.jackson.test.annotations.TestBindingAnnotatio
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.{DeserializationFeature, MapperFeature, ObjectMapper, SerializationFeature}
 import com.google.inject.{Guice, Injector, Key}
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, FunSpec, Matchers}
+import org.scalatest.BeforeAndAfter
 import scala.collection.JavaConverters._
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
 /**
  * Specs for [[AnnotatedJacksonModule]].
  */
 class AnnotatedJacksonModuleSpec
-    extends FunSpec with BeforeAndAfter with Matchers with MockitoSugar {
+    extends AnyFunSpec with BeforeAndAfter with Matchers with MockitoSugar {
   var injector: Injector = _
   var mapper: ObjectMapper = _
   before {

@@ -9,13 +9,15 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
 
 import org.scalatest._
 import org.slf4j.MDC
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
   * @author John Leacox
   */
 @DoNotDiscover
 class ResteasyClientSpec(contextRoot: String, servicePort: Int)
-    extends FunSpec with MustMatchers with BeforeAndAfter {
+    extends AnyFunSpec with Matchers with BeforeAndAfter {
   after {
     MDC.clear()
   }

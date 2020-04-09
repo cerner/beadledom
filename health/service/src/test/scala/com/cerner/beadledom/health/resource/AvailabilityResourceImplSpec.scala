@@ -5,13 +5,15 @@ import com.github.mustachejava.DefaultMustacheFactory
 import org.scalatest._
 import java.time.Instant
 import java.util.{Properties, Optional}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  * Spec tests for AvailabilityResourceImpl.
  *
  * @author John Leacox
  */
-class AvailabilityResourceImplSpec extends FunSpec with MustMatchers {
+class AvailabilityResourceImplSpec extends AnyFunSpec with Matchers {
   describe("AvailabilityResourceImpl") {
     describe("#getBasicAvailabilityCheck") {
       it("returns a dto with status 200") {

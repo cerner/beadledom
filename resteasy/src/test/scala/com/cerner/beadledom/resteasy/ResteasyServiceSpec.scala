@@ -9,9 +9,11 @@ import javax.ws.rs.client.Entity
 import javax.ws.rs.core.MediaType
 import org.apache.commons.io.FileUtils
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
-import org.scalatest.mockito.MockitoSugar
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll, FunSpec, MustMatchers}
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll}
 import play.api.libs.json.Json
+import org.scalatestplus.mockito.MockitoSugar
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.must.Matchers
 
 /**
  *
@@ -21,8 +23,8 @@ import play.api.libs.json.Json
  * @author John Leacox
  */
 class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
-    extends FunSpec with MockitoSugar with BeforeAndAfterAll with BeforeAndAfter with
-        MustMatchers {
+    extends AnyFunSpec with MockitoSugar with BeforeAndAfterAll with BeforeAndAfter with
+        Matchers {
 
   val client = new ResteasyClientBuilder().connectionPoolSize(5).register().build()
 
