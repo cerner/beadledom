@@ -3,9 +3,9 @@ package com.cerner.beadledom.correlation;
 import javax.annotation.Nullable;
 
 /**
- * A context for retrieving the correlationId.
+ * A context for retrieving the correlation id.
  *
- * <p>Different implementations of this can be used depending on how the correlationId should be
+ * <p>Different implementations of this can be used depending on how the correlation id should be
  * retrieved.
  *
  * @author John Leacox
@@ -18,7 +18,7 @@ public interface CorrelationContext {
    * Returns the correlationId from the context; null if a correlation id is not found.
    */
   @Nullable
-  String getId();
+  String getCorrelationId();
 
   /**
    * Sets the correlation id.
@@ -26,15 +26,10 @@ public interface CorrelationContext {
    * @param correlationId The correlation Id to set in the context. If {@code null} is set, a
    *                      correlation id will be generated and set.
    */
-  void setId(@Nullable String correlationId);
+  void setCorrelationId(@Nullable String correlationId);
 
   /**
-   * Returns the value to use as a key for the correlation id when used in a key-value store.
+   * Resets the correlation id to {@code null}.
    */
-  String getKey();
-
-  /**
-   * Removes the correlation id from context.
-   */
-  void removeId();
+  void resetCorrelationId();
 }

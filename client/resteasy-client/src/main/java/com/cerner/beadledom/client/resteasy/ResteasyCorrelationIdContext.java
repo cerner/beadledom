@@ -31,7 +31,7 @@ class ResteasyCorrelationIdContext implements CorrelationIdContext {
   @Override
   public String getCorrelationId() {
 
-    String correlationId = proxyCorrelationContext.getId();
+    String correlationId = proxyCorrelationContext.getCorrelationId();
     if (correlationId != null) {
       return correlationId;
     }

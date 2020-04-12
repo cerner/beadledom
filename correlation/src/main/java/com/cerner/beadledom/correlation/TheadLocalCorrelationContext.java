@@ -1,6 +1,5 @@
 package com.cerner.beadledom.correlation;
 
-import java.util.Objects;
 import java.util.UUID;
 import javax.annotation.Nullable;
 
@@ -10,52 +9,32 @@ import javax.annotation.Nullable;
 public class TheadLocalCorrelationContext implements CorrelationContext {
 
   private ThreadLocal<String> correlationId = new ThreadLocal<>();
-  private final String key;
 
-  /**
-   * Constructs a TheadLocalCorrelationContext.
-   * @param key The value to use as a key for the correlation id when used in a key-value store.
-   */
-  private TheadLocalCorrelationContext(String key) {
-    Objects.requireNonNull(key, "key:null");
-    this.key = key;
+  private TheadLocalCorrelationContext() {
+
   }
 
   public static TheadLocalCorrelationContext create() {
-    return TheadLocalCorrelationContext.create("Cerner-Correlation-Id");
-  }
-
-  /**
-   * Creates an instance of {@link TheadLocalCorrelationContext}.
-   *
-   * @param key The value to use as a key for the correlation id when used in a key-value store.
-   */
-  public static TheadLocalCorrelationContext create(String key) {
-    return new TheadLocalCorrelationContext(key);
+    return new TheadLocalCorrelationContext();
   }
 
   @Nullable
   @Override
-  public String getId() {
+  public String getCorrelationId() {
     return correlationId.get();
   }
 
   @Override
-  public void removeId() {
+  public void resetCorrelationId() {
     correlationId.remove();
   }
 
   @Override
-  public void setId(@Nullable String correlationId) {
+  public void setCorrelationId(@Nullable String correlationId) {
     if (correlationId == null) {
       this.correlationId.set(UUID.randomUUID().toString());
     } else {
       this.correlationId.set(correlationId);
     }
-  }
-
-  @Override
-  public String getKey() {
-    return key;
   }
 }
