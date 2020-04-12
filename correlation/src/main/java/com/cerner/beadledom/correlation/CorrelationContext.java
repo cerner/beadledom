@@ -24,7 +24,7 @@ public interface CorrelationContext {
    * Sets the correlation id.
    *
    * @param correlationId The correlation Id to set in the context. If {@code null} is set, a
-   *                      correlation id will be generated and set.
+   *     correlation id will be generated and set.
    */
   void setCorrelationId(@Nullable String correlationId);
 

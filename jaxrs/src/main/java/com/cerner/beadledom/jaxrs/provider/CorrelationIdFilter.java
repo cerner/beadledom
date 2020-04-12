@@ -1,7 +1,7 @@
 package com.cerner.beadledom.jaxrs.provider;
 
 import com.cerner.beadledom.correlation.CorrelationContext;
-import com.cerner.beadledom.correlation.TheadLocalCorrelationContext;
+import com.cerner.beadledom.correlation.ThreadLocalCorrelationContext;
 import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Nullable;
@@ -56,13 +56,14 @@ public class CorrelationIdFilter implements ContainerRequestFilter, ContainerRes
    * @param mdcName the correlation id name to use in the {@link MDC}, if null the default value
    *     will be used
    * @param correlationContext the correlation context, if null the {@link
-   *     TheadLocalCorrelationContext} implementation will be used
+   *     ThreadLocalCorrelationContext} implementation will be used
    */
   public CorrelationIdFilter(@Nullable String headerName, @Nullable String mdcName,
       @Nullable CorrelationContext correlationContext) {
     this.headerName = Optional.ofNullable(headerName).orElse(DEFAULT_HEADER_NAME);
     this.mdcName = Optional.ofNullable(mdcName).orElse(DEFAULT_MDC_NAME);
-    this.correlationContext = Optional.ofNullable(correlationContext).orElse(TheadLocalCorrelationContext.create());
+    this.correlationContext = Optional.ofNullable(correlationContext).orElse(
+        ThreadLocalCorrelationContext.create());
   }
 
   /**

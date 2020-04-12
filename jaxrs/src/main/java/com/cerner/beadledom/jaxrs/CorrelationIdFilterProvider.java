@@ -1,5 +1,6 @@
 package com.cerner.beadledom.jaxrs;
 
+import com.cerner.beadledom.correlation.CorrelationContext;
 import com.cerner.beadledom.jaxrs.provider.CorrelationIdFilter;
 import com.cerner.beadledom.jaxrs.provider.CorrelationIdHeader;
 import com.cerner.beadledom.jaxrs.provider.CorrelationIdMdc;
@@ -23,8 +24,12 @@ class CorrelationIdFilterProvider implements Provider<CorrelationIdFilter> {
   @Inject(optional = true)
   String correlationIdMdc;
 
+  @Nullable
+  @Inject(optional = true)
+  CorrelationContext correlationContext;
+
   @Override
   public CorrelationIdFilter get() {
-    return new CorrelationIdFilter(correlationIdHeader, correlationIdMdc);
+    return new CorrelationIdFilter(correlationIdHeader, correlationIdMdc, correlationContext);
   }
 }

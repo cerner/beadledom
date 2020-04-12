@@ -22,7 +22,8 @@ class ResteasyCorrelationIdContext implements CorrelationIdContext {
   private final String mdcName;
   private final CorrelationContext proxyCorrelationContext;
 
-  ResteasyCorrelationIdContext(@Nullable String headerName, @Nullable String mdcName, CorrelationContext correlationContext) {
+  ResteasyCorrelationIdContext(@Nullable String headerName, @Nullable String mdcName,
+      CorrelationContext correlationContext) {
     this.headerName = headerName != null ? headerName : CorrelationIdContext.DEFAULT_HEADER_NAME;
     this.mdcName = mdcName != null ? mdcName : CorrelationIdContext.DEFAULT_MDC_NAME;
     this.proxyCorrelationContext = correlationContext;

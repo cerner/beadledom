@@ -4,18 +4,17 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 /**
- * A tread local implementation of {@link CorrelationContext}.
+ * A thread local implementation of {@link CorrelationContext}.
  */
-public class TheadLocalCorrelationContext implements CorrelationContext {
+public class ThreadLocalCorrelationContext implements CorrelationContext {
 
-  private ThreadLocal<String> correlationId = new ThreadLocal<>();
+  private final ThreadLocal<String> correlationId = new ThreadLocal<>();
 
-  private TheadLocalCorrelationContext() {
-
+  private ThreadLocalCorrelationContext() {
   }
 
-  public static TheadLocalCorrelationContext create() {
-    return new TheadLocalCorrelationContext();
+  public static ThreadLocalCorrelationContext create() {
+    return new ThreadLocalCorrelationContext();
   }
 
   @Nullable
