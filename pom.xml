@@ -102,7 +102,7 @@
     <stagemonitor.version>0.22.0</stagemonitor.version>
     <swagger-core.version>1.3.12</swagger-core.version>
     <swagger2-core.version>1.5.22</swagger2-core.version>
-    <tomcat-embed.version>7.0.99</tomcat-embed.version>
+    <tomcat-embed.version>7.0.103</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -991,14 +991,6 @@
   </reporting>
 
   <repositories>
-    <repository>
-      <id>cloudera-release</id>
-      <name>Cloudera release repository</name>
-      <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
     <repository>
       <id>typesafe-release</id>
       <name>Typesafe Release Repository</name>

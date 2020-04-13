@@ -10,6 +10,7 @@
     <cve>CVE-2012-6708</cve>
     <cve>CVE-2015-9251</cve>
     <cve>CVE-2019-11358</cve>
+    <vulnerabilityName>Regex in its jQuery.htmlPrefilter  sometimes may introduce XSS</vulnerabilityName>
   </suppress>
 
   <suppress>
