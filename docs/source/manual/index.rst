@@ -13,6 +13,7 @@ User Manual
     Beadledom Common <common>
     Beadledom Configuration <configuration>
     Beadledom Core <core>
+    Beadledom Correlation <correlation>
     Beadledom Guice <guice>
     Beadledom Guice Dynamic Bindings <guice_dynamic_bindings>
     Beadledom Health <health>

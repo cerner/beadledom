@@ -2,6 +2,9 @@
 
 ## 3.6 - In Development
 
+### Added
+* The `beadledom-correlation` module.
+
 ### Deprecated
 * All beadledom-client modules and classes have been deprecated. Use [Retrofit](https://github.com/square/retrofit) instead.
 

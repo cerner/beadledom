@@ -1,7 +1,6 @@
 package com.cerner.beadledom.jaxrs.provider;
 
-import com.cerner.beadledom.correlation.CorrelationContext;
-import com.cerner.beadledom.correlation.ThreadLocalCorrelationContext;
+import com.cerner.beadledom.correlation.CorrelationIdContext;
 import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Nullable;
@@ -34,7 +33,6 @@ public class CorrelationIdFilter implements ContainerRequestFilter, ContainerRes
   private static final String DEFAULT_MDC_NAME = "Correlation-Id";
   private final String headerName;
   private final String mdcName;
-  private final CorrelationContext correlationContext;
 
   /**
    * Creates a new {@link CorrelationIdFilter} with the provided correlation id header.
@@ -45,25 +43,8 @@ public class CorrelationIdFilter implements ContainerRequestFilter, ContainerRes
    *     will be used
    */
   public CorrelationIdFilter(@Nullable String headerName, @Nullable String mdcName) {
-    this(headerName, mdcName, null);
-  }
-
-  /**
-   * Creates a new {@link CorrelationIdFilter} with the provided correlation id header.
-   *
-   * @param headerName the correlation id header name to be used in request/response headers, if
-   *     null the default value will be used
-   * @param mdcName the correlation id name to use in the {@link MDC}, if null the default value
-   *     will be used
-   * @param correlationContext the correlation context, if null the {@link
-   *     ThreadLocalCorrelationContext} implementation will be used
-   */
-  public CorrelationIdFilter(@Nullable String headerName, @Nullable String mdcName,
-      @Nullable CorrelationContext correlationContext) {
     this.headerName = Optional.ofNullable(headerName).orElse(DEFAULT_HEADER_NAME);
     this.mdcName = Optional.ofNullable(mdcName).orElse(DEFAULT_MDC_NAME);
-    this.correlationContext = Optional.ofNullable(correlationContext).orElse(
-        ThreadLocalCorrelationContext.create());
   }
 
   /**
@@ -82,14 +63,14 @@ public class CorrelationIdFilter implements ContainerRequestFilter, ContainerRes
     }
     requestContext.setProperty(mdcName, correlationId);
     MDC.put(mdcName, correlationId);
-    correlationContext.setCorrelationId(correlationId);
+    CorrelationIdContext.set(correlationId);
   }
 
   @Override
   public void filter(
       ContainerRequestContext requestContext, ContainerResponseContext responseContext) {
     MDC.remove(mdcName);
-    correlationContext.resetCorrelationId();
+    CorrelationIdContext.reset();
     String correlationId = (String) requestContext.getProperty(mdcName);
     if (correlationId == null) { // Can happen if there are oauth issues.
       correlationId = UUID.randomUUID().toString();

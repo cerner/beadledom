@@ -3,11 +3,9 @@ package com.cerner.beadledom.client.resteasy;
 import com.cerner.beadledom.client.BeadledomClient;
 import com.cerner.beadledom.client.BeadledomClientBuilder;
 import com.cerner.beadledom.client.BeadledomClientConfiguration;
-import com.cerner.beadledom.client.CorrelationIdContext;
 import com.cerner.beadledom.client.CorrelationIdFilter;
 import com.cerner.beadledom.client.resteasy.http.DefaultServiceUnavailableRetryStrategy;
 import com.cerner.beadledom.client.resteasy.http.X509HostnameVerifierAdapter;
-import com.cerner.beadledom.correlation.ThreadLocalCorrelationContext;
 import java.security.KeyStore;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -298,11 +296,10 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
   public BeadledomResteasyClient build() {
     BeadledomClientConfiguration clientConfig = clientConfigBuilder.build();
 
-    CorrelationIdContext correlationIdContext =
+    com.cerner.beadledom.client.CorrelationIdContext correlationIdContext =
         new ResteasyCorrelationIdContext(
             clientConfig.correlationIdName(),
-            clientConfig.correlationIdName(),
-            ThreadLocalCorrelationContext.create());
+            clientConfig.correlationIdName());
 
     CorrelationIdFilter correlationIdFilter =
         new CorrelationIdFilter(correlationIdContext, clientConfig.correlationIdName());
