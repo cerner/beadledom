@@ -19,16 +19,19 @@ import org.slf4j.MDC;
 class ResteasyCorrelationIdContext implements CorrelationIdContext {
   private final String headerName;
   private final String mdcName;
+  private final com.cerner.beadledom.correlation.CorrelationIdContext correlationIdContext;
 
-  ResteasyCorrelationIdContext(@Nullable String headerName, @Nullable String mdcName) {
+  ResteasyCorrelationIdContext(@Nullable String headerName, @Nullable String mdcName,
+      com.cerner.beadledom.correlation.CorrelationIdContext correlationIdContext) {
     this.headerName = headerName != null ? headerName : CorrelationIdContext.DEFAULT_HEADER_NAME;
     this.mdcName = mdcName != null ? mdcName : CorrelationIdContext.DEFAULT_MDC_NAME;
+    this.correlationIdContext = correlationIdContext;
   }
 
   @Override
   public String getCorrelationId() {
 
-    String correlationId = com.cerner.beadledom.correlation.CorrelationIdContext.get();
+    String correlationId = correlationIdContext.get();
     if (correlationId != null) {
       return correlationId;
     }

@@ -15,7 +15,7 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with Matchers {
   this: FunSpec =>
 
   def correlationIdFilter(filter: CorrelationIdFilter, headerName: String,
-      mdcName: String): Unit = {
+      mdcName: String, correlationIdContext: CorrelationIdContext): Unit = {
     it("adds the correlation id to the MDC, CorrelationContext, and request properties") {
       val request = Mockito.mock(classOf[ContainerRequestContext])
       Mockito.when(request.getHeaderString(headerName))
@@ -25,7 +25,7 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with Matchers {
 
       MDC.get(mdcName) should be("123")
       Mockito.verify(request).setProperty(mdcName, "123")
-      CorrelationIdContext.get should be("123")
+      correlationIdContext.get should be("123")
     }
 
     it("adds a new correlation id to the MDC and CorrelationContext when correlation id not present on the request header")
@@ -40,7 +40,7 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with Matchers {
       Mockito.verify(request)
           .setProperty(mockito.ArgumentMatchers.eq(mdcName), captor.capture())
       MDC.get(mdcName) should be(captor.getValue)
-      CorrelationIdContext.get should be(captor.getValue)
+      correlationIdContext.get should be(captor.getValue)
     }
 
     it("adds the correlation id to the response header") {

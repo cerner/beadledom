@@ -8,27 +8,28 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class CorrelationIdContextTest {
+class CorrelationIdContextImplTest {
 
+  CorrelationIdContext correlationIdContext = new CorrelationIdContextImpl();
   @Nested
   @DisplayName("#get")
   class Get {
     @AfterEach
     void afterEach() {
-      CorrelationIdContext.reset();
+      correlationIdContext.reset();
     }
 
     @DisplayName("with a correlation id set")
     @Test
     void getSet() {
-      CorrelationIdContext.set("abc");
-      assertEquals("abc", CorrelationIdContext.get());
+      correlationIdContext.set("abc");
+      assertEquals("abc", correlationIdContext.get());
     }
 
     @DisplayName("without a correlation id set")
     @Test
     void getNotSet() {
-      assertNull(CorrelationIdContext.get());
+      assertNull(correlationIdContext.get());
     }
   }
 
@@ -38,21 +39,21 @@ class CorrelationIdContextTest {
 
     @AfterEach
     void afterEach() {
-      CorrelationIdContext.reset();
+      correlationIdContext.reset();
     }
 
     @DisplayName("when a correlation id is passed in")
     @Test
     void withCorrelationId() {
-      CorrelationIdContext.set("a");
-      assertEquals("a", CorrelationIdContext.get());
+      correlationIdContext.set("a");
+      assertEquals("a", correlationIdContext.get());
     }
 
     @DisplayName("when a correlation id is set to null")
     @Test
     void withoutCorrelationId() {
-      CorrelationIdContext.set(null);
-      assertNotNull(CorrelationIdContext.get());
+      correlationIdContext.set(null);
+      assertNotNull(correlationIdContext.get());
     }
 
   }
@@ -63,23 +64,23 @@ class CorrelationIdContextTest {
 
     @AfterEach
     void afterEach() {
-      CorrelationIdContext.reset();
+      correlationIdContext.reset();
     }
 
     @DisplayName("resets the correlation id to null when correlation id is set")
     @Test
     void reset() {
-      CorrelationIdContext.set("a");
-      CorrelationIdContext.reset();
-      assertNull(CorrelationIdContext.get());
+      correlationIdContext.set("a");
+      correlationIdContext.reset();
+      assertNull(correlationIdContext.get());
     }
 
     @DisplayName("resets the correlation id to null when correlation id is not set")
     @Test
     void withoutCorrelationId() {
-      CorrelationIdContext.set(null);
-      CorrelationIdContext.reset();
-      assertNull(CorrelationIdContext.get());
+      correlationIdContext.set(null);
+      correlationIdContext.reset();
+      assertNull(correlationIdContext.get());
     }
 
   }
@@ -90,41 +91,32 @@ class CorrelationIdContextTest {
 
     @AfterEach
     void afterEach() {
-      CorrelationIdContext.reset();
+      correlationIdContext.reset();
     }
 
     @DisplayName("uses correlation id when passed to setCloseable")
     @Test
     void withCorrelationId() {
-      try (CorrelationIdCloseable correlationIdCloseable = CorrelationIdContext.setCloseable("abc")) {
-        assertEquals("abc", CorrelationIdContext.get());
+      try (CorrelationIdCloseable correlationIdCloseable = correlationIdContext.setCloseable("abc")) {
+        assertEquals("abc", correlationIdContext.get());
       }
     }
 
     @DisplayName("generates correlation id when not passed to setCloseable")
     @Test
     void withoutCorrelationId() {
-      try (CorrelationIdCloseable correlationIdCloseable = CorrelationIdContext.setCloseable(null)) {
-        assertNotNull(CorrelationIdContext.get());
+      try (CorrelationIdCloseable correlationIdCloseable = correlationIdContext.setCloseable(null)) {
+        assertNotNull(correlationIdContext.get());
       }
     }
 
     @DisplayName("clears correlation id after try block")
     @Test
     void clearsCorrelationIdAfterTryBlock() {
-      try (CorrelationIdCloseable correlationIdCloseable = CorrelationIdContext.setCloseable("abc")) {
-        assertEquals("abc", CorrelationIdContext.get());
+      try (CorrelationIdCloseable correlationIdCloseable = correlationIdContext.setCloseable("abc")) {
+        assertEquals("abc", correlationIdContext.get());
       }
-      assertNull(CorrelationIdContext.get());
+      assertNull(correlationIdContext.get());
     }
-
-  }
-
-  @Test
-  void setCloseable() {
-  }
-
-  @Test
-  void resetCorrelationId() {
   }
 }

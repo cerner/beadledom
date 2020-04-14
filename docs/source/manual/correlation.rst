@@ -30,30 +30,30 @@ Setting the Correlation ID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-
-  CorrelationIdContext.set("correlation id");
+  CorrelationIdContext correlationIdContext = new CorrelationIdContextImpl();
+  correlationIdContext.set("correlation id");
 
 Getting the Correlation ID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-
-  String correlationId = CorrelationIdContext.get();
+  CorrelationIdContext correlationIdContext = new CorrelationIdContextImpl();
+  String correlationId = correlationIdContext.get();
 
 Resetting the Correlation ID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-
-  CorrelationIdContext.reset();
+  CorrelationIdContext correlationIdContext = new CorrelationIdContextImpl();
+  correlationIdContext.reset();
 
 Use Within try-with-resources Block
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-
-  try (CorrelationIdCloseable correlationIdCloseable = CorrelationIdContext.setCloseable("correlation id")) {
-      // CorrelationIdContext.get(); will return "correlation id"
-      // CorrelationIdContext.reset(); is called when implicit close() is called in correlationIdCloseable
+  CorrelationIdContext correlationIdContext = new CorrelationIdContextImpl();
+  try (CorrelationIdCloseable correlationIdCloseable = correlationIdContext.setCloseable("correlation id")) {
+      // correlationIdContext.get(); will return "correlation id"
+      // correlationIdContext.reset(); is called when implicit close() is called in correlationIdCloseable
   }
-  // CorrelationIdContext.get(); return null
+  // correlationIdContext.get(); return null
