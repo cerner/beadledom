@@ -14,7 +14,7 @@ public interface CorrelationIdContext {
   String get();
 
   /**
-   * Sets the Correlation ID. If {@code correlation} is null, a correlation id is generated.
+   * Sets the Correlation ID. If {@code correlationId} is null, a correlation id is generated.
    */
   void set(@Nullable String correlationId);
 
