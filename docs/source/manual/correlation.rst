@@ -30,28 +30,28 @@ Setting the Correlation ID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-  CorrelationContext correlationContext = new CorrelationContextImpl();
+  CorrelationContext correlationContext = new ThreadLocalCorrelationContext();
   correlationContext.setId("correlation id");
 
 Getting the Correlation ID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-  CorrelationContext correlationContext = new CorrelationContextImpl();
+  CorrelationContext correlationContext = new ThreadLocalCorrelationContext();
   String correlationId = correlationContext.getId();
 
 Resetting the Correlation ID
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-  CorrelationContext correlationContext = new CorrelationContextImpl();
+  CorrelationContext correlationContext = new ThreadLocalCorrelationContext();
   correlationContext.clearId();
 
 Use with Callable
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: java
-  CorrelationContext correlationContext = new CorrelationContextImpl();
+  CorrelationContext correlationContext = new ThreadLocalCorrelationContext();
   correlationContext.withId("correlation id", () -> {
           // correlationContext.getId(); will return "correlation id"
           return null;

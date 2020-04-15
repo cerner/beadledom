@@ -1,7 +1,7 @@
 package com.cerner.beadledom.jaxrs.provider;
 
 import com.cerner.beadledom.correlation.CorrelationContext;
-import com.cerner.beadledom.correlation.CorrelationContextImpl;
+import com.cerner.beadledom.correlation.ThreadLocalCorrelationContext;
 import java.util.Optional;
 import java.util.UUID;
 import javax.annotation.Nullable;
@@ -45,7 +45,7 @@ public class CorrelationIdFilter implements ContainerRequestFilter, ContainerRes
    *     will be used
    */
   public CorrelationIdFilter(@Nullable String headerName, @Nullable String mdcName) {
-    this(headerName, mdcName, new CorrelationContextImpl());
+    this(headerName, mdcName, new ThreadLocalCorrelationContext());
   }
 
   /**

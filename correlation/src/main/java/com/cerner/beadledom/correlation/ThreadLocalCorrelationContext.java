@@ -4,9 +4,9 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 /**
- * Default implementation that stores the correlation context in {@link ThreadLocal}.
+ * Correlation context that stores the correlation context in {@link ThreadLocal}.
  */
-public class CorrelationContextImpl implements CorrelationContext {
+public class ThreadLocalCorrelationContext implements CorrelationContext {
 
   private static final ThreadLocal<String> correlationId = new ThreadLocal<>();
 
