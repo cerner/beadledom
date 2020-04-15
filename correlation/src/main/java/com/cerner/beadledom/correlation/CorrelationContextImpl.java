@@ -3,18 +3,21 @@ package com.cerner.beadledom.correlation;
 import java.util.UUID;
 import javax.annotation.Nullable;
 
-public class CorrelationIdContextImpl implements CorrelationIdContext {
+/**
+ * Default implementation that stores the correlation context in {@link ThreadLocal}.
+ */
+public class CorrelationContextImpl implements CorrelationContext {
 
   private static final ThreadLocal<String> correlationId = new ThreadLocal<>();
 
   @Nullable
   @Override
-  public String get() {
+  public String getId() {
     return correlationId.get();
   }
 
   @Override
-  public void set(@Nullable String correlation) {
+  public void setId(@Nullable String correlation) {
     if (correlation == null) {
       correlationId.set(UUID.randomUUID().toString());
     } else {
@@ -23,13 +26,7 @@ public class CorrelationIdContextImpl implements CorrelationIdContext {
   }
 
   @Override
-  public CorrelationIdContext.CorrelationIdCloseable setCloseable(@Nullable String correlationId) {
-    set(correlationId);
-    return new CorrelationIdContext.CorrelationIdCloseable(this);
-  }
-
-  @Override
-  public void reset() {
+  public void clearId() {
     correlationId.remove();
   }
 }

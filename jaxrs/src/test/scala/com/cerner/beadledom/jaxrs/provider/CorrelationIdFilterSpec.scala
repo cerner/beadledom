@@ -1,6 +1,6 @@
 package com.cerner.beadledom.jaxrs.provider
 
-import com.cerner.beadledom.correlation.CorrelationIdContextImpl
+import com.cerner.beadledom.correlation.CorrelationContextImpl
 import org.scalatest._
 import org.scalatest.mockito.MockitoSugar
 import org.slf4j.MDC
@@ -13,7 +13,7 @@ with MockitoSugar with CorrelationIdFilterBehaviors {
   after {
     MDC.clear()
   }
-  val correlationIdContext = new CorrelationIdContextImpl
+  val correlationIdContext = new CorrelationContextImpl
   val defaultFilter = new CorrelationIdFilter()
   val customFilter = new CorrelationIdFilter("customHeader", "customMdc")
   describe("CorrelationIdFilter") {

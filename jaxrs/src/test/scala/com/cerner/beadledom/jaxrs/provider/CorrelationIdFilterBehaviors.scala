@@ -1,6 +1,6 @@
 package com.cerner.beadledom.jaxrs.provider
 
-import com.cerner.beadledom.correlation.CorrelationIdContext
+import com.cerner.beadledom.correlation.CorrelationContext
 import javax.ws.rs.container.{ContainerRequestContext, ContainerResponseContext}
 import org.jboss.resteasy.core.Headers
 import org.mockito
@@ -15,7 +15,7 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with Matchers {
   this: FunSpec =>
 
   def correlationIdFilter(filter: CorrelationIdFilter, headerName: String,
-      mdcName: String, correlationIdContext: CorrelationIdContext): Unit = {
+      mdcName: String, correlationContext: CorrelationContext): Unit = {
     it("adds the correlation id to the MDC, CorrelationContext, and request properties") {
       val request = Mockito.mock(classOf[ContainerRequestContext])
       Mockito.when(request.getHeaderString(headerName))
@@ -25,7 +25,7 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with Matchers {
 
       MDC.get(mdcName) should be("123")
       Mockito.verify(request).setProperty(mdcName, "123")
-      correlationIdContext.get should be("123")
+      correlationContext.getId should be("123")
     }
 
     it("adds a new correlation id to the MDC and CorrelationContext when correlation id not present on the request header")
@@ -40,7 +40,7 @@ trait CorrelationIdFilterBehaviors extends BeforeAndAfter with Matchers {
       Mockito.verify(request)
           .setProperty(mockito.ArgumentMatchers.eq(mdcName), captor.capture())
       MDC.get(mdcName) should be(captor.getValue)
-      correlationIdContext.get should be(captor.getValue)
+      correlationContext.getId should be(captor.getValue)
     }
 
     it("adds the correlation id to the response header") {
