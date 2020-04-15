@@ -11,13 +11,14 @@ class CorrelationContextTest {
 
   CorrelationContext correlationContext = CorrelationContext.create();
 
+  @AfterEach
+  void afterEach() {
+    correlationContext.clearId();
+  }
+
   @Nested
   @DisplayName("#getId")
   class Get {
-    @AfterEach
-    void afterEach() {
-      correlationContext.clearId();
-    }
 
     @DisplayName("with a correlation id set")
     @Test
@@ -36,11 +37,6 @@ class CorrelationContextTest {
   @Nested
   @DisplayName("#setId")
   class Set {
-
-    @AfterEach
-    void afterEach() {
-      correlationContext.clearId();
-    }
 
     @DisplayName("when a correlation id is passed in")
     @Test
@@ -61,11 +57,6 @@ class CorrelationContextTest {
   @Nested
   @DisplayName("#clearId")
   class Clear {
-
-    @AfterEach
-    void afterEach() {
-      correlationContext.clearId();
-    }
 
     @DisplayName("sets the correlation id to null when correlation id is set")
     @Test
@@ -88,11 +79,6 @@ class CorrelationContextTest {
   @Nested
   @DisplayName("#withId")
   class WithId {
-
-    @AfterEach
-    void afterEach() {
-      correlationContext.clearId();
-    }
 
     @DisplayName("uses correlation id when passed to withId")
     @Test
