@@ -7,9 +7,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class ThreadLocalCorrelationContextTest {
+class CorrelationContextTest {
 
-  CorrelationContext correlationContext = new ThreadLocalCorrelationContext();
+  CorrelationContext correlationContext = CorrelationContext.create();
+
   @Nested
   @DisplayName("#getId")
   class Get {
