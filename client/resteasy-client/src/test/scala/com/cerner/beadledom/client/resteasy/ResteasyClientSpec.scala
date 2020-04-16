@@ -43,7 +43,7 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
     }
 
     it("falls back to the MDC correlationId when the header is not present") {
-      MDC.put(CorrelationIdContext.DEFAULT_HEADER_NAME,  "mdcFallbackId")
+      MDC.put(CorrelationIdContext.DEFAULT_HEADER_NAME, "mdcFallbackId")
 
       val captureFilter = new CaptureCorrelationIdFilter()
 
