@@ -1,5 +1,6 @@
 package com.cerner.beadledom.client;
 
+import com.cerner.beadledom.jaxrs.JaxRsModule;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
+import org.jboss.resteasy.plugins.guice.ext.JaxrsModule;
 import org.jboss.resteasy.plugins.guice.ext.RequestScopeModule;
 
 import javax.inject.Singleton;
@@ -22,6 +24,7 @@ public class FauxModule extends AbstractModule {
   @Override
   protected void configure() {
     install(new RequestScopeModule());
+    install(new JaxRsModule());
     bind(TestResource.class).to(TestResourceImpl.class);
   }
 

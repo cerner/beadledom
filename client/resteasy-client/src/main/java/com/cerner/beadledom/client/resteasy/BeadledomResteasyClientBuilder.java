@@ -301,7 +301,6 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
 
     CorrelationIdContext correlationIdContext =
         new ResteasyCorrelationIdContext(
-            clientConfig.correlationIdName(),
             clientConfig.correlationIdName(), CorrelationContext.create());
 
     CorrelationIdFilter correlationIdFilter =

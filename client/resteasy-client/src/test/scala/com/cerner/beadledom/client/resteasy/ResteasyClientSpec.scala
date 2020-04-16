@@ -28,17 +28,17 @@ class ResteasyClientSpec(contextRoot: String, servicePort: Int)
           classOf[BeadledomResteasyWebTarget]
     }
 
-//    it("re-uses the service request correlationId when it is present") {
-//      val captureFilter = new CaptureCorrelationIdFilter()
-//
-//      val client = BeadledomResteasyClientBuilder.newBuilder()
-//          .register(captureFilter, Array[Class[_]](classOf[ClientRequestFilter]): _*)
-//          .build()
-//      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
-//          .proxy(classOf[TestResource])
-//
-//      proxy.loopyGetCorrelationId() must be(captureFilter.getCapturedCorrelationId)
-//    }
+    it("re-uses the service request correlationId when it is present") {
+      val captureFilter = new CaptureCorrelationIdFilter()
+
+      val client = BeadledomResteasyClientBuilder.newBuilder()
+          .register(captureFilter, Array[Class[_]](classOf[ClientRequestFilter]): _*)
+          .build()
+      val proxy = client.target(s"http://localhost:$servicePort/$contextRoot")
+          .proxy(classOf[TestResource])
+
+      proxy.loopyGetCorrelationId() must be(captureFilter.getCapturedCorrelationId)
+    }
 
     it("falls back to the MDC correlationId when the header is not present") {
       MDC.put(CorrelationIdContext.DEFAULT_HEADER_NAME,  "mdcFallbackId")
