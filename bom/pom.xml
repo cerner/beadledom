@@ -46,6 +46,11 @@
       </dependency>
       <dependency>
         <groupId>com.cerner.beadledom</groupId>
+        <artifactId>beadledom-correlation</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.cerner.beadledom</groupId>
         <artifactId>beadledom-guice</artifactId>
         <version>${project.version}</version>
       </dependency>
