@@ -8,7 +8,9 @@
 ### Changed
 * Updated resteasy to 3.11. Following changes are affected.
   * Make sure to install the [Beadledom JAX-RS CorrelationIdFilter](jaxrs/src/main/java/com/cerner/beadledom/jaxrs/provider/CorrelationIdFilter.java) on the server side so that correlationIds are forwarded properly when consuming a beadledom client.
-  This is automatically installed if your service installs the core `BeadledomModule` guice module. 
+  This is automatically installed if your service installs the core `BeadledomModule` guice module.
+  * With resteasy update, if your service is using [ParamConverter](https://docs.jboss.org/resteasy/docs/4.0.0.Final/userguide/html/StringConverter.html#d4e1553) for validating query parameters, it will now throw a Jax-RS NotFoundException.
+  Use [validation](https://docs.jboss.org/resteasy/docs/4.0.0.Final/userguide/html/Validation.html) section of resteasy user guide to understand how to do param validation. 
 
 ### Deprecated
 * All beadledom-client modules and classes have been deprecated. Use [Retrofit](https://github.com/square/retrofit) instead.
