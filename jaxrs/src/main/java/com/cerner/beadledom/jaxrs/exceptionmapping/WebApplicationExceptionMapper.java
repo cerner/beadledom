@@ -49,12 +49,19 @@ public class WebApplicationExceptionMapper implements ExceptionMapper<WebApplica
     return Optional.ofNullable(exception.getResponse())
         .map(Response::fromResponse)
         .orElse(Response.status(code))
-        .entity(
-            JsonError.builder()
-                .code(code)
-                .message(getMessage(code))
-                .build())
+        .entity(getError(response, code))
         .type(MediaType.APPLICATION_JSON)
+        .build();
+  }
+
+  private JsonError getError(Response response, int code) {
+    if (response != null && response.getEntity() instanceof JsonError) {
+      return response.readEntity(JsonError.class);
+    }
+
+    return JsonError.builder()
+        .code(code)
+        .message(getMessage(code))
         .build();
   }
 
