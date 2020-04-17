@@ -6,7 +6,7 @@
 * The `beadledom-correlation` module.
 
 ### Changed
-* Updated resteasy to 4.x. Following changes are affected.
+* Updated resteasy to 3.11. Following changes are affected.
   * Make sure to install the [Beadledom JAX-RS CorrelationIdFilter](jaxrs/src/main/java/com/cerner/beadledom/jaxrs/provider/CorrelationIdFilter.java) on the server side so that correlationIds are forwarded properly when consuming a beadledom client.
   This is automatically installed if your service installs the core `BeadledomModule` guice module. 
 
