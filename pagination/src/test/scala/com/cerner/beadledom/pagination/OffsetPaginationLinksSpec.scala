@@ -390,7 +390,7 @@ class OffsetPaginationLinksSpec extends AnyFunSpec with Matchers with MockitoSug
     val queryString = queryParams
         .filter({ case (_, v) => v != null })
         .map({ case (k, v) => s"$k=$v" }).mkString("&")
-    val uriInfo = new ResteasyUriInfo(s"example.com?$queryString", "", null)
+    val uriInfo = new ResteasyUriInfo(s"example.com?$queryString", "")
 
     uriInfo
   }

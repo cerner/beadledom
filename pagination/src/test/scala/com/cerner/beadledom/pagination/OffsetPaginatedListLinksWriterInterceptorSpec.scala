@@ -68,11 +68,6 @@ class OffsetPaginatedListLinksWriterInterceptorSpec extends AnyFunSpec with Matc
   }
 
   private def mockUriInfo(queryParams: (String, String)*): UriInfo = {
-    val queryString = queryParams
-        .filter({ case (_, v) => v != null })
-        .map({ case (k, v) => s"$k=$v" }).mkString("&")
-    val uriInfo = new ResteasyUriInfo("example.com", queryString, null)
-
-    uriInfo
+    new ResteasyUriInfo(s"example.com", "")
   }
 }

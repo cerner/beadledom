@@ -98,7 +98,7 @@ class OffsetPaginationParametersSpec extends AnyFunSpec with Matchers with Mocki
     val queryString = queryParams
         .filter({ case (_, v) => v != null })
         .map({ case (k, v) => s"$k=$v" }).mkString("&")
-    val uriInfo = new ResteasyUriInfo(s"example.com?$queryString", "", null)
+    val uriInfo = new ResteasyUriInfo(s"example.com?$queryString", "")
 
     uriInfo
   }
