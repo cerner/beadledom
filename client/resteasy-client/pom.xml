@@ -68,6 +68,11 @@
     <!--Test Dependencies-->
     <dependency>
       <groupId>com.cerner.beadledom</groupId>
+      <artifactId>beadledom-jaxrs</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.cerner.beadledom</groupId>
       <artifactId>beadledom-jaxrs-genericresponse</artifactId>
       <scope>test</scope>
     </dependency>

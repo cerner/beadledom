@@ -55,7 +55,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beInternalServerError()
           }
         }
@@ -73,7 +73,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe BAD_REQUEST.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beBadRequestError()
           }
         }
@@ -87,7 +87,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe BAD_REQUEST.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beBadRequestError()
           }
         }
@@ -103,7 +103,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beInternalServerError()
           }
         }
@@ -121,7 +121,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beInternalServerError()
           }
         }
@@ -136,7 +136,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beInternalServerError()
           }
         }
@@ -151,7 +151,7 @@ class FailureExceptionMapperSpec
           dispatcher.invoke(request, response)
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
           response.getContentAsString must beInternalServerError()
         }
       }
@@ -165,7 +165,7 @@ class FailureExceptionMapperSpec
           dispatcher.invoke(request, response)
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
           response.getContentAsString must beInternalServerError()
         }
       }
@@ -179,7 +179,7 @@ class FailureExceptionMapperSpec
           dispatcher.invoke(request, response)
 
           response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
           response.getContentAsString must beInternalServerError()
         }
       }
@@ -198,7 +198,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe 199
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beJsonError(199, "Informational")
           }
         }
@@ -216,7 +216,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe 299
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beJsonError(299, "Successful")
           }
         }
@@ -234,7 +234,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe 399
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beJsonError(399, "Redirection")
           }
         }
@@ -252,7 +252,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe 499
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beJsonError(499, "Client Error")
           }
         }
@@ -270,7 +270,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe 599
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beJsonError(599, "Server Error")
           }
         }
@@ -287,7 +287,7 @@ class FailureExceptionMapperSpec
           dispatcher.invoke(request, response)
 
           response.getStatus mustBe NOT_FOUND.getStatusCode
-          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+          response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
           response.getContentAsString must beNotFoundError()
         }
       }
@@ -304,7 +304,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beInternalServerError()
           }
         }
@@ -320,7 +320,7 @@ class FailureExceptionMapperSpec
             dispatcher.invoke(request, response)
 
             response.getStatus mustBe INTERNAL_SERVER_ERROR.getStatusCode
-            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+            response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
             response.getContentAsString must beInternalServerError()
           }
         }
