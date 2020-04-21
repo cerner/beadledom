@@ -7,7 +7,7 @@ import com.google.inject.Provides;
 import javax.inject.Singleton;
 import javax.servlet.ServletContext;
 import org.jboss.resteasy.plugins.guice.ext.RequestScopeModule;
-import org.jboss.resteasy.plugins.interceptors.encoding.GZIPEncodingInterceptor;
+import org.jboss.resteasy.plugins.interceptors.GZIPEncodingInterceptor;
 
 /**
  * The core guice module for Beadledom on Resteasy.

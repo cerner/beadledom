@@ -53,7 +53,7 @@ class JsonMappingExceptionMapperSpec
         dispatcher.invoke(request, response)
 
         response.getStatus mustBe BAD_REQUEST.getStatusCode
-        response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON
+        response.getOutputHeaders.getFirst(CONTENT_TYPE) mustBe MediaType.APPLICATION_JSON_TYPE
         response.getContentAsString must beBadRequestError("Unable to map request JSON")
       }
     }

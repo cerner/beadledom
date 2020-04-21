@@ -3,11 +3,11 @@ package com.cerner.beadledom.pagination
 import com.google.inject.Guice
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.UriInfo
-import org.jboss.resteasy.spi.ResteasyUriInfo
-import scala.collection.JavaConverters._
-import org.scalatestplus.mockito.MockitoSugar
+import org.jboss.resteasy.specimpl.ResteasyUriInfo
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.must.Matchers
+import org.scalatestplus.mockito.MockitoSugar
+import scala.collection.JavaConverters._
 
 /**
  * Spec for OffsetPaginationLinks.
@@ -390,7 +390,7 @@ class OffsetPaginationLinksSpec extends AnyFunSpec with Matchers with MockitoSug
     val queryString = queryParams
         .filter({ case (_, v) => v != null })
         .map({ case (k, v) => s"$k=$v" }).mkString("&")
-    val uriInfo = new ResteasyUriInfo("example.com", queryString, "")
+    val uriInfo = new ResteasyUriInfo(s"example.com?$queryString", "")
 
     uriInfo
   }

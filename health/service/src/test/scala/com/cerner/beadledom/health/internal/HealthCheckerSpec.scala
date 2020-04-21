@@ -8,7 +8,7 @@ import java.net.URI
 import java.time.Instant
 import java.util.Optional
 import javax.ws.rs.WebApplicationException
-import org.jboss.resteasy.spi.ResteasyUriInfo
+import org.jboss.resteasy.specimpl.ResteasyUriInfo
 import org.mockito.Mockito.when
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.must.Matchers

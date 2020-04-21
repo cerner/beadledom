@@ -1,19 +1,18 @@
 package com.cerner.beadledom.resteasy
 
-import java.io.File
-
 import com.cerner.beadledom.resteasy.fauxservice.health.ImportantThingHealthDependency
 import com.cerner.beadledom.testing.JsonErrorMatchers.beBadRequestError
 import com.cerner.beadledom.testing.JsonMatchers.equalJson
+import java.io.File
 import javax.ws.rs.client.Entity
 import javax.ws.rs.core.MediaType
 import org.apache.commons.io.FileUtils
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll}
-import play.api.libs.json.Json
-import org.scalatestplus.mockito.MockitoSugar
+import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientBuilderImpl
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.must.Matchers
+import org.scalatest.{BeforeAndAfter, BeforeAndAfterAll}
+import org.scalatestplus.mockito.MockitoSugar
+import play.api.libs.json.Json
 
 /**
  *
@@ -26,7 +25,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
     extends AnyFunSpec with MockitoSugar with BeforeAndAfterAll with BeforeAndAfter with
         Matchers {
 
-  val client = new ResteasyClientBuilder().connectionPoolSize(5).register().build()
+  val client = new ResteasyClientBuilderImpl().connectionPoolSize(5).register().build()
 
   before {
     ImportantThingHealthDependency.healthy = true

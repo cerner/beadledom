@@ -1,15 +1,14 @@
 package com.cerner.beadledom.pagination.parameters
 
-import javax.ws.rs.core.UriInfo
-
 import com.cerner.beadledom.pagination.OffsetPaginationModule
 import com.cerner.beadledom.pagination.models.OffsetPaginationConfiguration
 import com.google.inject.multibindings.OptionalBinder
 import com.google.inject.{AbstractModule, Guice, Injector}
-import org.jboss.resteasy.spi.ResteasyUriInfo
-import org.scalatestplus.mockito.MockitoSugar
+import javax.ws.rs.core.UriInfo
+import org.jboss.resteasy.specimpl.ResteasyUriInfo
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.must.Matchers
+import org.scalatestplus.mockito.MockitoSugar
 
 /**
   * Spec for OffsetPaginatedListLinksWriterInterceptor.
@@ -99,7 +98,7 @@ class OffsetPaginationParametersSpec extends AnyFunSpec with Matchers with Mocki
     val queryString = queryParams
         .filter({ case (_, v) => v != null })
         .map({ case (k, v) => s"$k=$v" }).mkString("&")
-    val uriInfo = new ResteasyUriInfo("example.com", queryString, "")
+    val uriInfo = new ResteasyUriInfo(s"example.com?$queryString", "")
 
     uriInfo
   }

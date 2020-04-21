@@ -93,9 +93,9 @@
     <scala.version>2.12.11</scala.version>
     <scala.binary.version>2.12</scala.binary.version>
     <governator.version>1.17.5</governator.version>
-    <jackson.version>2.10.2</jackson.version>
+    <jackson.version>2.10.3</jackson.version>
     <junit.jupiter.version>5.5.2</junit.jupiter.version>
-    <resteasy.version>3.6.3.Final</resteasy.version>
+    <resteasy.version>4.5.3.Final</resteasy.version>
     <spotbugs.version>3.1.8</spotbugs.version>
     <swagger2-core.version>1.6.0</swagger2-core.version>
     <tomcat-embed.version>7.0.103</tomcat-embed.version>
@@ -117,6 +117,13 @@
         <groupId>com.fasterxml.jackson</groupId>
         <artifactId>jackson-bom</artifactId>
         <version>${jackson.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.resteasy</groupId>
+        <artifactId>resteasy-bom</artifactId>
+        <version>${resteasy.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -430,17 +437,12 @@
       </dependency>
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
-        <artifactId>resteasy-client</artifactId>
+        <artifactId>resteasy-client-api</artifactId>
         <version>${resteasy.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.resteasy</groupId>
-        <artifactId>resteasy-guice</artifactId>
-        <version>${resteasy.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.resteasy</groupId>
-        <artifactId>resteasy-jaxrs</artifactId>
+        <artifactId>resteasy-core</artifactId>
         <version>${resteasy.version}</version>
       </dependency>
       <dependency>

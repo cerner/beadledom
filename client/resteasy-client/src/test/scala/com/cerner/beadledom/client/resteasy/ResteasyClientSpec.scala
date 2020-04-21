@@ -1,12 +1,10 @@
 package com.cerner.beadledom.client.resteasy
 
-import javax.ws.rs.client.ClientRequestFilter
 import com.cerner.beadledom.client._
-
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.{DeserializationFeature, ObjectMapper, PropertyNamingStrategy, SerializationFeature}
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider
-
+import javax.ws.rs.client.ClientRequestFilter
 import org.scalatest._
 import org.slf4j.MDC
 import org.scalatest.funspec.AnyFunSpec
