@@ -6,9 +6,12 @@
 * The `beadledom-correlation` module.
 
 ### Changed
-* Updated resteasy to 4.x. Following changes are affected.
+* Updated resteasy to 4.x. Following changes are affected if your service is also uplifting to use 4.x version of Resteasy.
   * Make sure to install the [Beadledom JAX-RS CorrelationIdFilter](jaxrs/src/main/java/com/cerner/beadledom/jaxrs/provider/CorrelationIdFilter.java) on the server side so that correlationIds are forwarded properly when consuming a beadledom client.
-  This is automatically installed if your service installs the core `BeadledomModule` guice module. 
+  This is automatically installed if your service installs the core `BeadledomModule` guice module.
+  * With resteasy update, if your service is using [ParamConverter](https://docs.jboss.org/resteasy/docs/4.0.0.Final/userguide/html/StringConverter.html#d4e1553) for validating query parameters, it will now throw a Jax-RS NotFoundException.
+  Use [validation](https://docs.jboss.org/resteasy/docs/4.0.0.Final/userguide/html/Validation.html) section of Resteasy user guide to understand how to do param validation.
+  *  [`MockHttpResponse`](https://github.com/resteasy/Resteasy/blob/3.11/resteasy-jaxrs/src/main/java/org/jboss/resteasy/mock/MockHttpResponse.java) class from Resteasy now has the `Content-Type` header as a `JAX-RS` MediaType class instead of a String.
 
 ### Deprecated
 * All beadledom-client modules and classes have been deprecated. Use [Retrofit](https://github.com/square/retrofit) instead.
