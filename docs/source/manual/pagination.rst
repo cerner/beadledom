@@ -32,7 +32,7 @@ Getting started
 ~~~~~~~~~~~~~~~
 
 To add pagination to your service install the OffsetPaginationModule in your own Guice module. To override configuration for the module, provide a binding for `OffsetPaginationConfiguration <https://github.com/cerner/beadledom/blob/master/pagination/src/main/java/com/cerner/beadledom/pagination/models/OffsetPaginationConfiguration.java>`_.
-Then update your paginated resource to accept `OffsetPaginationParameters <https://github.com/cerner/beadledom/blob/master/pagination/src/main/java/com/cerner/beadledom/pagination/parameters/OffsetPaginationParameters.java>`_ and return an `OffsetPaginatedList <https://github.com/cerner/beadledom/blob/master/pagination/src/main/java/com/cerner/beadledom/pagination/src/main/java/com/cerner/beadledom/pagination/OffsetPaginatedList.java>`_.
+Then update your paginated resource to accept `OffsetPaginationParameters <https://github.com/cerner/beadledom/blob/master/pagination/src/main/java/com/cerner/beadledom/pagination/parameters/OffsetPaginationParameters.java>`_ and return an `OffsetPaginatedList <https://github.com/cerner/beadledom/blob/master/pagination/src/main/java/com/cerner/beadledom/pagination/OffsetPaginatedList.java>`_.
 
 Guice Module:
 
