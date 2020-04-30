@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 3.6 - In Development
+## 3.6 - 30th April 2020
 
 ### Added
 * The `beadledom-correlation` module.
@@ -15,6 +15,9 @@
 
 ### Deprecated
 * All beadledom-client modules and classes have been deprecated. Use [Retrofit](https://github.com/square/retrofit) instead.
+
+### Fixed
+* Fixed link for OffsetPaginatedList in docs.
 
 ## 3.5 - 21 February 2020
 
