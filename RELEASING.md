@@ -43,6 +43,14 @@ Note: Releasing the project requires an initial set up. The [Preparing for the R
   $ travis encrypt-file signingkey.asc --com
   ``` 
 * This will generate a decrypt command which needs to be added to the [`publish.sh`](.travis/publish.sh) script as a decrypting step.
+* All the secrets and passwords must be encrypted and passed on to travis as [secured environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-encrypted-variables-in-.travis.yml).
+	```  
+    $ travis encrypt --add -r cerner/beadledom SONATYPE_USERNAME=<sonatype username>
+    $ travis encrypt --add -r cerner/beadledom SONATYPE_PASSWORD=<sonatype password>
+    $ travis encrypt --add -r cerner/beadledom ENCRYPTION_PASSWORD=<password to encrypt>
+    $ travis encrypt --add -r cerner/beadledom GPG_KEYNAME=<gpg keyname (ex. 1C06698F)>
+    $ travis encrypt --add -r cerner/beadledom GPG_PASSPHRASE=<gpg passphrase>
+    ```
 * Create a new set of ssh keys to push the documentation site to `gh-pages` branch. Follow this github [documentation](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key) to create the ssh keys.
 	* **Note**: The ssh keys file names has to be `deploy_site_key`.
 	* Before generating the keys make sure the current directory is the directory where all your ssh keys are stored. By default this would be `~/.ssh`
