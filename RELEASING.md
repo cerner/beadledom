@@ -32,6 +32,7 @@ Note: Releasing the project requires an initial set up. The [Preparing for the R
 	* install it via brew - `brew install gpg2`. There are other ways to install this tool but doing it via brew can help us all to be in sync with the version of the tool we are using.
 	* Follow this [guide](http://central.sonatype.org/pages/working-with-pgp-signatures.html#generating-a-key-pair) to generate your own gpg key and secret.
 	  * For simplicity sake, use your email address for both username and email.
+	* Follow this [guide](https://central.sonatype.org/pages/working-with-pgp-signatures.html#distributing-your-public-key) to distribute your public key created as part of the previous step.
 	* Export the generated keys onto a file named `signingkey.asc`
 	```bash
 	$ gpg --export --armor <email_address> > signingkey.asc
