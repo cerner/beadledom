@@ -23,41 +23,37 @@ Note: Releasing the project requires an initial set up. The [Preparing for the R
     ```
     $ cd /path/to/beadledom
     $ gem install travis
-    $ travis login
+    $ travis login --com
     #  Prompts you to enter github username, password and two-factor authentication if enabled.
-    $ travis enable -r <username>/<repository>
+    $ travis enable -r <username>/<repository> --com
     <username>/<repository>: enabled :)
 	```
 * Install `gpg2` - we will be using this tool to automatically sign off our artifacts
 	* install it via brew - `brew install gpg2`. There are other ways to install this tool but doing it via brew can help us all to be in sync with the version of the tool we are using.
 	* Follow this [guide](http://central.sonatype.org/pages/working-with-pgp-signatures.html#generating-a-key-pair) to generate your own gpg key and secret.
-	* Choose a password to encrypt the public and private keys that were generated in the previous step using gpg2. Execute the below steps to encrypt the keys.
-
-	```    
-    $ export ENCRYPTION_PASSWORD=<password to encrypt>
-    $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/secring.gpg -out .travis/secring.gpg.enc
-    $ openssl aes-256-cbc -pass pass:$ENCRYPTION_PASSWORD -in ~/.gnupg/pubring.gpg -out .travis/pubring.gpg.enc
+	  * For simplicity sake, use your email address for both username and email.
+	* Export the generated keys onto a file named `signingkey.asc`
+	```bash
+	$ gpg --export --armor <email_address> > signingkey.asc
+  $ gpg --export-secret-keys --armor <email_address> >> signingkey.asc
 	```
-* All the secrets and passwords must be encrypted and passed on to travis as [secured environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-encrypted-variables-in-.travis.yml).
-
-	```  
-    $ travis encrypt --add -r cerner/beadledom SONATYPE_USERNAME=<sonatype username>
-    $ travis encrypt --add -r cerner/beadledom SONATYPE_PASSWORD=<sonatype password>
-    $ travis encrypt --add -r cerner/beadledom ENCRYPTION_PASSWORD=<password to encrypt>
-    $ travis encrypt --add -r cerner/beadledom GPG_KEYNAME=<gpg keyname (ex. 1C06698F)>
-    $ travis encrypt --add -r cerner/beadledom GPG_PASSPHRASE=<gpg passphrase>
-    ```   
+* Encrypt the `signingkey.asc` file using the travis command. Read [travis docs](https://docs.travis-ci.com/user/encrypting-files/) for more details. 
+  ```bash
+  $ travis encrypt-file signingkey.asc --com
+  ``` 
+* This will generate a decrypt command which needs to be added to the [`publish.sh`](.travis/publish.sh) script as a decrypting step.
 * Create a new set of ssh keys to push the documentation site to `gh-pages` branch. Follow this github [documentation](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key) to create the ssh keys.
 	* **Note**: The ssh keys file names has to be `deploy_site_key`.
 	* Before generating the keys make sure the current directory is the directory where all your ssh keys are stored. By default this would be `~/.ssh`
 * Add the contents of `deploy_site_key.pub` to the [beadledom deploy keys](https://github.com/cerner/beadledom/settings/keys).
 	* *pro tip*: You can copy the contents using `pbcopy < path/to/deploy_site_key.pub`
-* Encrypt the `deploy_site_key` key and add it to .travis.yml file by executing the below commands.
+* Encrypt the `deploy_site_key` key file by executing the below commands.
 
 	```
 	$ cd path/to/beadledom
-	$ travis encrypt-file ~/.ssh/deploy_site --add
+	$ travis encrypt-file ~/.ssh/deploy_site_key --com
 	```
+* This will generate a decrypt command which needs to be added to the [`publish.sh`](.travis/publish.sh) script as a decrypting step.
 * Commit all the changes to the beadledom repo.
 
 ## Release process
