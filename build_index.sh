@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-url=http://cerner.github.io/beadledom/3.6-beta
+url=http://cerner.github.io/beadledom/3.6
 url_base=${url%\/*}
 
 directories=()
@@ -32,9 +32,9 @@ cat <<EOF > index.html
   <head>
     <meta charset="utf-8">
     <title>Beadledom Site Redirect</title>
-    <meta http-equiv="refresh" content="5; url="http://cerner.github.io/beadledom/3.6-beta/docs"">
+    <meta http-equiv="refresh" content="5; url="http://cerner.github.io/beadledom/3.6/docs"">
     <script type="text/javascript">
-        window.location.replace("http://cerner.github.io/beadledom/3.6-beta/docs");
+        window.location.replace("http://cerner.github.io/beadledom/3.6/docs");
     </script>
   </head>
   <body>
