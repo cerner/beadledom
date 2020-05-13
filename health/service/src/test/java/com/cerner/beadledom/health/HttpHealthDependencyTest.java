@@ -100,7 +100,7 @@ class HttpHealthDependencyTest {
   }
 
   @Nested
-  @DisplayName("#constructor")
+  @DisplayName("#getName")
   class GetName {
     @Test
     void returns_valid_name() {
