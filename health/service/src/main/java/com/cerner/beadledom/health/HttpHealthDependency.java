@@ -8,6 +8,8 @@ import okhttp3.Response;
 
 /**
  * Implementation of {@link HealthDependency} to check the health of any HTTP service.
+ *
+ * @author Venkatesh Sridharan.
  */
 public class HttpHealthDependency extends HealthDependency {
   private final String availabilityUrl;
