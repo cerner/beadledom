@@ -70,3 +70,21 @@ Usage
       return "foobar";
     }
   }
+
+* If your health dependency is a HTTP service, you can use the HttpHealthDependency_ class to declare your dependency.
+
+.. code-block:: java
+
+  public class MyModule extends AbstractModule {
+    @Override
+    public void configure() {
+      install(new HealthModule());
+    }
+
+    @ProvidesIntoSet
+    HealthDependency provideMyHealthDependency() {
+      return new HttpHealthDependency("https://base-url/meta/availability", "dependencyName", isPrimary);
+    }
+  }
+
+.. _HttpHealthDependency: https://github.com/cerner/beadledom/blob/master/health/service/src/main/java/com/cerner/beadledom/health/HealthDependency.java
