@@ -1,6 +1,11 @@
 # Beadledom Changelog
 
-## 3.6 - In Development
+## 3.7 - In Development
+
+### Added
+* `HttpHealthDependency` class for dependencies that are HTTP services. 
+
+## 3.6 - 30th April 2020
 
 ### Added
 * The `beadledom-correlation` module.

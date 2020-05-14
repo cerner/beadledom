@@ -56,7 +56,39 @@ class HealthModuleSpec extends AnyFunSpec with Matchers with MockitoSugar {
         dependencies.get("alpha") mustBe a[Dependency1]
         dependencies.get("beta") mustBe a[Dependency2]
       }
+
+      describe("when HTTP health dependency is used") {
+        val httpHealthDependencyModule: Module = new AbstractModule {
+          override def configure(): Unit = {
+
+            val healthDependencyBinder = Multibinder
+                .newSetBinder(binder(), classOf[HealthDependency])
+
+            install(mockModule)
+            install(new HealthModule)
+
+            healthDependencyBinder.addBinding().to(classOf[Dependency1])
+          }
+
+          @Inject
+          @Singleton
+          @ProvidesIntoSet
+          def provideHttpHealthDependency(): HealthDependency = {
+            new HttpHealthDependency("availabilityUrl", "gamma", true)
+          }
+        }
+
+        it("creates map of dependencies from set") {
+          val injector = Guice.createInjector(httpHealthDependencyModule)
+
+          val dependencies = injector.getInstance(Key.get(mapType))
+          dependencies must have size 2
+          dependencies.get("alpha") mustBe a[Dependency1]
+          dependencies.get("gamma") mustBe a[HttpHealthDependency]
+        }
+      }
     }
+
     it("it does not throw exceptions when there are no dependencies") {
       val injector = Guice.createInjector(new AbstractModule {
         override def configure(): Unit = {
