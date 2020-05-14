@@ -39,9 +39,9 @@ public class HttpHealthDependency extends HealthDependency {
 
     try (Response response = client.newCall(request).execute()) {
       if (response.isSuccessful()) {
-        return HealthStatus.create(200, getName() + " is available.");
+        return HealthStatus.create(response.code(), getName() + " is available.");
       }
-      return HealthStatus.create(503, getName() + " is not available.");
+      return HealthStatus.create(response.code(), getName() + " is not available.");
     } catch (IOException e) {
       return HealthStatus.create(503, getName() + " is not available.");
     }

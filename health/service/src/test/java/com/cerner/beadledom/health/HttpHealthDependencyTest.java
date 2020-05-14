@@ -58,7 +58,7 @@ class HttpHealthDependencyTest {
                 mockWebServer.url("/meta/availability").toString(), "testDependency", true);
         HealthStatus healthStatus = httpHealthDependency.checkAvailability();
 
-        assertEquals(503, healthStatus.getStatus());
+        assertEquals(500, healthStatus.getStatus());
         assertEquals("testDependency is not available.", healthStatus.getMessage());
       }
     }
