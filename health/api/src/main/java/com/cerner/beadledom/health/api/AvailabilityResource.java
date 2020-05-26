@@ -10,7 +10,6 @@ import com.wordnik.swagger.annotations.ApiResponses;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.StreamingOutput;
 
 @Api(value = "/health",
@@ -20,7 +19,7 @@ import javax.ws.rs.core.StreamingOutput;
 @Path("meta/availability")
 public interface AvailabilityResource {
   @GET
-  @Produces(MediaType.TEXT_HTML)
+  @Produces("text/html; qs=0.8")
   StreamingOutput getBasicAvailabilityCheckHtml();
 
   @ApiOperation(value = "Basic Availability Check",
@@ -36,7 +35,7 @@ public interface AvailabilityResource {
       @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy"),
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy")})
   @GET
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces("application/json; qs=0.9")
   @JsonView(HealthJsonViews.Availability.class)
   HealthDto getBasicAvailabilityCheck();
 }

@@ -12,7 +12,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 
@@ -23,7 +22,7 @@ import javax.ws.rs.core.StreamingOutput;
 @Path("meta/health/diagnostic/dependencies")
 public interface DependenciesResource {
   @GET
-  @Produces(MediaType.TEXT_HTML)
+  @Produces("text/html; qs=0.8")
   StreamingOutput getDependencyListingHtml();
 
   @ApiOperation(value = "Dependency Listing",
@@ -45,12 +44,12 @@ public interface DependenciesResource {
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
           response = HealthDependencyDto.class)})
   @GET
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces("application/json; qs=0.9")
   @JsonView(HealthJsonViews.Dependency.class)
   List<HealthDependencyDto> getDependencyListing();
 
   @GET
-  @Produces(MediaType.TEXT_HTML)
+  @Produces("text/html; qs=0.8")
   @Path("/{name}")
   Response getDependencyAvailabilityCheckHtml(@PathParam("name") String name);
 
@@ -75,7 +74,7 @@ public interface DependenciesResource {
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
           response = HealthDependencyDto.class)})
   @GET
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces("application/json; qs=0.9")
   @JsonView(HealthJsonViews.Dependency.class)
   @Path("/{name}")
   Response getDependencyAvailabilityCheck(@PathParam("name") String name);

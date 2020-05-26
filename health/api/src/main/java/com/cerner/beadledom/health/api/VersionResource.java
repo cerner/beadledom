@@ -8,7 +8,6 @@ import com.wordnik.swagger.annotations.ApiResponses;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.StreamingOutput;
 
 @Api(value = "/health",
@@ -19,7 +18,7 @@ import javax.ws.rs.core.StreamingOutput;
 public interface VersionResource {
 
   @GET
-  @Produces(MediaType.TEXT_HTML)
+  @Produces("text/html; qs=0.8")
   StreamingOutput getVersionInfoHtml();
 
   @ApiOperation(value = "Application Version Information",
@@ -35,6 +34,6 @@ public interface VersionResource {
       @io.swagger.annotations.ApiResponse(code = 503, message = "Service Unavailable"),
       @io.swagger.annotations.ApiResponse(code = 200, message = "Success")})
   @GET
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces("application/json; qs=0.9")
   BuildDto getVersionInfo();
 }

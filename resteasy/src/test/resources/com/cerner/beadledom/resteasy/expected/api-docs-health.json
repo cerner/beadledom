@@ -14,7 +14,7 @@
           "type": "HealthDto",
           "nickname": "getBasicAvailabilityCheck",
           "produces": [
-            "application/json"
+            "application/json; qs=0.9"
           ],
           "parameters": [],
           "responseMessages": [
@@ -40,7 +40,7 @@
           "type": "HealthDto",
           "nickname": "getPrimaryHealthCheck",
           "produces": [
-            "application/json"
+            "application/json; qs=0.9"
           ],
           "parameters": [],
           "responseMessages": [
@@ -71,7 +71,7 @@
           },
           "nickname": "getDependencyListing",
           "produces": [
-            "application/json"
+            "application/json; qs=0.9"
           ],
           "parameters": [],
           "responseMessages": [
@@ -99,7 +99,7 @@
           "type": "HealthDependencyDto",
           "nickname": "getDependencyAvailabilityCheck",
           "produces": [
-            "application/json"
+            "application/json; qs=0.9"
           ],
           "parameters": [
             {
@@ -135,7 +135,7 @@
           "type": "HealthDto",
           "nickname": "getDiagnosticHealthCheck",
           "produces": [
-            "application/json"
+            "application/json; qs=0.9"
           ],
           "parameters": [],
           "responseMessages": [
@@ -163,7 +163,7 @@
           "type": "BuildDto",
           "nickname": "getVersionInfo",
           "produces": [
-            "application/json"
+            "application/json; qs=0.9"
           ],
           "parameters": [],
           "responseMessages": [

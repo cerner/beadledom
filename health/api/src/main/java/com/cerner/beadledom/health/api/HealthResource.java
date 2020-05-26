@@ -10,7 +10,6 @@ import com.wordnik.swagger.annotations.ApiResponses;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Api(value = "/health", description = "Health and dependency checks")
@@ -18,7 +17,7 @@ import javax.ws.rs.core.Response;
 @Path("meta/health")
 public interface HealthResource {
   @GET
-  @Produces(MediaType.TEXT_HTML)
+  @Produces("text/html; qs=0.8")
   Response getPrimaryHealthCheckHtml();
 
   @ApiOperation(value = "Primary Health Check",
@@ -40,7 +39,7 @@ public interface HealthResource {
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
           response = HealthDto.class)})
   @GET
-  @Produces(MediaType.APPLICATION_JSON)
+  @Produces("application/json; qs=0.9")
   @JsonView(HealthJsonViews.Primary.class)
   Response getPrimaryHealthCheck();
 }
