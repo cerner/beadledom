@@ -93,16 +93,10 @@
     <scala.version>2.12.11</scala.version>
     <scala.binary.version>2.12</scala.binary.version>
     <governator.version>1.17.5</governator.version>
-<<<<<<< HEAD
     <jackson.version>2.10.3</jackson.version>
-    <junit.jupiter.version>5.5.2</junit.jupiter.version>
-    <resteasy.version>4.5.3.Final</resteasy.version>
-=======
-    <jackson.version>2.10.2</jackson.version>
     <junit.jupiter.version>5.6.2</junit.jupiter.version>
+    <resteasy.version>4.5.3.Final</resteasy.version>
     <okhttp3.version>4.6.0</okhttp3.version>
-    <resteasy.version>3.11.2.Final</resteasy.version>
->>>>>>> 1f3d5cb3... Adding HttpHealthDependency helper class (#187)
     <spotbugs.version>3.1.8</spotbugs.version>
     <swagger2-core.version>1.6.0</swagger2-core.version>
     <tomcat-embed.version>7.0.103</tomcat-embed.version>
@@ -542,7 +536,6 @@
       <dependency>
         <groupId>org.scalatest</groupId>
         <artifactId>scalatest_${scala.binary.version}</artifactId>
-<<<<<<< HEAD
         <version>3.1.1</version>
         <scope>test</scope>
       </dependency>
@@ -562,9 +555,6 @@
         <groupId>org.scalatestplus</groupId>
         <artifactId>scalacheck-1-14_${scala.binary.version}</artifactId>
         <version>3.1.1.0</version>
-=======
-        <version>3.0.8</version>
->>>>>>> 1f3d5cb3... Adding HttpHealthDependency helper class (#187)
         <scope>test</scope>
       </dependency>
       <dependency>
