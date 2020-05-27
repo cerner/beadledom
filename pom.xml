@@ -129,6 +129,11 @@
         <scope>import</scope>
       </dependency>
       <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+      </dependency>
+      <dependency>
         <groupId>com.cerner.beadledom</groupId>
         <artifactId>beadledom-client</artifactId>
         <version>${project.version}</version>
