@@ -19,7 +19,7 @@ import javax.ws.rs.core.StreamingOutput;
 @Path("meta/availability")
 public interface AvailabilityResource {
   @GET
-  @Produces("text/html; qs=0.8")
+  @Produces(MediaType.TEXT_HTML)
   StreamingOutput getBasicAvailabilityCheckHtml();
 
   @ApiOperation(value = "Basic Availability Check",
@@ -35,7 +35,7 @@ public interface AvailabilityResource {
       @io.swagger.annotations.ApiResponse(code = 503, message = "unhealthy"),
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy")})
   @GET
-  @Produces("application/json; qs=0.9")
+  @Produces(MediaType.APPLICATION_JSON)
   @JsonView(HealthJsonViews.Availability.class)
   HealthDto getBasicAvailabilityCheck();
 }

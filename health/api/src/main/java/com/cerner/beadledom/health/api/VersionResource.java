@@ -18,7 +18,7 @@ import javax.ws.rs.core.StreamingOutput;
 public interface VersionResource {
 
   @GET
-  @Produces("text/html; qs=0.8")
+  @Produces(MediaType.TEXT_HTML)
   StreamingOutput getVersionInfoHtml();
 
   @ApiOperation(value = "Application Version Information",
@@ -34,6 +34,6 @@ public interface VersionResource {
       @io.swagger.annotations.ApiResponse(code = 503, message = "Service Unavailable"),
       @io.swagger.annotations.ApiResponse(code = 200, message = "Success")})
   @GET
-  @Produces("application/json; qs=0.9")
+  @Produces(MediaType.APPLICATION_JSON)
   BuildDto getVersionInfo();
 }

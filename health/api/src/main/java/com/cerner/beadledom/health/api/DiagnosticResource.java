@@ -20,7 +20,7 @@ import javax.ws.rs.core.Response;
 public interface DiagnosticResource {
 
   @GET
-  @Produces("text/html; qs=0.8")
+  @Produces(MediaType.TEXT_HTML)
   Response getDiagnosticHealthCheckHtml();
 
   @ApiOperation(value = "Diagnostic Health Check",
@@ -42,7 +42,7 @@ public interface DiagnosticResource {
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
           response = HealthDto.class)})
   @GET
-  @Produces("application/json; qs=0.9")
+  @Produces(MediaType.APPLICATION_JSON)
   @JsonView(HealthJsonViews.Diagnostic.class)
   Response getDiagnosticHealthCheck();
 }

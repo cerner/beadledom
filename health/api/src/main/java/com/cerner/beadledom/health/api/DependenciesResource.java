@@ -22,7 +22,7 @@ import javax.ws.rs.core.StreamingOutput;
 @Path("meta/health/diagnostic/dependencies")
 public interface DependenciesResource {
   @GET
-  @Produces("text/html; qs=0.8")
+  @Produces(MediaType.TEXT_HTML)
   StreamingOutput getDependencyListingHtml();
 
   @ApiOperation(value = "Dependency Listing",
@@ -44,12 +44,12 @@ public interface DependenciesResource {
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
           response = HealthDependencyDto.class)})
   @GET
-  @Produces("application/json; qs=0.9")
+  @Produces(MediaType.APPLICATION_JSON)
   @JsonView(HealthJsonViews.Dependency.class)
   List<HealthDependencyDto> getDependencyListing();
 
   @GET
-  @Produces("text/html; qs=0.8")
+  @Produces(MediaType.TEXT_HTML)
   @Path("/{name}")
   Response getDependencyAvailabilityCheckHtml(@PathParam("name") String name);
 
@@ -74,7 +74,7 @@ public interface DependenciesResource {
       @io.swagger.annotations.ApiResponse(code = 200, message = "healthy",
           response = HealthDependencyDto.class)})
   @GET
-  @Produces("application/json; qs=0.9")
+  @Produces(MediaType.APPLICATION_JSON)
   @JsonView(HealthJsonViews.Dependency.class)
   @Path("/{name}")
   Response getDependencyAvailabilityCheck(@PathParam("name") String name);
