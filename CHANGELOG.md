@@ -1,8 +1,10 @@
 # Beadledom Changelog
 
 ## 3.7 - In Development
+
 ### Added
-* `HttpHealthDependency` class for dependencies that are HTTP services. 
+* `HttpHealthDependency` class for dependencies that are HTTP services.
+* Add server relative quality factor to health resources.
 
 ## 3.6 - 30th April 2020
 
