@@ -62,6 +62,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
           val response = client.target(s"$rootUrl/meta/availability").request().get()
           response.getStatus must be(200)
           response.getMediaType.toString must be(MediaType.APPLICATION_JSON)
+          response.close()
         }
       }
 
@@ -109,6 +110,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
           val response = client.target(s"$rootUrl/meta/health").request().get()
           response.getStatus must be(200)
           response.getMediaType.toString must be(MediaType.APPLICATION_JSON)
+          response.close()
         }
 
         it("returns text/html and 503 status") {
@@ -233,6 +235,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
           val response = client.target(s"$rootUrl/meta/health/diagnostic").request().get()
           response.getStatus must be(200)
           response.getMediaType.toString must be(MediaType.APPLICATION_JSON)
+          response.close()
         }
 
         it("returns text/html and 503 status") {
@@ -337,6 +340,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
           val response = client.target(s"$rootUrl/meta/health/diagnostic/dependencies").request().get()
           response.getStatus must be(200)
           response.getMediaType.toString must be(MediaType.APPLICATION_JSON)
+          response.close()
         }
       }
 
@@ -367,11 +371,12 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
           response.readEntity(classOf[String]) must equalJson(expected)
         }
 
-//        it("returns json if Accept header is not present") {
-//          val response = client.target(s"$rootUrl/meta/health/diagnostic/dependencies/important-thing").request().get()
-//          response.getStatus must be(200)
-//          response.getMediaType.toString must be(MediaType.APPLICATION_JSON)
-//        }
+        it("returns json if Accept header is not present") {
+          val response = client.target(s"$rootUrl/meta/health/diagnostic/dependencies/important-thing").request().get()
+          response.getStatus must be(200)
+          response.getMediaType.toString must be(MediaType.APPLICATION_JSON)
+          response.close()
+        }
 
         it("returns text/html and non-200 status") {
           ImportantThingHealthDependency.healthy = false
@@ -452,6 +457,7 @@ class ResteasyServiceSpec(rootUrl: String, tomcatPort: Int)
           val response = client.target(s"$rootUrl/meta/version").request().get()
           response.getStatus must be(200)
           response.getMediaType.toString must be(MediaType.APPLICATION_JSON)
+          response.close()
         }
       }
     }
