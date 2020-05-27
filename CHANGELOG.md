@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 3.7 - In Development
+## 3.7 - 27th May 2020
 
 ### Added
 * `HttpHealthDependency` class for dependencies that are HTTP services.
