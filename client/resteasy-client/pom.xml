@@ -4,7 +4,7 @@
   <parent>
     <artifactId>beadledom-client-parent</artifactId>
     <groupId>com.cerner.beadledom</groupId>
-    <version>3.7</version>
+    <version>3.8-SNAPSHOT</version>
   </parent>
 
   <artifactId>resteasy-client</artifactId>
