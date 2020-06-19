@@ -8,7 +8,7 @@ To be released...
 New Features
 ------------
 
-- TBD
+- Updated resteasy to 4.x.
 
 Migrating from Beadledom 3.0
 ----------------------------

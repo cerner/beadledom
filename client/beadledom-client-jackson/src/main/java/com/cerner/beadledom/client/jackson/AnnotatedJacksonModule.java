@@ -13,7 +13,6 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.AbstractModule;
 import com.google.inject.BindingAnnotation;
 import com.google.inject.multibindings.Multibinder;
-import com.google.inject.multibindings.MultibindingsScanner;
 import java.lang.annotation.Annotation;
 
 /**
@@ -69,11 +68,6 @@ import java.lang.annotation.Annotation;
  *   </li>
  * </ul>
  *
- * <p>Installs:
- * <ul>
- *   <li> {@link MultibindingsScanner} </li>
- * </ul>
- *
  * <p>This module also creates a new SetBinders for the following types annotated with the given
  * {@link BindingAnnotation}
  * <ul>
@@ -126,11 +120,6 @@ public class AnnotatedJacksonModule extends AbstractModule {
     Multibinder.newSetBinder(binder(), JsonParserFeatureFlag.class, clientBindingAnnotation);
     Multibinder.newSetBinder(binder(), MapperFeatureFlag.class, clientBindingAnnotation);
 
-    /**
-     * MultibindingsScanner will scan all modules for methods with the annotations @ProvidesIntoMap,
-     * @ProvidesIntoSet, and @ProvidesIntoOptional.
-     */
-    install(MultibindingsScanner.asModule());
     install(AnnotatedJacksonPrivateModule.with(clientBindingAnnotation));
   }
 }
