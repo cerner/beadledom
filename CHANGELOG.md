@@ -5,7 +5,7 @@
 [Migration guide](http://engineering.cerner.com/beadledom/4.0/docs/releases/Beadledom40.html) to Beadledom 4.0 from Beadledom 3.x.
 
 ### Breaking Changes
-* Removed beadledom-swagger1 and beadledom-stagemonitor modules
+* Removed beadledom-swagger1 and beadledom-stagemonitor modules.
 
 ### Changed
 * Upgraded RESTEasy to 4.5.5.Final.
