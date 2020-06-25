@@ -6,6 +6,7 @@
 
 ### Breaking Changes
 * Removed beadledom-swagger1 and beadledom-stagemonitor modules.
+* Changed AnnotatedObjectMapperProvider and ObjectMapperProvider to use [PropertyNamingStrategy.LOWER_CAMEL_CASE](https://javadoc.io/static/com.fasterxml.jackson.core/jackson-databind/2.10.4/com/fasterxml/jackson/databind/PropertyNamingStrategy.html#LOWER_CAMEL_CASE) from [PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES](https://javadoc.io/static/com.fasterxml.jackson.core/jackson-databind/2.10.4/com/fasterxml/jackson/databind/PropertyNamingStrategy.html#CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES).
 
 ### Changed
 * Upgraded RESTEasy to 4.5.5.Final.

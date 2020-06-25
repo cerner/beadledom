@@ -45,13 +45,12 @@ class ObjectMapperProvider implements Provider<ObjectMapper> {
 
     // Sets default values before looking at bound features
     objectMapper.setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
-    objectMapper.setPropertyNamingStrategy(
-        PropertyNamingStrategy.SNAKE_CASE);
+    objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE);
     objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
     objectMapper.registerModules(jacksonModules);
-    
+
     for (SerializationFeatureFlag feature: serializationFeatureFlag) {
       objectMapper.configure(feature.feature(), feature.isEnabled());
     }
