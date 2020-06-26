@@ -103,7 +103,7 @@
     <okhttp3.version>4.7.2</okhttp3.version>
     <spotbugs.version>3.1.8</spotbugs.version>
     <spotbugs.plugin.version>3.1.8</spotbugs.plugin.version>
-    <swagger2-core.version>1.6.0</swagger2-core.version>
+    <swagger2-core.version>1.6.1</swagger2-core.version>
     <tomcat-embed.version>7.0.104</tomcat-embed.version>
     <wagon.version>2.10</wagon.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
@@ -115,6 +115,7 @@
     <pmd.version>6.8.0</pmd.version>
     <pmd.plugin.version>3.10.0</pmd.plugin.version>
     <slf4j.version>1.7.30</slf4j.version>
+    <guice.version>4.2.3</guice.version>
   </properties>
 
   <dependencyManagement>
@@ -288,17 +289,17 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>28.0-jre</version>
+        <version>29.0-jre</version>
       </dependency>
       <dependency>
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
-        <version>4.2.2</version>
+        <version>${guice.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.inject.extensions</groupId>
         <artifactId>guice-multibindings</artifactId>
-        <version>4.2.2</version>
+        <version>${guice.version}</version>
       </dependency>
       <dependency>
         <groupId>com.netflix.governator</groupId>
@@ -308,7 +309,7 @@
       <dependency>
         <groupId>com.newrelic.agent.java</groupId>
         <artifactId>newrelic-api</artifactId>
-        <version>4.3.0</version>
+        <version>5.13.0</version>
       </dependency>
       <dependency>
         <groupId>com.squareup.okhttp3</groupId>
@@ -334,7 +335,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.6</version>
+        <version>2.7</version>
       </dependency>
       <!-- This is effectively a pure jaxrs implementation, despite the name. Only usage of the -->
       <!-- FormDataParam annotation from Jersey will not work with Resteasy. -->
@@ -405,12 +406,12 @@
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
-        <version>4.5.6</version>
+        <version>4.5.12</version>
       </dependency>
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpcore</artifactId>
-        <version>4.4.10</version>
+        <version>4.4.13</version>
       </dependency>
       <dependency>
         <groupId>org.jetbrains.kotlin</groupId>
@@ -475,7 +476,7 @@
       <dependency>
         <groupId>org.jooq</groupId>
         <artifactId>jooq</artifactId>
-        <version>3.11.11</version>
+        <version>3.13.2</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
