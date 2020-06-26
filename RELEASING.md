@@ -98,6 +98,7 @@ After preparing the machine for the release follow the below steps
 * Once the artifacts are pushed to the Sonatype staging repo
     * Scroll down to the latest beadledom repo from the list.
     * click on the release button to push the artifact to maven central.
+    ![Sonatype Staging Repositories](deploy/sonatypeRelease.png)
     * **Note**: It roughly takes about 2 hours for the artifacts to sync with the maven central.
 * Builds the documentation site for the released tag and publishes it to `gh-pages`.
 * Travis starts another build for the current snapshot and pushes the artifacts to [sonatype snapshots repo](https://oss.sonatype.org/content/repositories/snapshots/com/cerner/beadledom/).
