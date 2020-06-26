@@ -9,7 +9,7 @@
   <parent>
     <artifactId>beadledom-integration</artifactId>
     <groupId>com.cerner.beadledom</groupId>
-    <version>4.0-SNAPSHOT</version>
+    <version>4.0</version>
   </parent>
 
   <dependencies>
