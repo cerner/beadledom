@@ -26,7 +26,7 @@ Download using Maven
 Usage
 ~~~~~
 
-* Install `AvroSwaggerGuiceModule <https://github.com/cerner/beadledom/blob/master/avro/swagger/src/main/java/com/cerner/beadledom/avro/AvroSwaggerGuiceModule.java>`_ to enable the avro serialization support.
+* Install `AvroSwaggerGuiceModule <https://github.com/cerner/beadledom/blob/main/avro/swagger/src/main/java/com/cerner/beadledom/avro/AvroSwaggerGuiceModule.java>`_ to enable the avro serialization support.
 
 .. code-block:: java
 

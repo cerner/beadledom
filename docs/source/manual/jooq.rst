@@ -4,7 +4,7 @@ beadledom-jooq
 Overview
 --------
 
-Beadledom jOOQ is a Google Guice extension for jOOQ for managing the database context and transaction lifecycle. The simplest way to use it is through the use of an annotation and Guice AOP interceptors. This provides functionality similar to `Guice Persist <https://github.com/google/guice/tree/master/extensions/persist>`_ for jOOQ instead of JPA.
+Beadledom jOOQ is a Google Guice extension for jOOQ for managing the database context and transaction lifecycle. The simplest way to use it is through the use of an annotation and Guice AOP interceptors. This provides functionality similar to `Guice Persist <https://github.com/google/guice/tree/main/extensions/persist>`_ for jOOQ instead of JPA.
 
 See the `jOOQ documentation <https://www.jooq.org/learn/>`_ for details on using and configuring jOOQ.
 
@@ -189,8 +189,8 @@ Instead of using a rollback hook, try to invert what you are trying to do. Inste
 
 .. _DataSource: https://docs.oracle.com/javase/8/docs/api/javax/sql/DataSource.html
 .. _DSLContext: https://www.jooq.org/javadoc/latest/org/jooq/DSLContext.html
-.. _DSLContextProvider: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/DSLContextProvider.java
-.. _JooqTransactional: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactional.java
+.. _DSLContextProvider: https://github.com/cerner/beadledom/tree/main/jooq/src/main/java/com/cerner/beadledom/jooq/DSLContextProvider.java
+.. _JooqTransactional: https://github.com/cerner/beadledom/tree/main/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactional.java
 .. _SQLDialect: https://www.jooq.org/javadoc/latest/org/jooq/SQLDialect.html
-.. _ThreadLocalJooqModule: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/ThreadLocalJooqModule.java
-.. _JooqTransactionalHooks: https://github.com/cerner/beadledom/tree/master/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactionalHooqs.java
+.. _ThreadLocalJooqModule: https://github.com/cerner/beadledom/tree/main/jooq/src/main/java/com/cerner/beadledom/jooq/ThreadLocalJooqModule.java
+.. _JooqTransactionalHooks: https://github.com/cerner/beadledom/tree/main/jooq/src/main/java/com/cerner/beadledom/jooq/JooqTransactionalHooqs.java

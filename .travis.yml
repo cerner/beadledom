@@ -20,7 +20,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: cerner/beadledom
-    branch: master
+    branch: main
     condition: "${IS_SNAPSHOT} = true"
 - provider: script
   script: ".travis/publish.sh"
@@ -30,7 +30,7 @@ deploy:
     tags: true
 branches:
   only:
-  - master
+  - main
   - beta
   - "/([0-9]*\\.[0-9]*\\.*[0-9]*-*)\\w+$/"
 env:

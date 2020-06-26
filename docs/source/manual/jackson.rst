@@ -91,17 +91,17 @@ In your Jackson guice ``module`` add your feature object to the multibinder:
   SerializationFeatureFlag getSerializationFeature() {
     return SerializationFeatureFlag.create(SerializationFeature.FEATURE1, true);
   }
-  
+
   @ProvidesIntoSet
   SerializationFeatureFlag getSerializationFeature() {
     return SerializationFeatureFlag.create(SerializationFeature.FEATURE2, true);
   }
-  
+
   @ProvidesIntoSet
   DeserializationFeatureFlag getDeserializationFeature() {
     return DeserializationFeatureFlag.create(DeserializationFeature.FEATURE_NAME, true);
   }
-  
+
   @ProvidesIntoSet
   JsonGeneratorFeatureFlag getJsonGeneratorFeature() {
     return JsonGeneratorFeatureFlag.create(JsonGenerator.Feature.FEATURE_NAME, true);
@@ -111,7 +111,7 @@ In your Jackson guice ``module`` add your feature object to the multibinder:
   JsonParserFeatureFlag getJsonParserFeature() {
     return JsonParserFeatureFlag.create(JsonParser.Feature.FEATURE_NAME, true);
   }
-  
+
   @ProvidesIntoSet
   MapperFeatureFlag getMapperFeature() {
     return MapperFeatureFlag.create(MapperFeature.FEATURE_NAME, true);
@@ -121,5 +121,5 @@ FieldFilter
 -----------
 
 The ``FieldFilter`` class provides a way to filter JSON to only a set of specified fields. See the
-javadoc for `FieldFilter <https://github.com/cerner/beadledom/tree/master/jackson/src/main/java/com/cerner/beadledom/jackson/filter/FieldFilter.java>`_ for
+javadoc for `FieldFilter <https://github.com/cerner/beadledom/tree/main/jackson/src/main/java/com/cerner/beadledom/jackson/filter/FieldFilter.java>`_ for
 usage.

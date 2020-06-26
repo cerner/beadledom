@@ -33,7 +33,7 @@ PATCH
 `PATCH <https://en.wikipedia.org/wiki/Patch_verb>`_ HTTP method. This is likely due to the fact that ``PATCH`` was introduced in a later `rfc <https://tools.ietf.org/html/rfc5789>`_ that added
 the new HTTP method to the already existing HTTP/1.1 specification.
 
-``@PATCH`` was added to `beadledom-jaxrs <https://github.com/cerner/beadledom/tree/master/jaxrs>`_ to allow services to support partial updates without the need of
+``@PATCH`` was added to `beadledom-jaxrs <https://github.com/cerner/beadledom/tree/main/jaxrs>`_ to allow services to support partial updates without the need of
 overloading ``@POST``. The annotation has no opinion on how the service decides to implement the
 resource performing the ``PATCH`` operation. Implementing services have the freedom to support `JSON
 Patch <https://tools.ietf.org/html/rfc6902>`_ and/or `JSON Merge Patch <https://tools.ietf.org/html/rfc7386>`_.
@@ -89,7 +89,7 @@ Download using Maven
 
 Usage
 -----
- 
+
 The correlation id header and/or MDC name can overridden by adding a binding for your custom name
 and annotating it with ``@CorrelationIdHeader`` or ``@CorrelationIdMdc`` respectively.
 

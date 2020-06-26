@@ -1,15 +1,15 @@
 beadledom-resteasy
 ==================
 
-This project provides the core integration of the Beadledom components with the Resteasy JAX-RS 
+This project provides the core integration of the Beadledom components with the Resteasy JAX-RS
 implementation.
 
 The following components are included:
 
-`ResteasyContextListener <https://github.com/cerner/beadledom/blob/master/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyContextListener.java>`_
+`ResteasyContextListener <https://github.com/cerner/beadledom/blob/main/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyContextListener.java>`_
   a base servlet context listener that integrates with Resteasy and Governator for lifecycle management
 
-`ResteasyModule <https://github.com/cerner/beadledom/blob/master/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyModule.java>`_
+`ResteasyModule <https://github.com/cerner/beadledom/blob/main/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyModule.java>`_
   a Guice module that provides the core bindings.
 
 Download
@@ -40,7 +40,7 @@ The Beadledom components are integrated into this project via `beadledom-core <c
 Getting started
 ~~~~~~~~~~~~~~~
 
-To use Beadledom in your Resteasy/Jax-rs application all that is needed is to extend the 
+To use Beadledom in your Resteasy/Jax-rs application all that is needed is to extend the
 ``ResteasyContextListener`` and include the ``ResteasyModule`` in your own Guice module. Then include
 the context listener in the web.xml.
 

@@ -87,4 +87,4 @@ Usage
     }
   }
 
-.. _HttpHealthDependency: https://github.com/cerner/beadledom/blob/master/health/service/src/main/java/com/cerner/beadledom/health/HealthDependency.java
+.. _HttpHealthDependency: https://github.com/cerner/beadledom/blob/main/health/service/src/main/java/com/cerner/beadledom/health/HealthDependency.java

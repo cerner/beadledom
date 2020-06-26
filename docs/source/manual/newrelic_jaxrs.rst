@@ -5,7 +5,7 @@ beadledom-newrelic-jaxrs
 
 Beadledom New Relic JAX-RS is a Google Guice extension for `New Relic`_, adding metadata to New Relic transactions.
 
- 
+
 Download
 --------
 
@@ -44,4 +44,4 @@ Install NewRelicModule module
   }
 
 .. _New Relic: https://newrelic.com/
-.. _NewRelicJaxRsModule: https://github.com/cerner/beadledom/blob/master/newrelic-jaxrs/src/main/java/com/cerner/beadledom/newrelic/NewRelicJaxRsModule.java
+.. _NewRelicJaxRsModule: https://github.com/cerner/beadledom/blob/main/newrelic-jaxrs/src/main/java/com/cerner/beadledom/newrelic/NewRelicJaxRsModule.java

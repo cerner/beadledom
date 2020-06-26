@@ -24,7 +24,7 @@ Usage
 -----
 
 JsonMatchers
-  check out the `scala doc <https://github.com/cerner/beadledom/blob/master/testing/src/main/scala/com/cerner/beadledom/testing/JsonMatchers.scala>`_ on the trait for the usage instructions.
+  check out the `scala doc <https://github.com/cerner/beadledom/blob/main/testing/src/main/scala/com/cerner/beadledom/testing/JsonMatchers.scala>`_ on the trait for the usage instructions.
 
 UnitSpec
   Base spec for including ``FunSpec`` and Scalatest Mixins

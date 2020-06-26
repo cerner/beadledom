@@ -41,7 +41,7 @@ Supported Configurations
 Configurations can exist in many different formats like xml, java
 properties etc. Configurations are loaded into the immutable
 hierarchical configuration via the corresponding
-`ConfigurationSource <https://github.com/cerner/beadledom/blob/master/configuration/src/main/java/com/cerner/beadledom/configuration/ConfigurationSource.java>`__\.
+`ConfigurationSource <https://github.com/cerner/beadledom/blob/main/configuration/src/main/java/com/cerner/beadledom/configuration/ConfigurationSource.java>`__\.
 **Configuration** and **ConfigurationSource** share one to one
 relationship with each other.
 
@@ -62,7 +62,7 @@ priorities that Beadledom supports. It is important to note that the consumers
 are **NOT** restricted to use only the below configuration formats. If
 required, consumers can provide a custom configuration sources and load it via the
 ConfigurationSourcesModuleBuilder as explained in the `usage <#usage>`__. For more information on
-defining a custom configuration sources see `Adding Custom ConfigurationSource <#adding-custom-configurationSource>`__ 
+defining a custom configuration sources see `Adding Custom ConfigurationSource <#adding-custom-configurationSource>`__
 and `Defining a custom natural ordering <#defining-a-custom-natural-ordering>`__ sections.
 
 +--------------------------------------------------------------------------+--------------------+
@@ -265,4 +265,4 @@ that provides the Configuration object.
 
 .. note::
   `BeadledomConfigurationModule` automatically gets installed with `BeadledomModule`. So, if
-  `BeadledomModule <https://github.com/cerner/beadledom/blob/master/core/src/main/java/com/cerner/beadledom/core/BeadledomModule.java>`__ or `ResteasyModule <https://github.com/cerner/beadledom/blob/master/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyModule.java>`__ are installed then it is not required to install `BeadledomConfigurationModule <https://github.com/cerner/beadledom/blob/2c208f895bdad7f50fad250df235cfae683bb94c/configuration/src/main/java/com/cerner/beadledom/configuration/BeadledomConfigurationModule.java>`__ explicitly.
+  `BeadledomModule <https://github.com/cerner/beadledom/blob/main/core/src/main/java/com/cerner/beadledom/core/BeadledomModule.java>`__ or `ResteasyModule <https://github.com/cerner/beadledom/blob/main/resteasy/src/main/java/com/cerner/beadledom/resteasy/ResteasyModule.java>`__ are installed then it is not required to install `BeadledomConfigurationModule <https://github.com/cerner/beadledom/blob/2c208f895bdad7f50fad250df235cfae683bb94c/configuration/src/main/java/com/cerner/beadledom/configuration/BeadledomConfigurationModule.java>`__ explicitly.

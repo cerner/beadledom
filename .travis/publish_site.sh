@@ -52,10 +52,10 @@ configure-git
 
 release_tag="$1"
 
-if [[ "$release_tag" == "dev" || "$release_tag"  == "master" ]]; then
+if [[ "$release_tag" == "dev" || "$release_tag"  == "main" ]]; then
   release_tag=$(xmllint --xpath "//*[local-name()='project']/*[local-name()='version']/text()" pom.xml)
 
-  printf "${CYAN}Checking out master to build SNAPSHOT version ${WHITE}"${release_tag}" ${CYAN}of docs.$RESET \n"
+  printf "${CYAN}Checking out main to build SNAPSHOT version ${WHITE}"${release_tag}" ${CYAN}of docs.$RESET \n"
 
   git checkout -B "dev"
 else

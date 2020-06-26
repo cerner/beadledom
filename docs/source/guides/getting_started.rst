@@ -30,9 +30,9 @@ Installing the Installer
 ------------------------
 
 Before we create our first Beadledom project we need to download the
-`beadledom installer <https://github.com/cerner/beadledom/blob/master/archetype/bootstrap/>`_ utility.
+`beadledom installer <https://github.com/cerner/beadledom/blob/main/archetype/bootstrap/>`_ utility.
 If you would like to take a look at the installer source code before running it you can find it
-`here install.sh script <https://github.com/cerner/beadledom/blob/master/archetype/bootstrap/bin/>`_.
+`here install.sh script <https://github.com/cerner/beadledom/blob/main/archetype/bootstrap/bin/>`_.
 
 Then to install execute in your shell
 
@@ -52,7 +52,7 @@ which should print the usage details to the screen.
 Creating Our First Project
 --------------------------
 
-We are going to use the default archetype `simple-service <https://github.com/cerner/beadledom/blob/master/archetype/simple-service/>`_
+We are going to use the default archetype `simple-service <https://github.com/cerner/beadledom/blob/main/archetype/simple-service/>`_
 in our example because it is fairly basic while
 doing a good job at showing off a fair amount of the base feature set that Beadledom offers. In order to
 kick off our project creation we just need to run
@@ -274,7 +274,7 @@ AwesomeThingContextListener
 There isn't a lot going on in this file, but it is very important. This is the entry point to
 our service and where we define our base Guice modules and configuration. We won't dive much
 into the configuration component if you want to learn more about it (and we recommend you do)
-you can find more documentation `here <https://github.com/cerner/beadledom/tree/master/configuration>`_.
+you can find more documentation `here <https://github.com/cerner/beadledom/tree/main/configuration>`_.
 
 The method we are overriding here is providing our ``AwesomeThingModule``, which is our service module and ``ResteasyBootstrapModule``, which bootstraps ``ResteasyModule`` for our service.
 
@@ -310,10 +310,10 @@ This is where we install the main Beadledom module :java:`install(new ResteasyMo
 this module is where Beadledom is going to install and bootstrap the various features it needs
 in order to make our service tick. Below are some of the many awesome features that we get just by installing `ResteasyModule` without any extra efforts
 
-- `Configuration <https://github.com/cerner/beadledom/tree/master/configuration#beadledom-configuration>`_ - lets us access all the configuration through a consistent API.
-- `Health <https://github.com/cerner/beadledom/tree/master/health#beadledom-health>`_ - Health checks for the services
-- `Jackson <https://github.com/cerner/beadledom/tree/master/jackson#beadledom-jackson>`_ - Serialization-DeSerialization for the payload
-- `Swagger <https://github.com/cerner/beadledom/tree/master/swagger2#beadledom-swagger2>`_ - Enables the `Open API <https://openapis.org/specification>`_ documentation and `Swagger UI <http://swagger.io/swagger-ui/>`_
+- `Configuration <https://github.com/cerner/beadledom/tree/main/configuration#beadledom-configuration>`_ - lets us access all the configuration through a consistent API.
+- `Health <https://github.com/cerner/beadledom/tree/main/health#beadledom-health>`_ - Health checks for the services
+- `Jackson <https://github.com/cerner/beadledom/tree/main/jackson#beadledom-jackson>`_ - Serialization-DeSerialization for the payload
+- `Swagger <https://github.com/cerner/beadledom/tree/main/swagger2#beadledom-swagger2>`_ - Enables the `Open API <https://openapis.org/specification>`_ documentation and `Swagger UI <http://swagger.io/swagger-ui/>`_
 
 The next chunk of code
 
@@ -400,7 +400,7 @@ the implementation of your service. What we are able to do is build a client who
 on the same JAX-RS annotations you use for your server. That makes it really easy to make clients
 for your Java consumers; however, it won't help you much with consumers of other languages. Instead
 of trying to explain all the concepts that are going on within the client we recommend you take a
-look at our `client documentation <https://github.com/cerner/beadledom/tree/master/client>`_..
+look at our `client documentation <https://github.com/cerner/beadledom/tree/main/client>`_..
 
 HelloWorldResource
 ++++++++++++++++++
@@ -453,7 +453,7 @@ Where to go now
 
 The service we just created and went through is just using a subset of features that Beadledom
 can provide. If you would like to learn more about what Beadledom has to offer take a look at our
-`table of contents <https://github.com/cerner/beadledom/tree/master>`_ and the related
+`table of contents <https://github.com/cerner/beadledom/tree/main>`_ and the related
 documentation and code. If you find a bug or have an idea of a feature Beadledom is lacking open
 an issue or pull request we are always happy to collaborate to help everyone get to a better place.
 
