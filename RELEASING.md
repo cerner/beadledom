@@ -102,4 +102,4 @@ After preparing the machine for the release follow the below steps
 * Builds the documentation site for the released tag and publishes it to `gh-pages`.
 * Travis starts another build for the current snapshot and pushes the artifacts to [sonatype snapshots repo](https://oss.sonatype.org/content/repositories/snapshots/com/cerner/beadledom/).
 
-To monitor the build go to [beadledom travis-ci builds](https://travis-ci.org/cerner/beadledom/builds).
+To monitor the build go to [beadledom travis-ci builds](https://travis-ci.com/github/cerner/beadledom/builds).
