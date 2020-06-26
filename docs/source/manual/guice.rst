@@ -4,11 +4,11 @@ beadledom-guice
 Overview
 --------
 
-This project is an extension to `Guice core <https://github.com/google/guice/tree/master/core>`_ - contains Guice specific utilities.
- 
+This project is an extension to `Guice core <https://github.com/google/guice/tree/main/core>`_ - contains Guice specific utilities.
+
 Download
 --------
- 
+
  Download using Maven:
 
 .. code-block:: xml
@@ -25,8 +25,8 @@ Download
 
 Usage
 -----
- 
-* **BindingAnnotations** - Validates the Guice binding annotations. 
+
+* **BindingAnnotations** - Validates the Guice binding annotations.
     * *isBindingAnnotation* - returns **true** if the argument is a binding annotation i.e., the given annotation should be annotated with either ``@BindingAnnotation`` or ``@Qualifier``, otherwise **false**.
       * Example: :java:`BindingAnnotations.isBindingAnnotation(classOf[Override]) // false`
 

@@ -99,7 +99,7 @@ Follow the below steps to configure the client specific ObjectMapper
 
   Multibinder.newSetBinder(binder(), Module.class, MyClientAnnotation.class);
 
-For enabling/disabling Jackson's ObjectMapper features, please refer to the beadledom's jackson `documentation <https://github.com/cerner/beadledom/tree/master/jackson#jackson-objectmapper-features>`_.
+For enabling/disabling Jackson's ObjectMapper features, please refer to the beadledom's jackson `documentation <https://github.com/cerner/beadledom/tree/main/jackson#jackson-objectmapper-features>`_.
 
 Client Configuration
 ~~~~~~~~~~~~~~~~~~~~

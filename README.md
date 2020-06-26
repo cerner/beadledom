@@ -43,7 +43,7 @@ Read our [Contribution guidelines][contibuting_guidelines].
 
 ## Releasing
 
-Depending on the need for the release, every month or earlier the beadledom committer team reviews contributions in master that have not been released. The committer team then takes a quick vote on if a release of master should be made. If 2/3 of the committers agree on the release a release is cut.
+Depending on the need for the release, every month or earlier the beadledom committer team reviews contributions in main that have not been released. The committer team then takes a quick vote on if a release of master should be made. If 2/3 of the committers agree on the release a release is cut.
 
 To release Beadledom please follow our [releasing documentation][releasing_guidelines].
 

@@ -17,6 +17,6 @@ then
     echo "building site"
     ${CI_DIR}/publish_site.sh $TRAVIS_TAG
 else
-    echo "deploying SNAPSHOT from master"
+    echo "deploying SNAPSHOT from main"
     ./mvnw deploy --settings $CI_DIR/settings.xml -Dgpg.skip -B -U
 fi

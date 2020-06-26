@@ -18,9 +18,9 @@ the information that is necessary or desired for a consuming application.
 
 Two models exist for the purpose of allowing easily-constructed JSON responses:
 
-- `JsonError <https://github.com/cerner/beadledom/blob/master/json-common/src/main/java/com.cerner.beadledom.json.common/model/JsonError.java>`_
+- `JsonError <https://github.com/cerner/beadledom/blob/main/json-common/src/main/java/com.cerner.beadledom.json.common/model/JsonError.java>`_
   - A class that can be used to build a JSON response.
-- `ErrorDetail <https://github.com/cerner/beadledom/blob/master/json-common/src/main/java/com.cerner.beadledom.json.common/model/ErrorDetail.java>`_
+- `ErrorDetail <https://github.com/cerner/beadledom/blob/main/json-common/src/main/java/com.cerner.beadledom.json.common/model/ErrorDetail.java>`_
   - A class that can be used to add additional error details to the JSON response.
 
 These models are serializable objects that can be set as the response's entity body.
@@ -62,15 +62,15 @@ displayed to the end-user.
 Beadledom addresses this concern by implementing exception mappers. By default, Beadledom comes
 packaged with five exception mappers that handle this functionality behind the scenes:
 
-- `WebApplicationExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/WebApplicationExceptionMapper.java>`_
+- `WebApplicationExceptionMapper <https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/WebApplicationExceptionMapper.java>`_
   - An exception mapper for exceptions in the WebApplicationException family.
-- `FailureExceptionMapper <https://github.com/cerner/beadledom/blob/master/resteasy/src/main/java/com/cerner/beadledom/resteasy/exceptionmapping/FailureExceptionMapper.java>`_
+- `FailureExceptionMapper <https://github.com/cerner/beadledom/blob/main/resteasy/src/main/java/com/cerner/beadledom/resteasy/exceptionmapping/FailureExceptionMapper.java>`_
   - An exception mapper for exceptions in the Failure family which encompasses internal exceptions raised by Resteasy.
-- `ThrowableExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/ThrowableExceptionMapper.java>`_
+- `ThrowableExceptionMapper <https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/ThrowableExceptionMapper.java>`_
   - A catch-all exception mapper for all other unhandled exceptions.
-- `JsonMappingExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonMappingExceptionMapper.java>`_
+- `JsonMappingExceptionMapper <https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonMappingExceptionMapper.java>`_
   - An exception mapper for Jackson JsonMappingExceptions.
-- `JsonParseExceptionMapper <https://github.com/cerner/beadledom/blob/master/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonParseExceptionMapper.java>`_
+- `JsonParseExceptionMapper <https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonParseExceptionMapper.java>`_
   - An exception mapper for Jackson JsonParseExceptions.
 
 Each of these ExceptionMapper classes has a distinct role in a RESTful service.

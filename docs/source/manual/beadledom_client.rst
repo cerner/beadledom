@@ -5,7 +5,7 @@ beadledom-client
 
 Deprecated since 3.6, use `Retrofit <https://github.com/square/retrofit>`_ instead.
 
-Beadledom Client is a JAX-RS 2.0 based HTTP Client for Java. It provides a wrapper around the JAX-RS 2.0 client API along with some additional functionality including a `CorrelationIdFilter <https://github.com/cerner/beadledom/blob/master/client/beadledom-client/src/main/java/com/cerner/beadledom/client/CorrelationIdFilter.java>`_ that will set a correlation id header on all client calls.
+Beadledom Client is a JAX-RS 2.0 based HTTP Client for Java. It provides a wrapper around the JAX-RS 2.0 client API along with some additional functionality including a `CorrelationIdFilter <https://github.com/cerner/beadledom/blob/main/client/beadledom-client/src/main/java/com/cerner/beadledom/client/CorrelationIdFilter.java>`_ that will set a correlation id header on all client calls.
 
 Beadledom Client is designed to provide a common way of writing Java HTTP clients. It internally wraps another implementation of HTTP Client to execute the HTTP requests. Similarly to, and to stay consistent with, `Beadledom <https://github.com/cerner/beadledom>`_ the JAX-RS 2.0 client API provides a default implementation by wrapping the Resteasy Client for creating HTTP clients.
 

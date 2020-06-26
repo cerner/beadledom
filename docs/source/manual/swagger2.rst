@@ -1,7 +1,7 @@
 beadledom-swagger2
 ==================
 
-This project provides API documentation via `Swagger 2 <https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md>`_.
+This project provides API documentation via `Swagger 2 <https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md>`_.
 
 Uses `swagger-core 1.6 <https://github.com/swagger-api/swagger-core/tree/v1.6.0>`_
 
@@ -25,7 +25,7 @@ Download
 Usage
 -----
 
-Install the `Swagger2Module <https://github.com/cerner/beadledom/blob/master/swagger2/src/main/java/com/cerner/beadledom/swagger2/Swagger2Module.java>`_ to enable
+Install the `Swagger2Module <https://github.com/cerner/beadledom/blob/main/swagger2/src/main/java/com/cerner/beadledom/swagger2/Swagger2Module.java>`_ to enable
 the ``/api-docs`` endpoint as well as a ``/meta/swagger/ui`` endpoint containing the Swagger ui.
 
 .. code-block:: java
