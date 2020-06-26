@@ -2,7 +2,6 @@ package com.cerner.beadledom.jackson
 
 import com.fasterxml.jackson.core.{JsonGenerator, JsonParser}
 import com.fasterxml.jackson.databind.{DeserializationFeature, MapperFeature, ObjectMapper, SerializationFeature}
-import com.google.inject.multibindings.MultibindingsScanner
 import com.google.inject.{AbstractModule, Guice}
 import scala.collection.JavaConverters._
 import org.scalatestplus.mockito.MockitoSugar
@@ -16,7 +15,6 @@ class JacksonModuleSpec extends AnyFunSpec with Matchers with MockitoSugar {
   val injector = Guice.createInjector(new AbstractModule() {
     override def configure(): Unit = {
       install(new JacksonTestModule)
-      install(MultibindingsScanner.asModule)
     }
   })
 
@@ -39,11 +37,11 @@ class JacksonModuleSpec extends AnyFunSpec with Matchers with MockitoSugar {
         modules.iterator().next() should be(new TestModule().getTypeId)
       }
 
-      it("uses snake casing") {
+      it("uses lower camel casing") {
         val model = new CamelCaseModel
         val str = mapper.writeValueAsString(model)
-        str should include("long_field_name_with_camel_case")
-        str should not include "longFieldNameWithCamelCase"
+        str should include("longFieldNameWithCamelCase")
+        str should not include "long_field_name_with_camel_case"
       }
 
       it("omits null fields when serializing") {

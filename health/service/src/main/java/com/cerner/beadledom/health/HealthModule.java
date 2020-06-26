@@ -23,7 +23,6 @@ import com.google.common.collect.Maps;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.multibindings.Multibinder;
-import com.google.inject.multibindings.MultibindingsScanner;
 import java.util.Map;
 import java.util.Set;
 import javax.inject.Singleton;
@@ -89,11 +88,6 @@ import javax.ws.rs.core.UriInfo;
  *     <li>{@link com.cerner.beadledom.metadata.ServiceMetadata}</li>
  *     <li>{@link javax.ws.rs.core.UriInfo} (request-scoped)</li>
  * </ul>
- *
- * <p>Installs:
- * <ul>
- *   <li> {@link MultibindingsScanner} </li>
- * </ul>
  */
 public class HealthModule extends AbstractModule {
   @Override
@@ -142,7 +136,6 @@ public class HealthModule extends AbstractModule {
   @Singleton
   @HealthTemplateFactory
   MustacheFactory provideMustacheFactory() {
-    return new DefaultMustacheFactory(
-        "com/cerner/beadledom/health");
+    return new DefaultMustacheFactory("com/cerner/beadledom/health");
   }
 }

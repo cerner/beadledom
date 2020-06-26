@@ -66,8 +66,7 @@ class AnnotatedObjectMapperProvider implements Provider<ObjectMapper> {
 
     // Sets default values before looking at bound features
     objectMapper.setSerializationInclusion(JsonInclude.Include.NON_ABSENT);
-    objectMapper.setPropertyNamingStrategy(
-        PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+    objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE);
     objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 

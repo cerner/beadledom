@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.multibindings.Multibinder;
-import com.google.inject.multibindings.MultibindingsScanner;
 
 /**
  * A Guice module that provides Jackson JSON serialization using {@link ObjectMapper}.
@@ -29,11 +28,6 @@ import com.google.inject.multibindings.MultibindingsScanner;
  *     <li>{@link ObjectMapper}</li>
  * </ul>
  *
- * <p>Installs:
- * <ul>
- *   <li> {@link MultibindingsScanner} </li>
- * </ul>
- *
  * @author John Leacox
  */
 public class JacksonModule extends AbstractModule {
@@ -49,12 +43,6 @@ public class JacksonModule extends AbstractModule {
     Multibinder.newSetBinder(binder(), JsonGeneratorFeatureFlag.class);
     Multibinder.newSetBinder(binder(), JsonParserFeatureFlag.class);
     Multibinder.newSetBinder(binder(), MapperFeatureFlag.class);
-
-    /**
-     * MultibindingsScanner will scan all modules for methods with the annotations @ProvidesIntoMap,
-     * @ProvidesIntoSet, and @ProvidesIntoOptional.
-     */
-    install(MultibindingsScanner.asModule());
 
     bind(ObjectMapper.class).toProvider(ObjectMapperProvider.class).asEagerSingleton();
   }

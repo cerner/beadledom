@@ -3,7 +3,6 @@ package com.cerner.beadledom.configuration;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.multibindings.Multibinder;
-import com.google.inject.multibindings.MultibindingsScanner;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,7 +42,6 @@ public class BeadledomConfigurationModule extends AbstractModule {
   @Override
   protected void configure() {
     Multibinder.newSetBinder(binder(), ConfigurationSource.class);
-    install(MultibindingsScanner.asModule());
   }
 
   @Provides
