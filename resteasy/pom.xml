@@ -161,7 +161,7 @@
         <!-- Generate Avro class sources for the tests -->
         <groupId>org.apache.avro</groupId>
         <artifactId>avro-maven-plugin</artifactId>
-        <version>1.7.5</version>
+        <version>1.10.0</version>
         <configuration>
           <stringType>String</stringType>
         </configuration>
