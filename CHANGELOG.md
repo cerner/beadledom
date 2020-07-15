@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 4.1 - TBD
+
+### Changed
+* Upgrade Avro to 1.10.0.
+
 ## 4.0 - 26th June 2020
 
 [Migration guide](http://engineering.cerner.com/beadledom/4.0/docs/releases/Beadledom40.html) to Beadledom 4.0 from Beadledom 3.x.

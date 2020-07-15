@@ -3,12 +3,12 @@
 Beadledom 4.0
 =============
 
-To be released...
+Released June 26th, 2020
 
 New Features
 ------------
 
-- Updated resteasy to 4.x.
+- Updated RESTEasy to 4.x.
 
 Migrating from Beadledom 3.0
 ----------------------------
