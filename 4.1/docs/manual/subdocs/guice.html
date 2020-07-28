@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using Beadledom Client with Guice &mdash; Beadledom 4.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/github_fork.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Beadledom 4.1 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/error_handling.html">Error Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/4.1/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Beadledom</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Using Beadledom Client with Guice</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-beadledom-client-with-guice">
+<span id="client-guice"></span><h1>Using Beadledom Client with Guice<a class="headerlink" href="#using-beadledom-client-with-guice" title="Permalink to this headline">¶</a></h1>
+<p>The <code class="docutils literal"><span class="pre">beadledom-client-guice</span></code> module adds the ability to use Guice for building and customizing clients. JAX-RS features, providers, and filters can all be registered by binding them with Guice. To avoid conflicts and duplicate binding errors client Guice configuration must be namespaced using a binding annotation; both <code class="docutils literal"><span class="pre">&#64;BindingAnnotation</span></code> and <code class="docutils literal"><span class="pre">&#64;Qualifier</span></code> annotations being supported.</p>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>Download using Maven:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.cerner.beadledom<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>beadledom-client-guice<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>[insert latest version]<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Installing the <code class="docutils literal"><span class="pre">BeadledomClientModule</span></code> will make a <code class="docutils literal"><span class="pre">BeadledomClient</span></code> object available that can be used for proxying JAX-RS resource interfaces and then making those resources available through Guice. It is recommended to create a wrapper class such as <code class="docutils literal"><span class="pre">MyClient</span></code> that has accessor methods to the individual JAX-RS resources rather than directly making the JAX-RS resources available through Guice. The reason for this, is that the clients may be used within a Beadledom service, and the JAX-RS client resources that are directly available through Guice will get picked up by the server and it will attempt to use them to serve traffic at the client paths.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClientModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Bind the client module with this client&#39;s binding annotation</span>
+    <span class="c1">// so that the client is namespaced for this client only.</span>
+    <span class="n">install</span><span class="o">(</span><span class="n">BeadledomClientModule</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">MyClientAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+
+    <span class="c1">// Consumers of the client should provide the configuration.</span>
+    <span class="n">requireBinding</span><span class="o">(</span><span class="n">MyClientConfig</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Provides</span>
+  <span class="nd">@Singleton</span>
+  <span class="n">MyClient</span> <span class="nf">provideMyClient</span><span class="o">(</span>
+      <span class="nd">@MyClientAnnotation</span> <span class="n">BeadledomClient</span> <span class="n">client</span><span class="o">,</span> <span class="n">MyClientConfig</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">MyClient</span><span class="o">(</span><span class="n">client</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<p>JAX-RS features, providers can be bound with the same binding annotation as a particular <code class="docutils literal"><span class="pre">BeadledomClient</span></code> and they will automatically be registered with the client. The <code class="docutils literal"><span class="pre">beadledom-client-guice</span></code> project includes a Jackson provider configured to match the same default JSON configuration from beadledom based services.</p>
+<div class="section" id="jackson-json-provider">
+<h3>Jackson JSON Provider<a class="headerlink" href="#jackson-json-provider" title="Permalink to this headline">¶</a></h3>
+<p>The Beadledom JSON Provider client feature includes the <code class="docutils literal"><span class="pre">ObjectMapperClientFeatureModule</span></code> for installing the Jackson JSON Provider. The feature can be included by installing the module with the same binding annotation as the <code class="docutils literal"><span class="pre">BeadledomClientModule</span></code>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClientModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">install</span><span class="o">(</span><span class="n">BeadledomClientModule</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">MyClientAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+    <span class="n">install</span><span class="o">(</span><span class="n">ObjectMapperClientFeatureModule</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">MyClientAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+
+    <span class="c1">// Additional configuration</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Follow the below steps to configure the client specific ObjectMapper</p>
+<ul class="simple">
+<li>All the <code class="docutils literal"><span class="pre">&#64;ProvidesIntoSet</span></code> methods must also be annotated with the client’s BindingAnnotation i.e., <code class="docutils literal"><span class="pre">&#64;MyClientAnnotation</span></code> from the above example.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ProvidesIntoSet</span>
+<span class="nd">@MyClientAnnotation</span>
+<span class="n">SerializationFeatureFlag</span> <span class="nf">getSerializationFeature</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">SerializationFeatureFlag</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">SerializationFeature</span><span class="o">.</span><span class="na">INDENT_OUTPUT</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>When defining the multibinders make sure to pass in the client’s BindingAnnotation as well.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Multibinder</span><span class="o">.</span><span class="na">newSetBinder</span><span class="o">(</span><span class="n">binder</span><span class="o">(),</span> <span class="n">Module</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">MyClientAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</pre></div>
+</div>
+<p>For enabling/disabling Jackson’s ObjectMapper features, please refer to the beadledom’s jackson <a class="reference external" href="https://github.com/cerner/beadledom/tree/main/jackson#jackson-objectmapper-features">documentation</a>.</p>
+</div>
+<div class="section" id="client-configuration">
+<h3>Client Configuration<a class="headerlink" href="#client-configuration" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">BeadledomClientConfiguration</span></code> can be used to add custom configurations to the client. It is important that <code class="docutils literal"><span class="pre">BeadledomClientConfiguration</span></code> gets bound to a client annotation.</p>
+<p>The client options that can be configured are:</p>
+<dl class="docutils">
+<dt>connectionPoolSize</dt>
+<dd>Sets the connection pool size.</dd>
+<dt>connectionTimeoutMillis</dt>
+<dd>Sets the connection timeout to be used in milliseconds.</dd>
+<dt>correlationIdName</dt>
+<dd>Sets the Header name for a client.</dd>
+<dt>maxPooledPerRouteSize</dt>
+<dd>Sets the max connection pool size per route.</dd>
+<dt>socketTimeoutMillis</dt>
+<dd>Sets the socket timeout to be used in milliseconds.</dd>
+<dt>sslContext</dt>
+<dd>Sets the SSL Context.</dd>
+<dt>trustStore</dt>
+<dd>Sets the SSL trust store.</dd>
+<dt>ttlMillis</dt>
+<dd>Sets the TTL to be used in milliseconds.</dd>
+<dt>verifier</dt>
+<dd>Sets the hostname verifier.</dd>
+</dl>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@Provides</span>
+<span class="nd">@MyAmazingFeature</span>
+<span class="n">BeadledomClientConfiguration</span> <span class="nf">provideClientConfig</span> <span class="o">()</span> <span class="o">{</span>
+  <span class="n">BeadledomClientConfiguration</span> <span class="n">beadledomClientConfig</span> <span class="o">=</span> <span class="n">BeadledomClientConfiguration</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">maxPooledPerRouteSize</span><span class="o">(</span><span class="mi">60</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">socketTimeoutMillis</span><span class="o">(</span><span class="mi">60</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">connectionTimeoutMillis</span><span class="o">(</span><span class="mi">60</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">ttlMillis</span><span class="o">(</span><span class="mi">60</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">connectionPoolSize</span><span class="o">(</span><span class="mi">60</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+  <span class="k">return</span> <span class="n">beadledomClientConfig</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-features">
+<h3>Custom Features<a class="headerlink" href="#custom-features" title="Permalink to this headline">¶</a></h3>
+<p>Additional JAX-RS features and providers can be installed by following a similar pattern to the Jackson JSON module.</p>
+<p>Start by creating a client feature Guice module. It’s usually ideal to extend from the Guice <code class="docutils literal"><span class="pre">AbstractModule</span></code> and only expose the bindings that should be available for the client. This is useful when there are additional bindings that are required for the feature/provider, but that shouldn’t be bound/registered with the client or made available to consumers of the client.</p>
+<p>The constructor for the client feature module should be private and paired with a static factory method <code class="docutils literal"><span class="pre">with(Class&lt;?</span> <span class="pre">extends</span> <span class="pre">Annotation&gt;</span> <span class="pre">annotation)</span></code> since the feature must be namespaced to the same client binding annotation that the feature is being installed for. This is required to prevent duplicate binding issues when multiple clients are in use.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClientFeatureModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nf">MyClientFeatureModule</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">annotation</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">MyClientFeatureModule</span> <span class="nf">with</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// The annotation must be either BindingAnnotation or Qualifier; fail fast otherwise</span>
+    <span class="n">BindingAnnotations</span><span class="o">.</span><span class="na">checkIsBindingAnnotation</span><span class="o">(</span><span class="n">annotation</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">MyClientFeature</span><span class="o">(</span><span class="n">annotation</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">MyClientFeature</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">annotatedWith</span><span class="o">(</span><span class="n">annotation</span><span class="o">).</span><span class="na">toProvider</span><span class="o">(</span><span class="n">MyClientFeatureProvider</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">expose</span><span class="o">(</span><span class="n">MyClientFeature</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">annotatedWith</span><span class="o">(</span><span class="n">annotation</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>When additional configuration is needed for creating a client feature, then the <code class="docutils literal"><span class="pre">DynamicBindingProvider</span></code> class can be used for creating a custom Guice provider.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyConfigurableClientFeature</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">MyConfigurableClientFeature</span> <span class="nf">create</span><span class="o">(</span><span class="n">MyConfiguration</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="n">MyConfigurableClientFeature</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">MyConfigurableClientFeatureProvider</span> <span class="kd">implements</span> <span class="n">Provider</span><span class="o">&lt;</span><span class="n">MyConfigurableClientFeature</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="n">DynamicBindingProvider</span><span class="o">&lt;</span><span class="n">MyConfiguration</span><span class="o">&gt;</span> <span class="n">configurationProvider</span><span class="o">;</span>
+
+  <span class="n">MyConfigurableClientFeatureProvider</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">annotation</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Inject</span>
+  <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">DynamicBindingProvider</span><span class="o">&lt;</span><span class="n">MyConfiguration</span><span class="o">&gt;</span> <span class="n">configurationProvider</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">configurationProvider</span> <span class="o">=</span> <span class="n">configurationProvider</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">OAuth1ClientFilterFeature</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Get the configuration that is namespaced with the same binding annotation</span>
+    <span class="n">MyConfiguration</span> <span class="n">config</span> <span class="o">=</span> <span class="n">configurationProvider</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">annotation</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">MyConfigurableClientFeature</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyConfigurableClientFeatureModule</span> <span class="kd">extends</span> <span class="n">PrivateModule</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">;</span>
+
+  <span class="kd">private</span> <span class="nf">MyConfigurableClientFeatureModule</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">annotation</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">MyConfigurableClientFeatureModule</span> <span class="nf">with</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="n">annotation</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// The annotation must be either BindingAnnotation or Qualifier; fail fast otherwise</span>
+    <span class="n">BindingAnnotations</span><span class="o">.</span><span class="na">checkIsBindingAnnotation</span><span class="o">(</span><span class="n">annotation</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="n">MyClientFeature</span><span class="o">(</span><span class="n">annotation</span><span class="o">));</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Use the DynamicAnnotations helper to bind a dynamic provider for the configuration class</span>
+    <span class="c1">// This will make the DynamicProvider&lt;MyConfiguration&gt; available for injection and also</span>
+    <span class="c1">// require a binding for MyConfiguration that must be provided either by a consumer&#39;s</span>
+    <span class="c1">// module or one of the client modules.</span>
+    <span class="n">DynamicAnnotations</span>
+        <span class="o">.</span><span class="na">bindDynamicProvider</span><span class="o">(</span><span class="n">binder</span><span class="o">(),</span> <span class="n">MyConfiguration</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">annotation</span><span class="o">);</span>
+    <span class="n">MyConfigurableClientFeatureProvider</span> <span class="n">provider</span> <span class="o">=</span>
+        <span class="k">new</span> <span class="n">MyConfigurableClientFeatureProvider</span><span class="o">(</span><span class="n">annotation</span><span class="o">);</span>
+    <span class="n">bind</span><span class="o">(</span><span class="n">MyConfigurableClientFeature</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">annotatedWith</span><span class="o">(</span><span class="n">annotation</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">toProvider</span><span class="o">(</span><span class="n">provider</span><span class="o">);</span>
+
+    <span class="c1">// By using PrivateModule and only exposing the feature this is meant to install, the</span>
+    <span class="c1">// dynamic provider from above is hidden from consumers since it is an unnecessary</span>
+    <span class="c1">// implementation detail.</span>
+    <span class="n">expose</span><span class="o">(</span><span class="n">MyConfigurableClientFeature</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">annotatedWith</span><span class="o">(</span><span class="n">annotation</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'4.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
