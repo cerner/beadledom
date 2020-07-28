@@ -1,6 +1,6 @@
 # Beadledom Changelog
 
-## 4.1 - TBD
+## 4.1 - 28th July 2020
 
 ### Changed
 * Upgrade Avro to 1.10.0.
