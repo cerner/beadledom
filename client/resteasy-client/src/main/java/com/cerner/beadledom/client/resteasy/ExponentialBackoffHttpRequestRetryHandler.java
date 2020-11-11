@@ -2,6 +2,7 @@ package com.cerner.beadledom.client.resteasy;
 
 import java.io.IOException;
 import java.util.Random;
+import javax.net.ssl.SSLException;
 import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.apache.http.protocol.HttpContext;
 
@@ -24,7 +25,14 @@ class ExponentialBackoffHttpRequestRetryHandler extends StandardHttpRequestRetry
 
   @Override
   public boolean retryRequest(IOException exception, int executionCount, HttpContext context) {
-    if (!super.retryRequest(exception, executionCount, context)) {
+    IOException cause = exception;
+    if (exception instanceof SSLException
+        && exception.getCause() != null
+        && exception.getCause() instanceof IOException) {
+      cause = (IOException) exception.getCause();
+    }
+
+    if (!super.retryRequest(cause, executionCount, context)) {
       return false;
     }
 
