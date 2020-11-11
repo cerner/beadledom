@@ -722,7 +722,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>5.2.2</version>
+        <version>6.0.3</version>
         <configuration>
           <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
           <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
