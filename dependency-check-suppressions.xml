@@ -18,6 +18,17 @@
   <suppress>
     <packageUrl regex="true">^pkg:maven/org.jboss.resteasy/resteasy-.*$</packageUrl>
     <cve>CVE-2020-25633</cve>
+    <cve>CVE-2020-1695</cve>
+  </suppress>
+
+  <suppress>
+    <packageUrl regex="true">^pkg:maven/org.yaml/snakeyaml@1.24.*$</packageUrl>
+    <cve>CVE-2017-18640</cve>
+  </suppress>
+
+  <suppress>
+    <packageUrl regex="true">pkg:maven/org.jboss.resteasy/resteasy-guice@3.11.2.Final.*$</packageUrl>
+    <cve>CVE-2020-1695</cve>
   </suppress>
 
   <suppress>
