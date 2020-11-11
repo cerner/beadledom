@@ -13,7 +13,8 @@
 ### Additions
 * Add [New Relic](https://newrelic.com/) module.
 
-## 2.7.2 - 11 April 201
+## 2.7.2 - 11 April 2018
+
 ### Additions
 * Add updated GPG signing key with a longer duration until it expires (20 years).
 
@@ -34,7 +35,8 @@
 ## 2.6.1 - 22 September 2017
 
 ### Enhancements
-* Add `JsonMappingExceptionMapper` and `JsonParseExceptionMapper` to map Jackson exceptions to the JSON error response structur
+* Add `JsonMappingExceptionMapper` and `JsonParseExceptionMapper` to map Jackson exceptions to the JSON error response structure.
+
 ## 2.6 - 15 September 2017
 
 ### Enhancements
