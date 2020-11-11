@@ -1,12 +1,19 @@
 # Beadledom Changelog
 
+## 2.9 - 11th November 2020
+
+### Changed
+* Retryable IOExceptions in HTTP clients will now use a simple exponential backoff delay instead of retrying immediately.
+
+### Fixed
+* Starting with Java 1.8.0_272, [SSLSocketImpl wraps SocketException](https://bugs.openjdk.java.net/browse/JDK-8214339). Beadledom Client is updated to retry on SSLExceptions that occur because of IOExceptions.
+
 ## 2.8 - 16 May 2018
 
 ### Additions
 * Add [New Relic](https://newrelic.com/) module.
 
-## 2.7.2 - 11 April 2018
-
+## 2.7.2 - 11 April 201
 ### Additions
 * Add updated GPG signing key with a longer duration until it expires (20 years).
 
@@ -27,8 +34,7 @@
 ## 2.6.1 - 22 September 2017
 
 ### Enhancements
-* Add `JsonMappingExceptionMapper` and `JsonParseExceptionMapper` to map Jackson exceptions to the JSON error response structure.
-
+* Add `JsonMappingExceptionMapper` and `JsonParseExceptionMapper` to map Jackson exceptions to the JSON error response structur
 ## 2.6 - 15 September 2017
 
 ### Enhancements
