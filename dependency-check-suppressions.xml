@@ -10,7 +10,14 @@
     <cve>CVE-2012-6708</cve>
     <cve>CVE-2015-9251</cve>
     <cve>CVE-2019-11358</cve>
+    <cve>CVE-2020-11022</cve> <!-- We don't pass HTML to DOM manipulation methods -->
+    <cve>CVE-2020-11023</cve> <!-- We don't pass HTML to DOM manipulation methods -->
     <vulnerabilityName>Regex in its jQuery.htmlPrefilter  sometimes may introduce XSS</vulnerabilityName>
+  </suppress>
+
+  <suppress>
+    <packageUrl regex="true">^pkg:maven/org.jboss.resteasy/resteasy-.*$</packageUrl>
+    <cve>CVE-2020-25633</cve>
   </suppress>
 
   <suppress>
