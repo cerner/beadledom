@@ -306,7 +306,7 @@ public class BeadledomResteasyClientBuilder extends BeadledomClientBuilder {
             .setDefaultSocketConfig(socketConfig)
             .setRedirectStrategy(redirectStrategy)
             .setRetryHandler(
-                new StandardHttpRequestRetryHandler(3, true))
+                new ExponentialBackoffHttpRequestRetryHandler(3, false))
             .setServiceUnavailableRetryStrategy(
                 new DefaultServiceUnavailableRetryStrategy(DEFAULT_RETRY_INTERVAL_MILLIS));
 

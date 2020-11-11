@@ -1,5 +1,13 @@
 # Beadledom Changelog
 
+## 2.9 - 11th November 2020
+
+### Changed
+* Retryable IOExceptions in HTTP clients will now use a simple exponential backoff delay instead of retrying immediately.
+
+### Fixed
+* Starting with Java 1.8.0_272, [SSLSocketImpl wraps SocketException](https://bugs.openjdk.java.net/browse/JDK-8214339). Beadledom Client is updated to retry on SSLExceptions that occur because of IOExceptions.
+
 ## 2.8 - 16 May 2018
 
 ### Additions
