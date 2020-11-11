@@ -1,5 +1,10 @@
 # Beadledom Changelog
 
+## 3.7.1 - 11th November 2020
+
+### Fixed
+* Starting with Java 1.8.0_272, [SSLSocketImpl wraps SocketException](https://bugs.openjdk.java.net/browse/JDK-8214339). Beadledom Client is updated to retry on SSLExceptions that occur because of IOExceptions.
+
 ## 3.7 - 27th May 2020
 
 ### Added
