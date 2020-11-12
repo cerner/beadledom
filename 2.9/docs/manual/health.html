@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>beadledom-health &mdash; Beadledom 2.9 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="Beadledom 2.9 documentation" href="../index.html"/>
+        <link rel="up" title="User Manual" href="index.html"/>
+        <link rel="next" title="beadledom-jackson" href="jackson.html"/>
+        <link rel="prev" title="beadledom-guice-dynamicbindings" href="guice_dynamic_bindings.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/error_handling.html">Error Handling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="avro.html">Beadledom Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Beadledom Bootstrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beadledom_client.html">Beadledom Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common.html">Beadledom Common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Beadledom Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Beadledom Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice.html">Beadledom Guice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guice_dynamic_bindings.html">Beadledom Guice Dynamic Bindings</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Beadledom Health</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="jackson.html">Beadledom Jackson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jaxrs.html">Beadledom JAX-RS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jaxrs_generic_response.html">Beadledom JAX-RS - Generic Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jooq.html">Beadledom jOOQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newrelic_jaxrs.html">Beadledom New Relic JAX-RS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resteasy.html">Beadledom Resteasy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resteasy_generic_response.html">Beadledom Resteasy - Generic Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stagemonitor.html">Beadledom Stagemonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swagger.html">Beadledom Swagger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle.html">Beadledom Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecycle_governator.html">Beadledom Lifecycle - Governator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Beadledom Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/2.9/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Beadledom</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">User Manual</a> &raquo;</li>
+      
+    <li>beadledom-health</li>
+    <li class="wy-breadcrumbs-aside">
+      
+          
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="beadledom-health">
+<h1>beadledom-health<a class="headerlink" href="#beadledom-health" title="Permalink to this headline">¶</a></h1>
+<p>This project provides an api for health checks of the service built with beadledom. It adds the
+following health check endpoints.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="63%" />
+<col width="37%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">End point</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/meta/availability</span></code></td>
+<td>Basic availability check</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/meta/health/</span></code></td>
+<td>Primary health check</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/meta/health/diagnostic</span></code></td>
+<td>Diagnostic health check</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/meta/health/diagnostic/dependencies</span></code></td>
+<td>Dependency listing</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">/meta/health/diagnostic/dependencies/{dependency_name}</span></code></td>
+<td>Availability check for dependency</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">/meta/version</span></code></td>
+<td>Application version information</td>
+</tr>
+</tbody>
+</table>
+<p>To enable the health check endpoints install the HealthModule. By default, all the healthchecks returns 200 status.</p>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>Download using Maven:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.cerner.beadledom<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>beadledom-health<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>[insert latest version]<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>With the module installed, you can add new health dependencies to your service&#8217;s health check by adding bindings of HealthDependency using the Multibinder.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyModule</span> <span class="kd">extends</span> <span class="n">AbstractModule</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">configure</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">install</span><span class="o">(</span><span class="k">new</span> <span class="n">HealthModule</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="nd">@ProvidesIntoSet</span>
+  <span class="n">HealthDependency</span> <span class="nf">provideMyHealthDependency</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">FoobarHealthDependency</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">FoobarHealthDependency</span> <span class="kd">extends</span> <span class="n">HealthDependency</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">HealthStatus</span> <span class="nf">checkAvailability</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(...)</span> <span class="o">{</span> <span class="c1">// check health somehow</span>
+      <span class="k">return</span> <span class="n">HealthStatus</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="mi">200</span><span class="o">,</span> <span class="s">&quot;foobar is available&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">HealthStatus</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="mi">503</span><span class="o">,</span> <span class="s">&quot;foobar is gone. just gone.&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">&quot;foobar&quot;</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="jackson.html" class="btn btn-neutral float-right" title="beadledom-jackson" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="guice_dynamic_bindings.html" class="btn btn-neutral" title="beadledom-guice-dynamicbindings" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
