@@ -4,7 +4,7 @@
 
   <groupId>com.cerner.beadledom</groupId>
   <artifactId>beadledom-parent</artifactId>
-  <version>4.1.2</version>
+  <version>4.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Beadledom (Parent)</name>
   <description>A simple, composable framework for building RESTFul services</description>
@@ -75,7 +75,7 @@
     <url>https://github.com/cerner/beadledom</url>
     <connection>scm:git:https://github.com/cerner/beadledom.git</connection>
     <developerConnection>scm:git:https://github.com/cerner/beadledom.git</developerConnection>
-    <tag>4.1.2</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
