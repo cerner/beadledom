@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Beadledom 4.0 &mdash; Beadledom 4.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Beadledom 4.1.2 documentation" href="../index.html"/>
+        <link rel="up" title="Releases" href="index.html"/>
+        <link rel="next" title="Troubleshooting" href="../guides/troubleshooting.html"/>
+        <link rel="prev" title="Beadledom 3.0" href="Beadledom30.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/error_handling.html">Error Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">User Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Releases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Beadledom30.html">   Beadledom 3.0</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">   Beadledom 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#migrating-from-beadledom-3-0">Migrating from Beadledom 3.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#maven-module-changes">Maven Module Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upgrading-to-scala-2-12-and-scalatest-3-1">Upgrading to Scala 2.12 and Scalatest 3.1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/4.1.2/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Beadledom</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Releases</a> &raquo;</li>
+        
+      <li>Beadledom 4.0</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="beadledom-4-0">
+<span id="id1"></span><h1>Beadledom 4.0<a class="headerlink" href="#beadledom-4-0" title="Permalink to this headline">¶</a></h1>
+<p>Released June 26th, 2020</p>
+<div class="section" id="new-features">
+<h2>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Updated RESTEasy to 4.x.</li>
+</ul>
+</div>
+<div class="section" id="migrating-from-beadledom-3-0">
+<h2>Migrating from Beadledom 3.0<a class="headerlink" href="#migrating-from-beadledom-3-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="maven-module-changes">
+<h3>Maven Module Changes<a class="headerlink" href="#maven-module-changes" title="Permalink to this headline">¶</a></h3>
+<p>The beadledom-swagger1 module was removed. This will require updating your poms that have a dependency
+on beadledom-swagger1 to beadledom-swagger2. The user guide for beadledom-swagger2 can be found <a class="reference external" href="https://engineering.cerner.com/beadledom/3.4/docs/manual/swagger2.html/">here</a>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.cerner.beadledom<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>beadledom-swagger2<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<p>The beadledom-stagemonitor module was removed. This will require updating your poms that have a dependency
+on beadledom-stagemonitor.</p>
+</div>
+<div class="section" id="upgrading-to-scala-2-12-and-scalatest-3-1">
+<h3>Upgrading to Scala 2.12 and Scalatest 3.1<a class="headerlink" href="#upgrading-to-scala-2-12-and-scalatest-3-1" title="Permalink to this headline">¶</a></h3>
+<p>Beadledom upgraded to Scala 2.12 and Scalatest 3.1. If your project depends on any of the Scala functionality provided by Beadledom (naming beadledom-testing), then you will also need to upgrade these dependencies. It’s best to make these upgrades even if you don’t depend on the Scala functionality from Beadledom.</p>
+<p>Scalatest provides autofix mechanisms for this upgrade, but requires multiples steps.</p>
+<ol class="arabic simple">
+<li>Upgrade to the latest Scala 2.12 version and scalatest 3.0.8 to use the scalatest autofixes for 3.0.8</li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Scala binary version: 2.12</p>
+</li>
+<li><p class="first">Scala version: 2.12.11+</p>
+</li>
+<li><p class="first">scala-maven-plugin version: 4.3.1+</p>
+</li>
+<li><p class="first">scalacheck version: 1.14.3+</p>
+</li>
+<li><p class="first">scalatest version: 3.0.8</p>
+</li>
+<li><p class="first">Add semanticdb compiler plugin to the scala-maven-plugin configuration
+.. code-block:: xml</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;compilerPlugins&gt;</dt>
+<dd><dl class="first docutils">
+<dt>&lt;compilerPlugin&gt;</dt>
+<dd><p class="first last">&lt;groupId&gt;org.scalameta&lt;/groupId&gt;
+&lt;artifactId&gt;semanticdb-scalac_2.12.11&lt;/artifactId&gt;
+&lt;version&gt;4.3.7&lt;/version&gt;</p>
+</dd>
+</dl>
+<p class="last">&lt;/compilerPlugin&gt;</p>
+</dd>
+</dl>
+<p>&lt;/compilerPlugins&gt;</p>
+</div></blockquote>
+</li>
+<li><p class="first">Add scalafix-maven-plugin with the scalatest autofix version 3.0.8-0 dependency to your pom file
+.. code-block:: xml</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;plugin&gt;</dt>
+<dd><p class="first">&lt;groupId&gt;io.github.evis&lt;/groupId&gt;
+&lt;artifactId&gt;scalafix-maven-plugin&lt;/artifactId&gt;
+&lt;version&gt;0.1.2_0.9.5&lt;/version&gt;
+&lt;dependencies&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;dependency&gt;</dt>
+<dd><p class="first last">&lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+&lt;artifactId&gt;autofix_2.12&lt;/artifactId&gt;
+&lt;version&gt;3.0.8-0&lt;/version&gt;</p>
+</dd>
+</dl>
+<p>&lt;/dependency&gt;</p>
+</div></blockquote>
+<p class="last">&lt;/dependencies&gt;</p>
+</dd>
+</dl>
+<p>&lt;/plugin&gt;</p>
+</div></blockquote>
+</li>
+<li><p class="first">Add a new file to the root of your project called <cite>.scalafix.conf</cite> with the following contents
+..code-block:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="n">RenameDeprecatedPackage</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run <cite>mvn clean install scalafix:scalafix</cite> and fix any errors until you get a fully successful build.</p>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Upgrade scalatest to 3.1.1+ with the updated autofix</li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">scalatest version: 3.1.1+</p>
+</li>
+<li><p class="first">Update scalafix-maven-plugin configuration
+.. code-block:: xml</p>
+<blockquote>
+<div><p>&lt;plugin&gt;
+&lt;groupId&gt;io.github.evis&lt;/groupId&gt;
+&lt;artifactId&gt;scalafix-maven-plugin&lt;/artifactId&gt;
+&lt;version&gt;0.1.2_0.9.5&lt;/version&gt;
+&lt;dependencies&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;dependency&gt;</dt>
+<dd><p class="first last">&lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+&lt;artifactId&gt;autofix_2.12&lt;/artifactId&gt;
+&lt;version&gt;3.1.0.0&lt;/version&gt;</p>
+</dd>
+</dl>
+<p>&lt;/dependency&gt;</p>
+</div></blockquote>
+<p>&lt;/dependencies&gt;</p>
+</div></blockquote>
+<p>&lt;/plugin&gt;</p>
+</li>
+<li><p class="first">Add the newly modularized scalatest jars to your dependency management and dependencies. The below dependencies are the most commonly used ones, but there may be others you’ll need to add.
+.. code-block:: xml</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;dependency&gt;</dt>
+<dd><p class="first last">&lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
+&lt;artifactId&gt;junit-4-12_2.12&lt;/artifactId&gt;
+&lt;version&gt;3.1.1.0&lt;/version&gt;
+&lt;scope&gt;test&lt;/scope&gt;</p>
+</dd>
+</dl>
+<p>&lt;/dependency&gt;
+&lt;dependency&gt;</p>
+<blockquote>
+<div><p>&lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
+&lt;artifactId&gt;mockito-3-2_2.12&lt;/artifactId&gt;
+&lt;version&gt;3.1.1.0&lt;/version&gt;
+&lt;scope&gt;test&lt;/scope&gt;</p>
+</div></blockquote>
+<p>&lt;/dependency&gt;
+&lt;dependency&gt;</p>
+<blockquote>
+<div><p>&lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
+&lt;artifactId&gt;scalacheck-1-14_2.12&lt;/artifactId&gt;
+&lt;version&gt;3.1.1.0&lt;/version&gt;
+&lt;scope&gt;test&lt;/scope&gt;</p>
+</div></blockquote>
+<p>&lt;/dependency&gt;</p>
+</div></blockquote>
+</li>
+<li><p class="first">Update the contents of your <cite>.scalafix.conf</cite> file
+.. code-block:: xml</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>rules = [</dt>
+<dd><p class="first last">RewriteDeprecatedNames</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+</li>
+<li><p class="first">Run <cite>mvn clean install scalafix:scalafix</cite> and fix any errors until you get a fully successful build.</p>
+</li>
+<li><p class="first">Manually fix broken imports due to the switch to the modularized jars above and continue the above command until the entire thing succeeds.</p>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li>Remove the scalafix and autofix configurations</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Delete the <cite>.scalafix.conf</cite> file</li>
+<li>Remove the scalafix-maven-plugin</li>
+<li>Remove the semanticdb compiler plugin</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../guides/troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Beadledom30.html" class="btn btn-neutral" title="Beadledom 3.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'4.1.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

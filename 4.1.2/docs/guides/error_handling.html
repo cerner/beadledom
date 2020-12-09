@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Error Handling &mdash; Beadledom 4.1.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/github_fork.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Beadledom 4.1.2 documentation" href="../index.html"/>
+        <link rel="next" title="User Manual" href="../manual/index.html"/>
+        <link rel="prev" title="Getting Started" href="getting_started.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Beadledom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about/introduction.html">Beadledom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Error Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#behavior">Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manual/index.html">User Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+            
+          
+  <li>
+    <a href="http://cerner.github.io/beadledom/4.1.2/apidocs/index.html">Java Docs </a>
+  </li>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Beadledom</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Error Handling</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="error-handling"></span><div class="toctree-wrapper compound" id="id1">
+</div>
+<div class="section" id="id2">
+<h1>Error Handling<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h1>
+<p>Beadledom has implemented a standard behavior for handling errors in a RESTful service that follows
+the <a class="reference external" href="https://developers.google.com/drive/v2/web/handle-errors">Google API</a> structured error
+message format. This format allows exceptions to be mapped to responses in JSON format with only
+the information that is necessary or desired for a consuming application.</p>
+<p>Two models exist for the purpose of allowing easily-constructed JSON responses:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/cerner/beadledom/blob/main/json-common/src/main/java/com.cerner.beadledom.json.common/model/JsonError.java">JsonError</a>
+- A class that can be used to build a JSON response.</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/blob/main/json-common/src/main/java/com.cerner.beadledom.json.common/model/ErrorDetail.java">ErrorDetail</a>
+- A class that can be used to add additional error details to the JSON response.</li>
+</ul>
+<p>These models are serializable objects that can be set as the response’s entity body.</p>
+<p>Example Response:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;errors&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;domain&quot;</span><span class="p">:</span> <span class="s2">&quot;global&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;notFound&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Not Found&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Not Found&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Example Response (without additional errors information):</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="mi">404</span><span class="p">,</span>
+  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Not Found&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="behavior">
+<h2>Behavior<a class="headerlink" href="#behavior" title="Permalink to this headline">¶</a></h2>
+<p>Without the use of an <a class="reference external" href="http://docs.oracle.com/javaee/6/api/javax/ws/rs/ext/ExceptionMapper.html">ExceptionMapper</a>,
+an unhandled exception thrown from a resource endpoint will return an HTTP response in plain text
+or HTML that may contain stack traces or other system-specific information that should not be
+displayed to the end-user.</p>
+<p>Beadledom addresses this concern by implementing exception mappers. By default, Beadledom comes
+packaged with five exception mappers that handle this functionality behind the scenes:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/WebApplicationExceptionMapper.java">WebApplicationExceptionMapper</a>
+- An exception mapper for exceptions in the WebApplicationException family.</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/blob/main/resteasy/src/main/java/com/cerner/beadledom/resteasy/exceptionmapping/FailureExceptionMapper.java">FailureExceptionMapper</a>
+- An exception mapper for exceptions in the Failure family which encompasses internal exceptions raised by Resteasy.</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/ThrowableExceptionMapper.java">ThrowableExceptionMapper</a>
+- A catch-all exception mapper for all other unhandled exceptions.</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonMappingExceptionMapper.java">JsonMappingExceptionMapper</a>
+- An exception mapper for Jackson JsonMappingExceptions.</li>
+<li><a class="reference external" href="https://github.com/cerner/beadledom/blob/main/jaxrs/src/main/java/com/cerner/beadledom/jaxrs/exceptionmapping/JsonParseExceptionMapper.java">JsonParseExceptionMapper</a>
+- An exception mapper for Jackson JsonParseExceptions.</li>
+</ul>
+<p>Each of these ExceptionMapper classes has a distinct role in a RESTful service.</p>
+<p>The <code class="docutils literal"><span class="pre">WebApplicationExceptionMapper</span></code> is intended to handle all exceptions thrown from a service
+that extend from the <code class="docutils literal"><span class="pre">WebApplicationException</span></code> hierarchy. This includes exceptions such as
+<code class="docutils literal"><span class="pre">BadRequestException</span></code>, <code class="docutils literal"><span class="pre">NotFoundException</span></code>, custom exceptions extending from
+<code class="docutils literal"><span class="pre">WebApplicationException</span></code>, etc. <code class="docutils literal"><span class="pre">WebApplicationExceptionMapper</span></code> treats the exception as-is but
+sanitizes the exception’s response, status, and message and formats it as JSON before sending back
+a response. The status will be propagated through to the response. The response message will be
+derived from the resulting status code or the status code’s family if the status is unrecognized.</p>
+<p>The <code class="docutils literal"><span class="pre">FailureExceptionMapper</span></code> is meant to be used with projects using Resteasy and handles all
+exceptions thrown internally by Resteasy that extend from the <code class="docutils literal"><span class="pre">Failure</span></code> hierarchy. Resteasy has
+<a class="reference external" href="https://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html/ExceptionHandling.html#builtinException">built-in internally-thrown exceptions</a>
+that need to be handled and reformatted before sending back a response. If the exception’s response
+is not null, its status code will be used as the status of the response. If the exception’s response
+is null, then the error code on the <code class="docutils literal"><span class="pre">Failure</span></code> exception will be used as the status of the
+response if it is in the valid status code range (100-599). If neither of these are true, the
+status is mapped to an Internal Server Error (500 status code). The response message will be
+derived from the resulting status code or the status code’s family if the status is unrecognized.</p>
+<p><code class="docutils literal"><span class="pre">ThrowableExceptionMapper</span></code> is the exception mapper that will behave as a catch-all for all
+exceptions that go unhandled. An unhandled exception could match any of the following scenarios:</p>
+<ul class="simple">
+<li>The exception was a checked exception that was not handled by try/catch blocks.</li>
+<li>The exception was a checked exception that was missing an exception mapper or the exception mapper was implemented incorrectly.</li>
+<li>The exception was an unchecked exception.</li>
+</ul>
+<p>Any exception thrown in a resource matching one of the scenarios mentioned above will be treated as
+an Internal Server Error (500 status code).</p>
+<p>Keep in mind that an unhandled exception will be caught by the exception mapper that is most
+specific to the exception. If there is not an exception mapper for the specific exception, the next
+closest exception mapper in the exception’s hierarchy will handle it. For example, if a
+<a class="reference external" href="http://docs.oracle.com/javaee/7/api/javax/ws/rs/NotFoundException.html">NotFoundException</a>
+(which extends from <code class="docutils literal"><span class="pre">WebApplicationException</span></code>) is thrown, the <code class="docutils literal"><span class="pre">WebApplicationExceptionMapper</span></code>
+will handle it, rather than the <code class="docutils literal"><span class="pre">ThrowableExceptionMapper</span></code>.</p>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>Each of the exception mappers mentioned above are readily available for consumption. They
+are automatically added to a project that have installed either the <code class="docutils literal"><span class="pre">BeadledomModule</span></code>
+(<code class="docutils literal"><span class="pre">WebApplicationExceptionMapper</span></code> and <code class="docutils literal"><span class="pre">ThrowableExceptionMapper</span></code> only) or the <code class="docutils literal"><span class="pre">ResteasyModule</span></code>
+(<code class="docutils literal"><span class="pre">WebApplicationExceptionMapper</span></code>, <code class="docutils literal"><span class="pre">FailureExceptionMapper</span></code>, and <code class="docutils literal"><span class="pre">ThrowableExceptionMapper</span></code>).</p>
+<p>NOTE: If your service is able to throw custom exceptions, it is suggested that a custom
+<a class="reference external" href="https://docs.jboss.org/resteasy/docs/3.1.4.Final/userguide/html/ExceptionHandling.html#ExceptionMappers">ExceptionMapper</a>
+is added to your project as well. This will allow you to customize the response that is returned;
+otherwise, there is a chance that the custom exception may be handled by the
+<code class="docutils literal"><span class="pre">ThrowableExceptionMapper</span></code> and return a 500 response, which may be undesired. While creating
+custom exception mappers, stay consistent with the error handling format by using the <code class="docutils literal"><span class="pre">JsonError</span></code>
+and <code class="docutils literal"><span class="pre">ErrorDetail</span></code> models to create the response entity.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../manual/index.html" class="btn btn-neutral float-right" title="User Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Cerner Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'4.1.2',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/github_fork.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
