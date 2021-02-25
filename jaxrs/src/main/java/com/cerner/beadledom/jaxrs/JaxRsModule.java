@@ -1,7 +1,9 @@
 package com.cerner.beadledom.jaxrs;
 
 import com.cerner.beadledom.jaxrs.provider.CorrelationIdFilter;
+import com.cerner.beadledom.jaxrs.provider.MalformedRequestFilter;
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
 import javax.inject.Singleton;
 
 /**
@@ -19,5 +21,10 @@ public class JaxRsModule extends AbstractModule {
   protected void configure() {
     bind(CorrelationIdFilter.class).toProvider(CorrelationIdFilterProvider.class)
         .in(Singleton.class);
+  }
+
+  @Provides
+  MalformedRequestFilter provideMalformedRequestFilter() {
+    return new MalformedRequestFilter();
   }
 }
