@@ -12,16 +12,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
 /**
- * The ForwardedHeaderFilter reads the request context and determines if the client request was made
- * from a secure protocol (HTTPS). If the request originated from secure context, it updates the
- * request to reflect the original protocol.
+ * The MalformedRequestFilter reads the request context and determines if the request has a valid uri structure if it
+ * does not then it aborts the request and responds with a 400
  *
- * <p>To determine if the client request made in a secure context was forwarded by a load balancer
- * or proxy, the "Forwarded" and "X-Forwarded-Proto" header values are extracted. If either of them
- * show the request was made from a secure context, the internal request object is updated to
- * reflect the original secure protocol.
- *
- * @author Nick Behrens
+ * @author Kyle Roush
  */
 @Provider
 @Priority(Priorities.AUTHENTICATION)
@@ -32,7 +26,7 @@ public class MalformedRequestFilter implements ContainerRequestFilter {
   public void filter(ContainerRequestContext requestContext) {
     try {
       URI.create(requestContext.getUriInfo().getAbsolutePath().toString());
-    } catch (RuntimeException e) {
+    } catch (IllegalArgumentException e) {
       requestContext.abortWith(
               Response.status(400)
                       .type(MediaType.APPLICATION_JSON)
