@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -32,6 +33,9 @@ public class FilteringJacksonJsonProvider extends JacksonJsonProvider {
   @Context
   UriInfo uriInfo;
 
+  @Context
+  HttpServletResponse httpServletResponse;
+
   /**
    * Creates a new instance of {@link FilteringJacksonJsonProvider}.
    */
@@ -52,6 +56,12 @@ public class FilteringJacksonJsonProvider extends JacksonJsonProvider {
   public void writeTo(
       Object o, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
       MultivaluedMap<String, Object> httpHeaders, OutputStream os) throws IOException {
+        
+    if (httpServletResponse.getStatus() >= 400 ) {
+      super.writeTo(o, type, genericType, annotations, mediaType, httpHeaders, os);
+      return;
+    }
+
     String fields = uriInfo.getQueryParameters() == null ? null
         : uriInfo.getQueryParameters().getFirst("fields");
 

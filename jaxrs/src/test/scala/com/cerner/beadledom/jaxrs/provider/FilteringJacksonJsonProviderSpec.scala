@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.collect.Lists
 import java.io.{ByteArrayOutputStream, OutputStream}
 import java.nio.charset.Charset
+import javax.servlet.http.HttpServletResponse
 import javax.ws.rs.core._
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl
 import org.mockito
@@ -32,11 +33,14 @@ class FilteringJacksonJsonProviderSpec
 
     it("serializes a FakeModel") {
       val uriInfo = Mockito.mock(classOf[UriInfo])
+      val httpServletResponse = Mockito.mock(classOf[HttpServletResponse])
       Mockito.when(uriInfo.getQueryParameters).thenReturn(new MultivaluedMapImpl[String, String])
+      Mockito.when(httpServletResponse.getStatus).thenReturn(200)
       val output = Mockito.mock(classOf[OutputStream])
 
       val filter = new FilteringJacksonJsonProvider(objectMapper)
       filter.uriInfo = uriInfo
+      filter.httpServletResponse = httpServletResponse
 
       filter.writeTo(fakeModel,
         fakeModel.getClass,
@@ -56,6 +60,9 @@ class FilteringJacksonJsonProviderSpec
 
     it("filters simple bean properties") {
       val uriInfo = Mockito.mock(classOf[UriInfo])
+      val httpServletResponse = Mockito.mock(classOf[HttpServletResponse])
+      Mockito.when(httpServletResponse.getStatus).thenReturn(200)
+
       val queryParams = new MultivaluedMapImpl[String, String]
       queryParams.add("fields", "id,name,times")
       Mockito.when(uriInfo.getQueryParameters).thenReturn(queryParams)
@@ -63,6 +70,7 @@ class FilteringJacksonJsonProviderSpec
 
       val filter = new FilteringJacksonJsonProvider(objectMapper)
       filter.uriInfo = uriInfo
+      filter.httpServletResponse = httpServletResponse
 
       filter.writeTo(fakeModel,
         fakeModel.getClass,
@@ -82,6 +90,9 @@ class FilteringJacksonJsonProviderSpec
 
     it("filters nested bean properties") {
       val uriInfo = Mockito.mock(classOf[UriInfo])
+      val httpServletResponse = Mockito.mock(classOf[HttpServletResponse])
+      Mockito.when(httpServletResponse.getStatus).thenReturn(200)
+
       val queryParams = new MultivaluedMapImpl[String, String]
       queryParams.add("fields", "id,name,inner_models/id")
       Mockito.when(uriInfo.getQueryParameters).thenReturn(queryParams)
@@ -89,6 +100,7 @@ class FilteringJacksonJsonProviderSpec
 
       val filter = new FilteringJacksonJsonProvider(objectMapper)
       filter.uriInfo = uriInfo
+      filter.httpServletResponse = httpServletResponse
 
       filter.writeTo(fakeModel,
         fakeModel.getClass,
@@ -123,6 +135,9 @@ class FilteringJacksonJsonProviderSpec
               Venue("venue_id1", "THE venue", "THE place", tenors, vocalists, guitarists, failures)
 
       val uriInfo = Mockito.mock(classOf[UriInfo])
+      val httpServletResponse = Mockito.mock(classOf[HttpServletResponse])
+      Mockito.when(httpServletResponse.getStatus).thenReturn(200)
+
       val queryParams = new MultivaluedMapImpl[String, String]
       queryParams.add("fields",
         "id,name,tenors/pitch_pipe,tenors/name,tenors/albums/name,vocalists/albums/id,vocalists/albums/name," +
@@ -132,6 +147,7 @@ class FilteringJacksonJsonProviderSpec
 
       val filter = new FilteringJacksonJsonProvider(objectMapper)
       filter.uriInfo = uriInfo
+      filter.httpServletResponse = httpServletResponse
 
       filter.writeTo(venue,
         venue.getClass,
@@ -154,11 +170,15 @@ class FilteringJacksonJsonProviderSpec
 
     it("serializes a small FakeModel") {
       val uriInfo = Mockito.mock(classOf[UriInfo])
+      val httpServletResponse = Mockito.mock(classOf[HttpServletResponse])
+      Mockito.when(httpServletResponse.getStatus).thenReturn(200)
+
       Mockito.when(uriInfo.getQueryParameters).thenReturn(new MultivaluedMapImpl[String, String])
       val output = Mockito.mock(classOf[OutputStream])
 
       val filter = new FilteringJacksonJsonProvider(objectMapper)
       filter.uriInfo = uriInfo
+      filter.httpServletResponse = httpServletResponse
 
       val startTime = System.currentTimeMillis()
       filter.writeTo(fakeModel,
@@ -173,10 +193,14 @@ class FilteringJacksonJsonProviderSpec
     it("serializes a large FakeModel - about 6MB") {
       (0 until 100000).foreach({ value => fakeModel.innerModels.add(fakeInnerModel1) })
       val uriInfo = Mockito.mock(classOf[UriInfo])
+      val httpServletResponse = Mockito.mock(classOf[HttpServletResponse])
+      Mockito.when(httpServletResponse.getStatus).thenReturn(200)
+
       Mockito.when(uriInfo.getQueryParameters).thenReturn(new MultivaluedMapImpl[String, String])
 
       val filter = new FilteringJacksonJsonProvider(objectMapper)
       filter.uriInfo = uriInfo
+      filter.httpServletResponse = httpServletResponse
 
       (0 until 10).foreach { value =>
         System.gc()
@@ -200,12 +224,16 @@ class FilteringJacksonJsonProviderSpec
     it("serializes a large FakeModel with filtering - about 6MB") {
       (0 until 100000).foreach({ value => fakeModel.innerModels.add(fakeInnerModel1) })
       val uriInfo = Mockito.mock(classOf[UriInfo])
+      val httpServletResponse = Mockito.mock(classOf[HttpServletResponse])
+      Mockito.when(httpServletResponse.getStatus).thenReturn(200)
+
       val queryParams = new MultivaluedMapImpl[String, String]
       queryParams.add("fields", "id,name,inner_models/id")
       Mockito.when(uriInfo.getQueryParameters).thenReturn(queryParams)
 
       val filter = new FilteringJacksonJsonProvider(objectMapper)
       filter.uriInfo = uriInfo
+      filter.httpServletResponse = httpServletResponse
 
       (0 until 10).foreach { value =>
         System.gc()
