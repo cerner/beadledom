@@ -62,11 +62,7 @@ class DSLContextProviderImpl implements DSLContextProvider, UnitOfWork {
   public void end() {
     DSLContext dslContext = dslContexts.get();
     if (dslContext != null) {
-      try {
-        dslContext.close();
-      } finally {
-        dslContexts.remove();
-      }
+      dslContexts.remove();
     }
   }
 }

@@ -21,5 +21,22 @@
     <vulnerabilityName>CVE-2020-10672</vulnerabilityName>
     <vulnerabilityName>CVE-2020-10673</vulnerabilityName>
   </suppress>
-
+  <suppress>
+    <notes>This will be fixed in 4.7.0-Final, it just isn't relased yet.</notes>
+    <packageUrl regex="true">^pkg:maven/org\.jboss\.resteasy/resteasy.*$</packageUrl>
+    <vulnerabilityName>CVE-2021-20289</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes>This will be suppressed till okhttp3 library upgrades to use the 2.10.0 version of okio</notes>
+    <packageUrl regex="true">^pkg:mvn/org\.jetbrains\.kotlin/kotlin-stdlib-common.*$</packageUrl>
+    <vulnerabilityName>CVE-2020-29582</vulnerabilityName>
+    <vulnerabilityName>CVE-2020-15824</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes>This comes from Resteasy core 4.6.0.Final.</notes>
+    <packageUrl>^pkg:mvn/org\.eclipse\.microprofile\.config/microprofile-config-api*.$</packageUrl>
+    <vulnerabilityName>CVE-2010-4647</vulnerabilityName>
+    <vulnerabilityName>CVE-2018-1000413</vulnerabilityName>
+    <vulnerabilityName>CVE-2008-7271</vulnerabilityName>
+  </suppress>
 </suppressions>
